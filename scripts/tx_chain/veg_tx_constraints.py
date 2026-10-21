@@ -71,10 +71,15 @@ Notes:
       (20000/6.5 ~= 3077 @2022, ~3300 in USD 2023 terms). ENV_GROWTH=1.0%/year (LAEO
       2023 fig 1.9: 45->50 GUSD/year, ~1.06%/year; grids declined over that period, so
       1% is a conservative ceiling), well below the ~7%/year APS need trajectory.
-    - Flat 1%/year repowering (v13; supersedes an earlier 2%->3% ramp): EMDE grid
-      replacement rises steadily through 2040 in the APS (IEA "Building the Future
-      Transmission Grid", Feb 2025). 2% = EMDE line replacement; 3% = EMDE transformer
-      replacement.
+    - Flat 1%/year repowering (v13; supersedes an earlier 2%->3% ramp): IEA Latin
+      America Energy Outlook 2023, fig 1.9: electricity-sector investment rose from
+      USD 45 bn/year (first five years of the 2010s) to USD 50 bn/year (three years to
+      2022), ~1.06%/year over 2012->2022 (base midpoint to end, 10 years). 1% is a bit
+      optimistic, since grid investment actually declined over that period.
+      https://iea.blob.core.windows.net/assets/1055131a-8dc4-488b-9e9e-7eb4f72bf7ad/LatinAmericaEnergyOutlook.pdf
+      The earlier ramp followed IEA "Building the Future Transmission Grid" (Feb 2025):
+      EMDE grid replacement rises steadily through 2040 in the APS; 2% = EMDE line
+      replacement, 3% = EMDE transformer replacement.
     - +0.3%/year cost escalation: metals are ~25-30% of CAPEX (Thunder Said/PJM), real
       net growth ~+0.3%/year (Goldman 2025); the rest has no trend (Gorman/Mills/Wiser,
       LBNL 2019). The 2019-24 shock (IEA 2025) is a LEVEL shift, not a slope change.
