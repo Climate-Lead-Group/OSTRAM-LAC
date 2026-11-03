@@ -1,13 +1,13 @@
 """Presentation variant of report/fig_costo_unitario.py (unit system cost, USD/MWh).
 
 Same data and computation as the report figure (annualized CAPEX + O&M + Combustible over
-total production); slide styling changes: larger fonts, tighter groups, less X-axis margin,
+electricity demand); slide styling changes: larger fonts, tighter groups, less X-axis margin,
 one-row legend (already was: 3 entries, ncol=3, now explicit and larger), and each
 component's value (annualized CAPEX, O&M, Combustible) annotated inside its bar segment
 (the report figure only showed the total and the delta vs. reference).
 
 Inputs:
-    CapitalInvestment, OperatingCost, ProductionByTechnology (combined CSV); years default
+    CapitalInvestment, OperatingCost, Demand (combined CSV); years default
     to report_style.MULTI_YEARS; scenarios default to report_style.PRESENTATION_SCENARIOS
     (= CORE_SCENARIOS, BAC+ISR).
 Outputs:
@@ -80,9 +80,10 @@ def compute(years: list[int], scenarios: list[str]) -> dict[int, dict[str, dict]
         for sc, val in window.groupby("Scenario")["CapitalInvestment"].sum().items():
             ann[(sc, y)] = float(val) * crf
 
-    prod = no_bck(rs.load(["ProductionByTechnology"], scenarios=scenarios))
-    prod = prod[(prod["YEAR"].isin(years)) & (prod["Scenario"].isin(scenarios))]
-    den = prod.groupby(["Scenario", "YEAR"])["ProductionByTechnology"].sum() * PJ_PER_TWH
+    # Denominador: demanda eléctrica (incluye la parte atendida por backstop/ENS).
+    dem = rs.load(["Demand"], scenarios=scenarios)
+    dem = dem[(dem["YEAR"].isin(years)) & (dem["Scenario"].isin(scenarios))]
+    den = dem.groupby(["Scenario", "YEAR"])["Demand"].sum() * PJ_PER_TWH
 
     out: dict[int, dict[str, dict]] = {}
     for year in years:

@@ -222,6 +222,7 @@ python scripts/tests/test_docs_consistency.py
 python scripts/tests/test_b2_chain_helper.py
 python scripts/tests/test_scenario_subset.py
 python scripts/tests/test_report_style_lang.py
+python scripts/tests/test_costo_unitario_demand.py
 ```
 
 ## Actions that require explicit approval

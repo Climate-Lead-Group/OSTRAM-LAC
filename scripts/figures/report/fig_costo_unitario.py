@@ -1,15 +1,18 @@
 """Plot unit system cost by scenario for 2030/2040/2050 [USD/MWh].
 
-Static, report-style equivalent of the dashboard's "chart11 - Costo Anualizado por Energía
-[MUSD/TWh]": Unit cost = (annualized CAPEX + O&M + Combustible) / total production.
+Unit cost = (annualized CAPEX + O&M + Combustible) / electricity demand (Demand column).
 Annualized CAPEX is computed on the fly from CapitalInvestment with the same CRF math as
 Z_AUX_capital_annualization_script.py (discount rate 6.39%, asset life 15 years) rather
 than reading CapitalInvestmentAnnualized, which was empty in the 2026-08-14 snapshot.
-Backstop (BCK) is excluded from both numerator and denominator. Units: USD/MWh (numerically
-identical to MUSD/TWh).
+Backstop (BCK) is excluded from the numerator. Units: USD/MWh (numerically identical to
+MUSD/TWh).
+
+Until 2026-10-20 the denominator was the sum of ProductionByTechnology over all techs (as in
+the dashboard's chart_11), which counts the same electricity several times along the
+MIN/RNW -> PWR -> TRN -> DSP chain (~4.4x demand in 2050) and understated the unit cost.
 
 Inputs:
-    CapitalInvestment, OperatingCost, ProductionByTechnology (combined CSV); years default
+    CapitalInvestment, OperatingCost, Demand (combined CSV); years default
     to report_style.MULTI_YEARS (2030/2040/2050); scenarios default to
     report_style.CORE_SCENARIOS (BAC+ISR).
 Outputs:
@@ -52,7 +55,8 @@ PJ_PER_TWH = 0.277778  # PJ -> TWh (misma constante que chart_11)
 def compute(years: list[int], scenarios: list[str]) -> dict[int, dict[str, dict]]:
     """{year: {scenario: {'CAPEX anualizado','O&M','Combustible','total'}}} (USD/MWh).
 
-    Same metric as chart_11. Reads CapitalInvestment/OperatingCost (dedup to one row per
+    Same numerator as chart_11, divided by electricity demand instead of total production
+    (see the module docstring). Reads CapitalInvestment/OperatingCost (dedup to one row per
     tech-year via max(), same gotcha as chart_14/chart_05/chart_07) and splits OperatingCost
     into 'O&M' (infrastructure techs: Generación/Transmisión/Almacenamiento) and 'Combustible'
     (the rest, e.g. MIN* fuel-supply techs) via classify_tech_type(), as in
@@ -89,9 +93,10 @@ def compute(years: list[int], scenarios: list[str]) -> dict[int, dict[str, dict]
         for sc, val in window.groupby("Scenario")["CapitalInvestment"].sum().items():
             ann[(sc, y)] = float(val) * crf
 
-    prod = no_bck(rs.load(["ProductionByTechnology"], scenarios=scenarios))
-    prod = prod[(prod["YEAR"].isin(years)) & (prod["Scenario"].isin(scenarios))]
-    den = prod.groupby(["Scenario", "YEAR"])["ProductionByTechnology"].sum() * PJ_PER_TWH
+    # Denominador: demanda eléctrica (incluye la parte atendida por backstop/ENS).
+    dem = rs.load(["Demand"], scenarios=scenarios)
+    dem = dem[(dem["YEAR"].isin(years)) & (dem["Scenario"].isin(scenarios))]
+    den = dem.groupby(["Scenario", "YEAR"])["Demand"].sum() * PJ_PER_TWH
 
     out: dict[int, dict[str, dict]] = {}
     for year in years:

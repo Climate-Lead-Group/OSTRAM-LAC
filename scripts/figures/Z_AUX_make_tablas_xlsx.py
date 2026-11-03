@@ -26,7 +26,9 @@ per-country tables), updated to the project's CURRENT formulas:
     xlsx does not carry the "capped" scenario codes).
   - Unit cost (T8): CAPEX annualized ON THE FLY from CapitalInvestment (CRF with
     DISCOUNT_RATE/ASSET_LIFETIME from Z_AUX_capital_annualization_script); the CSV's
-    CapitalInvestmentAnnualized column is NOT used (empty in the snapshot).
+    CapitalInvestmentAnnualized column is NOT used (empty in the snapshot). Denominator:
+    electricity demand (Demand column, read in a separate chunked pass), not total
+    production.
   - Fossil fuels (T9): fossil MIN* activity (chart_08a) converted from PJ to million barrels
     of oil equivalent (same IEA conversion as fig_combustibles_fosiles_2050.py); replaces the
     original docx's emissions table.
@@ -356,14 +358,22 @@ for sc in SCENARIOS:
             cols[pname] /= len(PERIODS[pname])
 
 # ---- T8 costo unitario [USD/MWh] (fig_costo_unitario / chart_11) ----
-# (CAPEX anualizado al vuelo + OperatingCost) / producción, sin BCK en
-# numerador ni denominador; promedio de los ratios anuales de cada periodo.
+# (CAPEX anualizado al vuelo + OperatingCost) / demanda eléctrica, sin BCK en
+# el numerador; promedio de los ratios anuales de cada periodo. Hasta 2026-10-20
+# el denominador era la producción de TODAS las techs (cuenta la misma energía
+# varias veces, ~4,4x la demanda en 2050).
 _no_bck = ~per_max["TECHNOLOGY"].str.contains("BCK", regex=False)
 uc = per_max[_no_bck].copy()
 inv_y = uc.groupby(["Scenario", "YEAR"])["CapitalInvestment"].sum(min_count=1).fillna(0.0)
 op_y = uc.groupby(["Scenario", "YEAR"])["OperatingCost"].sum(min_count=1).fillna(0.0)
-den_y = (per_sum[~per_sum["TECHNOLOGY"].str.contains("BCK", regex=False)]
-         .groupby(["Scenario", "YEAR"])["ProductionByTechnology"].sum() * PJ_PER_TWH)
+# Las filas de Demand no tienen TECHNOLOGY, así que no están en per_sum.
+_dem_parts = []
+for ch in pd.read_csv(CSV_PATH, usecols=["Scenario", "YEAR", "Demand"], chunksize=2_000_000):
+    ch = ch[ch["Scenario"].isin(SCENARIOS)].dropna(subset=["Demand"])
+    ch["YEAR"] = pd.to_numeric(ch["YEAR"], errors="coerce")
+    _dem_parts.append(ch.dropna(subset=["YEAR"]).astype({"YEAR": int})
+                      .groupby(["Scenario", "YEAR"])["Demand"].sum())
+den_y = pd.concat(_dem_parts).groupby(level=[0, 1]).sum() * PJ_PER_TWH
 crf = calculate_crf(DISCOUNT_RATE, ASSET_LIFETIME)
 uc_tbl = nested()
 uc_avg = {}
@@ -643,7 +653,7 @@ write_scenario_rows(wb, "T8 Costo Unitario",
                     PERIOD_COLS, uc_tbl, "Costo unitario", 2,
                     note="Nota: (CAPEX anualizado con CRF al "
                          f"{DISCOUNT_RATE * 100:.2f}% y vida útil {ASSET_LIFETIME} años "
-                         "+ O&M + Combustible) / generación total; promedio de los "
+                         "+ O&M + Combustible) / demanda eléctrica; promedio de los "
                          "ratios anuales del periodo; backstop excluido.")
 write_banded(wb, "T9 Combustibles Fósiles",
              "Tabla 9. Consumo anual de combustibles fósiles "
