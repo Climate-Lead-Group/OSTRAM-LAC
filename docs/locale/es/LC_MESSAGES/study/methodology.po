@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-21 09:17-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -35,9 +35,9 @@ msgid ""
 "databases."
 msgstr ""
 "El estudio aplica un marco de modelación regional utilizando OSeMOSYS "
-"para evaluar estrategias de expansión del sistema eléctrico a largo "
-"plazo en los países de América Latina y el Caribe representados en el "
-"modelo. Se desarrolló un conjunto de datos armonizado para garantizar la "
+"para evaluar estrategias de expansión del sistema eléctrico a largo plazo"
+" en los países de América Latina y el Caribe representados en el modelo. "
+"Se desarrolló un conjunto de datos armonizado para garantizar la "
 "comparabilidad y consistencia entre los modelos nacionales. La "
 "calibración se basó en documentos oficiales de planificación nacional, "
 "planes de expansión de la transmisión y hojas de ruta de inversión, con "
@@ -61,10 +61,10 @@ msgstr ""
 "penetración de energía renovable, estrategias de repotenciación y "
 "supuestos de costos. El modelo estima las necesidades de expansión de "
 "generación y transmisión, con énfasis en las interconexiones "
-"transfronterizas, la flexibilidad del sistema y los cuellos de botella "
-"de infraestructura. Estos hallazgos a nivel país se sintetizan en "
-"estrategias regionales que respaldan la meta de RELAC de alcanzar el 80%"
-" de generación eléctrica renovable para 2030."
+"transfronterizas, la flexibilidad del sistema y los cuellos de botella de"
+" infraestructura. Estos hallazgos a nivel país se sintetizan en "
+"estrategias regionales que respaldan la meta de RELAC de alcanzar el 80% "
+"de generación eléctrica renovable para 2030."
 
 #: ../../study/methodology.md:7
 msgid ""
@@ -73,6 +73,6 @@ msgid ""
 "of this site."
 msgstr ""
 "La propia herramienta de modelación, su pipeline de datos y su "
-"configuración se documentan en las secciones *Primeros pasos*, "
-"*Pipeline* y *Referencia* de este sitio."
+"configuración se documentan en las secciones *Primeros pasos*, *Pipeline*"
+" y *Referencia* de este sitio."
 

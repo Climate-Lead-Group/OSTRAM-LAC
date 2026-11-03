@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -42,21 +42,21 @@ msgstr ""
 
 #: ../../study/introduction.md:5
 msgid ""
-"In this context, the Inter-American Development Bank (IDB) commissioned "
-"Climate Lead Group to carry out a prospective regional analysis of "
-"transmission needs to support RELAC's enhanced renewable energy targets. "
-"While previous studies confirmed the technical and economic feasibility "
-"of reaching these levels of renewable generation, they did not assess "
+"In this context, the Inter-American Development Bank commissioned Climate"
+" Lead Group to carry out a prospective regional analysis of transmission "
+"needs to support RELAC's enhanced renewable energy targets. While "
+"previous studies confirmed the technical and economic feasibility of "
+"reaching these levels of renewable generation, they did not assess "
 "whether the planned transmission infrastructure could accommodate such "
 "growth."
 msgstr ""
-"En este contexto, el Banco Interamericano de Desarrollo (BID) encargó a "
-"Climate Lead Group un análisis prospectivo regional de las necesidades de"
-" transmisión para respaldar las metas de energía renovable ampliadas de "
+"En este contexto, el Banco Interamericano de Desarrollo encargó a Climate"
+" Lead Group un análisis prospectivo regional de las necesidades de "
+"transmisión para respaldar las metas de energía renovable ampliadas de "
 "RELAC. Si bien estudios previos confirmaron la viabilidad técnica y "
-"económica de alcanzar estos niveles de generación renovable, no "
-"evaluaron si la infraestructura de transmisión planificada podría "
-"acomodar dicho crecimiento."
+"económica de alcanzar estos niveles de generación renovable, no evaluaron"
+" si la infraestructura de transmisión planificada podría acomodar dicho "
+"crecimiento."
 
 #: ../../study/introduction.md:7
 msgid ""

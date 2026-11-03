@@ -1,4 +1,4 @@
-# RELAC TX - Energy System Optimization Model
+# OSTRAM LAC - Energy System Optimization Model
 
 Sistema de modelado de optimización energética basado en OSeMOSYS para América Latina y el Caribe.
 
@@ -19,7 +19,7 @@ Este proyecto implementa un pipeline automatizado para la ejecución de modelos 
 El repositorio se organiza en tres carpetas de primer nivel:
 
 ```
-relac_tx/
+OSTRAM-LAC/
 ├── inputs/    # Datos y configuración mantenidos a mano (config/, data/, OG_csvs_inputs/,
 │              # A1_Outputs/, A2_Extra_Inputs/, Miscellaneous/, reference/, tx_chain/)
 ├── scripts/   # Código fuente (pipeline/, common/, dashboard/, tools/, fix_dispatch/,
@@ -48,8 +48,8 @@ Las rutas de los archivos YAML de configuración son siempre relativas a la raí
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/Climate-Lead-Group/relac_tx.git
-cd relac_tx
+git clone https://github.com/Climate-Lead-Group/OSTRAM-LAC.git
+cd OSTRAM-LAC
 
 # Ejecutar el modelo (desde Anaconda Prompt)
 python run.py

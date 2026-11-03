@@ -1,6 +1,6 @@
 # Data Sources
 
-This page catalogues where the data behind RELAC TX comes from: the external datasets and
+This page catalogues where the data behind OSTRAM LAC comes from: the external datasets and
 national planning documents used to calibrate the model, and how internal assumptions and
 tool defaults are distinguished from them.
 
@@ -18,14 +18,14 @@ source means editing the CSV and re-running that script, never the sheet itself.
 |---|---|
 | OLACDE — annual generation-by-source statistics and energy balance matrix (regional energy information system, Latin America and the Caribbean) | Existing generation mix shares by country (calibrates minimum/maximum generation floors); base-year (2023–2024) electricity demand, from generation plus net imports/exports; historical bilateral interconnection flows |
 | National official electricity- and transmission-expansion planning documents (one set per country) | Minimum mandatory investment floors for generation and transmission, 2023–2039 (only committed/contracted/in-service projects); high-demand-growth scenarios, 2025–2050; for the Optimal (OPT) scenario, planned projects dated 2040–2050. See the country table below |
-| IEA — World Energy Outlook 2020 (WEO 2020), via OSeMOSYS Global | Generation-technology capital and fixed costs (2019 USD/kW). OSeMOSYS Global maps each country to the closest WEO region (South America → Brazil; Mexico, Central America and the Caribbean → United States) and interpolates between the WEO's 2019/2030/2040 values, holding them constant after 2040 |
-| IEA — World Energy Outlook 2025, Net Zero Emissions scenario | Haiti's 2025–2050 demand trajectory, in the absence of a national planning document (creates a step from OLACDE's 2024 value to the IEA's 2025 value) |
+| International Energy Agency (IEA) — World Energy Outlook 2020, via OSeMOSYS Global | Generation-technology capital and fixed costs (2019 USD/kW). OSeMOSYS Global maps each country to the closest World Energy Outlook region (South America → Brazil; Mexico, Central America and the Caribbean → United States) and interpolates between the outlook's 2019/2030/2040 values, holding them constant after 2040 |
+| International Energy Agency — World Energy Outlook 2025, Net Zero Emissions scenario | Haiti's 2025–2050 demand trajectory, in the absence of a national planning document (creates a step from OLACDE's 2024 value to the agency's 2025 value) |
 | World Bank — Commodity Markets Outlook, October 2024, via OSeMOSYS Global | International prices for coal, crude oil and natural gas, marked up 1.3× (OSeMOSYS Global's surcharge for imported fuels) |
-| NREL — Annual Technology Baseline (ATB) 2024 | Storage capital costs (power and energy components, short- and long-duration); default technology operational lifetimes used throughout the model |
-| PLEXOS-World 2015 dataset (Brinkerink et al., 2021), via Renewables.ninja and IRENA, through OSeMOSYS Global | Hourly 2015 capacity-factor profiles for solar PV, solar thermal and wind; monthly hydro profiles; hourly national demand profiles |
-| Global Transmission Database v1.1 (Brinkerink et al., 2024), through OSeMOSYS Global | Existing cross-border interconnection capacity, refined against national transmission plans; gaps in some countries' plans were filled by IDB collaborators |
-| DOE / Sandia — Global Energy Storage Database (GESDB), through OSeMOSYS Global | Existing storage capacity by country, from commissioned projects (only Argentina, Bolivia, Brazil, Haiti and Mexico have non-zero values) |
-| ACER (2026), *European Resource Adequacy Assessment 2025* (ERAA), Annex III — ENTSO-E's scarcity price cap | Variable cost of the backstop technology (PWRBCK), used as the penalty for unserved energy — see {doc}`data-reference` for why this is a conservative feasibility penalty and not an estimate of the social cost of outages |
+| National Renewable Energy Laboratory — Annual Technology Baseline 2024 | Storage capital costs (power and energy components, short- and long-duration); default technology operational lifetimes used throughout the model |
+| PLEXOS-World 2015 dataset (Brinkerink et al., 2021), via Renewables.ninja and the International Renewable Energy Agency, through OSeMOSYS Global | Hourly 2015 capacity-factor profiles for solar PV, solar thermal and wind; monthly hydro profiles; hourly national demand profiles |
+| Global Transmission Database v1.1 (Brinkerink et al., 2024), through OSeMOSYS Global | Existing cross-border interconnection capacity, refined against national transmission plans; gaps in some countries' plans were filled by Inter-American Development Bank collaborators |
+| U.S. Department of Energy / Sandia National Laboratories — Global Energy Storage Database, through OSeMOSYS Global | Existing storage capacity by country, from commissioned projects (only Argentina, Bolivia, Brazil, Haiti and Mexico have non-zero values) |
+| European Union Agency for the Cooperation of Energy Regulators (2026), *European Resource Adequacy Assessment 2025*, Annex III — scarcity price cap of the European Network of Transmission System Operators for Electricity | Variable cost of the backstop technology (PWRBCK), used as the penalty for unserved energy — see {doc}`data-reference` for why this is a conservative feasibility penalty and not an estimate of the social cost of outages |
 
 ## National planning documents
 
@@ -49,7 +49,7 @@ used for the demand-growth scenario:
 | Ecuador | *Plan Maestro de Electricidad 2023–2032* |
 | Guatemala | *Plan de Expansión de la Generación 2020–2050* (MEM / CNEE) |
 | Honduras | *Plan Indicativo de Expansión de la Generación 2026–2035* (ENEE / CND) |
-| Haiti | none — see IEA WEO 2025 (NZE) above |
+| Haiti | none — see International Energy Agency, World Energy Outlook 2025 (Net Zero Emissions) above |
 | Mexico | *Programa de Desarrollo del Sistema Eléctrico Nacional 2024–2038* (PRODESEN, SENER) |
 | Nicaragua | *Plan Indicativo de Expansión de la Generación 2021–2035* (MEM) |
 | Panama | *Plan de Expansión del Sistema Interconectado Nacional 2025–2039*, Tomo II (ETESA) |
@@ -60,7 +60,7 @@ used for the demand-growth scenario:
 
 ## Assumptions set by the modelling team
 
-Some parameters are not taken from an external source; they were set directly by the CLG
+Some parameters are not taken from an external source; they were set directly by the Climate Lead Group
 modelling team, generally to keep the optimisation well-behaved rather than to represent a
 published forecast:
 
@@ -73,7 +73,7 @@ published forecast:
 - **Internal transmission network cost estimates**, per country, carried over from an earlier
   version of the model (August 2025); the original estimation methodology is not documented.
 - **Internal transmission network technical lifetime** (50 years, all countries).
-- **The trend (Vegetativo A / INV) scenario's transmission investment cap**, derived from the
+- **The trend scenario's (`INV` workbook) transmission investment cap**, derived from the
   Reference scenario's own model results rather than from any external document.
 
 ## OSeMOSYS Global internal defaults
@@ -86,7 +86,7 @@ uniformly by the software rather than calibrated to this region:
 - The temporal structure (12 timeslices: 4 seasons × 3 daily blocks) and the physical
   capacity-to-energy conversion constant.
 - Default unit costs for transmission lines (converter and per-km costs) and their fixed
-  O&M rate.
+  operation and maintenance rate.
 - Fixed default fuel costs for uranium, biomass and waste.
 - The storage-to-technology linkage structure (which technology charges and discharges each
   storage reservoir) — a modelling-structure choice, not a data value.

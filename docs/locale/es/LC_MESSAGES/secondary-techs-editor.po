@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -27,8 +27,13 @@ msgstr "Editor de tecnologías secundarias"
 msgid ""
 "The Secondary Technologies Editor provides a user-friendly Excel "
 "interface for modifying technology parameters across scenarios, with "
-"support for automatic OLADE data integration."
-msgstr "El editor de tecnologías secundarias ofrece una interfaz Excel fácil de usar para modificar parámetros de tecnología en todos los escenarios, con soporte para la integración automática de datos de OLADE."
+"support for automatic integration of data from the Latin American Energy "
+"Organization (OLADE)."
+msgstr ""
+"El editor de tecnologías secundarias ofrece una interfaz Excel fácil de "
+"usar para modificar parámetros de tecnología en todos los escenarios, con"
+" soporte para la integración automática de datos de la Organización "
+"Latinoamericana de Energía (OLADE)."
 
 #: ../../secondary-techs-editor.md:5
 msgid "Overview"
@@ -46,7 +51,9 @@ msgstr "**Generar la plantilla** (`D1`) -- Crea `Secondary_Techs_Editor.xlsx`."
 msgid ""
 "**Apply changes** (`D2`) -- Reads the filled template and updates the "
 "model files."
-msgstr "**Aplicar cambios** (`D2`) -- Lee la plantilla completada y actualiza los archivos del modelo."
+msgstr ""
+"**Aplicar cambios** (`D2`) -- Lee la plantilla completada y actualiza los"
+" archivos del modelo."
 
 #: ../../secondary-techs-editor.md:14
 msgid "Step 1: Generate the Editor Template"
@@ -142,7 +149,9 @@ msgstr "**Interconnections**"
 
 #: ../../secondary-techs-editor.md
 msgid "Transmission interconnection technologies (only if TRN technologies exist)"
-msgstr "Tecnologías de interconexión de transmisión (solo si existen tecnologías TRN)"
+msgstr ""
+"Tecnologías de interconexión de transmisión (solo si existen tecnologías "
+"TRN)"
 
 #: ../../secondary-techs-editor.md
 msgid "*(Hidden sheets)*"
@@ -166,7 +175,9 @@ msgstr "Lee todos los archivos `A-O_Parametrization.xlsx` en todos los escenario
 
 #: ../../secondary-techs-editor.md:43
 msgid "Collects existing parameter data and transmission interconnections."
-msgstr "Recopila los datos de parámetros existentes y las interconexiones de transmisión."
+msgstr ""
+"Recopila los datos de parámetros existentes y las interconexiones de "
+"transmisión."
 
 #: ../../secondary-techs-editor.md:44
 msgid "Builds the Excel template with:"
@@ -176,7 +187,9 @@ msgstr "Construye la plantilla Excel con:"
 msgid ""
 "**Dropdown lists** for Scenario, Country, Technology, and Parameter "
 "selection."
-msgstr "**Listas desplegables** para la selección de escenario, país, tecnología y parámetro."
+msgstr ""
+"**Listas desplegables** para la selección de escenario, país, tecnología "
+"y parámetro."
 
 #: ../../secondary-techs-editor.md:46
 msgid "**Auto-fill formulas** (VLOOKUP) for the Tech column."
@@ -198,13 +211,18 @@ msgstr "Edición manual (hoja Editor)"
 msgid ""
 "In the **Editor** sheet (and similarly in the **Interconnections** sheet "
 "for transmission technologies):"
-msgstr "En la hoja **Editor** (y de manera similar en la hoja **Interconnections** para las tecnologías de transmisión):"
+msgstr ""
+"En la hoja **Editor** (y de manera similar en la hoja "
+"**Interconnections** para las tecnologías de transmisión):"
 
 #: ../../secondary-techs-editor.md:57
 msgid ""
 "**Select a Scenario**: Choose from the auto-discovered scenarios (based "
 "on existing `A1_Outputs_*` folders), or ALL (applies to every scenario)."
-msgstr "**Seleccione un escenario**: elija entre los escenarios detectados automáticamente (según las carpetas `A1_Outputs_*` existentes), o ALL (se aplica a todos los escenarios)."
+msgstr ""
+"**Seleccione un escenario**: elija entre los escenarios detectados "
+"automáticamente (según las carpetas `A1_Outputs_*` existentes), o ALL (se"
+" aplica a todos los escenarios)."
 
 #: ../../secondary-techs-editor.md:58
 msgid "**Select a Country**: Pick a country from the dropdown."
@@ -214,19 +232,25 @@ msgstr "**Seleccione un país**: elija un país de la lista desplegable."
 msgid ""
 "**Select a Technology**: Choose by Tech.Name (descriptive name). The Tech"
 " code auto-populates."
-msgstr "**Seleccione una tecnología**: elija por Tech.Name (nombre descriptivo). El código Tech se completa automáticamente."
+msgstr ""
+"**Seleccione una tecnología**: elija por Tech.Name (nombre descriptivo). "
+"El código Tech se completa automáticamente."
 
 #: ../../secondary-techs-editor.md:60
 msgid ""
 "**Select a Parameter**: Choose which parameter to modify (e.g., "
 "CapitalCost, ResidualCapacity)."
-msgstr "**Seleccione un parámetro**: elija qué parámetro modificar (p. ej., CapitalCost, ResidualCapacity)."
+msgstr ""
+"**Seleccione un parámetro**: elija qué parámetro modificar (p. ej., "
+"CapitalCost, ResidualCapacity)."
 
 #: ../../secondary-techs-editor.md:61
 msgid ""
 "**Enter values**: Fill in the year columns (2021--2050) with your desired"
 " values."
-msgstr "**Ingrese valores**: complete las columnas de año (2021--2050) con los valores deseados."
+msgstr ""
+"**Ingrese valores**: complete las columnas de año (2021--2050) con los "
+"valores deseados."
 
 #: ../../secondary-techs-editor.md:63
 msgid "OLADE Configuration (OLADE_Config Sheet)"
@@ -236,7 +260,9 @@ msgstr "Configuración de OLADE (hoja OLADE_Config)"
 msgid ""
 "The **OLADE_Config** sheet provides toggle switches for automatic data "
 "population:"
-msgstr "La hoja **OLADE_Config** ofrece interruptores para el llenado automático de datos:"
+msgstr ""
+"La hoja **OLADE_Config** ofrece interruptores para el llenado automático "
+"de datos:"
 
 #: ../../secondary-techs-editor.md
 msgid "Parameter"
@@ -260,7 +286,9 @@ msgstr "YES / NO"
 
 #: ../../secondary-techs-editor.md
 msgid "Auto-populate ResidualCapacity from installed capacity data"
-msgstr "Completa automáticamente ResidualCapacity a partir de los datos de capacidad instalada"
+msgstr ""
+"Completa automáticamente ResidualCapacity a partir de los datos de "
+"capacidad instalada"
 
 #: ../../secondary-techs-editor.md
 msgid "`PetroleumSplitMode`"
@@ -280,7 +308,9 @@ msgstr "`DemandFromOLADE`"
 
 #: ../../secondary-techs-editor.md
 msgid "Auto-populate electricity demand from generation data"
-msgstr "Completa automáticamente la demanda eléctrica a partir de los datos de generación"
+msgstr ""
+"Completa automáticamente la demanda eléctrica a partir de los datos de "
+"generación"
 
 #: ../../secondary-techs-editor.md
 msgid "`ActivityLowerLimitFromOLADE`"
@@ -350,7 +380,9 @@ msgstr "`Split_PET_OIL`"
 msgid ""
 "Capacity is split between PET (Diesel) and OIL (Fuel oil + Bunker) using "
 "proportions from `Shares_PET_OIL_Split.xlsx`"
-msgstr "La capacidad se divide entre PET (Diesel) y OIL (Fuel oil + Bunker) usando las proporciones de `Shares_PET_OIL_Split.xlsx`"
+msgstr ""
+"La capacidad se divide entre PET (Diesel) y OIL (Fuel oil + Bunker) "
+"usando las proporciones de `Shares_PET_OIL_Split.xlsx`"
 
 #: ../../secondary-techs-editor.md:84
 msgid "Demand Configuration (Demand_Growth Sheet)"
@@ -358,7 +390,9 @@ msgstr "Configuración de demanda (hoja Demand_Growth)"
 
 #: ../../secondary-techs-editor.md:86
 msgid "When `DemandFromOLADE` is YES, configure growth rates per country:"
-msgstr "Cuando `DemandFromOLADE` es YES, configure las tasas de crecimiento por país:"
+msgstr ""
+"Cuando `DemandFromOLADE` es YES, configure las tasas de crecimiento por "
+"país:"
 
 #: ../../secondary-techs-editor.md:88
 msgid "Uses OLADE generation data as the base."
@@ -368,15 +402,21 @@ msgstr "Usa los datos de generación de OLADE como base."
 msgid ""
 "Applies linear growth: `Demand(year) = Demand(2023) * (1 + rate * (year -"
 " 2023))`."
-msgstr "Aplica crecimiento lineal: `Demand(year) = Demand(2023) * (1 + rate * (year - 2023))`."
+msgstr ""
+"Aplica crecimiento lineal: `Demand(year) = Demand(2023) * (1 + rate * "
+"(year - 2023))`."
 
 #: ../../secondary-techs-editor.md:90
 msgid "Growth rates are specified per country in the **Demand_Growth** sheet."
-msgstr "Las tasas de crecimiento se especifican por país en la hoja **Demand_Growth**."
+msgstr ""
+"Las tasas de crecimiento se especifican por país en la hoja "
+"**Demand_Growth**."
 
 #: ../../secondary-techs-editor.md:91
 msgid "Scenario-specific overrides are available in **Scenarios_Demand_Growth**."
-msgstr "Hay sobrescrituras específicas por escenario disponibles en **Scenarios_Demand_Growth**."
+msgstr ""
+"Hay sobrescrituras específicas por escenario disponibles en "
+"**Scenarios_Demand_Growth**."
 
 #: ../../secondary-techs-editor.md:93
 msgid "ActivityUpperLimit Modes"
@@ -398,7 +438,9 @@ msgstr "`YES_ALL`"
 msgid ""
 "Update UpperLimit for all technologies. Formula: `UpperLimit = LowerLimit"
 " × 1.05`"
-msgstr "Actualiza UpperLimit para todas las tecnologías. Fórmula: `UpperLimit = LowerLimit × 1.05`"
+msgstr ""
+"Actualiza UpperLimit para todas las tecnologías. Fórmula: `UpperLimit = "
+"LowerLimit × 1.05`"
 
 #: ../../secondary-techs-editor.md
 msgid "`EXISTING_ONLY`"
@@ -408,7 +450,9 @@ msgstr "`EXISTING_ONLY`"
 msgid ""
 "Only update technologies that already have UpperLimit values defined and "
 "`Projection.Mode = \"User defined\"`"
-msgstr "Solo actualiza las tecnologías que ya tienen valores de UpperLimit definidos y `Projection.Mode = \"User defined\"`"
+msgstr ""
+"Solo actualiza las tecnologías que ya tienen valores de UpperLimit "
+"definidos y `Projection.Mode = \"User defined\"`"
 
 #: ../../secondary-techs-editor.md:101
 msgid "Renewability Targets (Renewability_Targets Sheet)"
@@ -428,7 +472,9 @@ msgstr "El sistema interpola entre los años meta especificados."
 
 #: ../../secondary-techs-editor.md:107
 msgid "Targets affect the distribution of activity limits across technologies."
-msgstr "Las metas afectan la distribución de los límites de actividad entre tecnologías."
+msgstr ""
+"Las metas afectan la distribución de los límites de actividad entre "
+"tecnologías."
 
 #: ../../secondary-techs-editor.md:109
 msgid "Technology Weights (Technology_Weights Sheet)"
@@ -436,7 +482,9 @@ msgstr "Pesos de tecnología (hoja Technology_Weights)"
 
 #: ../../secondary-techs-editor.md:111
 msgid "Customize how activity limits are distributed among technologies:"
-msgstr "Personalice cómo se distribuyen los límites de actividad entre las tecnologías:"
+msgstr ""
+"Personalice cómo se distribuyen los límites de actividad entre las "
+"tecnologías:"
 
 #: ../../secondary-techs-editor.md:113
 msgid "Define weights for individual renewable and non-renewable technologies."
@@ -444,7 +492,9 @@ msgstr "Defina pesos para tecnologías renovables y no renovables individuales."
 
 #: ../../secondary-techs-editor.md:114
 msgid "Weights determine each technology's share of the total activity limit."
-msgstr "Los pesos determinan la participación de cada tecnología en el límite de actividad total."
+msgstr ""
+"Los pesos determinan la participación de cada tecnología en el límite de "
+"actividad total."
 
 #: ../../secondary-techs-editor.md:118
 msgid "Step 3: Apply Changes"
@@ -508,11 +558,15 @@ msgstr "Actualiza `A-O_Parametrization.xlsx`."
 
 #: ../../secondary-techs-editor.md:140
 msgid "Updates `A-O_Demand.xlsx` (if demand integration is enabled)."
-msgstr "Actualiza `A-O_Demand.xlsx` (si la integración de demanda está habilitada)."
+msgstr ""
+"Actualiza `A-O_Demand.xlsx` (si la integración de demanda está "
+"habilitada)."
 
 #: ../../secondary-techs-editor.md:141
 msgid "Sets **Projection.Mode** to \"User defined\" for modified parameters."
-msgstr "Establece **Projection.Mode** en \"User defined\" para los parámetros modificados."
+msgstr ""
+"Establece **Projection.Mode** en \"User defined\" para los parámetros "
+"modificados."
 
 #: ../../secondary-techs-editor.md:143
 msgid "Unit Conversions"
@@ -560,19 +614,25 @@ msgstr "Funciones de seguridad"
 
 #: ../../secondary-techs-editor.md:152
 msgid "**Automatic backups**: One backup per scenario before applying changes."
-msgstr "**Respaldos automáticos**: Un respaldo por escenario antes de aplicar los cambios."
+msgstr ""
+"**Respaldos automáticos**: Un respaldo por escenario antes de aplicar los"
+" cambios."
 
 #: ../../secondary-techs-editor.md:153
 msgid ""
 "**Activity limit validation**: Verifies that limits do not exceed "
 "available capacity."
-msgstr "**Validación de límites de actividad**: Verifica que los límites no excedan la capacidad disponible."
+msgstr ""
+"**Validación de límites de actividad**: Verifica que los límites no "
+"excedan la capacidad disponible."
 
 #: ../../secondary-techs-editor.md:154
 msgid ""
 "**Detailed logging**: Full log output with country identification for "
 "each operation."
-msgstr "**Registro detallado**: Salida de registro completa con identificación de país para cada operación."
+msgstr ""
+"**Registro detallado**: Salida de registro completa con identificación de"
+" país para cada operación."
 
 #: ../../secondary-techs-editor.md:158
 msgid "Related Files"
@@ -637,3 +697,4 @@ msgstr "`Shares_Power_Generation_Technologies.xlsx`"
 #: ../../secondary-techs-editor.md
 msgid "Power generation technology shares"
 msgstr "Participaciones de tecnología de generación de energía"
+

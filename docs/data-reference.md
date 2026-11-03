@@ -1,12 +1,12 @@
 # Data Reference
 
-This page documents the data file formats, naming conventions, and OSeMOSYS parameter structure used by RELAC TX.
+This page documents the data file formats, naming conventions, and OSeMOSYS parameter structure used by OSTRAM LAC.
 
 ## Naming Conventions
 
 ### Technology Codes
 
-Technology names in RELAC TX follow a structured format that encodes the technology type, energy source, country, and region:
+Technology names in OSTRAM LAC follow a structured format that encodes the technology type, energy source, country, and region:
 
 ```
 {PREFIX}{SOURCE}{COUNTRY}{REGION}
@@ -80,7 +80,7 @@ PWR{SDS|LDS}{COUNTRY}{REGION}{NN}
 | `PWRSDSARGXX01` | Short Duration Storage (batteries), Argentina |
 | `PWRLDSARGXX01` | Long Duration Storage (pumped hydro), Argentina |
 
-Both families exist for the 19 modelled countries. The Stage B2 storage-delay patcher (see {doc}`solver-patchers`) blocks their builds for the first N years using the prefixes in `storage_delay_storage_prefixes`.
+Both families exist for the 19 modelled countries. The Stage B2 storage-delay modifier (see {doc}`solver-patchers`) blocks their builds for the first N years using the prefixes in `storage_delay_storage_prefixes`.
 
 ---
 
@@ -146,7 +146,7 @@ Used by: `InputActivityRatio`, `OutputActivityRatio`, `EmissionActivityRatio`.
 
 ## Temporal Structure
 
-RELAC TX uses a hierarchical temporal structure:
+OSTRAM LAC uses a hierarchical temporal structure:
 
 ```
 Year (2023-2050)
@@ -231,8 +231,8 @@ Projection activity ratios (same structure as base year, with projection modes).
 | Parameter | Unit | Description |
 |-----------|------|-------------|
 | `CapitalCost` | M$/GW | Overnight capital cost |
-| `FixedCost` | M$/GW/yr | Annual fixed O&M cost |
-| `VariableCost` | M$/PJ | Variable O&M cost |
+| `FixedCost` | M$/GW/yr | Annual fixed operation and maintenance cost |
+| `VariableCost` | M$/PJ | Variable operation and maintenance cost |
 | `CapitalCostStorage` | M$/GW | Storage capital cost |
 
 ### Capacity Parameters
@@ -292,7 +292,7 @@ Projection activity ratios (same structure as base year, with projection modes).
 
 ## Model Architecture
 
-RELAC TX uses a single-region (`GLOBAL`) architecture where geographic granularity is embedded in the technology and fuel naming conventions. Each country's technologies operate independently, connected only through explicit transmission (TRN) technologies.
+OSTRAM LAC uses a single-region (`GLOBAL`) architecture where geographic granularity is embedded in the technology and fuel naming conventions. Each country's technologies operate independently, connected only through explicit transmission (TRN) technologies.
 
 ```
 Mining (MIN)  →  Power (PWR)  →  Electricity (ELC)  →  Transmission  →  Demand

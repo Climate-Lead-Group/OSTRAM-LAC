@@ -1,6 +1,6 @@
 # Country Management
 
-RELAC TX includes tools for validating country data, generating templates for new countries, and consolidating sub-regional data.
+OSTRAM LAC includes tools for validating country data, generating templates for new countries, and consolidating sub-regional data.
 
 ## Technology-Country Matrix
 

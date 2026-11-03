@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 11:38-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -25,10 +25,10 @@ msgstr "Referencia de configuración"
 
 #: ../../configuration.md:3
 msgid ""
-"RELAC TX uses four YAML configuration files and two Excel-based "
+"OSTRAM LAC uses four YAML configuration files and two Excel-based "
 "configuration files. This page documents every option."
 msgstr ""
-"RELAC TX usa cuatro archivos de configuración YAML y dos archivos de "
+"OSTRAM LAC usa cuatro archivos de configuración YAML y dos archivos de "
 "configuración basados en Excel. Esta página documenta cada opción."
 
 #: ../../configuration.md:6
@@ -79,11 +79,13 @@ msgstr "`english_name`: Nombre para mostrar usado en reportes y documentación."
 
 #: ../../configuration.md:30
 msgid ""
-"`olade_name`: Name used for matching against OLADE source data files "
-"(note Spanish spellings, e.g. `\"Brasil\"`)."
+"`olade_name`: Name used for matching against source data files of the "
+"Latin American Energy Organization (OLADE) (note Spanish spellings, e.g. "
+"`\"Brasil\"`)."
 msgstr ""
 "`olade_name`: Nombre usado para hacer coincidir con los archivos de datos"
-" fuente de OLADE (note la ortografía en español, p. ej. `\"Brasil\"`)."
+" fuente de la Organización Latinoamericana de Energía (OLADE) (note la "
+"ortografía en español, p. ej. `\"Brasil\"`)."
 
 #: ../../configuration.md:32
 msgid "`special_entries`"
@@ -549,7 +551,9 @@ msgstr "`true` (por defecto; clave ausente)"
 msgid ""
 "Run the B1b pre-solver validation at the start of B1 on the active "
 "scenario's `A-O_Parametrization.xlsx` (see {doc}`pipeline`)"
-msgstr "Ejecuta la validación previa al solver B1b al inicio de B1 sobre el `A-O_Parametrization.xlsx` del escenario activo (ver {doc}`pipeline`)"
+msgstr ""
+"Ejecuta la validación previa al solver B1b al inicio de B1 sobre el "
+"`A-O_Parametrization.xlsx` del escenario activo (ver {doc}`pipeline`)"
 
 #: ../../configuration.md:171
 msgid "`pre_solver_validation_interactive`"
@@ -559,7 +563,9 @@ msgstr "`pre_solver_validation_interactive`"
 msgid ""
 "Ask before applying each B1b fix; `false` applies every fix without "
 "prompting"
-msgstr "Pregunta antes de aplicar cada corrección de B1b; `false` aplica todas las correcciones sin preguntar"
+msgstr ""
+"Pregunta antes de aplicar cada corrección de B1b; `false` aplica todas "
+"las correcciones sin preguntar"
 
 #: ../../configuration.md:273
 msgid "Temporal Structure (`xtra_scen`)"
@@ -841,8 +847,8 @@ msgid "`\"osemosys_fast_preprocessed.txt\"`"
 msgstr "`\"osemosys_fast_preprocessed.txt\"`"
 
 #: ../../configuration.md:171
-msgid "OSeMOSYS model file (GMPL)"
-msgstr "Archivo de modelo de OSeMOSYS (GMPL)"
+msgid "OSeMOSYS model file (GNU MathProg)"
+msgstr "Archivo de modelo de OSeMOSYS (GNU MathProg)"
 
 #: ../../configuration.md:376
 msgid "Paths and File-Name Plumbing"
@@ -879,11 +885,11 @@ msgstr "`outputs/A2_Outputs_Params_otoole`"
 
 #: ../../configuration.md:171
 msgid ""
-"otoole-format twin of `A2_output`; the folder the patched CSVs are synced"
-" back into"
+"otoole-format twin of `A2_output`; the folder the modified CSVs are "
+"synced back into"
 msgstr ""
 "Gemelo en formato otoole de `A2_output`; la carpeta a la que se "
-"sincronizan de vuelta los CSV parcheados"
+"sincronizan de vuelta los CSV modificados"
 
 #: ../../configuration.md:171
 msgid "`Miscellaneous`"
@@ -1018,21 +1024,22 @@ msgstr ""
 " el archivo fusionado es `<prefix>Combined_Inputs_Outputs.csv`"
 
 #: ../../configuration.md:396
-msgid "Solver Patcher Chain"
-msgstr "Cadena de patchers del solver"
+msgid "Solver Modifier Chain"
+msgstr "Cadena de modificadores del solver"
 
 #: ../../configuration.md:398
 msgid ""
 "`Config_MOMF_T1_AB.yaml` also contains the settings for the **Stage B2 "
-"patcher chain** — the reserve-margin and storage features applied to the "
-"GMPL `.txt` before the solver runs. Each patcher has an `*_active` master"
-" switch; the shipped configuration enables several of them."
+"modifier chain** — the reserve-margin and storage features applied to the"
+" GNU MathProg `.txt` before the solver runs. Each modifier has an "
+"`*_active` master switch; the shipped configuration enables several of "
+"them."
 msgstr ""
 "`Config_MOMF_T1_AB.yaml` también contiene los ajustes de la **cadena de "
-"patchers de la Etapa B2** — las funciones de margen de reserva y "
-"almacenamiento aplicadas al `.txt` de GMPL antes de que se ejecute el "
-"solver. Cada patcher tiene un interruptor maestro `*_active`; la "
-"configuración de fábrica habilita varios de ellos."
+"modificadores de la Etapa B2** — las funciones de margen de reserva y "
+"almacenamiento aplicadas al `.txt` de GNU MathProg antes de que se "
+"ejecute el solver. Cada modificador tiene un interruptor maestro "
+"`*_active`; la configuración de fábrica habilita varios de ellos."
 
 #: ../../configuration.md:171
 msgid "Master switch"
@@ -1043,8 +1050,8 @@ msgid "Shipped default"
 msgstr "Valor de fábrica"
 
 #: ../../configuration.md:171
-msgid "Patcher"
-msgstr "Patcher"
+msgid "Modifier"
+msgstr "Modificador"
 
 #: ../../configuration.md:171
 msgid "`storage_delay_active`"
@@ -1138,10 +1145,10 @@ msgstr "`sync_patched_csvs_active`"
 
 #: ../../configuration.md:171
 msgid ""
-"Sync patched values back into the otoole CSVs (`sync_patched_csvs_params`"
-" lists the parameter blocks copied)"
+"Sync modified values back into the otoole CSVs "
+"(`sync_patched_csvs_params` lists the parameter blocks copied)"
 msgstr ""
-"Sincroniza los valores parcheados de vuelta a los CSV de otoole "
+"Sincroniza los valores modificados de vuelta a los CSV de otoole "
 "(`sync_patched_csvs_params` lista los bloques de parámetros copiados)"
 
 #: ../../configuration.md:411
@@ -1154,22 +1161,22 @@ msgstr ""
 " y todos los parámetros de cada patcher."
 
 #: ../../configuration.md:413
-msgid "Tx Chain: Derived Scenarios"
-msgstr "Cadena Tx: escenarios derivados"
+msgid "Transmission Chain: Derived Scenarios"
+msgstr "Cadena de transmisión: escenarios derivados"
 
 #: ../../configuration.md:415
 #, python-brace-format
 msgid ""
-"Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive the Tx chain "
-"that B2 runs after VEGCON (see the Tx-chain subsection of "
-"{doc}`pipeline`). Adding a constraint script or a derived scenario is "
-"done **only** here; B2 needs no code change."
+"Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive the "
+"transmission chain that B2 runs after VEGCON (see the transmission-chain "
+"subsection of {doc}`pipeline`). Adding a constraint script or a derived "
+"scenario is done **only** here; B2 needs no code change."
 msgstr ""
-"Tres bloques al final de `Config_MOMF_T1_AB.yaml` gobiernan la cadena Tx "
-"que B2 ejecuta después de VEGCON (ver la subsección de la cadena Tx de "
-"{doc}`pipeline`). Agregar un script de restricciones o un escenario "
-"derivado se hace **únicamente** aquí; B2 no necesita ningún cambio de "
-"código."
+"Tres bloques al final de `Config_MOMF_T1_AB.yaml` gobiernan la cadena de "
+"transmisión que B2 ejecuta después de VEGCON (ver la subsección de la "
+"cadena de transmisión de {doc}`pipeline`). Agregar un script de "
+"restricciones o un escenario derivado se hace **únicamente** aquí; B2 no "
+"necesita ningún cambio de código."
 
 #: ../../configuration.md:171
 msgid "`scenario_transforms`"

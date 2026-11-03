@@ -11,10 +11,10 @@ python scripts/tests/test_docs_consistency.py                  # docs <-> códig
 
 ## Registrar en ReadTheDocs (una sola vez, requiere cuenta con acceso al repo GitHub)
 
-1. En https://readthedocs.org → *Import a Project* → elegir `Climate-Lead-Group/relac_tx`. Nombre sugerido: `relac-tx`. Idioma: **English**. RTD lee `.readthedocs.yaml` de la raíz.
-2. Crear un **segundo** proyecto desde el mismo repositorio. Nombre sugerido: `relac-tx-es`. Idioma: **Spanish**. RTD compila con `-D language=es` automáticamente según el idioma del proyecto.
-3. En el proyecto principal (`relac-tx`) → *Admin → Translations → Add* → seleccionar `relac-tx-es`. A partir de ahí el menú flotante (esquina inferior) muestra el selector `en | es` en todas las páginas y conserva la ruta al cambiar de idioma.
-4. Anotar la URL resultante (`https://relac-tx.readthedocs.io/`) en la sección *Documentación* del `README.md`.
+1. En https://readthedocs.org → *Import a Project* → elegir `Climate-Lead-Group/OSTRAM-LAC`. Nombre sugerido: `ostram-lac`. Idioma: **English**. RTD lee `.readthedocs.yaml` de la raíz.
+2. Crear un **segundo** proyecto desde el mismo repositorio. Nombre sugerido: `ostram-lac-es`. Idioma: **Spanish**. RTD compila con `-D language=es` automáticamente según el idioma del proyecto.
+3. En el proyecto principal (`ostram-lac`) → *Admin → Translations → Add* → seleccionar `ostram-lac-es`. A partir de ahí el menú flotante (esquina inferior) muestra el selector `en | es` en todas las páginas y conserva la ruta al cambiar de idioma.
+4. Anotar la URL resultante (`https://ostram-lac.readthedocs.io/`) en la sección *Documentación* del `README.md`.
 
 Cada `git push` a `main` reconstruye ambos proyectos.
 

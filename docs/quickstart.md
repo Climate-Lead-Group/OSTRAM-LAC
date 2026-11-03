@@ -1,13 +1,13 @@
 # Quick Start
 
-This page walks you through running RELAC TX for the first time.
+This page walks you through running OSTRAM LAC for the first time.
 
 ## 1. Run the Full Pipeline
 
 From an **Anaconda Prompt** (or any terminal with conda available):
 
 ```bash
-cd relac_tx
+cd OSTRAM-LAC
 python run.py
 ```
 
@@ -72,7 +72,7 @@ Date-stamped files preserve a complete execution history so you can compare runs
 ## 4. Directory Structure Overview
 
 ```
-relac_tx/
+OSTRAM-LAC/
 ├── run.py                          # Main launcher
 ├── dvc.yaml                        # DVC pipeline definition
 ├── environment.yaml                # Conda environment spec

@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -25,9 +25,11 @@ msgstr "Herramientas auxiliares"
 
 #: ../../auxiliary-tools.md:3
 msgid ""
-"RELAC TX includes several utility scripts (prefixed with `Z_`) for data "
-"maintenance, visualization, and support tasks."
-msgstr "RELAC TX incluye varios scripts de utilidad (con el prefijo `Z_`) para tareas de mantenimiento de datos, visualización y soporte."
+"OSTRAM LAC includes several utility scripts (prefixed with `Z_`) for data"
+" maintenance, visualization, and support tasks."
+msgstr ""
+"OSTRAM LAC incluye varios scripts de utilidad (con el prefijo `Z_`) para "
+"tareas de mantenimiento de datos, visualización y soporte."
 
 #: ../../auxiliary-tools.md:5
 msgid "Configuration Loader"
@@ -42,7 +44,10 @@ msgid ""
 "A centralized module (not run directly) that provides cached access to "
 "`Config_country_codes.yaml`. All other scripts import functions from this"
 " module instead of reading the YAML directly."
-msgstr "Un módulo centralizado (no se ejecuta directamente) que provee acceso en caché a `Config_country_codes.yaml`. Todos los demás scripts importan funciones de este módulo en lugar de leer el YAML directamente."
+msgstr ""
+"Un módulo centralizado (no se ejecuta directamente) que provee acceso en "
+"caché a `Config_country_codes.yaml`. Todos los demás scripts importan "
+"funciones de este módulo en lugar de leer el YAML directamente."
 
 #: ../../auxiliary-tools.md:11
 msgid "Available Functions"
@@ -213,7 +218,10 @@ msgid ""
 "Fixes rounding drift in SpecifiedDemandProfile sheets that can cause "
 "OSeMOSYS model errors. Profiles must sum to exactly 1.0 per "
 "fuel/technology per year."
-msgstr "Corrige la deriva de redondeo en las hojas de SpecifiedDemandProfile que puede causar errores en el modelo OSeMOSYS. Los perfiles deben sumar exactamente 1.0 por energético/tecnología por año."
+msgstr ""
+"Corrige la deriva de redondeo en las hojas de SpecifiedDemandProfile que "
+"puede causar errores en el modelo OSeMOSYS. Los perfiles deben sumar "
+"exactamente 1.0 por energético/tecnología por año."
 
 #: ../../auxiliary-tools.md:46 ../../auxiliary-tools.md:75
 msgid "Usage"
@@ -227,7 +235,9 @@ msgstr "Qué hace"
 msgid ""
 "Iterates over all scenario directories (`A1_Outputs_BAU`, "
 "`A1_Outputs_INV`, `A1_Outputs_OPT`)."
-msgstr "Itera sobre todos los directorios de escenario (`A1_Outputs_BAU`, `A1_Outputs_INV`, `A1_Outputs_OPT`)."
+msgstr ""
+"Itera sobre todos los directorios de escenario (`A1_Outputs_BAU`, "
+"`A1_Outputs_INV`, `A1_Outputs_OPT`)."
 
 #: ../../auxiliary-tools.md:55
 msgid "Opens each `A-O_Demand.xlsx` file."
@@ -237,11 +247,15 @@ msgstr "Abre cada archivo `A-O_Demand.xlsx`."
 msgid ""
 "For each profile sheet, normalizes values so that each fuel/technology "
 "column sums to exactly 1.0 per year."
-msgstr "Para cada hoja de perfil, normaliza los valores para que cada columna de energético/tecnología sume exactamente 1.0 por año."
+msgstr ""
+"Para cada hoja de perfil, normaliza los valores para que cada columna de "
+"energético/tecnología sume exactamente 1.0 por año."
 
 #: ../../auxiliary-tools.md:57
 msgid "Creates a **timestamped backup** before modifying any file."
-msgstr "Crea un **respaldo con marca de tiempo** antes de modificar cualquier archivo."
+msgstr ""
+"Crea un **respaldo con marca de tiempo** antes de modificar cualquier "
+"archivo."
 
 #: ../../auxiliary-tools.md:59
 msgid "Tolerance"
@@ -251,7 +265,9 @@ msgstr "Tolerancia"
 msgid ""
 "Values within `0.0001` of 1.0 are considered acceptable. Values outside "
 "this range are corrected by proportional scaling."
-msgstr "Los valores dentro de `0.0001` de 1.0 se consideran aceptables. Los valores fuera de este rango se corrigen mediante escalado proporcional."
+msgstr ""
+"Los valores dentro de `0.0001` de 1.0 se consideran aceptables. Los "
+"valores fuera de este rango se corrigen mediante escalado proporcional."
 
 #: ../../auxiliary-tools.md:65
 msgid "Region Consolidation (Brazil)"
@@ -265,7 +281,10 @@ msgstr "**Script:** `scripts/tools/Z_AUX_united_regions.py`"
 msgid ""
 "A specialized, manually-configured script for consolidating Brazilian "
 "sub-regions (CN, NW, NE, CW, SO, SE, WE) into a unified XX region."
-msgstr "Un script especializado, configurado manualmente, para consolidar las subregiones brasileñas (CN, NW, NE, CW, SO, SE, WE) en una región unificada XX."
+msgstr ""
+"Un script especializado, configurado manualmente, para consolidar las "
+"subregiones brasileñas (CN, NW, NE, CW, SO, SE, WE) en una región "
+"unificada XX."
 
 #: ../../auxiliary-tools.md:72
 #, python-brace-format
@@ -273,13 +292,19 @@ msgid ""
 "This is a legacy script with hardcoded Brazil-specific logic. For general"
 " region consolidation, use the configurable system in "
 "`Config_region_consolidation.yaml` (see {doc}`country-management`)."
-msgstr "Este es un script heredado con lógica específica de Brasil codificada de forma fija. Para la consolidación regional general, use el sistema configurable en `Config_region_consolidation.yaml` (ver {doc}`country-management`)."
+msgstr ""
+"Este es un script heredado con lógica específica de Brasil codificada de "
+"forma fija. Para la consolidación regional general, use el sistema "
+"configurable en `Config_region_consolidation.yaml` (ver {doc}`country-"
+"management`)."
 
 #: ../../auxiliary-tools.md:77
 msgid ""
 "The script uses boolean flags at the top of the file to control which "
 "files to process:"
-msgstr "El script usa flags booleanos al inicio del archivo para controlar qué archivos procesar:"
+msgstr ""
+"El script usa flags booleanos al inicio del archivo para controlar qué "
+"archivos procesar:"
 
 #: ../../auxiliary-tools.md:85
 msgid "Processing Rules"
@@ -289,19 +314,25 @@ msgstr "Reglas de procesamiento"
 msgid ""
 "**Cost parameters** (CapitalCost, FixedCost, VariableCost): Averaged "
 "across regions."
-msgstr "**Parámetros de costo** (CapitalCost, FixedCost, VariableCost): Promediados entre regiones."
+msgstr ""
+"**Parámetros de costo** (CapitalCost, FixedCost, VariableCost): "
+"Promediados entre regiones."
 
 #: ../../auxiliary-tools.md:88
 msgid ""
 "**Capacity parameters** (ResidualCapacity, TotalAnnualMaxCapacity): "
 "Summed across regions."
-msgstr "**Parámetros de capacidad** (ResidualCapacity, TotalAnnualMaxCapacity): Sumados entre regiones."
+msgstr ""
+"**Parámetros de capacidad** (ResidualCapacity, TotalAnnualMaxCapacity): "
+"Sumados entre regiones."
 
 #: ../../auxiliary-tools.md:89
 msgid ""
 "**Interconnections**: TRN codes are normalized to alphabetical country-"
 "pair ordering."
-msgstr "**Interconexiones**: Los códigos TRN se normalizan al orden alfabético del par de países."
+msgstr ""
+"**Interconexiones**: Los códigos TRN se normalizan al orden alfabético "
+"del par de países."
 
 #: ../../auxiliary-tools.md:93
 msgid "Capital Annualization"
@@ -316,11 +347,19 @@ msgid ""
 "Post-processing script that annualizes capital costs in the model "
 "results. Runs automatically as part of the B2 execution stage when "
 "`annualize_capital: True` in `Config_MOMF_T1_AB.yaml`."
-msgstr "Script de postprocesamiento que anualiza los costos de capital en los resultados del modelo. Se ejecuta automáticamente como parte de la etapa de ejecución B2 cuando `annualize_capital: True` en `Config_MOMF_T1_AB.yaml`."
+msgstr ""
+"Script de postprocesamiento que anualiza los costos de capital en los "
+"resultados del modelo. Se ejecuta automáticamente como parte de la etapa "
+"de ejecución B2 cuando `annualize_capital: True` en "
+"`Config_MOMF_T1_AB.yaml`."
 
 #: ../../auxiliary-tools.md:101
 msgid ""
 "Calculates `AccumulatedTotalAnnualMinCapacityInvestment` via cumulative "
 "sum of annual capacity investments, converting lump-sum capital costs "
 "into annualized values."
-msgstr "Calcula `AccumulatedTotalAnnualMinCapacityInvestment` mediante la suma acumulada de las inversiones de capacidad anuales, convirtiendo los costos de capital de suma global en valores anualizados."
+msgstr ""
+"Calcula `AccumulatedTotalAnnualMinCapacityInvestment` mediante la suma "
+"acumulada de las inversiones de capacidad anuales, convirtiendo los "
+"costos de capital de suma global en valores anualizados."
+

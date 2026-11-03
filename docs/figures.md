@@ -47,11 +47,11 @@ Figures ending in `_tmp` are exploratory (energy-not-served variants) and ship d
 | `fig_km_lineas_acumulados` | Cumulative transmission kilometres to 2030/2040/2050 [km], by line group |
 | `fig_inversion_transmision_acumulada` | Cumulative transmission investment per period [MUSD] |
 | `fig_almacenamiento_2050` | Installed storage capacity in 2030/2040/2050 [GW] |
-| `fig_combustibles_fosiles_2050` | Fossil fuel consumption, cumulative per period [million BOE] |
+| `fig_combustibles_fosiles_2050` | Fossil fuel consumption, cumulative per period [million barrels of oil equivalent] |
 | `fig_costo_no_inversion` | Total system cost and "cost of non-investment", cumulative per period [billion USD] |
 | `fig_costo_no_inversion_tope` | Same, including the transmission-cap ("tope") case |
 | `fig_costo_unitario` | Unit system cost [MUSD/TWh] (static version of dashboard chart 11) |
-| `fig_diversidad_fuentes` | Effective number of generation sources (1/HHI) in 2030/2040/2050 |
+| `fig_diversidad_fuentes` | Effective number of generation sources (inverse Herfindahl-Hirschman index) in 2030/2040/2050 |
 | `fig_seguridad_energetica_2050` | Energy security in 2030/2040/2050: domestic vs imported primary energy [%] |
 | `fig_seguridad_energetica_trayectoria` | Domestic energy share [%], trajectory 2025–2050 |
 
@@ -67,7 +67,7 @@ Figures ending in `_tmp` are exploratory (energy-not-served variants) and ship d
 | 04 | Installed transmission capacity [GW] |
 | 05 | Total investment [MUSD] |
 | 06 | Investment in lines [MUSD] |
-| 07 | Average annual cost CAPEX+OPEX [MUSD/yr] |
+| 07 | Average annual cost, capital + operating [MUSD/yr] |
 | 08 | CO₂ emissions [Mt] |
 | 08A | Fossil fuel consumption [PJ] |
 | 08B | Fossil fuel consumption by fuel type [PJ] |
@@ -75,11 +75,11 @@ Figures ending in `_tmp` are exploratory (energy-not-served variants) and ship d
 | 10 | Transmission line kilometres [km] |
 | 11 | Annualised cost per unit of energy [MUSD/TWh] |
 | 12 | Energy security — imported vs domestic [%] |
-| 13 | Resilience — effective number of sources (1/HHI) |
+| 13 | Resilience — effective number of sources (inverse Herfindahl-Hirschman index) |
 | 14 | Total system cost including fuel [MUSD/yr] |
 | 15 | Energy not served [MUSD] (backstop output valued at 1500 USD/MWh) |
 | 16 | Transmission maps (iframe) |
 | 17 | Dispatch (iframe) |
-| 18 | RES diagram (iframe) |
+| 18 | Reference energy system diagram (iframe) |
 
 Colours are fixed per technology type across the whole dashboard: generation blue `#4e79a7`, transmission `#e15759`, storage `#76b7b2`.

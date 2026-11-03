@@ -1,6 +1,6 @@
 # Auxiliary Tools
 
-RELAC TX includes several utility scripts (prefixed with `Z_`) for data maintenance, visualization, and support tasks.
+OSTRAM LAC includes several utility scripts (prefixed with `Z_`) for data maintenance, visualization, and support tasks.
 
 ## Configuration Loader
 

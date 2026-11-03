@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -37,10 +37,10 @@ msgstr ""
 "Las figuras a continuación son las figuras estáticas del informe "
 "generadas por `scripts/figures/report/` (ver {doc}`../figures`) a partir "
 "de la corrida del modelo del 2026-09-17. Comparan los escenarios base de "
-"las dos familias principales, **OPT** (`BAC`) y **ETT** (`ISR`), para "
-"los años hito 2030, 2040 y 2050, o como trayectorias durante 2025–2050. "
-"Las versiones interactivas con todos los escenarios resueltos y filtros "
-"por país están disponibles en el dashboard de Plotly."
+"las dos familias principales, **OPT** (`BAC`) y **ETT** (`ISR`), para los"
+" años hito 2030, 2040 y 2050, o como trayectorias durante 2025–2050. Las "
+"versiones interactivas con todos los escenarios resueltos y filtros por "
+"país están disponibles en el dashboard de Plotly."
 
 #: ../../study/results.md:5
 msgid "Generation"
@@ -59,8 +59,8 @@ msgid ""
 "Annual generation by scenario in 2030, 2040 and 2050 [TWh] and renewable "
 "share."
 msgstr ""
-"Generación anual por escenario en 2030, 2040 y 2050 [TWh] y "
-"participación renovable."
+"Generación anual por escenario en 2030, 2040 y 2050 [TWh] y participación"
+" renovable."
 
 #: ../../study/results.md:19
 msgid "Renewable share of generation [%] by scenario, 2025–2050."
@@ -98,8 +98,8 @@ msgstr "Almacenamiento"
 #: ../../study/results.md:43
 msgid "Installed storage capacity by scenario in 2030, 2040 and 2050 [GW]."
 msgstr ""
-"Capacidad de almacenamiento instalada por escenario en 2030, 2040 y 2050"
-" [GW]."
+"Capacidad de almacenamiento instalada por escenario en 2030, 2040 y 2050 "
+"[GW]."
 
 #: ../../study/results.md:46
 msgid "Costs and fuel"
@@ -143,19 +143,22 @@ msgid ""
 "Energy security by scenario in 2030, 2040 and 2050: domestic versus "
 "imported primary energy [%]."
 msgstr ""
-"Seguridad energética por escenario en 2030, 2040 y 2050: energía "
-"primaria doméstica versus importada [%]."
+"Seguridad energética por escenario en 2030, 2040 y 2050: energía primaria"
+" doméstica versus importada [%]."
 
 #: ../../study/results.md:77
 msgid "Domestic energy share [%] by scenario, trajectory 2025–2050."
-msgstr "Participación de energía doméstica [%] por escenario, trayectoria 2025–2050."
+msgstr ""
+"Participación de energía doméstica [%] por escenario, trayectoria "
+"2025–2050."
 
 #: ../../study/results.md:82
 msgid ""
-"Effective number of generation sources (1/HHI) by scenario in 2030, 2040 "
-"and 2050. A higher value means a more diversified, more resilient mix."
+"Effective number of generation sources (inverse of the Herfindahl-"
+"Hirschman index) by scenario in 2030, 2040 and 2050. A higher value means"
+" a more diversified, more resilient mix."
 msgstr ""
-"Número efectivo de fuentes de generación (1/HHI) por escenario en 2030, "
-"2040 y 2050. Un valor más alto significa una mezcla más diversificada y "
-"más resiliente."
+"Número efectivo de fuentes de generación (inverso del índice de "
+"Herfindahl-Hirschman) por escenario en 2030, 2040 y 2050. Un valor más "
+"alto significa una mezcla más diversificada y más resiliente."
 

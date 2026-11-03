@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -25,18 +25,18 @@ msgstr "Autores"
 
 #: ../../study/authors.md:3
 msgid ""
-"This project was developed by the Climate Lead Group (CLG) team for the "
-"Inter-American Development Bank (IDB), within the RELAC initiative."
+"This project was developed by the Climate Lead Group team for the Inter-"
+"American Development Bank, within the RELAC initiative."
 msgstr ""
-"Este proyecto fue desarrollado por el equipo de Climate Lead Group (CLG) "
-"para el Banco Interamericano de Desarrollo (BID), en el marco de la "
-"iniciativa RELAC."
+"Este proyecto fue desarrollado por el equipo de Climate Lead Group para "
+"el Banco Interamericano de Desarrollo, en el marco de la iniciativa "
+"RELAC."
 
 #: ../../study/authors.md:5
 msgid ""
-"Source code and issue tracker: <https://github.com/Climate-Lead-"
-"Group/relac_tx>"
+"Source code and issue tracker: <https://github.com/Climate-Lead-Group"
+"/OSTRAM-LAC>"
 msgstr ""
 "Código fuente y seguimiento de incidencias: <https://github.com/Climate-"
-"Lead-Group/relac_tx>"
+"Lead-Group/OSTRAM-LAC>"
 

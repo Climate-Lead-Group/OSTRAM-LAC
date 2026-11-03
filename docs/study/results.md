@@ -79,5 +79,5 @@ Domestic energy share [%] by scenario, trajectory 2025–2050.
 
 ```{figure} /_static/results/fig_diversidad_fuentes.png
 :width: 85%
-Effective number of generation sources (1/HHI) by scenario in 2030, 2040 and 2050. A higher value means a more diversified, more resilient mix.
+Effective number of generation sources (inverse of the Herfindahl-Hirschman index) by scenario in 2030, 2040 and 2050. A higher value means a more diversified, more resilient mix.
 ```

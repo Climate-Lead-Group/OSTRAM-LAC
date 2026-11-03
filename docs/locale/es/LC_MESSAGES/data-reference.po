@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 08:16-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -26,11 +26,11 @@ msgstr "Referencia de datos"
 #: ../../data-reference.md:3
 msgid ""
 "This page documents the data file formats, naming conventions, and "
-"OSeMOSYS parameter structure used by RELAC TX."
+"OSeMOSYS parameter structure used by OSTRAM LAC."
 msgstr ""
 "Esta página documenta los formatos de archivo de datos, las convenciones "
 "de nomenclatura y la estructura de parámetros de OSeMOSYS usados por "
-"RELAC TX."
+"OSTRAM LAC."
 
 #: ../../data-reference.md:5
 msgid "Naming Conventions"
@@ -42,11 +42,11 @@ msgstr "Códigos de tecnología"
 
 #: ../../data-reference.md:9
 msgid ""
-"Technology names in RELAC TX follow a structured format that encodes the "
-"technology type, energy source, country, and region:"
+"Technology names in OSTRAM LAC follow a structured format that encodes "
+"the technology type, energy source, country, and region:"
 msgstr ""
-"Los nombres de tecnología en RELAC TX siguen un formato estructurado que "
-"codifica el tipo de tecnología, la fuente de energía, el país y la "
+"Los nombres de tecnología en OSTRAM LAC siguen un formato estructurado "
+"que codifica el tipo de tecnología, la fuente de energía, el país y la "
 "región:"
 
 #: ../../data-reference.md
@@ -315,10 +315,10 @@ msgstr "Almacenamiento de Larga Duración (hidroeléctrica de bombeo), Argentina
 #, python-brace-format
 msgid ""
 "Both families exist for the 19 modelled countries. The Stage B2 storage-"
-"delay patcher (see {doc}`solver-patchers`) blocks their builds for the "
+"delay modifier (see {doc}`solver-patchers`) blocks their builds for the "
 "first N years using the prefixes in `storage_delay_storage_prefixes`."
 msgstr ""
-"Ambas familias existen para los 19 países modelados. El patcher de "
+"Ambas familias existen para los 19 países modelados. El modificador de "
 "retraso de almacenamiento de la Etapa B2 (ver {doc}`solver-patchers`) "
 "bloquea su construcción durante los primeros N años usando los prefijos "
 "en `storage_delay_storage_prefixes`."
@@ -499,8 +499,8 @@ msgid "Temporal Structure"
 msgstr "Estructura temporal"
 
 #: ../../data-reference.md:149
-msgid "RELAC TX uses a hierarchical temporal structure:"
-msgstr "RELAC TX usa una estructura temporal jerárquica:"
+msgid "OSTRAM LAC uses a hierarchical temporal structure:"
+msgstr "OSTRAM LAC usa una estructura temporal jerárquica:"
 
 #: ../../data-reference.md:158
 msgid "This produces **12 timeslices** (4 seasons x 3 brackets):"
@@ -853,8 +853,8 @@ msgid "M$/GW/yr"
 msgstr "M$/GW/yr"
 
 #: ../../data-reference.md
-msgid "Annual fixed O&M cost"
-msgstr "Costo fijo anual de O&M"
+msgid "Annual fixed operation and maintenance cost"
+msgstr "Costo fijo anual de operación y mantenimiento"
 
 #: ../../data-reference.md
 msgid "`VariableCost`"
@@ -865,8 +865,8 @@ msgid "M$/PJ"
 msgstr "M$/PJ"
 
 #: ../../data-reference.md
-msgid "Variable O&M cost"
-msgstr "Costo variable de O&M"
+msgid "Variable operation and maintenance cost"
+msgstr "Costo variable de operación y mantenimiento"
 
 #: ../../data-reference.md
 msgid "`CapitalCostStorage`"
@@ -1122,12 +1122,12 @@ msgstr "Arquitectura del modelo"
 
 #: ../../data-reference.md:295
 msgid ""
-"RELAC TX uses a single-region (`GLOBAL`) architecture where geographic "
+"OSTRAM LAC uses a single-region (`GLOBAL`) architecture where geographic "
 "granularity is embedded in the technology and fuel naming conventions. "
 "Each country's technologies operate independently, connected only through"
 " explicit transmission (TRN) technologies."
 msgstr ""
-"RELAC TX usa una arquitectura de región única (`GLOBAL`) donde la "
+"OSTRAM LAC usa una arquitectura de región única (`GLOBAL`) donde la "
 "granularidad geográfica está incorporada en las convenciones de "
 "nomenclatura de tecnología y energético. Las tecnologías de cada país "
 "operan de forma independiente, conectadas solo a través de tecnologías de"

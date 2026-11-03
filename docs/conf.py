@@ -1,7 +1,7 @@
-# Configuration file for the Sphinx documentation builder (RELAC TX).
+# Configuration file for the Sphinx documentation builder (OSTRAM LAC).
 # Source language is English; Spanish lives in locale/es/LC_MESSAGES/*.po.
 
-project = "RELAC TX"
+project = "OSTRAM LAC"
 copyright = "2025-2026, Climate Lead Group"
 author = "Climate Lead Group"
 release = "1.0"

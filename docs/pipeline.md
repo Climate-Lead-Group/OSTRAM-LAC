@@ -1,6 +1,6 @@
 # Pipeline Workflow
 
-RELAC TX processes energy system data through a multi-stage pipeline. This page documents each stage in detail, including its inputs, outputs, and configuration.
+OSTRAM LAC processes energy system data through a multi-stage pipeline. This page documents each stage in detail, including its inputs, outputs, and configuration.
 
 ## Pipeline Overview
 
@@ -22,7 +22,7 @@ RELAC TX processes energy system data through a multi-stage pipeline. This page 
 │                                                                      │
 │  B1: B1b pre-solver validation → Compile Excel → OSeMOSYS CSVs      │
 │   ↓                                                                  │
-│  B2: Patcher chain → Execute Solver → Results                        │
+│  B2: Modifier chain → Execute Solver → Results                       │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -82,7 +82,7 @@ Structural prefixes (`ELC`, `MIN`, `PWR`, `RNW`, `TRN`) are **not** included in 
 
 Edit `Tech_Country_Matrix.xlsx` to customize:
 - In the **Matrix** sheet: change YES/NO for any technology-country pair.
-- In the **NGS_Unification** sheet: toggle YES/NO to enable CCG+OCG merging into NGS.
+- In the **NGS_Unification** sheet: toggle YES/NO to enable merging combined-cycle and open-cycle gas (CCG + OCG) into natural gas (NGS).
 
 ---
 
@@ -132,7 +132,7 @@ The script performs these operations in order:
 6. **Remove internal interconnections** after consolidation.
 7. **Clean PWR technologies** -- handles PWR00/PWR01 duplicates based on `pwr_cleanup_mode`.
 8. **Apply Tech-Country Matrix filtering** -- removes technology-country pairs marked NO.
-9. **Unify NGS technologies** -- merges CCG+OCG into NGS where enabled.
+9. **Unify natural gas technologies** -- merges combined-cycle and open-cycle gas (CCG + OCG) into a single natural gas technology (NGS) where enabled.
 10. **Write Excel output files** with formatted sheets and human-readable names.
 11. **Update demand profiles and projections**.
 12. **Update parametrization capacities and temporal splits**.
@@ -371,18 +371,18 @@ python -u scripts/pipeline/B2_Executing_OG_Model.py
 
 1. **CSV to datafile conversion** via otoole (per base scenario: BAU, OPT, INV, VGB).
 2. **Preprocessing** -- runs the OSeMOSYS preprocessor.
-3. **Patcher chain** -- rewrites parameter blocks directly in the GMPL `.txt` to apply the reserve-margin and storage features plus feasibility safeguards (DaysInDayType, storage-delay, PWRBCK caps, reserve margin, activity upper limits, dispatch floors). See {doc}`solver-patchers` for the full chain.
-4. **Sync patched CSVs** -- overwrites the affected otoole CSVs in place so the combined input/output files reflect the patched values the solver consumed.
-5. **Tx chain (FLOORED → VEGCON → scenario transforms)** -- see subsection below; produces the 17 derived scenarios (BAC, OPC, INVWF, VGBWF, BSR, ISR, VSR, ISRWF, VSRWF, BFA, IFA, BFB, IFB, BRB, IRB, BRA, IRA) that the rest of the pipeline treats like any other scenario.
-6. **Solver execution** -- runs the selected solver (GLPK/CBC/CPLEX/Gurobi) over the configured `solve_scenarios` universe (base + derived).
+3. **Modifier chain** -- rewrites parameter blocks directly in the GNU MathProg `.txt` to apply the reserve-margin and storage features plus feasibility safeguards (DaysInDayType, storage-delay, backstop (PWRBCK) caps, reserve margin, activity upper limits, dispatch floors). See {doc}`solver-patchers` for the full chain.
+4. **Sync modified CSVs** -- overwrites the affected otoole CSVs in place so the combined input/output files reflect the modified values the solver consumed.
+5. **Transmission chain (FLOORED → VEGCON → scenario transforms)** -- see subsection below; produces the 17 derived scenarios (BAC, OPC, INVWF, VGBWF, BSR, ISR, VSR, ISRWF, VSRWF, BFA, IFA, BFB, IFB, BRB, IRB, BRA, IRA) that the rest of the pipeline treats like any other scenario.
+6. **Solver execution** -- runs the selected solver (GLPK, CBC, CPLEX or Gurobi) over the configured `solve_scenarios` universe (base + derived).
 7. **Result extraction** -- converts solver output back to CSV, using each derived scenario's base A2 as the otoole-results reference (derived scenarios share sets with their base; only values differ).
 8. **Post-processing** -- input re-sync from the final `.txt` (fixes stale-input bug for derived scenarios), capital annualization, scenario concatenation.
 
 :::{note}
-The final CSVs always use `prefix_final_files` (`RELAC_TX_`), regardless of which patchers are active; `dvc.yaml` declares them as `outs` under that name and B2 aborts at startup if they disagree. When `storage_delay_active: True` (the shipped default) only the solver model file and the root datafile are redirected. See {doc}`solver-patchers` for details.
+The final CSVs always use `prefix_final_files` (`RELAC_TX_`), regardless of which modifiers are active; `dvc.yaml` declares them as `outs` under that name and B2 aborts at startup if they disagree. When `storage_delay_active: True` (the shipped default) only the solver model file and the root datafile are redirected. See {doc}`solver-patchers` for details.
 :::
 
-### Tx Chain Integration (FLOORED → VEGCON → scenario transforms)
+### Transmission Chain Integration (FLOORED → VEGCON → scenario transforms)
 
 B2 orchestrates four previously-manual scripts as subprocesses, with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON`; B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the four scripts below have it hardcoded in their file-matching logic).
 
@@ -398,7 +398,7 @@ Solve universe: `solve_universe()` resolves `solve_scenarios` from the YAML (def
 
 #### Scenario codes (shipped `Config_MOMF_T1_AB.yaml`, 2026-09-17)
 
-Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by the Tx chain. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low, `WF` = water-fill NLI weights. Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
+Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by the transmission chain. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low, `WF` = water-fill weights for new lines (NLI). Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
 
 | Derived code | Base (A2 sets reused) | Produced by | Notes |
 |---|---|---|---|

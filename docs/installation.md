@@ -1,13 +1,13 @@
 # Installation
 
-This guide covers the full setup process for running RELAC TX on a Windows machine.
+This guide covers the full setup process for running OSTRAM LAC on a Windows machine.
 
 ## System Requirements
 
 - **Operating System:** Windows 10 or higher
 - **Git:** [Git for Windows](https://gitforwindows.org/) (version 2.40+)
 - **Python distribution:** [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/download)
-- **Solver:** At least one of the following LP/MIP solvers:
+- **Solver:** At least one of the following linear / mixed-integer programming solvers:
   - [GLPK](https://www.gnu.org/software/glpk/) (open source, **installed automatically** with the Conda environment)
   - [CBC](https://github.com/coin-or/Cbc) (open source, **installed automatically** with the Conda environment)
   - [CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio) (commercial, IBM)
@@ -16,13 +16,13 @@ This guide covers the full setup process for running RELAC TX on a Windows machi
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/Climate-Lead-Group/relac_tx.git
-cd relac_tx
+git clone https://github.com/Climate-Lead-Group/OSTRAM-LAC.git
+cd OSTRAM-LAC
 ```
 
 ## Conda Environment
 
-RELAC TX uses a Conda environment defined in `environment.yaml`. The `run.py` launcher automatically creates it if it does not exist, but you can also create it manually:
+OSTRAM LAC uses a Conda environment defined in `environment.yaml`. The `run.py` launcher automatically creates it if it does not exist, but you can also create it manually:
 
 ```bash
 conda env create -f environment.yaml
@@ -106,7 +106,7 @@ gurobi_cl --version
 
 ## DVC Setup (Optional)
 
-RELAC TX uses [DVC](https://dvc.org/) (Data Version Control) to manage the pipeline. The `run.py` script handles DVC commands automatically, but if you want to run stages manually:
+OSTRAM LAC uses [DVC](https://dvc.org/) (Data Version Control) to manage the pipeline. The `run.py` script handles DVC commands automatically, but if you want to run stages manually:
 
 ```bash
 conda activate OG-MOMF-env

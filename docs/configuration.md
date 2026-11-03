@@ -1,6 +1,6 @@
 # Configuration Reference
 
-RELAC TX uses four YAML configuration files and two Excel-based configuration files. This page documents every option.
+OSTRAM LAC uses four YAML configuration files and two Excel-based configuration files. This page documents every option.
 
 :::{warning}
 All data entered in the configuration files (technologies, years, countries, codes) **must match values that exist in the model**. Using technology codes, country codes, year ranges, or any other identifiers that are not present in the model data can cause the pipeline to fail during execution.
@@ -27,7 +27,7 @@ country_data:
 ```
 
 - `english_name`: Display name used in reports and documentation.
-- `olade_name`: Name used for matching against OLADE source data files (note Spanish spellings, e.g. `"Brasil"`).
+- `olade_name`: Name used for matching against source data files of the Latin American Energy Organization (OLADE) (note Spanish spellings, e.g. `"Brasil"`).
 
 ### `special_entries`
 
@@ -371,7 +371,7 @@ annualize_capital: True
 |-----|-------|-------------|
 | `base_scenario` | `"BAU"` | Name of the base/reference scenario |
 | `prefix_final_files` | `"RELAC_TX_"` | Prefix for final output file names |
-| `osemosys_model` | `"osemosys_fast_preprocessed.txt"` | OSeMOSYS model file (GMPL) |
+| `osemosys_model` | `"osemosys_fast_preprocessed.txt"` | OSeMOSYS model file (GNU MathProg) |
 
 ### Paths and File-Name Plumbing
 
@@ -380,7 +380,7 @@ All paths are relative to the repository root. Values shown are the shipped ones
 | Key | Value | Description |
 |-----|-------|-------------|
 | `A2_output` | `outputs/A2_Output_Params` | A2 parameter CSVs per scenario |
-| `A2_output_otoole` | `outputs/A2_Outputs_Params_otoole` | otoole-format twin of `A2_output`; the folder the patched CSVs are synced back into |
+| `A2_output_otoole` | `outputs/A2_Outputs_Params_otoole` | otoole-format twin of `A2_output`; the folder the modified CSVs are synced back into |
 | `Miscellaneous` | `inputs/Miscellaneous` | Folder holding `conversion_format.yaml` and the otoole templates |
 | `templates` | `templates` | otoole template folder name (under `Miscellaneous`) |
 | `executables` | `outputs/Executables` | Where per-scenario `<S>_0/` datafiles are written |
@@ -393,11 +393,11 @@ All paths are relative to the repository root. Values shown are the shipped ones
 | `output_files` | `_output` | Suffix of solver output files |
 | `inputs_file` / `outputs_file` | `Inputs.csv` / `Outputs.csv` | Base names of the combined CSVs (prefixed by `prefix_final_files`); the merged file is `<prefix>Combined_Inputs_Outputs.csv` |
 
-### Solver Patcher Chain
+### Solver Modifier Chain
 
-`Config_MOMF_T1_AB.yaml` also contains the settings for the **Stage B2 patcher chain** — the reserve-margin and storage features applied to the GMPL `.txt` before the solver runs. Each patcher has an `*_active` master switch; the shipped configuration enables several of them.
+`Config_MOMF_T1_AB.yaml` also contains the settings for the **Stage B2 modifier chain** — the reserve-margin and storage features applied to the GNU MathProg `.txt` before the solver runs. Each modifier has an `*_active` master switch; the shipped configuration enables several of them.
 
-| Master switch | Shipped default | Patcher |
+| Master switch | Shipped default | Modifier |
 |---------------|-----------------|---------|
 | `storage_delay_active` | `True` | Block storage builds for the first N years (redirects the solver model file; final CSVs keep the `RELAC_TX_` prefix) |
 | `strip_storage_active` | `True` | Disable storage + feeding PWR techs (diagnostic; forced off when storage-delay is on) |
@@ -406,13 +406,13 @@ All paths are relative to the repository root. Values shown are the shipped ones
 | `activity_upper_limit_active` | `False` | Cap `TotalTechnologyAnnualActivityUpperLimit` from demand fractions |
 | `dispatch_floors_active` | `True` | Write fossil dispatch floors (`FLOORED`) per base scenario, gated by `preflight_separation_active` |
 | `veg_tx_active` | `True` | Cross-scenario transmission constraints (`VEGCON`); creates BAC/OPC/INVWF/VGBWF |
-| `sync_patched_csvs_active` | `True` | Sync patched values back into the otoole CSVs (`sync_patched_csvs_params` lists the parameter blocks copied) |
+| `sync_patched_csvs_active` | `True` | Sync modified values back into the otoole CSVs (`sync_patched_csvs_params` lists the parameter blocks copied) |
 
 See {doc}`solver-patchers` for the full chain, execution order, and every per-patcher parameter.
 
-### Tx Chain: Derived Scenarios
+### Transmission Chain: Derived Scenarios
 
-Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive the Tx chain that B2 runs after VEGCON (see the Tx-chain subsection of {doc}`pipeline`). Adding a constraint script or a derived scenario is done **only** here; B2 needs no code change.
+Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive the transmission chain that B2 runs after VEGCON (see the transmission-chain subsection of {doc}`pipeline`). Adding a constraint script or a derived scenario is done **only** here; B2 needs no code change.
 
 ```yaml
 scenario_transforms:

@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -25,11 +25,11 @@ msgstr "Licencia"
 
 #: ../../study/license.md:3
 msgid ""
-"RELAC TX is released under the **Apache License, Version 2.0**. The full "
-"text is in the `LICENSE` file at the root of the repository and at "
+"OSTRAM LAC is released under the **Apache License, Version 2.0**. The "
+"full text is in the `LICENSE` file at the root of the repository and at "
 "<http://www.apache.org/licenses/LICENSE-2.0>."
 msgstr ""
-"RELAC TX se publica bajo la **Apache License, Version 2.0**. El texto "
+"OSTRAM LAC se publica bajo la **Apache License, Version 2.0**. El texto "
 "completo está en el archivo `LICENSE` en la raíz del repositorio y en "
 "<http://www.apache.org/licenses/LICENSE-2.0>."
 

@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-21 09:17-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -35,8 +35,8 @@ msgstr ""
 "familia tiene un escenario base y, para las dos familias principales, un "
 "conjunto de variantes de sensibilidad sobre repotenciación y sobre "
 "supuestos de costos. Los códigos del modelo (los identificadores usados "
-"en los archivos de configuración y en los CSV de resultados) se muestran"
-" en fuente monoespaciada."
+"en los archivos de configuración y en los CSV de resultados) se muestran "
+"en fuente monoespaciada."
 
 #: ../../study/scenarios.md
 msgid "Family"
@@ -71,8 +71,8 @@ msgid ""
 "`BSR` without repowering · `BFA` / `BFB` fossil-fuel cost high / low · "
 "`BRA` / `BRB` renewables cost high / low"
 msgstr ""
-"`BSR` sin repotenciación · `BFA` / `BFB` costo de combustible fósil alto"
-" / bajo · `BRA` / `BRB` costo de renovables alto / bajo"
+"`BSR` sin repotenciación · `BFA` / `BFB` costo de combustible fósil alto "
+"/ bajo · `BRA` / `BRB` costo de renovables alto / bajo"
 
 #: ../../study/scenarios.md
 msgid "**ETT**"
@@ -91,8 +91,8 @@ msgid ""
 "`INV` with repowering · `IFA` / `IFB` fossil-fuel cost high / low · `IRA`"
 " / `IRB` renewables cost high / low"
 msgstr ""
-"`INV` con repotenciación · `IFA` / `IFB` costo de combustible fósil alto"
-" / bajo · `IRA` / `IRB` costo de renovables alto / bajo"
+"`INV` con repotenciación · `IFA` / `IFB` costo de combustible fósil alto "
+"/ bajo · `IRA` / `IRB` costo de renovables alto / bajo"
 
 #: ../../study/scenarios.md
 msgid "**PLAN**"
@@ -171,8 +171,8 @@ msgid ""
 "`BRB` / `IRB`. Their results should be read as provisional."
 msgstr ""
 "Los multiplicadores de las variantes de renovables alto (`BRA`, `IRA`) "
-"están pendientes de calibración; en la configuración actual son iguales "
-"a los de `BRB` / `IRB`. Sus resultados deben leerse como provisionales."
+"están pendientes de calibración; en la configuración actual son iguales a"
+" los de `BRB` / `IRB`. Sus resultados deben leerse como provisionales."
 
 #: ../../study/scenarios.md:27
 msgid "How the scenarios are built"
@@ -190,11 +190,11 @@ msgid ""
 "is in the *Scenario codes* table of {doc}`../pipeline`."
 msgstr ""
 "Las cuatro familias derivan de cuatro libros de entrada (`BAU`, `INV`, "
-"`OPT`, `VGB`) a través de la cadena de restricciones de transmisión de "
-"la Etapa B2: pisos de despacho, restricciones de transmisión entre "
+"`OPT`, `VGB`) a través de la cadena de restricciones de transmisión de la"
+" Etapa B2: pisos de despacho, restricciones de transmisión entre "
 "escenarios y un registro de transformaciones de escenario que crea las "
 "variantes cambiando únicamente valores de parámetros. El mapeo completo "
-"de cada código a su libro base y script generador, junto con la lista de"
-" escenarios efectivamente resueltos, está en la tabla *Códigos de "
+"de cada código a su libro base y script generador, junto con la lista de "
+"escenarios efectivamente resueltos, está en la tabla *Códigos de "
 "escenario* de {doc}`../pipeline`."
 

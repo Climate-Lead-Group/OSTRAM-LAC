@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -25,9 +25,11 @@ msgstr "Instalación"
 
 #: ../../installation.md:3
 msgid ""
-"This guide covers the full setup process for running RELAC TX on a "
+"This guide covers the full setup process for running OSTRAM LAC on a "
 "Windows machine."
-msgstr "Esta guía cubre el proceso completo de configuración para ejecutar RELAC TX en una máquina Windows."
+msgstr ""
+"Esta guía cubre el proceso completo de configuración para ejecutar OSTRAM"
+" LAC en una máquina Windows."
 
 #: ../../installation.md:5
 msgid "System Requirements"
@@ -46,29 +48,42 @@ msgid ""
 "**Python distribution:** "
 "[Miniconda](https://docs.conda.io/en/latest/miniconda.html) or "
 "[Anaconda](https://www.anaconda.com/download)"
-msgstr "**Distribución de Python:** [Miniconda](https://docs.conda.io/en/latest/miniconda.html) o [Anaconda](https://www.anaconda.com/download)"
+msgstr ""
+"**Distribución de Python:** "
+"[Miniconda](https://docs.conda.io/en/latest/miniconda.html) o "
+"[Anaconda](https://www.anaconda.com/download)"
 
 #: ../../installation.md:10
-msgid "**Solver:** At least one of the following LP/MIP solvers:"
-msgstr "**Solver:** Al menos uno de los siguientes solvers LP/MIP:"
+msgid ""
+"**Solver:** At least one of the following linear / mixed-integer "
+"programming solvers:"
+msgstr ""
+"**Solver:** Al menos uno de los siguientes solvers de programación lineal"
+" / entera mixta:"
 
 #: ../../installation.md:11
 msgid ""
 "[GLPK](https://www.gnu.org/software/glpk/) (open source, **installed "
 "automatically** with the Conda environment)"
-msgstr "[GLPK](https://www.gnu.org/software/glpk/) (código abierto, **se instala automáticamente** con el entorno Conda)"
+msgstr ""
+"[GLPK](https://www.gnu.org/software/glpk/) (código abierto, **se instala "
+"automáticamente** con el entorno Conda)"
 
 #: ../../installation.md:12
 msgid ""
 "[CBC](https://github.com/coin-or/Cbc) (open source, **installed "
 "automatically** with the Conda environment)"
-msgstr "[CBC](https://github.com/coin-or/Cbc) (código abierto, **se instala automáticamente** con el entorno Conda)"
+msgstr ""
+"[CBC](https://github.com/coin-or/Cbc) (código abierto, **se instala "
+"automáticamente** con el entorno Conda)"
 
 #: ../../installation.md:13
 msgid ""
 "[CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio) "
 "(commercial, IBM)"
-msgstr "[CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio) (comercial, IBM)"
+msgstr ""
+"[CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio) "
+"(comercial, IBM)"
 
 #: ../../installation.md:14
 msgid "[Gurobi](https://www.gurobi.com/) (commercial, free academic license)"
@@ -84,10 +99,13 @@ msgstr "Entorno Conda"
 
 #: ../../installation.md:25
 msgid ""
-"RELAC TX uses a Conda environment defined in `environment.yaml`. The "
+"OSTRAM LAC uses a Conda environment defined in `environment.yaml`. The "
 "`run.py` launcher automatically creates it if it does not exist, but you "
 "can also create it manually:"
-msgstr "RELAC TX usa un entorno Conda definido en `environment.yaml`. El lanzador `run.py` lo crea automáticamente si no existe, pero también puede crearlo manualmente:"
+msgstr ""
+"OSTRAM LAC usa un entorno Conda definido en `environment.yaml`. El "
+"lanzador `run.py` lo crea automáticamente si no existe, pero también "
+"puede crearlo manualmente:"
 
 #: ../../installation.md:32
 msgid "Environment Dependencies"
@@ -193,7 +211,9 @@ msgstr ">= 3.8"
 msgid ""
 "Figures (`scripts/figures/report`, `scripts/figures/presentation`, "
 "`scripts/fix_dispatch`, `scripts/tx_chain`)"
-msgstr "Figuras (`scripts/figures/report`, `scripts/figures/presentation`, `scripts/fix_dispatch`, `scripts/tx_chain`)"
+msgstr ""
+"Figuras (`scripts/figures/report`, `scripts/figures/presentation`, "
+"`scripts/fix_dispatch`, `scripts/tx_chain`)"
 
 #: ../../installation.md
 msgid "plotly"
@@ -219,7 +239,9 @@ msgstr ">= 14"
 msgid ""
 "Parquet subset of the combined CSV for the static figures "
 "(`scripts/figures/common/dashboard_config.py`)"
-msgstr "Subconjunto Parquet del CSV combinado para las figuras estáticas (`scripts/figures/common/dashboard_config.py`)"
+msgstr ""
+"Subconjunto Parquet del CSV combinado para las figuras estáticas "
+"(`scripts/figures/common/dashboard_config.py`)"
 
 #: ../../installation.md
 msgid "ruamel.yaml"
@@ -233,7 +255,9 @@ msgstr ">= 0.17"
 msgid ""
 "Comment-preserving YAML edits in `B1_Run_Compiler.py` (PyYAML fallback if"
 " absent)"
-msgstr "Ediciones YAML que preservan comentarios en `B1_Run_Compiler.py` (usa PyYAML como respaldo si no está presente)"
+msgstr ""
+"Ediciones YAML que preservan comentarios en `B1_Run_Compiler.py` (usa "
+"PyYAML como respaldo si no está presente)"
 
 #: ../../installation.md
 msgid "scipy"
@@ -316,21 +340,30 @@ msgid ""
 "Both open-source solvers are declared in `environment.yaml` (`glpk` and "
 "`coincbc`), so they are installed together with the Conda environment. No"
 " extra step is needed for a fresh environment."
-msgstr "Ambos solvers de código abierto están declarados en `environment.yaml` (`glpk` y `coincbc`), por lo que se instalan junto con el entorno Conda. No se necesita ningún paso adicional para un entorno nuevo."
+msgstr ""
+"Ambos solvers de código abierto están declarados en `environment.yaml` "
+"(`glpk` y `coincbc`), por lo que se instalan junto con el entorno Conda. "
+"No se necesita ningún paso adicional para un entorno nuevo."
 
 #: ../../installation.md:61
 msgid ""
 "If your `OG-MOMF-env` was created before the solvers were added, `run.py`"
 " detects the missing `glpsol`/`cbc` binaries and installs them on its "
 "next run. You can also do it manually:"
-msgstr "Si su `OG-MOMF-env` se creó antes de que se agregaran los solvers, `run.py` detecta los binarios `glpsol`/`cbc` faltantes y los instala en su siguiente ejecución. También puede hacerlo manualmente:"
+msgstr ""
+"Si su `OG-MOMF-env` se creó antes de que se agregaran los solvers, "
+"`run.py` detecta los binarios `glpsol`/`cbc` faltantes y los instala en "
+"su siguiente ejecución. También puede hacerlo manualmente:"
 
 #: ../../installation.md:67
 msgid ""
 "Note: the binaries live inside the environment (`...\\envs\\OG-MOMF-"
 "env\\Library\\bin`), so they are only on `PATH` when the environment is "
 "active (or when running through `conda run`, as `run.py` does)."
-msgstr "Nota: los binarios residen dentro del entorno (`...\\envs\\OG-MOMF-env\\Library\\bin`), por lo que solo están en `PATH` cuando el entorno está activo (o al ejecutarse mediante `conda run`, como hace `run.py`)."
+msgstr ""
+"Nota: los binarios residen dentro del entorno (`...\\envs\\OG-MOMF-"
+"env\\Library\\bin`), por lo que solo están en `PATH` cuando el entorno "
+"está activo (o al ejecutarse mediante `conda run`, como hace `run.py`)."
 
 #: ../../installation.md:69
 msgid "CPLEX"
@@ -340,11 +373,15 @@ msgstr "CPLEX"
 msgid ""
 "Install IBM ILOG CPLEX Optimization Studio from the [IBM "
 "website](https://www.ibm.com/products/ilog-cplex-optimization-studio)."
-msgstr "Instale IBM ILOG CPLEX Optimization Studio desde el [sitio web de IBM](https://www.ibm.com/products/ilog-cplex-optimization-studio)."
+msgstr ""
+"Instale IBM ILOG CPLEX Optimization Studio desde el [sitio web de "
+"IBM](https://www.ibm.com/products/ilog-cplex-optimization-studio)."
 
 #: ../../installation.md:72
 msgid "Ensure the `cplex` binary is available on your system `PATH`."
-msgstr "Asegúrese de que el binario `cplex` esté disponible en el `PATH` de su sistema."
+msgstr ""
+"Asegúrese de que el binario `cplex` esté disponible en el `PATH` de su "
+"sistema."
 
 #: ../../installation.md:73
 msgid "Set `solver: 'cplex'` in `inputs/config/Config_MOMF_T1_AB.yaml`."
@@ -358,7 +395,9 @@ msgstr "Gurobi"
 msgid ""
 "Install Gurobi from the [Gurobi "
 "website](https://www.gurobi.com/downloads/)."
-msgstr "Instale Gurobi desde el [sitio web de Gurobi](https://www.gurobi.com/downloads/)."
+msgstr ""
+"Instale Gurobi desde el [sitio web de "
+"Gurobi](https://www.gurobi.com/downloads/)."
 
 #: ../../installation.md:78
 msgid "Activate your license (`grbgetkey <license-key>`)."
@@ -366,7 +405,9 @@ msgstr "Active su licencia (`grbgetkey <license-key>`)."
 
 #: ../../installation.md:79
 msgid "Ensure the `gurobi` binary is available on your system `PATH`."
-msgstr "Asegúrese de que el binario `gurobi` esté disponible en el `PATH` de su sistema."
+msgstr ""
+"Asegúrese de que el binario `gurobi` esté disponible en el `PATH` de su "
+"sistema."
 
 #: ../../installation.md:80
 msgid "Set `solver: 'gurobi'` in `inputs/config/Config_MOMF_T1_AB.yaml`."
@@ -390,13 +431,19 @@ msgstr "Configuración de DVC (opcional)"
 
 #: ../../installation.md:109
 msgid ""
-"RELAC TX uses [DVC](https://dvc.org/) (Data Version Control) to manage "
+"OSTRAM LAC uses [DVC](https://dvc.org/) (Data Version Control) to manage "
 "the pipeline. The `run.py` script handles DVC commands automatically, but"
 " if you want to run stages manually:"
-msgstr "RELAC TX usa [DVC](https://dvc.org/) (Data Version Control) para gestionar el pipeline. El script `run.py` maneja los comandos de DVC automáticamente, pero si desea ejecutar las etapas manualmente:"
+msgstr ""
+"OSTRAM LAC usa [DVC](https://dvc.org/) (Data Version Control) para "
+"gestionar el pipeline. El script `run.py` maneja los comandos de DVC "
+"automáticamente, pero si desea ejecutar las etapas manualmente:"
 
 #: ../../installation.md:116
 msgid ""
 "This will execute all pipeline stages that have outdated outputs based on"
 " dependency tracking."
-msgstr "Esto ejecutará todas las etapas del pipeline cuyas salidas estén desactualizadas según el seguimiento de dependencias."
+msgstr ""
+"Esto ejecutará todas las etapas del pipeline cuyas salidas estén "
+"desactualizadas según el seguimiento de dependencias."
+

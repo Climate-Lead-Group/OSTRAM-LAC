@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2025-2026, Climate Lead Group
-# This file is distributed under the same license as the RELAC TX package.
+# This file is distributed under the same license as the OSTRAM LAC package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RELAC TX \n"
+"Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-02 14:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -24,8 +24,10 @@ msgid "Quick Start"
 msgstr "Inicio rápido"
 
 #: ../../quickstart.md:3
-msgid "This page walks you through running RELAC TX for the first time."
-msgstr "Esta página lo guía a través de la ejecución de RELAC TX por primera vez."
+msgid "This page walks you through running OSTRAM LAC for the first time."
+msgstr ""
+"Esta página lo guía a través de la ejecución de OSTRAM LAC por primera "
+"vez."
 
 #: ../../quickstart.md:5
 msgid "1. Run the Full Pipeline"
@@ -49,7 +51,9 @@ msgstr "Instala las dependencias faltantes."
 
 #: ../../quickstart.md:18
 msgid "Injects today's date into the DVC pipeline for date-stamped output files."
-msgstr "Inserta la fecha actual en el pipeline de DVC para los archivos de salida con marca de fecha."
+msgstr ""
+"Inserta la fecha actual en el pipeline de DVC para los archivos de salida"
+" con marca de fecha."
 
 #: ../../quickstart.md:19
 msgid "Runs `dvc repro` to execute all pipeline stages."
@@ -143,7 +147,10 @@ msgstr "Etapa 1: Preprocesar (Compilar)"
 msgid ""
 "Reads the Excel model files in `A1_Outputs/` and compiles them into "
 "OSeMOSYS-compatible CSV parameter files in `A2_Output_Params/`."
-msgstr "Lee los archivos Excel del modelo en `A1_Outputs/` y los compila en archivos CSV de parámetros compatibles con OSeMOSYS en `A2_Output_Params/`."
+msgstr ""
+"Lee los archivos Excel del modelo en `A1_Outputs/` y los compila en "
+"archivos CSV de parámetros compatibles con OSeMOSYS en "
+"`A2_Output_Params/`."
 
 #: ../../quickstart.md:49
 msgid "Stage 2: Execute"
@@ -153,7 +160,9 @@ msgstr "Etapa 2: Ejecutar"
 msgid ""
 "Converts CSVs to the solver's data format, runs the optimization, and "
 "produces combined result files."
-msgstr "Convierte los CSV al formato de datos del solver, ejecuta la optimización y produce archivos de resultados combinados."
+msgstr ""
+"Convierte los CSV al formato de datos del solver, ejecuta la optimización"
+" y produce archivos de resultados combinados."
 
 #: ../../quickstart.md:57
 msgid "3. Output Files"
@@ -219,7 +228,9 @@ msgstr "Archivo combinado con marca de fecha"
 msgid ""
 "Date-stamped files preserve a complete execution history so you can "
 "compare runs over time."
-msgstr "Los archivos con marca de fecha preservan un historial de ejecución completo para poder comparar corridas a lo largo del tiempo."
+msgstr ""
+"Los archivos con marca de fecha preservan un historial de ejecución "
+"completo para poder comparar corridas a lo largo del tiempo."
 
 #: ../../quickstart.md:72
 msgid "4. Directory Structure Overview"
@@ -251,20 +262,29 @@ msgstr "**Agregar tecnologías de transmisión** (`A2`)."
 
 #: ../../quickstart.md:108
 msgid "**Optionally edit secondary technologies** (`D1` + manual editing + `D2`)."
-msgstr "**Editar opcionalmente las tecnologías secundarias** (`D1` + edición manual + `D2`)."
+msgstr ""
+"**Editar opcionalmente las tecnologías secundarias** (`D1` + edición "
+"manual + `D2`)."
 
 #: ../../quickstart.md:109
 msgid ""
 "**Run the full pipeline** with `python run.py` (this executes stages "
 "**B1** and **B2** only -- data preparation stages A0--A2 and the "
 "secondary techs editor D1/D2 must be run separately beforehand)."
-msgstr "**Ejecutar el pipeline completo** con `python run.py` (esto ejecuta únicamente las etapas **B1** y **B2** -- las etapas de preparación de datos A0--A2 y el editor de tecnologías secundarias D1/D2 deben ejecutarse por separado de antemano)."
+msgstr ""
+"**Ejecutar el pipeline completo** con `python run.py` (esto ejecuta "
+"únicamente las etapas **B1** y **B2** -- las etapas de preparación de "
+"datos A0--A2 y el editor de tecnologías secundarias D1/D2 deben "
+"ejecutarse por separado de antemano)."
 
 #: ../../quickstart.md:110
 msgid "**Analyze results** using the output CSVs or the interactive dashboards."
-msgstr "**Analizar los resultados** usando los CSV de salida o los paneles interactivos."
+msgstr ""
+"**Analizar los resultados** usando los CSV de salida o los paneles "
+"interactivos."
 
 #: ../../quickstart.md:112
 #, python-brace-format
 msgid "See {doc}`pipeline` for a detailed walkthrough of each stage."
 msgstr "Consulte {doc}`pipeline` para un recorrido detallado de cada etapa."
+

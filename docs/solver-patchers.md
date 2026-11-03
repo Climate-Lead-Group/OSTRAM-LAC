@@ -1,22 +1,22 @@
-# Solver Patcher Chain (Stage B2)
+# Solver Modifier Chain (Stage B2)
 
-After the OSeMOSYS preprocessor produces the GMPL datafile (`.txt`) but **before** the solver runs, Stage B2 applies an ordered chain of *patchers* that rewrite parameter blocks directly in the `.txt`. These patchers implement the **reserve-margin and storage** modeling features and several feasibility safeguards.
+After the OSeMOSYS preprocessor produces the GNU MathProg datafile (`.txt`) but **before** the solver runs, Stage B2 applies an ordered chain of *modifiers* that rewrite parameter blocks directly in the `.txt`. These modifiers implement the **reserve-margin and storage** modeling features and several feasibility safeguards.
 
-This page documents the chain, what each patcher does, and the configuration that controls it. All patcher settings live in [`Config_MOMF_T1_AB.yaml`](configuration.md#config_momf_t1_abyaml).
+This page documents the chain, what each modifier does, and the configuration that controls it. All modifier settings live in [`Config_MOMF_T1_AB.yaml`](configuration.md#config_momf_t1_abyaml).
 
 :::{important}
-Every patcher is gated by an `*_active` master switch. When a switch is `False` (or absent), that patcher is a **no-op** and the pipeline behaves as if it were not there. Some switches ship **enabled** in the current `Config_MOMF_T1_AB.yaml` — see the "Shipped default" column in each section.
+Every modifier is gated by an `*_active` master switch. When a switch is `False` (or absent), that modifier is a **no-op** and the pipeline behaves as if it were not there. Some switches ship **enabled** in the current `Config_MOMF_T1_AB.yaml` — see the "Shipped default" column in each section.
 :::
 
 ---
 
-## Why patch the `.txt` instead of the CSVs?
+## Why modify the `.txt` instead of the CSVs?
 
-Some adjustments are easier or only possible on the fully-assembled GMPL model:
+Some adjustments are easier or only possible on the fully-assembled GNU MathProg model:
 
 - `DaysInDayType` is never emitted by the `B1 → otoole → preprocess` path, so it must be injected post-preprocess.
 - Reserve-margin tags, firm-capacity caps, and storage-build timing are global, cross-scenario rules best applied as a final reconciliation step.
-- The patched values are then **synced back** into the otoole CSVs (see [Sync patched CSVs](#sync-patched-csvs-back-to-the-otoole-folder)) so the combined input/output files reflect what the solver actually consumed.
+- The modified values are then **synced back** into the otoole CSVs (see [Sync modified CSVs](#sync-modified-csvs-back-to-the-otoole-folder)) so the combined input/output files reflect what the solver actually consumed.
 
 ---
 
@@ -28,27 +28,27 @@ For each scenario, B2 runs (in [`B2_Executing_OG_Model.py`](../scripts/pipeline/
 otoole conversion → OSeMOSYS preprocessing
    ↓
 0. DaysInDayType injector         (always; no suffix)
-1. Storage-delay patcher          (storage_delay_active)        suffix StorageDelayN5
-2. Storage-strip patcher          (strip_storage_active)        suffix NoStorage   [forced off when 1 is on]
-3. PWRBCK cap-opening patcher     (open_pwrbck_active)          suffix OpenBCK
+1. Storage-delay modifier         (storage_delay_active)        suffix StorageDelayN5
+2. Storage-strip modifier         (strip_storage_active)        suffix NoStorage   [forced off when 1 is on]
+3. PWRBCK cap-opening modifier    (open_pwrbck_active)          suffix OpenBCK
 4. Reserve-margin repair (XLSX)   (reserve_margin_xlsx_active)  suffix RMCarefulXLSX
 5. Dispatch floors                (dispatch_floors_active)      suffix FLOORED   [per base scenario]
 6. Veg Tx constraints             (veg_tx_active)               suffix VEGCON    [cross-scenario barrier]
    ↓
-Scenario transforms (derived scenarios) → Sync patched CSVs → solver → results
+Scenario transforms (derived scenarios) → Sync modified CSVs → solver → results
 
-Off-chain: Activity-upper-limit patcher (activity_upper_limit_active, default False)
+Off-chain: Activity-upper-limit modifier (activity_upper_limit_active, default False)
            runs after step 4 and mirrors its output back onto its input file,
            so no ActUpLim suffix appears in the file the solver reads.
 ```
 
-Each active patcher appends a suffix to the datafile name and feeds its output to the next patcher in the chain. With the shipped configuration the file that reaches the solver is `Executables/<S>_0/Pre_processed_<S>_0_StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON.txt`. The order is fixed in `CHAIN_ORDER` inside [`B2_Executing_OG_Model.py`](../scripts/pipeline/B2_Executing_OG_Model.py); B2 aborts at startup if the active flags would produce a chain other than `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` before VEGCON, because the Tx-chain scripts have that prefix hardcoded in their file matching.
+Each active modifier appends a suffix to the datafile name and feeds its output to the next modifier in the chain. With the shipped configuration the file that reaches the solver is `Executables/<S>_0/Pre_processed_<S>_0_StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON.txt`. The order is fixed in `CHAIN_ORDER` inside [`B2_Executing_OG_Model.py`](../scripts/pipeline/B2_Executing_OG_Model.py); B2 aborts at startup if the active flags would produce a chain other than `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` before VEGCON, because the transmission-chain scripts have that prefix hardcoded in their file matching.
 
 ---
 
 ## Storage-delay mode and the dual output pipeline
 
-The storage-delay patcher is special: when `storage_delay_active: True`, B2 redirects the solver model file and the root datafile.
+The storage-delay modifier is special: when `storage_delay_active: True`, B2 redirects the solver model file and the root datafile.
 
 | Aspect | Baseline run | Storage-delay run |
 |--------|--------------|-------------------|
@@ -66,15 +66,15 @@ The final CSVs (`RELAC_TX_Inputs.csv`, `RELAC_TX_Outputs.csv`, `RELAC_TX_Combine
 
 ---
 
-## The patchers
+## The modifiers
 
 ### 1. DaysInDayType injector
 
 **Script:** [`inject_DaysInDayType.py`](../scripts/pipeline/inject_DaysInDayType.py) — runs unconditionally.
 
-The `B1 → otoole → preprocess` chain never generates the `DaysInDayType` block, so the `.txt` ships with an empty block and OSeMOSYS falls back to `default = 7`. With 4 seasons × 1 daytype that makes storage equations treat the year as 4 × 7 = 28 days while the energy balance uses the real year length — a mismatch. This patcher writes the correct `DaysInDayType` values in place.
+The `B1 → otoole → preprocess` chain never generates the `DaysInDayType` block, so the `.txt` ships with an empty block and OSeMOSYS falls back to `default = 7`. With 4 seasons × 1 daytype that makes storage equations treat the year as 4 × 7 = 28 days while the energy balance uses the real year length — a mismatch. This modifier writes the correct `DaysInDayType` values in place.
 
-### 2. Storage-delay patcher
+### 2. Storage-delay modifier
 
 **Script:** [`patch_storage_delay.py`](../scripts/pipeline/patch_storage_delay.py) · **Switch:** `storage_delay_active` · **Shipped default: True**
 
@@ -85,10 +85,10 @@ The `B1 → otoole → preprocess` chain never generates the `DaysInDayType` blo
 | `storage_delay_storages` | *(unset)* | Exact storage names; overrides prefixes if set |
 | `storage_delay_allowed_value` | `"-1"` | PWR cap value applied in the open years (`-1` = unconstrained) |
 | `storage_delay_suffix` | `"StorageDelayN5"` | Filename suffix for the chained `.txt` |
-| `storage_delay_model_output` | `osemosys_fast_preprocessed_storage_delay.txt` | Patched model file the solver is redirected to |
+| `storage_delay_model_output` | `osemosys_fast_preprocessed_storage_delay.txt` | Modified model file the solver is redirected to |
 | `storage_delay_root_datafile` | `RELAC_TX_data_storage_delay.txt` | Root datafile name |
 
-### 3. Storage-strip patcher (diagnostic)
+### 3. Storage-strip modifier (diagnostic)
 
 **Script:** [`strip_storage.py`](../scripts/pipeline/strip_storage.py) · **Switch:** `strip_storage_active` · **Shipped default: True** (forced off when storage-delay is on)
 
@@ -100,11 +100,11 @@ Produces a new `.txt` with selected storage facilities **and their feeding PWR t
 | `strip_storage_targets` | `[]` | Facility names (`tech` mode) or prefixes (`class` mode) |
 | `strip_storage_suffix` | `"NoStorage"` | Filename suffix |
 
-### 4. PWRBCK cap-opening patcher (diagnostic)
+### 4. Backstop (PWRBCK) cap-opening modifier (diagnostic)
 
 **Script:** [`open_pwrbck_caps.py`](../scripts/pipeline/open_pwrbck_caps.py) · **Switch:** `open_pwrbck_active` · **Shipped default: True**
 
-`PWRBCK*` are high-cost backstop generators that absorb feasibility edge cases. If their `TotalAnnualMaxCapacity` / `TotalAnnualMaxCapacityInvestment` are hardcapped at 0, the safety net is removed and the LP can become infeasible. This patcher reopens those caps.
+`PWRBCK*` are high-cost backstop generators that absorb feasibility edge cases. If their `TotalAnnualMaxCapacity` / `TotalAnnualMaxCapacityInvestment` are hardcapped at 0, the safety net is removed and the linear program can become infeasible. This modifier reopens those caps.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -116,7 +116,7 @@ Produces a new `.txt` with selected storage facilities **and their feeding PWR t
 
 **Script:** [`patch_reserve_margin_repair_careful_xlsx.py`](../scripts/pipeline/patch_reserve_margin_repair_careful_xlsx.py) · **Switch:** `reserve_margin_xlsx_active` · **Shipped default: True**
 
-Adds reserve-margin tags and repairs firm fossil capacity caps using per-country-region fallback values from an XLSX workbook. It keeps **stock** (`TotalAnnualMaxCapacity`) and **flow** (`TotalAnnualMaxCapacityInvestment`) limits separate and only replaces sentinel values.
+Adds reserve-margin tags and repairs firm fossil capacity caps using per-country-region fallback values from an Excel workbook. It keeps **stock** (`TotalAnnualMaxCapacity`) and **flow** (`TotalAnnualMaxCapacityInvestment`) limits separate and only replaces sentinel values.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -130,17 +130,17 @@ Adds reserve-margin tags and repairs firm fossil capacity caps using per-country
 | `reserve_margin_xlsx_modify_from_year` | `2026` | Forwarded as `--modify-from-year`: caps are only repaired for years ≥ this value, so historical years synced from BAU stay untouched; unset = repair all years |
 | `reserve_margin_xlsx_suffix` | `"RMCarefulXLSX"` | Filename suffix |
 
-### 6. Activity-upper-limit patcher
+### 6. Activity-upper-limit modifier
 
 **Script:** [`patch_activity_upper_limit.py`](../scripts/pipeline/patch_activity_upper_limit.py) · **Switch:** `activity_upper_limit_active` · **Shipped default: False**
 
 Runs **outside** the canonical chain: B2 applies it to the RMCarefulXLSX file and copies the capped output back onto that same file, so the `ActUpLim` suffix never appears in the datafile the solver reads. When active it is limited to `activity_upper_limit_scenarios` (shipped `["BAU"]`).
 
-Reads rows from the **Secondary Techs** sheet of `A-O_Parametrization.xlsx` whose `Parameter` equals `activity_upper_limit_parameter_label`. Each year cell holds a **fraction** in `[0, 1]` of that country's electricity demand. The patcher maps each tech to its demand fuel via `OutputActivityRatio`, converts `fraction × demand / OAR` into an absolute cap, and rewrites the `TotalTechnologyAnnualActivityUpperLimit` block.
+Reads rows from the **Secondary Techs** sheet of `A-O_Parametrization.xlsx` whose `Parameter` equals `activity_upper_limit_parameter_label`. Each year cell holds a **fraction** in `[0, 1]` of that country's electricity demand. The modifier maps each tech to its demand fuel via `OutputActivityRatio`, converts `fraction × demand / OutputActivityRatio` into an absolute cap, and rewrites the `TotalTechnologyAnnualActivityUpperLimit` block.
 
 | Param | Default | Description |
 |-------|---------|-------------|
-| `activity_upper_limit_scenarios` | `["BAU"]` | Scenarios where the patch applies (data lives in each scenario's own xlsx) |
+| `activity_upper_limit_scenarios` | `["BAU"]` | Scenarios where the modifier applies (data lives in each scenario's own xlsx) |
 | `activity_upper_limit_parameter_label` | `TotalTechnologyAnnualActivityUpperLimit_fraction` | Row label that holds the fractions |
 | `activity_upper_limit_demand_fuel_prefixes` | `["ELC"]` | Demand fuel prefixes |
 | `activity_upper_limit_tech_prefixes` | `["PWR"]` | Technology prefixes the cap applies to |
@@ -166,7 +166,7 @@ Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the f
 
 **Script:** [`veg_tx_constraints.py`](../scripts/tx_chain/veg_tx_constraints.py) · **Switch:** `veg_tx_active` · **Shipped default: True**
 
-Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC, OPC, INVWF and VGBWF. See the Tx-chain subsection of {doc}`pipeline` for the etapas B/C/D and the scenario-code table.
+Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC, OPC, INVWF and VGBWF. See the transmission-chain subsection of {doc}`pipeline` for stages B/C/D and the scenario-code table.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -176,11 +176,11 @@ Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simu
 
 ---
 
-## Sync patched CSVs back to the otoole folder
+## Sync modified CSVs back to the otoole folder
 
 **Script:** [`sync_patched_csvs_from_txt.py`](../scripts/pipeline/sync_patched_csvs_from_txt.py) · **Switch:** `sync_patched_csvs_active` · **Shipped default: True**
 
-After the chain runs, this step extracts the listed parameter blocks from the **final** patched `.txt` and overwrites the matching CSVs in `A2_Outputs_Params_otoole/<scenario>/` **in place**. `generate_combined_input_file()` then reads those CSVs, so the patched values appear in `RELAC_TX_Combined_Inputs_Outputs.csv`.
+After the chain runs, this step extracts the listed parameter blocks from the **final** modified `.txt` and overwrites the matching CSVs in `A2_Outputs_Params_otoole/<scenario>/` **in place**. `generate_combined_input_file()` then reads those CSVs, so the modified values appear in `RELAC_TX_Combined_Inputs_Outputs.csv`.
 
 `sync_patched_csvs_params` lists which parameters are synced (default):
 
@@ -196,14 +196,14 @@ sync_patched_csvs_params:
 ```
 
 :::{note}
-The sync writes into the original A2 folder in place. Re-running the pipeline regenerates those CSVs from A1 before the patcher chain re-applies, so the operation is repeatable.
+The sync writes into the original A2 folder in place. Re-running the pipeline regenerates those CSVs from A1 before the modifier chain re-applies, so the operation is repeatable.
 :::
 
 ---
 
 ## Turning the chain off
 
-To run the plain baseline pipeline (no patchers, single `RELAC_TX_*` output set), set every master switch to `False` in `Config_MOMF_T1_AB.yaml`:
+To run the plain baseline pipeline (no modifiers, single `RELAC_TX_*` output set), set every master switch to `False` in `Config_MOMF_T1_AB.yaml`:
 
 ```yaml
 storage_delay_active: False
