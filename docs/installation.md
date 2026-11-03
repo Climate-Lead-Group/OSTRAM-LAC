@@ -26,7 +26,7 @@ OSTRAM LAC uses a Conda environment defined in `environment.yaml`. The `run.py` 
 
 ```bash
 conda env create -f environment.yaml
-conda activate OG-MOMF-env
+conda activate OSTRAM-env
 ```
 
 ### Environment Dependencies
@@ -58,13 +58,13 @@ The environment installs the following packages:
 
 Both open-source solvers are declared in `environment.yaml` (`glpk` and `coincbc`), so they are installed together with the Conda environment. No extra step is needed for a fresh environment.
 
-If your `OG-MOMF-env` was created before the solvers were added, `run.py` detects the missing `glpsol`/`cbc` binaries and installs them on its next run. You can also do it manually:
+If your `OSTRAM-env` was created before the solvers were added, `run.py` detects the missing `glpsol`/`cbc` binaries and installs them on its next run. You can also do it manually:
 
 ```bash
-conda install -n OG-MOMF-env -c conda-forge glpk coincbc
+conda install -n OSTRAM-env -c conda-forge glpk coincbc
 ```
 
-Note: the binaries live inside the environment (`...\envs\OG-MOMF-env\Library\bin`), so they are only on `PATH` when the environment is active (or when running through `conda run`, as `run.py` does).
+Note: the binaries live inside the environment (`...\envs\OSTRAM-env\Library\bin`), so they are only on `PATH` when the environment is active (or when running through `conda run`, as `run.py` does).
 
 ### CPLEX
 
@@ -84,7 +84,7 @@ Note: the binaries live inside the environment (`...\envs\OG-MOMF-env\Library\bi
 After setup, verify that the environment works:
 
 ```bash
-conda activate OG-MOMF-env
+conda activate OSTRAM-env
 python -c "import pandas; import numpy; import openpyxl; import yaml; print('All dependencies OK')"
 ```
 
@@ -109,7 +109,7 @@ gurobi_cl --version
 OSTRAM LAC uses [DVC](https://dvc.org/) (Data Version Control) to manage the pipeline. The `run.py` script handles DVC commands automatically, but if you want to run stages manually:
 
 ```bash
-conda activate OG-MOMF-env
+conda activate OSTRAM-env
 dvc repro
 ```
 

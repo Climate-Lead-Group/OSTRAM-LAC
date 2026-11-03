@@ -31,7 +31,7 @@ the `inputs/scripts/outputs` restructure — see `scripts/tools/verification/REA
 
 ## How to run
 
-Most of these are single-file, standalone scripts run from the repo root with the `OG-MOMF-env`
+Most of these are single-file, standalone scripts run from the repo root with the `OSTRAM-env`
 conda environment active:
 
 ```bash

@@ -26,7 +26,7 @@ notes (pre-dating the `inputs/scripts/outputs` restructure; paths in it are stal
 
 ## How to run
 
-From the repo root, in the `OG-MOMF-env` environment (needs `pandas`, `openpyxl`, and `scipy` for
+From the repo root, in the `OSTRAM-env` environment (needs `pandas`, `openpyxl`, and `scipy` for
 `estimar_flujos_optimizacion.py`):
 
 ```bash

@@ -206,7 +206,7 @@ its paths from there. YAML config paths are always relative to the repo root.
 
 ## Canonical commands
 
-Run from the repo root inside an Anaconda Prompt with the `OG-MOMF-env` environment
+Run from the repo root inside an Anaconda Prompt with the `OSTRAM-env` environment
 (`run.py` creates it). Approximate durations are for one full run of all scenarios.
 
 ```bash

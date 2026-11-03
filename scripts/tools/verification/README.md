@@ -7,7 +7,7 @@ new layout (branch `restructure/inputs-scripts-outputs`) as in the old one (`cle
 is **zero differences** (spec §9.2 and §12). The plan doc above is kept on the author's disk only;
 not in git.
 
-Machine requirements: a clone of the repo with both branches, the `OG-MOMF-env` conda environment
+Machine requirements: a clone of the repo with both branches, the `OSTRAM-env` conda environment
 (created by `run.py`), `otoole` and `glpsol` on the PATH (B2 uses them even without solving the
 model). Estimated time per run: 30-45 min (B1 ~10-20, B2 without solver ~15-25).
 
@@ -34,14 +34,14 @@ bash scripts/tools/verification/verify_config.sh ../relac_tx_new/inputs/config/C
 
 # 2. Baseline (old layout)
 ( cd ../relac_tx_baseline \
-  && PYTHONHASHSEED=0 conda run -n OG-MOMF-env --no-capture-output python -u t1_confection/B1_Run_Compiler.py 2>&1 | tee $V/baseline_B1.log \
-  && PYTHONHASHSEED=0 conda run -n OG-MOMF-env --no-capture-output python -u t1_confection/B2_Executing_OG_Model.py 2>&1 | tee $V/baseline_B2.log )
+  && PYTHONHASHSEED=0 conda run -n OSTRAM-env --no-capture-output python -u t1_confection/B1_Run_Compiler.py 2>&1 | tee $V/baseline_B1.log \
+  && PYTHONHASHSEED=0 conda run -n OSTRAM-env --no-capture-output python -u t1_confection/B2_Executing_OG_Model.py 2>&1 | tee $V/baseline_B2.log )
 python scripts/tools/verification/compare_manifests.py manifest ../relac_tx_baseline old $V/manifest_baseline.json
 
 # 3. New (inputs/ scripts/ outputs/ layout)
 ( cd ../relac_tx_new \
-  && PYTHONHASHSEED=0 conda run -n OG-MOMF-env --no-capture-output python -u scripts/pipeline/B1_Run_Compiler.py 2>&1 | tee $V/new_B1.log \
-  && PYTHONHASHSEED=0 conda run -n OG-MOMF-env --no-capture-output python -u scripts/pipeline/B2_Executing_OG_Model.py 2>&1 | tee $V/new_B2.log )
+  && PYTHONHASHSEED=0 conda run -n OSTRAM-env --no-capture-output python -u scripts/pipeline/B1_Run_Compiler.py 2>&1 | tee $V/new_B1.log \
+  && PYTHONHASHSEED=0 conda run -n OSTRAM-env --no-capture-output python -u scripts/pipeline/B2_Executing_OG_Model.py 2>&1 | tee $V/new_B2.log )
 python scripts/tools/verification/compare_manifests.py manifest ../relac_tx_new new $V/manifest_new.json
 
 # 4. Comparison
@@ -60,7 +60,7 @@ A0 → A1 → A2 in both worktrees and compare `A1_Outputs/**/*.xlsx` sheet by s
 
 ## Gotchas
 
-- Requirements: the conda env `OG-MOMF-env` (created by `run.py`), `otoole` and `glpsol` on the
+- Requirements: the conda env `OSTRAM-env` (created by `run.py`), `otoole` and `glpsol` on the
   PATH, and 30-45 minutes per run (B1 ~10-20 min, B2 without solver ~15-25 min).
 - The acceptance criterion is **zero differences**: `SOLO EN BASELINE: 0`, `SOLO EN NUEVO: 0`,
   `DISTINTOS: 0` from `compare_manifests.py diff`.

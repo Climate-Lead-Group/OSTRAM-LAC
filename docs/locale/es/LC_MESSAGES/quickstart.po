@@ -42,8 +42,8 @@ msgid "The `run.py` launcher automatically:"
 msgstr "El lanzador `run.py` automáticamente:"
 
 #: ../../quickstart.md:16
-msgid "Creates the Conda environment (`OG-MOMF-env`) if it does not exist."
-msgstr "Crea el entorno Conda (`OG-MOMF-env`) si no existe."
+msgid "Creates the Conda environment (`OSTRAM-env`) if it does not exist."
+msgstr "Crea el entorno Conda (`OSTRAM-env`) si no existe."
 
 #: ../../quickstart.md:17
 msgid "Installs any missing dependencies."
@@ -84,8 +84,8 @@ msgid "`--env-name`"
 msgstr "`--env-name`"
 
 #: ../../quickstart.md
-msgid "Read from YAML (`OG-MOMF-env`)"
-msgstr "Se lee del YAML (`OG-MOMF-env`)"
+msgid "Read from YAML (`OSTRAM-env`)"
+msgstr "Se lee del YAML (`OSTRAM-env`)"
 
 #: ../../quickstart.md
 msgid "Conda environment name"

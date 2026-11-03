@@ -13,7 +13,7 @@ python run.py
 
 The `run.py` launcher automatically:
 
-1. Creates the Conda environment (`OG-MOMF-env`) if it does not exist.
+1. Creates the Conda environment (`OSTRAM-env`) if it does not exist.
 2. Installs any missing dependencies.
 3. Injects today's date into the DVC pipeline for date-stamped output files.
 4. Runs `dvc repro` to execute all pipeline stages.
@@ -23,7 +23,7 @@ The `run.py` launcher automatically:
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--env-name` | Read from YAML (`OG-MOMF-env`) | Conda environment name |
+| `--env-name` | Read from YAML (`OSTRAM-env`) | Conda environment name |
 | `--env-file` | `environment.yaml` | Path to the Conda environment file |
 | `--dvc-file` | `dvc.yaml` | Path to the DVC pipeline file |
 | `--date` | Today (`YYYY-MM-DD`) | Date stamp for output files |

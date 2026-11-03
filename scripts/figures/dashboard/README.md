@@ -13,7 +13,7 @@ colours, legends) as a single standalone HTML file. See `scripts/figures/README.
 
 ## How to run
 
-From the repo root, with the `OG-MOMF-env` environment active:
+From the repo root, with the `OSTRAM-env` environment active:
 
 ```bash
 python scripts/figures/dashboard/build_dashboard.py            # all charts + tabs 16-18

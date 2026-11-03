@@ -23,7 +23,7 @@ the shared IO library (never writes a live input).
 
 ## How to run
 
-From the repo root, in the `OG-MOMF-env` environment:
+From the repo root, in the `OSTRAM-env` environment:
 
 ```bash
 python scripts/fix_dispatch/make_candidates.py         # regenerate candidate_floors.csv (manual)

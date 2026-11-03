@@ -25,7 +25,7 @@ and figures code, driven by `main()`/`assert` only. Run each one directly with `
 
 ## How to run
 
-From the repo root, in the `OG-MOMF-env` environment:
+From the repo root, in the `OSTRAM-env` environment:
 
 ```bash
 python scripts/tests/check_docs.py                      # documentation checker; must exit 0

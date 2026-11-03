@@ -28,7 +28,7 @@ from pathlib import Path
 import json
 
 # ---------- Config por defecto ----------
-ENV_NAME_DEFAULT = "OG-MOMF-env"
+ENV_NAME_DEFAULT = "OSTRAM-env"
 ENV_FILE_DEFAULT = "environment.yaml"
 DVC_FILE_DEFAULT = "dvc.yaml"
 
@@ -79,7 +79,7 @@ def check_tool_available(tool: str) -> None:
 def env_exists(name: str) -> bool:
     """
     Returns True if a conda environment whose final directory matches 'name' exists.
-    E.g.: .../envs/OG-MOMF-env  -> name == 'OG-MOMF-env'
+    E.g.: .../envs/OSTRAM-env  -> name == 'OSTRAM-env'
     Uses 'conda env list --json' with fallback to text parsing.
     """
     target = name.lower()
@@ -111,7 +111,7 @@ def env_exists(name: str) -> bool:
                 continue
             # typical lines:
             # base                  *  C:\Users\...\anaconda3
-            # OG-MOMF-env              C:\Users\...\envs\OG-MOMF-env
+            # OSTRAM-env              C:\Users\...\envs\OSTRAM-env
             parts = line.split()
             if not parts:
                 continue

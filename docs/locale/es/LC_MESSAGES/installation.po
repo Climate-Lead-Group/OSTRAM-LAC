@@ -347,21 +347,21 @@ msgstr ""
 
 #: ../../installation.md:61
 msgid ""
-"If your `OG-MOMF-env` was created before the solvers were added, `run.py`"
+"If your `OSTRAM-env` was created before the solvers were added, `run.py`"
 " detects the missing `glpsol`/`cbc` binaries and installs them on its "
 "next run. You can also do it manually:"
 msgstr ""
-"Si su `OG-MOMF-env` se creó antes de que se agregaran los solvers, "
+"Si su `OSTRAM-env` se creó antes de que se agregaran los solvers, "
 "`run.py` detecta los binarios `glpsol`/`cbc` faltantes y los instala en "
 "su siguiente ejecución. También puede hacerlo manualmente:"
 
 #: ../../installation.md:67
 msgid ""
-"Note: the binaries live inside the environment (`...\\envs\\OG-MOMF-"
+"Note: the binaries live inside the environment (`...\\envs\\OSTRAM-"
 "env\\Library\\bin`), so they are only on `PATH` when the environment is "
 "active (or when running through `conda run`, as `run.py` does)."
 msgstr ""
-"Nota: los binarios residen dentro del entorno (`...\\envs\\OG-MOMF-"
+"Nota: los binarios residen dentro del entorno (`...\\envs\\OSTRAM-"
 "env\\Library\\bin`), por lo que solo están en `PATH` cuando el entorno "
 "está activo (o al ejecutarse mediante `conda run`, como hace `run.py`)."
 

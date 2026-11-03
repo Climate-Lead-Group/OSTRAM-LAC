@@ -41,7 +41,7 @@ scenario, applies the patch chain, runs the solver and concatenates results into
 
 ## How to run
 
-Run from the repo root inside an Anaconda Prompt with the `OG-MOMF-env` environment
+Run from the repo root inside an Anaconda Prompt with the `OSTRAM-env` environment
 (`run.py` creates it):
 
 ```bash

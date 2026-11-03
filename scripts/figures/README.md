@@ -39,7 +39,7 @@ outputs/Figures/
 | `report/` | 21 report figures + master — see [`report/README.md`](report/README.md) | — | — | `python scripts/figures/report/run_figures.py` |
 | `presentation/` | 19 presentation figures + master — see [`presentation/README.md`](presentation/README.md) | — | — | `python scripts/figures/presentation/run_figures.py` |
 
-## How to run (from the repo root, with the `OG-MOMF-env` environment active)
+## How to run (from the repo root, with the `OSTRAM-env` environment active)
 
 | What | Command |
 |---|---|
