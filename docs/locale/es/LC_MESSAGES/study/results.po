@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-03 12:11-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -88,8 +88,10 @@ msgstr ""
 "2040 y 2050 [km] por escenario, apilados por grupo de línea."
 
 #: ../../study/results.md:36
-msgid "Cumulative transmission investment per period [MUSD] by scenario."
-msgstr "Inversión acumulada en transmisión por período [MUSD] por escenario."
+msgid "Cumulative transmission investment per period [million USD] by scenario."
+msgstr ""
+"Inversión acumulada en transmisión por período [millones de USD] por "
+"escenario."
 
 #: ../../study/results.md:39
 msgid "Storage"
@@ -116,23 +118,22 @@ msgstr ""
 #: ../../study/results.md:55
 msgid ""
 "Total system cost and \"cost of non-investment\" by scenario, cumulative "
-"per period [billion USD]."
+"per period [trillion USD]."
 msgstr ""
 "Costo total del sistema y \"costo de la no inversión\" por escenario, "
-"acumulado por período [miles de millones de USD]."
+"acumulado por período [billones de USD]."
 
 #: ../../study/results.md:60
 msgid ""
 "Total system cost and \"cost of non-investment\", cumulative per period "
-"[billion USD], including the transmission-capped case."
+"[trillion USD], including the transmission-capped case."
 msgstr ""
 "Costo total del sistema y \"costo de la no inversión\", acumulado por "
-"período [miles de millones de USD], incluyendo el caso con tope de "
-"transmisión."
+"período [billones de USD], incluyendo el caso con tope de transmisión."
 
 #: ../../study/results.md:65
-msgid "Unit system cost by scenario [MUSD/TWh]."
-msgstr "Costo unitario del sistema por escenario [MUSD/TWh]."
+msgid "Unit system cost by scenario [USD/MWh]."
+msgstr "Costo unitario del sistema por escenario [USD/MWh]."
 
 #: ../../study/results.md:68
 msgid "Security and resilience"

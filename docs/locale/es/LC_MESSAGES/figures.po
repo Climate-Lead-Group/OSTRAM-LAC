@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-03 12:11-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -57,7 +57,7 @@ msgstr "`scripts/figures/report/`"
 
 #: ../../figures.md
 msgid ""
-"`fig_*.py` static report figures (Entregable 2) + `run_figures.py` + "
+"`fig_*.py` static report figures (Deliverable 2) + `run_figures.py` + "
 "`run_figures.yaml`"
 msgstr ""
 "Figuras estáticas de reporte `fig_*.py` (Entregable 2) + `run_figures.py`"
@@ -130,8 +130,12 @@ msgid "`scripts/figures/run_all.py` + `run_all.yaml`"
 msgstr "`scripts/figures/run_all.py` + `run_all.yaml`"
 
 #: ../../figures.md
-msgid "Master runner: report → presentation → dashboard → tablas"
-msgstr "Ejecutor maestro: report → presentation → dashboard → tablas"
+msgid ""
+"Master runner: report → presentation → dashboard → result tables "
+"(`tablas`)"
+msgstr ""
+"Ejecutor maestro: report → presentation → dashboard → tablas de "
+"resultados (`tablas`)"
 
 #: ../../figures.md
 msgid "all of the above"
@@ -257,8 +261,8 @@ msgid "`fig_inversion_transmision_acumulada`"
 msgstr "`fig_inversion_transmision_acumulada`"
 
 #: ../../figures.md
-msgid "Cumulative transmission investment per period [MUSD]"
-msgstr "Inversión en transmisión acumulada por periodo [MUSD]"
+msgid "Cumulative transmission investment per period [million USD]"
+msgstr "Inversión en transmisión acumulada por periodo [millones de USD]"
 
 #: ../../figures.md
 msgid "`fig_almacenamiento_2050`"
@@ -287,28 +291,28 @@ msgstr "`fig_costo_no_inversion`"
 #: ../../figures.md
 msgid ""
 "Total system cost and \"cost of non-investment\", cumulative per period "
-"[billion USD]"
+"[trillion USD]"
 msgstr ""
 "Costo total del sistema y \"costo de la no inversión\", acumulado por "
-"periodo [miles de millones de USD]"
+"periodo [billones de USD]"
 
 #: ../../figures.md
 msgid "`fig_costo_no_inversion_tope`"
 msgstr "`fig_costo_no_inversion_tope`"
 
 #: ../../figures.md
-msgid "Same, including the transmission-cap (\"tope\") case"
-msgstr "Igual, incluyendo el caso de tope de transmisión (\"tope\")"
+msgid "Same, including the transmission-capped case"
+msgstr "Igual, incluyendo el caso con tope de transmisión"
 
 #: ../../figures.md
 msgid "`fig_costo_unitario`"
 msgstr "`fig_costo_unitario`"
 
 #: ../../figures.md
-msgid "Unit system cost [MUSD/TWh] (static version of dashboard chart 11)"
+msgid "Unit system cost [USD/MWh] (static version of dashboard chart 11)"
 msgstr ""
-"Costo unitario del sistema [MUSD/TWh] (versión estática del gráfico 11 "
-"del dashboard)"
+"Costo unitario del sistema [USD/MWh] (versión estática del gráfico 11 del"
+" dashboard)"
 
 #: ../../figures.md
 msgid "`fig_diversidad_fuentes`"

@@ -6,12 +6,12 @@ All result graphics are produced from the final combined CSV (`outputs/RELAC_TX_
 
 | Folder | Contents | Output (`outputs/Figures/`) |
 |---|---|---|
-| `scripts/figures/report/` | `fig_*.py` static report figures (Entregable 2) + `run_figures.py` + `run_figures.yaml` | `Report/fig_*.png` |
+| `scripts/figures/report/` | `fig_*.py` static report figures (Deliverable 2) + `run_figures.py` + `run_figures.yaml` | `Report/fig_*.png` |
 | `scripts/figures/presentation/` | Same figures in presentation style + `run_figures.py` + `run_figures.yaml` | `Presentation/fig_*_presentation.png` |
 | `scripts/figures/dashboard/` | `build_dashboard.py` (interactive Plotly dashboard), `Z_AUX_generate_transmission_maps.py`, `Z_AUX_generate_RES_diagram.py` | `Dashboard/dashboard.html` |
 | `scripts/figures/common/` | `dashboard_config.py` (scenario aliases, colours, families), `fig_runner.py`, `report_style.py` | — |
 | `scripts/figures/Z_AUX_make_tablas_xlsx.py` | Regional result tables for the 14 solved scenarios | `Tablas_Completas_Resultados.xlsx` |
-| `scripts/figures/run_all.py` + `run_all.yaml` | Master runner: report → presentation → dashboard → tablas | all of the above |
+| `scripts/figures/run_all.py` + `run_all.yaml` | Master runner: report → presentation → dashboard → result tables (`tablas`) | all of the above |
 
 Paths are centralised in `scripts/common/relac_paths.py` (`FIGURES`, `FIGURES_REPORT`, `FIGURES_PRESENTATION`, `FIGURES_DASHBOARD`, `FIGURES_SCRIPTS`). Everything under `outputs/Figures/Dashboard/`, `Report/` and `Presentation/` is regenerable and git-ignored.
 
@@ -45,12 +45,12 @@ Figures ending in `_tmp` are exploratory (energy-not-served variants) and ship d
 | `fig_participacion_renovable` | Renewable share of generation [%], 2025–2050 |
 | `fig_capacidad_transmision_2050` | Installed transmission capacity in 2030/2040/2050 [GW], stacked by line group |
 | `fig_km_lineas_acumulados` | Cumulative transmission kilometres to 2030/2040/2050 [km], by line group |
-| `fig_inversion_transmision_acumulada` | Cumulative transmission investment per period [MUSD] |
+| `fig_inversion_transmision_acumulada` | Cumulative transmission investment per period [million USD] |
 | `fig_almacenamiento_2050` | Installed storage capacity in 2030/2040/2050 [GW] |
 | `fig_combustibles_fosiles_2050` | Fossil fuel consumption, cumulative per period [million barrels of oil equivalent] |
-| `fig_costo_no_inversion` | Total system cost and "cost of non-investment", cumulative per period [billion USD] |
-| `fig_costo_no_inversion_tope` | Same, including the transmission-cap ("tope") case |
-| `fig_costo_unitario` | Unit system cost [MUSD/TWh] (static version of dashboard chart 11) |
+| `fig_costo_no_inversion` | Total system cost and "cost of non-investment", cumulative per period [trillion USD] |
+| `fig_costo_no_inversion_tope` | Same, including the transmission-capped case |
+| `fig_costo_unitario` | Unit system cost [USD/MWh] (static version of dashboard chart 11) |
 | `fig_diversidad_fuentes` | Effective number of generation sources (inverse Herfindahl-Hirschman index) in 2030/2040/2050 |
 | `fig_seguridad_energetica_2050` | Energy security in 2030/2040/2050: domestic vs imported primary energy [%] |
 | `fig_seguridad_energetica_trayectoria` | Domestic energy share [%], trajectory 2025–2050 |

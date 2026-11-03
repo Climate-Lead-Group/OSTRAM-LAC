@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-03 12:11-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -299,8 +299,8 @@ msgstr "Argentina"
 
 #: ../../sources.md
 msgid ""
-"*Lineamientos y Escenarios para la Transición Energética al 2050* "
-"(Secretaría de Energía)"
+"*Guidelines and Scenarios for the Energy Transition to 2050* (Secretariat"
+" of Energy)"
 msgstr ""
 "*Lineamientos y Escenarios para la Transición Energética al 2050* "
 "(Secretaría de Energía)"
@@ -310,7 +310,7 @@ msgid "Bolivia"
 msgstr "Bolivia"
 
 #: ../../sources.md
-msgid "*Plan Eléctrico Referencial 2035*"
+msgid "*Reference Electricity Plan 2035*"
 msgstr "*Plan Eléctrico Referencial 2035*"
 
 #: ../../sources.md
@@ -319,11 +319,11 @@ msgstr "Brasil"
 
 #: ../../sources.md
 msgid ""
-"*Plano Decenal de Expansão de Energia 2034* and *Plano Nacional de "
-"Energia 2050* (EPE)"
+"*Ten-Year Energy Expansion Plan 2034* and *National Energy Plan 2050* "
+"(Energy Research Office, EPE)"
 msgstr ""
 "*Plano Decenal de Expansão de Energia 2034* y *Plano Nacional de Energia "
-"2050* (EPE)"
+"2050* (Empresa de Pesquisa Energética, EPE)"
 
 #: ../../sources.md
 msgid "Barbados"
@@ -338,9 +338,7 @@ msgid "Chile"
 msgstr "Chile"
 
 #: ../../sources.md
-msgid ""
-"*Planificación Energética de Largo Plazo 2023–2027* (Ministerio de "
-"Energía)"
+msgid "*Long-Term Energy Planning 2023–2027* (Ministry of Energy)"
 msgstr ""
 "*Planificación Energética de Largo Plazo 2023–2027* (Ministerio de "
 "Energía)"
@@ -350,31 +348,39 @@ msgid "Colombia"
 msgstr "Colombia"
 
 #: ../../sources.md
-msgid "*Plan de Expansión de Referencia Generación 2025–2039* (UPME)"
-msgstr "*Plan de Expansión de Referencia Generación 2025–2039* (UPME)"
+msgid ""
+"*Reference Generation Expansion Plan 2025–2039* (Mining and Energy "
+"Planning Unit, UPME)"
+msgstr ""
+"*Plan de Expansión de Referencia Generación 2025–2039* (Unidad de "
+"Planeación Minero Energética, UPME)"
 
 #: ../../sources.md
 msgid "Costa Rica"
 msgstr "Costa Rica"
 
 #: ../../sources.md
-msgid "*Plan de Expansión de la Generación 2024–2040* (ICE)"
-msgstr "*Plan de Expansión de la Generación 2024–2040* (ICE)"
+msgid ""
+"*Generation Expansion Plan 2024–2040* (Costa Rican Electricity Institute,"
+" ICE)"
+msgstr ""
+"*Plan de Expansión de la Generación 2024–2040* (Instituto Costarricense "
+"de Electricidad, ICE)"
 
 #: ../../sources.md
 msgid "Dominican Republic"
 msgstr "República Dominicana"
 
 #: ../../sources.md
-msgid "*Plan Energético Nacional 2022–2037* (CNE)"
-msgstr "*Plan Energético Nacional 2022–2037* (CNE)"
+msgid "*National Energy Plan 2022–2037* (National Energy Commission, CNE)"
+msgstr "*Plan Energético Nacional 2022–2037* (Comisión Nacional de Energía, CNE)"
 
 #: ../../sources.md
 msgid "Ecuador"
 msgstr "Ecuador"
 
 #: ../../sources.md
-msgid "*Plan Maestro de Electricidad 2023–2032*"
+msgid "*Electricity Master Plan 2023–2032*"
 msgstr "*Plan Maestro de Electricidad 2023–2032*"
 
 #: ../../sources.md
@@ -382,16 +388,24 @@ msgid "Guatemala"
 msgstr "Guatemala"
 
 #: ../../sources.md
-msgid "*Plan de Expansión de la Generación 2020–2050* (MEM / CNEE)"
-msgstr "*Plan de Expansión de la Generación 2020–2050* (MEM / CNEE)"
+msgid ""
+"*Generation Expansion Plan 2020–2050* (Ministry of Energy and Mines, MEM "
+"/ National Electric Energy Commission, CNEE)"
+msgstr ""
+"*Plan de Expansión de la Generación 2020–2050* (Ministerio de Energía y "
+"Minas, MEM / Comisión Nacional de Energía Eléctrica, CNEE)"
 
 #: ../../sources.md
 msgid "Honduras"
 msgstr "Honduras"
 
 #: ../../sources.md
-msgid "*Plan Indicativo de Expansión de la Generación 2026–2035* (ENEE / CND)"
-msgstr "*Plan Indicativo de Expansión de la Generación 2026–2035* (ENEE / CND)"
+msgid ""
+"*Indicative Generation Expansion Plan 2026–2035* (National Electric Power"
+" Company, ENEE / National Dispatch Center, CND)"
+msgstr ""
+"*Plan Indicativo de Expansión de la Generación 2026–2035* (Empresa "
+"Nacional de Energía Eléctrica, ENEE / Centro Nacional de Despacho, CND)"
 
 #: ../../sources.md
 msgid "Haiti"
@@ -411,19 +425,23 @@ msgstr "México"
 
 #: ../../sources.md
 msgid ""
-"*Programa de Desarrollo del Sistema Eléctrico Nacional 2024–2038* "
-"(PRODESEN, SENER)"
+"*National Electricity System Development Program 2024–2038* (PRODESEN, "
+"Secretariat of Energy, SENER)"
 msgstr ""
 "*Programa de Desarrollo del Sistema Eléctrico Nacional 2024–2038* "
-"(PRODESEN, SENER)"
+"(PRODESEN, Secretaría de Energía, SENER)"
 
 #: ../../sources.md
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
 #: ../../sources.md
-msgid "*Plan Indicativo de Expansión de la Generación 2021–2035* (MEM)"
-msgstr "*Plan Indicativo de Expansión de la Generación 2021–2035* (MEM)"
+msgid ""
+"*Indicative Generation Expansion Plan 2021–2035* (Ministry of Energy and "
+"Mines, MEM)"
+msgstr ""
+"*Plan Indicativo de Expansión de la Generación 2021–2035* (Ministerio de "
+"Energía y Minas, MEM)"
 
 #: ../../sources.md
 msgid "Panama"
@@ -431,45 +449,61 @@ msgstr "Panamá"
 
 #: ../../sources.md
 msgid ""
-"*Plan de Expansión del Sistema Interconectado Nacional 2025–2039*, Tomo "
-"II (ETESA)"
+"*National Interconnected System Expansion Plan 2025–2039*, Volume II "
+"(Electric Transmission Company, ETESA)"
 msgstr ""
 "*Plan de Expansión del Sistema Interconectado Nacional 2025–2039*, Tomo "
-"II (ETESA)"
+"II (Empresa de Transmisión Eléctrica, ETESA)"
 
 #: ../../sources.md
 msgid "Peru"
 msgstr "Perú"
 
 #: ../../sources.md
-msgid "Annex D.1 of COES report DP-02-2022 (SEIN Transmission Plan 2023–2032)"
+msgid ""
+"Annex D.1 of report DP-02-2022 of the Economic Operation Committee of the"
+" National Interconnected System (COES): Transmission Plan 2023–2032 of "
+"the National Interconnected Electric System"
 msgstr ""
-"Anexo D.1 del informe COES DP-02-2022 (Plan de Transmisión del SEIN "
-"2023–2032)"
+"Anexo D.1 del informe DP-02-2022 del Comité de Operación Económica del "
+"Sistema Interconectado Nacional (COES): Plan de Transmisión 2023–2032 del"
+" Sistema Eléctrico Interconectado Nacional"
 
 #: ../../sources.md
 msgid "Paraguay"
 msgstr "Paraguay"
 
 #: ../../sources.md
-msgid "*Plan Maestro de Generación 2024–2043* (ANDE)"
-msgstr "*Plan Maestro de Generación 2024–2043* (ANDE)"
+msgid ""
+"*Generation Master Plan 2024–2043* (National Electricity Administration, "
+"ANDE)"
+msgstr ""
+"*Plan Maestro de Generación 2024–2043* (Administración Nacional de "
+"Electricidad, ANDE)"
 
 #: ../../sources.md
 msgid "El Salvador"
 msgstr "El Salvador"
 
 #: ../../sources.md
-msgid "*Plan Indicativo de la Expansión de la Generación 2024–2038* (CNE)"
-msgstr "*Plan Indicativo de la Expansión de la Generación 2024–2038* (CNE)"
+msgid ""
+"*Indicative Generation Expansion Plan 2024–2038* (National Energy "
+"Council, CNE)"
+msgstr ""
+"*Plan Indicativo de la Expansión de la Generación 2024–2038* (Consejo "
+"Nacional de Energía, CNE)"
 
 #: ../../sources.md
 msgid "Uruguay"
 msgstr "Uruguay"
 
 #: ../../sources.md
-msgid "*Plan de Expansión de la Generación 2024–2043* (UTE)"
-msgstr "*Plan de Expansión de la Generación 2024–2043* (UTE)"
+msgid ""
+"*Generation Expansion Plan 2024–2043* (National Administration of Power "
+"Plants and Electrical Transmission, UTE)"
+msgstr ""
+"*Plan de Expansión de la Generación 2024–2043* (Administración Nacional "
+"de Usinas y Trasmisiones Eléctricas, UTE)"
 
 #: ../../sources.md:61
 msgid "Assumptions set by the modelling team"

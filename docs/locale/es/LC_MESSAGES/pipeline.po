@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-03 12:11-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -1315,7 +1315,7 @@ msgstr ""
 "tienen codificada en su lógica de coincidencia de archivos)."
 
 #: ../../pipeline.md:381
-msgid "Etapa"
+msgid "Stage"
 msgstr "Etapa"
 
 #: ../../pipeline.md:381
@@ -1479,8 +1479,8 @@ msgid "BAU"
 msgstr "BAU"
 
 #: ../../pipeline.md:381
-msgid "etapa C (`veg_tx_constraints.py`, NLI mode `ramp`)"
-msgstr "etapa C (`veg_tx_constraints.py`, modo NLI `ramp`)"
+msgid "stage C (`veg_tx_constraints.py`, new-line mode `ramp`)"
+msgstr "etapa C (`veg_tx_constraints.py`, modo de líneas nuevas `ramp`)"
 
 #: ../../pipeline.md:381
 msgid "reporting base of the OPT family"
@@ -1495,7 +1495,7 @@ msgid "OPT"
 msgstr "OPT"
 
 #: ../../pipeline.md:381
-msgid "etapa C (`ramp`)"
+msgid "stage C (`ramp`)"
 msgstr "etapa C (`ramp`)"
 
 #: ../../pipeline.md:381
@@ -1511,7 +1511,7 @@ msgid "INV"
 msgstr "INV"
 
 #: ../../pipeline.md:381
-msgid "etapa C (water-fill)"
+msgid "stage C (water-fill)"
 msgstr "etapa C (water-fill)"
 
 #: ../../pipeline.md:381
@@ -1716,12 +1716,12 @@ msgstr "`Executables/{scenario}_0/`"
 #: ../../pipeline.md:420
 msgid ""
 "Compiled solver data files -- one folder per scenario, base or derived; "
-"derived scenarios' folders are created by the Tx chain (etapas C/D), not "
-"by A1/A2"
+"derived scenarios' folders are created by the transmission chain (stages "
+"C/D), not by A1/A2"
 msgstr ""
 "Archivos de datos del solver compilados -- una carpeta por escenario, "
 "base o derivado; las carpetas de los escenarios derivados son creadas por"
-" la cadena Tx (etapas C/D), no por A1/A2"
+" la cadena de transmisión (etapas C/D), no por A1/A2"
 
 #: ../../pipeline.md:420
 msgid "`RELAC_TX_Inputs.csv`"

@@ -33,7 +33,7 @@ Cumulative transmission line kilometres built to 2030, 2040 and 2050 [km] by sce
 
 ```{figure} /_static/results/fig_inversion_transmision_2026_2050.png
 :width: 85%
-Cumulative transmission investment per period [MUSD] by scenario.
+Cumulative transmission investment per period [million USD] by scenario.
 ```
 
 ## Storage
@@ -52,17 +52,17 @@ Fossil fuel consumption by scenario, cumulative per period [million barrels of o
 
 ```{figure} /_static/results/fig_costo_no_inversion_2026_2050.png
 :width: 85%
-Total system cost and "cost of non-investment" by scenario, cumulative per period [billion USD].
+Total system cost and "cost of non-investment" by scenario, cumulative per period [trillion USD].
 ```
 
 ```{figure} /_static/results/fig_costo_no_inversion_tope_2026_2050.png
 :width: 85%
-Total system cost and "cost of non-investment", cumulative per period [billion USD], including the transmission-capped case.
+Total system cost and "cost of non-investment", cumulative per period [trillion USD], including the transmission-capped case.
 ```
 
 ```{figure} /_static/results/fig_costo_unitario.png
 :width: 85%
-Unit system cost by scenario [MUSD/TWh].
+Unit system cost by scenario [USD/MWh].
 ```
 
 ## Security and resilience

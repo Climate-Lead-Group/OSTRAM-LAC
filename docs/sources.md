@@ -38,25 +38,25 @@ used for the demand-growth scenario:
 
 | Country | Document |
 |---|---|
-| Argentina | *Lineamientos y Escenarios para la Transición Energética al 2050* (Secretaría de Energía) |
-| Bolivia | *Plan Eléctrico Referencial 2035* |
-| Brazil | *Plano Decenal de Expansão de Energia 2034* and *Plano Nacional de Energia 2050* (EPE) |
+| Argentina | *Guidelines and Scenarios for the Energy Transition to 2050* (Secretariat of Energy) |
+| Bolivia | *Reference Electricity Plan 2035* |
+| Brazil | *Ten-Year Energy Expansion Plan 2034* and *National Energy Plan 2050* (Energy Research Office, EPE) |
 | Barbados | *Barbados Action Plan / Roadmap 2030* |
-| Chile | *Planificación Energética de Largo Plazo 2023–2027* (Ministerio de Energía) |
-| Colombia | *Plan de Expansión de Referencia Generación 2025–2039* (UPME) |
-| Costa Rica | *Plan de Expansión de la Generación 2024–2040* (ICE) |
-| Dominican Republic | *Plan Energético Nacional 2022–2037* (CNE) |
-| Ecuador | *Plan Maestro de Electricidad 2023–2032* |
-| Guatemala | *Plan de Expansión de la Generación 2020–2050* (MEM / CNEE) |
-| Honduras | *Plan Indicativo de Expansión de la Generación 2026–2035* (ENEE / CND) |
+| Chile | *Long-Term Energy Planning 2023–2027* (Ministry of Energy) |
+| Colombia | *Reference Generation Expansion Plan 2025–2039* (Mining and Energy Planning Unit, UPME) |
+| Costa Rica | *Generation Expansion Plan 2024–2040* (Costa Rican Electricity Institute, ICE) |
+| Dominican Republic | *National Energy Plan 2022–2037* (National Energy Commission, CNE) |
+| Ecuador | *Electricity Master Plan 2023–2032* |
+| Guatemala | *Generation Expansion Plan 2020–2050* (Ministry of Energy and Mines, MEM / National Electric Energy Commission, CNEE) |
+| Honduras | *Indicative Generation Expansion Plan 2026–2035* (National Electric Power Company, ENEE / National Dispatch Center, CND) |
 | Haiti | none — see International Energy Agency, World Energy Outlook 2025 (Net Zero Emissions) above |
-| Mexico | *Programa de Desarrollo del Sistema Eléctrico Nacional 2024–2038* (PRODESEN, SENER) |
-| Nicaragua | *Plan Indicativo de Expansión de la Generación 2021–2035* (MEM) |
-| Panama | *Plan de Expansión del Sistema Interconectado Nacional 2025–2039*, Tomo II (ETESA) |
-| Peru | Annex D.1 of COES report DP-02-2022 (SEIN Transmission Plan 2023–2032) |
-| Paraguay | *Plan Maestro de Generación 2024–2043* (ANDE) |
-| El Salvador | *Plan Indicativo de la Expansión de la Generación 2024–2038* (CNE) |
-| Uruguay | *Plan de Expansión de la Generación 2024–2043* (UTE) |
+| Mexico | *National Electricity System Development Program 2024–2038* (PRODESEN, Secretariat of Energy, SENER) |
+| Nicaragua | *Indicative Generation Expansion Plan 2021–2035* (Ministry of Energy and Mines, MEM) |
+| Panama | *National Interconnected System Expansion Plan 2025–2039*, Volume II (Electric Transmission Company, ETESA) |
+| Peru | Annex D.1 of report DP-02-2022 of the Economic Operation Committee of the National Interconnected System (COES): Transmission Plan 2023–2032 of the National Interconnected Electric System |
+| Paraguay | *Generation Master Plan 2024–2043* (National Electricity Administration, ANDE) |
+| El Salvador | *Indicative Generation Expansion Plan 2024–2038* (National Energy Council, CNE) |
+| Uruguay | *Generation Expansion Plan 2024–2043* (National Administration of Power Plants and Electrical Transmission, UTE) |
 
 ## Assumptions set by the modelling team
 

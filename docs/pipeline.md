@@ -386,7 +386,7 @@ The final CSVs always use `prefix_final_files` (`RELAC_TX_`), regardless of whic
 
 B2 orchestrates four previously-manual scripts as subprocesses, with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON`; B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the four scripts below have it hardcoded in their file-matching logic).
 
-| Etapa | What runs | Script (unmodified logic) | Output |
+| Stage | What runs | Script (unmodified logic) | Output |
 |---|---|---|---|
 | B (per-scenario) | `preflight_separation` gate once, then `write_floors.py --scenarios <S>` per base scenario | `scripts/fix_dispatch/write_floors.py` | `Executables/<S>_0/..._FLOORED.txt` |
 | C (barrier, 1 call) | `veg_tx_constraints.py --base-dir Executables --needs-csv <pin>` | `scripts/tx_chain/veg_tx_constraints.py` | `..._FLOORED_VEGCON.txt` for BAU, OPT, INV, VGB, BAC, OPC, INVWF, VGBWF (creates the derived scenarios' `<S>_0/` folders) |
@@ -402,10 +402,10 @@ Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. E
 
 | Derived code | Base (A2 sets reused) | Produced by | Notes |
 |---|---|---|---|
-| BAC | BAU | etapa C (`veg_tx_constraints.py`, NLI mode `ramp`) | reporting base of the OPT family |
-| OPC | OPT | etapa C (`ramp`) | PLAN |
-| INVWF | INV | etapa C (water-fill) | parent of ISRWF; not solved |
-| VGBWF | VGB | etapa C (water-fill) | parent of VSRWF; not solved |
+| BAC | BAU | stage C (`veg_tx_constraints.py`, new-line mode `ramp`) | reporting base of the OPT family |
+| OPC | OPT | stage C (`ramp`) | PLAN |
+| INVWF | INV | stage C (water-fill) | parent of ISRWF; not solved |
+| VGBWF | VGB | stage C (water-fill) | parent of VSRWF; not solved |
 | BSR | BAU | `cost_sensitivity_v_SR_WF.py` | OPT without repowering |
 | ISR | INV | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | reporting base of the ETT family |
 | VSR | VGB | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | ETT-GP |
@@ -445,7 +445,7 @@ max_x_per_iter: 4  # Max scenarios per batch
 | Directory/File | Content |
 |----------------|---------|
 | `A2_Outputs_Params_otoole/{scenario}/` | otoole-format CSVs (one per parameter); for derived scenarios (see the scenario-code table above) this is a copy of the base scenario's folder, re-synced from that derived scenario's own final `.txt` |
-| `Executables/{scenario}_0/` | Compiled solver data files -- one folder per scenario, base or derived; derived scenarios' folders are created by the Tx chain (etapas C/D), not by A1/A2 |
+| `Executables/{scenario}_0/` | Compiled solver data files -- one folder per scenario, base or derived; derived scenarios' folders are created by the transmission chain (stages C/D), not by A1/A2 |
 | `RELAC_TX_Inputs.csv` | Combined inputs (all scenarios) |
 | `RELAC_TX_Outputs.csv` | Combined outputs (all scenarios) |
 | `RELAC_TX_Combined_Inputs_Outputs.csv` | Merged inputs and outputs |

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-03 12:11-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -79,7 +79,7 @@ msgid "**ETT**"
 msgstr "**ETT**"
 
 #: ../../study/scenarios.md
-msgid "Trend (*tendencial*) expansion"
+msgid "Trend expansion"
 msgstr "Expansión tendencial"
 
 #: ../../study/scenarios.md
@@ -137,23 +137,23 @@ msgid "**Suffixes:**"
 msgstr "**Sufijos:**"
 
 #: ../../study/scenarios.md:16
-msgid "`SR` — without repowering (*sin repotenciación*)."
+msgid "`SR` — without repowering."
 msgstr "`SR` — sin repotenciación."
 
 #: ../../study/scenarios.md:17
-msgid "`FA` — fossil-fuel cost **high** (*combustible fósil alto*)."
+msgid "`FA` — fossil-fuel cost **high**."
 msgstr "`FA` — costo de combustible fósil **alto**."
 
 #: ../../study/scenarios.md:18
-msgid "`FB` — fossil-fuel cost **low** (*combustible fósil bajo*)."
+msgid "`FB` — fossil-fuel cost **low**."
 msgstr "`FB` — costo de combustible fósil **bajo**."
 
 #: ../../study/scenarios.md:19
-msgid "`RA` — renewables cost **high** (*renovables alto*)."
+msgid "`RA` — renewables cost **high**."
 msgstr "`RA` — costo de renovables **alto**."
 
 #: ../../study/scenarios.md:20
-msgid "`RB` — renewables cost **low** (*renovables bajo*)."
+msgid "`RB` — renewables cost **low**."
 msgstr "`RB` — costo de renovables **bajo**."
 
 #: ../../study/scenarios.md:21

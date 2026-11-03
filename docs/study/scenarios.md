@@ -5,7 +5,7 @@ The analysis is organised in four **scenario families**. Each family has a base 
 | Family | Meaning | Base scenario | Variants |
 |---|---|---|---|
 | **OPT** | Optimal expansion | `BAC` | `BSR` without repowering · `BFA` / `BFB` fossil-fuel cost high / low · `BRA` / `BRB` renewables cost high / low |
-| **ETT** | Trend (*tendencial*) expansion | `ISR` | `INV` with repowering · `IFA` / `IFB` fossil-fuel cost high / low · `IRA` / `IRB` renewables cost high / low |
+| **ETT** | Trend expansion | `ISR` | `INV` with repowering · `IFA` / `IFB` fossil-fuel cost high / low · `IRA` / `IRB` renewables cost high / low |
 | **PLAN** | Planned expansion (national plans only) | `OPC` | — |
 | **ETT-GP** | Trend expansion with planned generation | `VSR` | — |
 
@@ -13,11 +13,11 @@ The analysis is organised in four **scenario families**. Each family has a base 
 
 - **First letter:** `B` = optimal family (OPT), `I` = trend family (ETT).
 - **Suffixes:**
-  - `SR` — without repowering (*sin repotenciación*).
-  - `FA` — fossil-fuel cost **high** (*combustible fósil alto*).
-  - `FB` — fossil-fuel cost **low** (*combustible fósil bajo*).
-  - `RA` — renewables cost **high** (*renovables alto*).
-  - `RB` — renewables cost **low** (*renovables bajo*).
+  - `SR` — without repowering.
+  - `FA` — fossil-fuel cost **high**.
+  - `FB` — fossil-fuel cost **low**.
+  - `RA` — renewables cost **high**.
+  - `RB` — renewables cost **low**.
 - `INV` is the trend family **with** repowering (the ETT base `ISR` is `INV` without repowering).
 
 :::{note}
