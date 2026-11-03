@@ -120,7 +120,7 @@ def build_figure(data: dict, scenarios: list[str], y0: int, years: list[int]):
         for name, color in cats:
             vals = [data.get(year, {}).get(s, {}).get(name, 0.0) for s in scenarios]
             ax.bar(x, vals, 0.22, bottom=bottoms, color=color, zorder=3,
-                   label=name if yi == 0 else None)
+                   label=rs.t(name) if yi == 0 else None)
             bottoms = [b + v for b, v in zip(bottoms, vals)]
 
         totals = [data.get(year, {}).get(s, {}).get("total", 0.0) for s in scenarios]
@@ -131,7 +131,7 @@ def build_figure(data: dict, scenarios: list[str], y0: int, years: list[int]):
     ax.set_ylim(0, ymax)
     rs.add_year_xticks(ax, years, sub_positions)
     rs.add_group_labels(ax, group_centers, rs.scenario_ticklabels(scenarios))
-    rs.apply_report_style(ax, f"Kilómetros de líneas acumulados desde {y0} [km]",
+    rs.apply_report_style(ax, rs.t("Kilómetros de líneas acumulados desde {y0} [km]").format(y0=y0),
                           european_y=True)
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.16), ncol=2,
               frameon=False, fontsize=8.5)
@@ -145,7 +145,9 @@ def main(argv: list[str] | None = None):
     ap.add_argument("--years", nargs="+", type=int, default=rs.MULTI_YEARS)
     ap.add_argument("--scenarios", nargs="+", default=rs.CORE_SCENARIOS)
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
 
     data = compute(args.y0, args.years, args.scenarios)
     if not data:
@@ -161,8 +163,9 @@ def main(argv: list[str] | None = None):
                 print(f"  {SCENARIO_ALIAS.get(sc, sc):8s} ({sc}): total={rs.eu(d['total'])}  |  {detail}")
 
     fig = build_figure(data, args.scenarios, args.y0, args.years)
-    os.makedirs(FIGURES_DIR, exist_ok=True)
-    base = args.out or os.path.join(FIGURES_DIR, f"fig_km_lineas_{args.y0}_{max(args.years)}")
+    out_dir = rs.out_dir(FIGURES_DIR)
+    os.makedirs(out_dir, exist_ok=True)
+    base = args.out or os.path.join(out_dir, f"fig_km_lineas_{args.y0}_{max(args.years)}")
     png = rs.save(fig, base)
     print(f"OK -> {png}")
 

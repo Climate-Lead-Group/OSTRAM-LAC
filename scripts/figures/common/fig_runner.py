@@ -202,7 +202,7 @@ def resolve(entries: list[Entry], only: list[str] | None) -> list[Entry]:
 
 
 def run_folder(package: str, yaml_path: Path, only: list[str] | None = None,
-               list_only: bool = False) -> int:
+               list_only: bool = False, lang: str = "es") -> int:
     """Run the figures under scripts/figures/<package>/ per yaml_path and print the summary.
 
     Args:
@@ -210,6 +210,8 @@ def run_folder(package: str, yaml_path: Path, only: list[str] | None = None,
         yaml_path: path to that package's run_figures.yaml.
         only: if given, run only these figure names (ignoring their YAML enabled flag).
         list_only: if True, print the resolved plan and return without running anything.
+        lang: language of the figure texts; anything but "es" appends `--lang <lang>` to every
+            figure's args, which then writes to the *_EN twin folder.
 
     Returns:
         0 if no figure errored (or list_only); 1 if any figure's status is STATUS_ERROR.
@@ -223,7 +225,10 @@ def run_folder(package: str, yaml_path: Path, only: list[str] | None = None,
     for w in validate(entries, folder):
         print(w)
     plan = resolve(entries, only)
-    out_dir = cfg.FIGURES_DIR if package == "report" else cfg.FIGURES_PRESENTATION_DIR
+    if lang != "es":
+        plan = [Entry(e.name, e.enabled, e.args + ["--lang", lang]) for e in plan]
+    rs.set_lang(lang)
+    out_dir = rs.out_dir(cfg.FIGURES_DIR if package == "report" else cfg.FIGURES_PRESENTATION_DIR)
     if list_only:
         for e in plan:
             print(f"{'ON ' if e.enabled else 'off'}  {e.name}" + (f"  args={e.args}" if e.args else ""))

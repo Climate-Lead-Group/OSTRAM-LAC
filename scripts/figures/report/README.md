@@ -8,7 +8,7 @@ default to `report_style.CORE_SCENARIOS` (BAC+ISR). See `scripts/figures/README.
 
 | Script | What it does | Reads | Writes | Run |
 |---|---|---|---|---|
-| `run_figures.py` | Master: runs the enabled `fig_*.py` in `run_figures.yaml`, in file order, in the same process, after building/reusing the BAC+ISR Parquet subset | `run_figures.yaml` | `outputs/Figures/Report/**` (delegates to the fig scripts) | `python scripts/figures/report/run_figures.py [--only fig_x ...] [--list]` |
+| `run_figures.py` | Master (`--lang en` -> English texts in `outputs/Figures/Report_EN/`): runs the enabled `fig_*.py` in `run_figures.yaml`, in file order, in the same process, after building/reusing the BAC+ISR Parquet subset | `run_figures.yaml` | `outputs/Figures/Report/**` (delegates to the fig scripts) | `python scripts/figures/report/run_figures.py [--only fig_x ...] [--list]` |
 | `fig_almacenamiento_2050.py` | Installed storage capacity by scenario, 2030/2040/2050 [GW] (static equivalent of dashboard chart_03); dedups `TotalCapacityAnnual` by Scenario/YEAR/TECHNOLOGY before summing | `TotalCapacityAnnual` | `fig_almacenamiento_2050.png` | `python scripts/figures/report/fig_almacenamiento_2050.py [--years ...] [--scenarios BAC ISR] [--out base]` |
 | `fig_capacidad_generacion_2050.py` | Installed generation capacity by scenario, 2030/2040/2050 [GW], Renewable/Non-renewable breakdown (static equivalent of chart_01) | `TotalCapacityAnnual` | `fig_capacidad_generacion_2050.png` | `python scripts/figures/report/fig_capacidad_generacion_2050.py [--years ...] [--scenarios BAC ISR] [--out base]` |
 | `fig_capacidad_transmision_2050.py` | Installed transmission capacity by scenario, 2030/2040/2050 [GW], stacked by line group (static equivalent of chart_04); own nominal formulas for Repotenciadas/Existentes/Nuevas | `TotalCapacityAnnual`, `AccumulatedNewCapacity`, `AccumulatedTotalAnnualMinCapacityInvestment` | `fig_capacidad_transmision_2050.png` | `python scripts/figures/report/fig_capacidad_transmision_2050.py [--years ...] [--scenarios BAC ISR] [--out base]` |
@@ -36,11 +36,17 @@ default to `report_style.CORE_SCENARIOS` (BAC+ISR). See `scripts/figures/README.
 ```bash
 python scripts/figures/report/run_figures.py                 # all figures per run_figures.yaml
 python scripts/figures/report/run_figures.py --only fig_x fig_y
+python scripts/figures/report/run_figures.py --lang en      # English texts -> outputs/Figures/Report_EN/
 python scripts/figures/report/fig_x.py [--years ...] [--scenarios BAC ISR] [--out base]
 ```
 
 ## Gotchas
 
+- `--lang en` (every non-`_tmp` figure and `run_figures.py`) translates only the text drawn in the
+  image through `report_style.t()` / `report_style.EN` and switches numbers to `4,128.5`; scenario
+  aliases (OPT, ETT) and period labels stay as they are, and console output stays in Spanish. A
+  new on-image text needs `rs.t(...)` and an `EN` entry, or `--lang en` raises `KeyError`
+  (`scripts/tests/test_report_style_lang.py` checks this). The `_tmp` scripts have no `--lang`.
 - `_tmp.py` scripts are experiments, not the official figures: they are present as keys in
   `run_figures.yaml` but set to `false` (checked against the YAML on 2026-09-28), so `run_figures.py`
   skips them unless called with `--only`.

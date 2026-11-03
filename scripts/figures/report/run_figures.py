@@ -7,9 +7,11 @@ Inputs:
     run_figures.yaml (per-script on/off switches)
 Outputs:
     outputs/Figures/Report/ (dashboard_config.FIGURES_DIR; delegated to each fig script)
+    outputs/Figures/Report_EN/ instead, with --lang en (English figure texts)
 Usage:
     python scripts/figures/report/run_figures.py
     python scripts/figures/report/run_figures.py --list
+    python scripts/figures/report/run_figures.py --lang en
     python scripts/figures/report/run_figures.py --only fig_almacenamiento_2050 fig_costo_unitario
 """
 import argparse
@@ -28,8 +30,10 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--only", nargs="+", default=None, metavar="fig_x",
                     help="correr solo estos módulos (ignora el true/false del YAML)")
     ap.add_argument("--list", action="store_true", help="mostrar el YAML resuelto sin correr nada")
+    ap.add_argument("--lang", choices=("es", "en"), default="es",
+                    help="idioma de los textos de las figuras; en -> outputs/Figures/Report_EN/")
     args = ap.parse_args(argv)
-    return fig_runner.run_folder(PACKAGE, YAML, only=args.only, list_only=args.list)
+    return fig_runner.run_folder(PACKAGE, YAML, only=args.only, list_only=args.list, lang=args.lang)
 
 
 if __name__ == "__main__":

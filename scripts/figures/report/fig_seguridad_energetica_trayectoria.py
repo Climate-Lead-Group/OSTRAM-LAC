@@ -110,7 +110,7 @@ def build_figure(data: dict, scenarios: list[str], years: list[int]):
     ax.set_xticks(years)
     ax.set_xticklabels([str(y) for y in years], fontsize=8, rotation=45, ha="right")
 
-    rs.apply_report_style(ax, "Energía autóctona / seguridad energética [%]")
+    rs.apply_report_style(ax, rs.t("Energía autóctona / seguridad energética [%]"))
     ax.legend(loc="upper left", ncol=2, frameon=False, fontsize=8.5)
     fig.tight_layout()
     return fig
@@ -121,7 +121,9 @@ def main(argv: list[str] | None = None):
     ap.add_argument("--years", nargs="+", type=int, default=DEFAULT_YEARS)
     ap.add_argument("--scenarios", nargs="+", default=rs.CORE_SCENARIOS)
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
 
     data = compute(args.years, args.scenarios)
     if not data:
@@ -134,8 +136,9 @@ def main(argv: list[str] | None = None):
             print(f"  {SCENARIO_ALIAS.get(sc, sc):8s} ({sc}): {traj}")
 
     fig = build_figure(data, args.scenarios, args.years)
-    os.makedirs(FIGURES_DIR, exist_ok=True)
-    base = args.out or os.path.join(FIGURES_DIR, "fig_seguridad_energetica_trayectoria")
+    out_dir = rs.out_dir(FIGURES_DIR)
+    os.makedirs(out_dir, exist_ok=True)
+    base = args.out or os.path.join(out_dir, "fig_seguridad_energetica_trayectoria")
     png = rs.save(fig, base)
     print(f"OK -> {png}")
 

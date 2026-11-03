@@ -48,6 +48,7 @@ outputs/Figures/
 | See what it would do | `python scripts/figures/run_all.py --list` |
 | Report figures (per its YAML) | `python scripts/figures/report/run_figures.py` |
 | Only some figures | `python scripts/figures/report/run_figures.py --only fig_almacenamiento_2050 fig_costo_unitario` |
+| Report / presentation figures in English | `python scripts/figures/report/run_figures.py --lang en` / `python scripts/figures/presentation/run_figures.py --lang en` (-> `outputs/Figures/Report_EN/`, `Presentation_EN/`) |
 | A single figure | `python scripts/figures/report/fig_almacenamiento_2050.py [--years ...] [--scenarios BAC ISR] [--out base]` |
 | Dashboard only | `python scripts/figures/dashboard/build_dashboard.py` (all charts) or `... 01 03` (a subset, debugging only) |
 | Tablas xlsx only | `python scripts/figures/run_all.py --only tablas` or `PYTHONUTF8=1 python scripts/figures/Z_AUX_make_tablas_xlsx.py` |

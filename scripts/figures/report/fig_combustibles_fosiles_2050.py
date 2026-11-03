@@ -76,7 +76,7 @@ def build_figure(data: dict, scenarios: list[str], periods: list[tuple[int, int]
     rs.add_group_xticks(ax, [rs.period_label(p) for p in periods], sub_positions,
                          fontsize=7.5, rotation=45)
     rs.add_group_labels(ax, group_centers, rs.scenario_ticklabels(scenarios), y=-0.22)
-    rs.apply_report_style(ax, "Consumo de combustibles fósiles acumulado por tramo [MBEP]",
+    rs.apply_report_style(ax, rs.t("Consumo de combustibles fósiles acumulado por tramo [MBEP]"),
                           european_y=True)
     fig.tight_layout()
     return fig
@@ -88,7 +88,9 @@ def main(argv: list[str] | None = None):
                      help="Años y0 y1 y0 y1 ... (pares); por defecto 2026 2030 2031 2040 2041 2050")
     ap.add_argument("--scenarios", nargs="+", default=rs.CORE_SCENARIOS)
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
     periods = rs.periods_from_flat_years(args.periods)
 
     data = compute(periods, args.scenarios)
@@ -104,8 +106,9 @@ def main(argv: list[str] | None = None):
                 print(f"  {SCENARIO_ALIAS.get(sc, sc):8s} ({sc}): {rs.eu(pj * MBEP_PER_PJ)} ({rs.eu(pj)} PJ)")
 
     fig = build_figure(data, args.scenarios, periods)
-    os.makedirs(FIGURES_DIR, exist_ok=True)
-    base = args.out or os.path.join(FIGURES_DIR, f"fig_combustibles_fosiles_{periods[0][0]}_{periods[-1][1]}")
+    out_dir = rs.out_dir(FIGURES_DIR)
+    os.makedirs(out_dir, exist_ok=True)
+    base = args.out or os.path.join(out_dir, f"fig_combustibles_fosiles_{periods[0][0]}_{periods[-1][1]}")
     png = rs.save(fig, base)
     print(f"OK -> {png}")
 

@@ -221,6 +221,7 @@ python scripts/tests/test_relac_paths.py
 python scripts/tests/test_docs_consistency.py
 python scripts/tests/test_b2_chain_helper.py
 python scripts/tests/test_scenario_subset.py
+python scripts/tests/test_report_style_lang.py
 ```
 
 ## Actions that require explicit approval

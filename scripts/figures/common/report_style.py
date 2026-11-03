@@ -23,6 +23,126 @@ import matplotlib.pyplot as plt  # noqa: E402
 from .dashboard_config import SCENARIO_ALIAS  # noqa: E402
 
 # ================================================================
+# Idioma de los textos DENTRO de la imagen (--lang es|en)
+# ================================================================
+# Español por defecto (figuras del Entregable 2). Con --lang en, cada fig_*.py
+# llama set_lang("en"): los textos visibles pasan por t(), los números salen con
+# formato inglés (eu) y la salida va a la carpeta gemela *_EN (out_dir). Los alias
+# de escenario (OPT, ETT, ...) y las etiquetas de periodo NO se traducen. Las claves
+# internas de datos (p.ej. "Combustible", "Líneas Existentes") siguen en español:
+# solo se traduce la etiqueta al dibujarla.
+LANGS = ("es", "en")
+LANG = "es"
+
+EN = {
+    # Títulos de eje
+    "Capacidad instalada de almacenamiento [GW]": "Installed storage capacity [GW]",
+    "Capacidad instalada de generación [GW]": "Installed generation capacity [GW]",
+    "Capacidad instalada de transmisión [GW]": "Installed transmission capacity [GW]",
+    "Consumo de combustibles fósiles acumulado por tramo [MBEP]":
+        "Cumulative fossil fuel consumption per period [MBOE]",
+    # BUSD = billón en escala larga = 10^12 USD (MUSD_PER_BILLON = 1e6) -> "trillion".
+    "Costo total del sistema, acumulado por tramo [BUSD]":
+        "Total system cost, cumulative per period [USD trillion]",
+    "Costo unitario del sistema [USD/MWh]": "System unit cost [USD/MWh]",
+    "Nº efectivo de fuentes (1/HHI)": "Effective number of sources (1/HHI)",
+    "Generación anual [TWh]": "Annual generation [TWh]",
+    "Inversión en transmisión acumulada [MUSD]":
+        "Cumulative transmission investment [USD million]",
+    "Kilómetros de líneas acumulados desde {y0} [km]": "Cumulative line length since {y0} [km]",
+    "Participación renovable en la generación [%]": "Renewable share of generation [%]",
+    "Participación autóctona [%]": "Domestic share [%]",
+    "Energía autóctona / seguridad energética [%]": "Domestic energy / energy security [%]",
+    # Leyendas
+    "Renovable": "Renewable",
+    "No Renovable": "Non-renewable",
+    "Autóctono": "Domestic",
+    "Importado": "Imported",
+    "CAPEX": "CAPEX",
+    "CAPEX anualizado": "Annualized CAPEX",
+    "O&M": "O&M",
+    "Combustible": "Fuel",
+    "Energía no Suministrada": "Unserved energy",
+    "Líneas Existentes": "Existing lines",
+    "Líneas Planificadas": "Planned lines",
+    "Líneas Nuevas Planificadas": "Planned new lines",
+    "Líneas Repotenciadas Planificadas": "Planned reconductored lines",
+    "Líneas Nuevas No Planificadas": "Unplanned new lines",
+    "Líneas Repotenciadas No Planificadas": "Unplanned reconductored lines",
+    # Familias de fuente (dashboard_config.SOURCE_FAMILY_NAMES)
+    "Biomasa": "Biomass",
+    "Solar CSP": "Solar CSP",
+    "Geotérmica": "Geothermal",
+    "Hidroeléctrica": "Hydropower",
+    "Solar Fotovoltaica": "Solar PV",
+    "Residuos": "Waste",
+    "Eólica Marina": "Offshore wind",
+    "Eólica Terrestre": "Onshore wind",
+    "Carbón con CCS": "Coal with CCS",
+    "Carbón": "Coal",
+    "Cogeneración": "Cogeneration",
+    "Gas Natural": "Natural gas",
+    "Petróleo/Diésel": "Oil/Diesel",
+    "Otros": "Other",
+    "Petcoke": "Petcoke",
+    "Nuclear": "Nuclear",
+}
+
+# Carpetas de salida en español -> su gemela en inglés.
+_OUT_DIR_EN = {}
+
+
+def set_lang(lang: str) -> None:
+    """Set the language of the text drawn inside the figures ("es" or "en").
+
+    Raises:
+        ValueError: if `lang` is not in LANGS.
+
+    Side effects:
+        Sets the module-level LANG, read by t(), eu(), years_label(), out_dir() and save().
+    """
+    global LANG
+    if lang not in LANGS:
+        raise ValueError(f"idioma no soportado: {lang!r} (use {', '.join(LANGS)})")
+    LANG = lang
+
+
+def t(text: str) -> str:
+    """Translate a Spanish figure text to the current LANG (unchanged in "es").
+
+    Raises:
+        KeyError: in "en" if `text` has no entry in EN, so a missing translation fails loudly
+            instead of leaving Spanish text in an English figure.
+    """
+    if LANG == "es":
+        return text
+    return EN[text]
+
+
+def add_lang_arg(ap) -> None:
+    """Add the shared `--lang {es,en}` option to a fig_*.py argument parser."""
+    ap.add_argument("--lang", choices=LANGS, default="es",
+                    help="idioma de los textos de la figura; en -> carpeta *_EN")
+
+
+def out_dir(es_dir: str) -> str:
+    """Return the output folder for the current LANG: `es_dir` itself, or its *_EN twin.
+
+    Args:
+        es_dir: dashboard_config.FIGURES_DIR or FIGURES_PRESENTATION_DIR.
+
+    Raises:
+        KeyError: in "en" if `es_dir` has no English twin.
+    """
+    if LANG == "es":
+        return es_dir
+    if not _OUT_DIR_EN:
+        from . import dashboard_config as cfg
+        _OUT_DIR_EN.update({cfg.FIGURES_DIR: cfg.FIGURES_DIR_EN,
+                            cfg.FIGURES_PRESENTATION_DIR: cfg.FIGURES_PRESENTATION_DIR_EN})
+    return _OUT_DIR_EN[es_dir]
+
+# ================================================================
 # Paleta Entregable 2
 # ================================================================
 COLOR_RENOVABLE = "#23978E"       # teal BID/CLG (encabezado de tablas del Entregable 2)
@@ -178,11 +298,12 @@ def set_grouped_xlim(ax, group_centers: list[float], n_sub: int,
 
 
 def years_label(years: list[int]) -> str:
-    """Format a year list as "2030, 2040 y 2050" (e.g. [2030, 2040, 2050])."""
+    """Format a year list as "2030, 2040 y 2050" ("... and 2050" in "en")."""
     strs = [str(y) for y in years]
     if len(strs) == 1:
         return strs[0]
-    return ", ".join(strs[:-1]) + f" y {strs[-1]}"
+    conj = "and" if LANG == "en" else "y"
+    return ", ".join(strs[:-1]) + f" {conj} {strs[-1]}"
 
 
 def add_group_xticks(ax, labels: list[str], sub_positions: list[list[float]],
@@ -252,26 +373,39 @@ def signed_eu(n: float, decimals: int = 0) -> str:
 # Formato de número europeo
 # ================================================================
 def eu(n: float, decimals: int = 0) -> str:
-    """Format a number European-style: 4128 -> '4.128'; (4128.5, 1) -> '4.128,5'.
+    """Format a number for the current LANG: 4128.5 -> '4.128,5' (es) or '4,128.5' (en).
 
-    Dot is the thousands separator, comma is the decimal separator.
+    "es" (European): dot thousands separator, comma decimal separator. "en": comma
+    thousands separator, dot decimal separator.
     """
     s = f"{n:,.{decimals}f}"
+    if LANG == "en":
+        return s
     return s.replace(",", "\x00").replace(".", ",").replace("\x00", ".")
 
 
 # ================================================================
 # Ejes
 # ================================================================
-def european_yaxis(ax):
-    """Format the Y axis with European numbers and no scientific offset (1e6)."""
-    from matplotlib.ticker import FuncFormatter
+def european_yaxis(ax, decimals: int = 0):
+    """Format the Y axis with eu() numbers and no scientific offset (1e6).
+
+    With decimals > 0 the ticks are also limited to steps of 1/2/5 x 10^k, so a tick never
+    falls on a value that `decimals` would round (e.g. 0.25 shown as "0.2" with 1 decimal).
+    """
+    from matplotlib.ticker import FuncFormatter, MaxNLocator
     ax.ticklabel_format(style="plain", axis="y")
-    ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _pos: eu(v)))
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _pos: eu(v, decimals)))
+    if decimals:
+        ax.yaxis.set_major_locator(MaxNLocator(steps=[1, 2, 5, 10]))
 
 
-def apply_report_style(ax, y_title: str, european_y: bool = False, fontsize: int = 10):
-    """Apply the shared look: no top/right spines, a soft Y grid, and tick marks removed."""
+def apply_report_style(ax, y_title: str, european_y: bool = False, fontsize: int = 10,
+                       y_decimals: int = 0):
+    """Apply the shared look: no top/right spines, a soft Y grid, and tick marks removed.
+
+    `y_decimals` (only with european_y) sets the decimals of the Y tick labels.
+    """
     for spine in ("top", "right"):
         ax.spines[spine].set_visible(False)
     ax.yaxis.grid(True, color="#E6E6E6", zorder=0)
@@ -279,10 +413,10 @@ def apply_report_style(ax, y_title: str, european_y: bool = False, fontsize: int
     ax.tick_params(length=0)
     ax.set_ylabel(y_title, fontsize=fontsize)
     if european_y:
-        european_yaxis(ax)
+        european_yaxis(ax, y_decimals)
 
 
-def new_ax(figsize=(7.2, 4.6), dpi=200):
+def new_ax(figsize=(7.2, 4.6), dpi=300):
     """Return a (fig, ax) pair via plt.subplots with the report's default size/DPI."""
     return plt.subplots(figsize=figsize, dpi=dpi)
 
@@ -300,5 +434,19 @@ def save(fig, base_path: str) -> str:
     avoids that clipping and makes no perceptible difference on normal-fontsize figures.
     """
     png = base_path + ".png"
+    if LANG == "en":
+        _warn_untranslated(fig)
     fig.savefig(png, bbox_inches="tight", pad_inches=0.3)
     return png
+
+
+_SPANISH_CHARS = set("áéíóúñÁÉÍÓÚÑ¿¡º")
+
+
+def _warn_untranslated(fig) -> None:
+    from matplotlib.text import Text
+    es_only = {k for k, v in EN.items() if k != v}
+    for txt in fig.findobj(Text):
+        s = txt.get_text()
+        if s and (s in es_only or _SPANISH_CHARS & set(s)):
+            print(f"[aviso] texto posiblemente sin traducir en la figura: {s!r}")

@@ -84,7 +84,7 @@ def build_figure(data: dict, scenarios: list[str], years: list[int]):
     rs.set_grouped_xlim(ax, group_centers, len(years))
     rs.add_year_xticks(ax, years, sub_positions, fontsize=9.5)
     rs.add_group_labels(ax, group_centers, rs.scenario_ticklabels(scenarios), fontsize=11)
-    rs.apply_report_style(ax, "Nº efectivo de fuentes (1/HHI)", fontsize=13)
+    rs.apply_report_style(ax, rs.t("Nº efectivo de fuentes (1/HHI)"), fontsize=13)
     fig.tight_layout()
     return fig
 
@@ -94,7 +94,9 @@ def main(argv: list[str] | None = None):
     ap.add_argument("--years", nargs="+", type=int, default=rs.MULTI_YEARS)
     ap.add_argument("--scenarios", nargs="+", default=rs.PRESENTATION_SCENARIOS)
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
 
     data = compute(args.years, args.scenarios)
     if not data:
@@ -108,8 +110,9 @@ def main(argv: list[str] | None = None):
                 print(f"  {SCENARIO_ALIAS.get(sc, sc):8s} ({sc}): {rs.eu(data[year][sc], 2)}")
 
     fig = build_figure(data, args.scenarios, args.years)
-    os.makedirs(FIGURES_PRESENTATION_DIR, exist_ok=True)
-    base = args.out or os.path.join(FIGURES_PRESENTATION_DIR, "fig_diversidad_fuentes_presentation")
+    out_dir = rs.out_dir(FIGURES_PRESENTATION_DIR)
+    os.makedirs(out_dir, exist_ok=True)
+    base = args.out or os.path.join(out_dir, "fig_diversidad_fuentes_presentation")
     png = rs.save(fig, base)
     print(f"OK -> {png}")
 

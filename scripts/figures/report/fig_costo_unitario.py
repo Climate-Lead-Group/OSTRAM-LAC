@@ -145,7 +145,7 @@ def build_figure(data: dict, scenarios: list[str], years: list[int], ref: str = 
         for comp, color in COMPONENTS:
             vals = [data.get(year, {}).get(s, {}).get(comp, 0.0) for s in scenarios]
             ax.bar(x, vals, 0.22, bottom=bottoms, color=color, zorder=3,
-                   label=comp if yi == 0 else "_nolegend_")
+                   label=rs.t(comp) if yi == 0 else "_nolegend_")
             bottoms = [b + v for b, v in zip(bottoms, vals)]
 
         totals, ref_total = per_year[yi]
@@ -160,7 +160,7 @@ def build_figure(data: dict, scenarios: list[str], years: list[int], ref: str = 
     ax.set_ylim(0, ymax)
     rs.add_year_xticks(ax, years, sub_positions)
     rs.add_group_labels(ax, group_centers, rs.scenario_ticklabels(scenarios))
-    rs.apply_report_style(ax, "Costo unitario del sistema [USD/MWh]", european_y=True)
+    rs.apply_report_style(ax, rs.t("Costo unitario del sistema [USD/MWh]"), european_y=True)
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.12), ncol=3,
               frameon=False, fontsize=8.5)
     fig.tight_layout()
@@ -173,7 +173,9 @@ def main(argv: list[str] | None = None):
     ap.add_argument("--scenarios", nargs="+", default=rs.CORE_SCENARIOS)
     ap.add_argument("--ref", default="BAC", help="Escenario de referencia para el diferencial.")
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
 
     data = compute(args.years, args.scenarios)
     if not data:
@@ -192,8 +194,9 @@ def main(argv: list[str] | None = None):
                 print(f"  {SCENARIO_ALIAS.get(sc, sc):8s} ({sc}): total={rs.eu(d['total'], 1)}  [{comps}]{delta}")
 
     fig = build_figure(data, args.scenarios, args.years, ref=args.ref)
-    os.makedirs(FIGURES_DIR, exist_ok=True)
-    base = args.out or os.path.join(FIGURES_DIR, "fig_costo_unitario")
+    out_dir = rs.out_dir(FIGURES_DIR)
+    os.makedirs(out_dir, exist_ok=True)
+    base = args.out or os.path.join(out_dir, "fig_costo_unitario")
     png = rs.save(fig, base)
     print(f"OK -> {png}")
 

@@ -92,9 +92,9 @@ def build_figure(data: dict, scenarios: list[str], years: list[int]):
     for yi, (ren, no_ren, totals, pcts) in enumerate(per_year):
         x = sub_positions[yi]
         ax.bar(x, ren, 0.22, color=rs.COLOR_RENOVABLE, zorder=3,
-               label="Renovable" if yi == 0 else None)
+               label=rs.t("Renovable") if yi == 0 else None)
         ax.bar(x, no_ren, 0.22, bottom=ren, color=rs.COLOR_NO_RENOVABLE, zorder=3,
-               label="No Renovable" if yi == 0 else None)
+               label=rs.t("No Renovable") if yi == 0 else None)
         for xi, tot, pct, r in zip(x, totals, pcts, ren):
             ax.text(xi, tot + ymax * 0.015, rs.eu(tot), ha="center", va="bottom",
                     fontsize=10, fontweight="bold", color=rs.COLOR_TOTAL)
@@ -106,7 +106,7 @@ def build_figure(data: dict, scenarios: list[str], years: list[int]):
     rs.set_grouped_xlim(ax, group_centers, len(years))
     rs.add_year_xticks(ax, years, sub_positions, fontsize=9.5)
     rs.add_group_labels(ax, group_centers, rs.scenario_ticklabels(scenarios), fontsize=11)
-    rs.apply_report_style(ax, "Generación anual [TWh]", european_y=True, fontsize=13)
+    rs.apply_report_style(ax, rs.t("Generación anual [TWh]"), european_y=True, fontsize=13)
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.1), ncol=2,
               frameon=False, fontsize=10.5)
     fig.tight_layout()
@@ -118,7 +118,9 @@ def main(argv: list[str] | None = None):
     ap.add_argument("--years", nargs="+", type=int, default=rs.MULTI_YEARS)
     ap.add_argument("--scenarios", nargs="+", default=rs.PRESENTATION_SCENARIOS)
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
 
     data = compute_generation(args.years, args.scenarios)
     if not data:
@@ -134,8 +136,9 @@ def main(argv: list[str] | None = None):
                       f"renovable={d['pct']}%")
 
     fig = build_figure(data, args.scenarios, args.years)
-    os.makedirs(FIGURES_PRESENTATION_DIR, exist_ok=True)
-    base = args.out or os.path.join(FIGURES_PRESENTATION_DIR, "fig_generacion_anual_2050_presentation")
+    out_dir = rs.out_dir(FIGURES_PRESENTATION_DIR)
+    os.makedirs(out_dir, exist_ok=True)
+    base = args.out or os.path.join(out_dir, "fig_generacion_anual_2050_presentation")
     png = rs.save(fig, base)
     print(f"OK -> {png}")
 

@@ -79,7 +79,7 @@ def build_figure(data: dict, scenarios: list[str], periods: list[tuple[int, int]
     rs.add_group_xticks(ax, [rs.period_label(p) for p in periods], sub_positions,
                          fontsize=9.5, rotation=45)
     rs.add_group_labels(ax, group_centers, rs.scenario_ticklabels(scenarios), y=-0.22, fontsize=11)
-    rs.apply_report_style(ax, "Inversión en transmisión acumulada [MUSD]",
+    rs.apply_report_style(ax, rs.t("Inversión en transmisión acumulada [MUSD]"),
                           european_y=True, fontsize=13)
     fig.tight_layout()
     return fig
@@ -91,7 +91,9 @@ def main(argv: list[str] | None = None):
                      help="Años y0 y1 y0 y1 ... (pares); por defecto 2026 2030 2031 2040 2041 2050")
     ap.add_argument("--scenarios", nargs="+", default=rs.PRESENTATION_SCENARIOS)
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
     periods = rs.periods_from_flat_years(args.periods)
 
     data = compute(periods, args.scenarios)
@@ -106,9 +108,10 @@ def main(argv: list[str] | None = None):
                 print(f"  {SCENARIO_ALIAS.get(sc, sc):8s} ({sc}): {rs.eu(data[p][sc])}")
 
     fig = build_figure(data, args.scenarios, periods)
-    os.makedirs(FIGURES_PRESENTATION_DIR, exist_ok=True)
+    out_dir = rs.out_dir(FIGURES_PRESENTATION_DIR)
+    os.makedirs(out_dir, exist_ok=True)
     base = args.out or os.path.join(
-        FIGURES_PRESENTATION_DIR, f"fig_inversion_transmision_{periods[0][0]}_{periods[-1][1]}_presentation"
+        out_dir, f"fig_inversion_transmision_{periods[0][0]}_{periods[-1][1]}_presentation"
     )
     png = rs.save(fig, base)
     print(f"OK -> {png}")

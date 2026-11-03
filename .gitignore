@@ -103,6 +103,8 @@ inputs/OG_csvs_inputs/*backup*
 outputs/Figures/Dashboard/
 outputs/Figures/Report/
 outputs/Figures/Presentation/
+outputs/Figures/Report_EN/
+outputs/Figures/Presentation_EN/
 outputs/Figures/_subset_*
 outputs/Figures/.scenarios_cache.json
 outputs/Figures/Tablas_Completas_Resultados*.xlsx

@@ -54,6 +54,9 @@ COUNTRY_CODES_YAML = str(P.CONFIG_COUNTRY_CODES)
 FIGURES_DIR = str(P.FIGURES_REPORT)                     # fig_*.py de scripts/figures/report/
 FIGURES_PRESENTATION_DIR = str(P.FIGURES_PRESENTATION)  # fig_*_presentation.py (letra grande,
                                                         # grupos juntos, leyenda en una fila)
+# Gemelos en inglés de las dos carpetas anteriores (fig_*.py --lang en; ver report_style.out_dir).
+FIGURES_DIR_EN = str(P.FIGURES_REPORT_EN)
+FIGURES_PRESENTATION_DIR_EN = str(P.FIGURES_PRESENTATION_EN)
 DASHBOARD_DIR = str(P.FIGURES_DASHBOARD)                # dashboard.html + chart*.png (--png)
 # Caché de escenarios autodetectados del CSV (antes vivía en Figures/).
 SCENARIOS_CACHE = os.path.join(str(P.FIGURES), ".scenarios_cache.json")

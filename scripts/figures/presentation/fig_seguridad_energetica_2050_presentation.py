@@ -94,9 +94,9 @@ def build_figure(data: dict, scenarios: list[str], years: list[int]):
         pct_auto = [data.get(year, {}).get(s, {}).get("pct_auto", 0) for s in scenarios]
 
         ax.bar(x, auto_pct, 0.22, color=rs.COLOR_AUTOCTONO, zorder=3,
-               label="Autóctono" if yi == 0 else None)
+               label=rs.t("Autóctono") if yi == 0 else None)
         ax.bar(x, imp_pct, 0.22, bottom=auto_pct, color=rs.COLOR_IMPORTADO, zorder=3,
-               label="Importado" if yi == 0 else None)
+               label=rs.t("Importado") if yi == 0 else None)
         for xi, a, p in zip(x, auto_pct, pct_auto):
             ax.text(xi, a / 2, f"{p}%", ha="center", va="center",
                     fontsize=9.5, fontweight="bold", color=rs.COLOR_LABEL_ON_BAR)
@@ -105,7 +105,7 @@ def build_figure(data: dict, scenarios: list[str], years: list[int]):
     rs.set_grouped_xlim(ax, group_centers, len(years))
     rs.add_year_xticks(ax, years, sub_positions, fontsize=9.5)
     rs.add_group_labels(ax, group_centers, rs.scenario_ticklabels(scenarios), fontsize=11)
-    rs.apply_report_style(ax, "Participación autóctona [%]", fontsize=13)
+    rs.apply_report_style(ax, rs.t("Participación autóctona [%]"), fontsize=13)
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.1), ncol=2,
               frameon=False, fontsize=10.5)
     fig.tight_layout()
@@ -117,7 +117,9 @@ def main(argv: list[str] | None = None):
     ap.add_argument("--years", nargs="+", type=int, default=rs.MULTI_YEARS)
     ap.add_argument("--scenarios", nargs="+", default=rs.PRESENTATION_SCENARIOS)
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
 
     data = compute(args.years, args.scenarios)
     if not data:
@@ -131,8 +133,9 @@ def main(argv: list[str] | None = None):
                 print(f"  {SCENARIO_ALIAS.get(sc, sc):8s} ({sc}): {data[year][sc]['pct_auto']}% autóctono")
 
     fig = build_figure(data, args.scenarios, args.years)
-    os.makedirs(FIGURES_PRESENTATION_DIR, exist_ok=True)
-    base = args.out or os.path.join(FIGURES_PRESENTATION_DIR, "fig_seguridad_energetica_2050_presentation")
+    out_dir = rs.out_dir(FIGURES_PRESENTATION_DIR)
+    os.makedirs(out_dir, exist_ok=True)
+    base = args.out or os.path.join(out_dir, "fig_seguridad_energetica_2050_presentation")
     png = rs.save(fig, base)
     print(f"OK -> {png}")
 

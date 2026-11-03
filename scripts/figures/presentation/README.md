@@ -10,7 +10,7 @@ BAC+ISR). See `scripts/figures/README.md`.
 
 | Script | What it does | Reads | Writes | Run |
 |---|---|---|---|---|
-| `run_figures.py` | Master: runs the enabled `fig_*.py` in `run_figures.yaml`, in file order, in the same process, after building/reusing the BAC+ISR Parquet subset | `run_figures.yaml` | `outputs/Figures/Presentation/**` (delegates to the fig scripts) | `python scripts/figures/presentation/run_figures.py [--only fig_x ...] [--list]` |
+| `run_figures.py` | Master (`--lang en` -> English texts in `outputs/Figures/Presentation_EN/`): runs the enabled `fig_*.py` in `run_figures.yaml`, in file order, in the same process, after building/reusing the BAC+ISR Parquet subset | `run_figures.yaml` | `outputs/Figures/Presentation/**` (delegates to the fig scripts) | `python scripts/figures/presentation/run_figures.py [--only fig_x ...] [--list]` |
 | `fig_almacenamiento_2050_presentation.py` | Presentation pack of `report/fig_almacenamiento_2050.py` (storage capacity by scenario, 2030/2040/2050 [GW]): larger fonts, tighter scenario groups | `TotalCapacityAnnual` | `fig_almacenamiento_2050_presentation.png` | `python scripts/figures/presentation/fig_almacenamiento_2050_presentation.py [--years ...] [--scenarios BAC ISR] [--out base]` |
 | `fig_capacidad_generacion_2050_presentation.py` | Presentation pack of `report/fig_capacidad_generacion_2050.py` (generation capacity, Renewable/Non-renewable, 2030/2040/2050 [GW]) | `TotalCapacityAnnual` | `fig_capacidad_generacion_2050_presentation.png` | `python scripts/figures/presentation/fig_capacidad_generacion_2050_presentation.py [--years ...] [--scenarios BAC ISR] [--out base]` |
 | `fig_capacidad_generacion_tecnologia_2050_presentation.py` | Variant of `fig_capacidad_generacion_2050_presentation.py` that breaks each Renewable/Non-renewable bar down further by individual tech family (`classify_source_family`/`SOURCE_FAMILY_NAMES`: Solar PV, Hydro, Onshore Wind, Coal, Natural Gas, etc.); bar totals match the 2-colour figure exactly | `TotalCapacityAnnual` | `fig_capacidad_generacion_tecnologia_2050_presentation.png` | `python scripts/figures/presentation/fig_capacidad_generacion_tecnologia_2050_presentation.py [--years ...] [--scenarios BAC ISR] [--out base]` |
@@ -36,6 +36,7 @@ BAC+ISR). See `scripts/figures/README.md`.
 ```bash
 python scripts/figures/presentation/run_figures.py                 # all figures per run_figures.yaml
 python scripts/figures/presentation/run_figures.py --only fig_x fig_y
+python scripts/figures/presentation/run_figures.py --lang en      # English texts -> outputs/Figures/Presentation_EN/
 python scripts/figures/presentation/fig_x_presentation.py [--years ...] [--scenarios BAC ISR] [--out base]
 ```
 
@@ -49,6 +50,11 @@ independently — but they are conceptually paired for maintenance: a computatio
 
 ## Gotchas
 
+- `--lang en` (every non-`_tmp` figure and `run_figures.py`) translates only the text drawn in the
+  image through `report_style.t()` / `report_style.EN` and switches numbers to `4,128.5`; scenario
+  aliases (OPT, ETT) and period labels stay as they are, and console output stays in Spanish. A
+  new on-image text needs `rs.t(...)` and an `EN` entry, or `--lang en` raises `KeyError`
+  (`scripts/tests/test_report_style_lang.py` checks this). The `_tmp` scripts have no `--lang`.
 - `_tmp.py` scripts are experiments, not the official figures: they are present as keys in
   `run_figures.yaml` but set to `false` (checked against the YAML on 2026-09-28), so `run_figures.py`
   skips them unless called with `--only`.

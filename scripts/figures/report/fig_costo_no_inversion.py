@@ -116,7 +116,7 @@ def build_figure(data: dict, scenarios: list[str], periods: list[tuple[int, int]
         bottoms = [0.0] * len(scenarios)
         for comp, color, show_legend in COMPONENTS:
             vals = [data.get(p, {}).get(s, {}).get(comp, 0.0) / MUSD_PER_BILLON for s in scenarios]
-            label = comp if (show_legend and pi == 0) else "_nolegend_"
+            label = rs.t(comp) if (show_legend and pi == 0) else "_nolegend_"
             ax.bar(x, vals, 0.22, bottom=bottoms, color=color, label=label, zorder=3)
             bottoms = [b + v for b, v in zip(bottoms, vals)]
 
@@ -133,8 +133,8 @@ def build_figure(data: dict, scenarios: list[str], periods: list[tuple[int, int]
     rs.add_group_xticks(ax, [rs.period_label(p) for p in periods], sub_positions,
                          fontsize=7.5, rotation=45)
     rs.add_group_labels(ax, group_centers, rs.scenario_ticklabels(scenarios), y=-0.22)
-    rs.apply_report_style(ax, "Costo total del sistema, acumulado por tramo [BUSD]",
-                          european_y=True)
+    rs.apply_report_style(ax, rs.t("Costo total del sistema, acumulado por tramo [BUSD]"),
+                          european_y=True, y_decimals=1)
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.14), ncol=3,
               frameon=False, fontsize=8.5)
     fig.tight_layout()
@@ -148,7 +148,9 @@ def main(argv: list[str] | None = None):
     ap.add_argument("--scenarios", nargs="+", default=rs.CORE_SCENARIOS)
     ap.add_argument("--ref", default="BAC", help="Escenario de referencia para el diferencial.")
     ap.add_argument("--out", default=None)
+    rs.add_lang_arg(ap)
     args = ap.parse_args(argv)
+    rs.set_lang(args.lang)
     periods = rs.periods_from_flat_years(args.periods)
 
     data = compute(periods, args.scenarios)
@@ -167,8 +169,9 @@ def main(argv: list[str] | None = None):
                 print(f"  {SCENARIO_ALIAS.get(sc, sc):8s} ({sc}): total={rs.eu(tot / MUSD_PER_BILLON, 2)}{delta}")
 
     fig = build_figure(data, args.scenarios, periods, ref=args.ref)
-    os.makedirs(FIGURES_DIR, exist_ok=True)
-    base = args.out or os.path.join(FIGURES_DIR, f"fig_costo_no_inversion_{periods[0][0]}_{periods[-1][1]}")
+    out_dir = rs.out_dir(FIGURES_DIR)
+    os.makedirs(out_dir, exist_ok=True)
+    base = args.out or os.path.join(out_dir, f"fig_costo_no_inversion_{periods[0][0]}_{periods[-1][1]}")
     png = rs.save(fig, base)
     print(f"OK -> {png}")
 
