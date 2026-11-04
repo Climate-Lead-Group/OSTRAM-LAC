@@ -99,14 +99,18 @@ OSTRAM-LAC/
 
 ## 5. Typical Workflow
 
-A typical modeling workflow follows these steps:
+The typical workflow, run every time the model inputs or the configuration change, has only two stages:
 
-1. **Configure countries and technologies** in `Config_country_codes.yaml`.
-2. **Generate the Tech-Country Matrix** (`A0`).
-3. **Preprocess raw CSVs into Excel model files** (`A1`).
-4. **Add transmission technologies** (`A2`).
-5. **Optionally edit secondary technologies** (`D1` + manual editing + `D2`).
-6. **Run the full pipeline** with `python run.py` (this executes stages **B1** and **B2** only -- data preparation stages A0--A2 and the secondary techs editor D1/D2 must be run separately beforehand).
-7. **Analyze results** using the output CSVs or the interactive dashboards.
+1. **Run B1 and B2**, either together with `python run.py` (the full pipeline) or one by one with `python -u scripts/pipeline/B1_Run_Compiler.py` and `python -u scripts/pipeline/B2_Executing_OG_Model.py`.
+2. **Analyze results** using the output CSVs or the interactive dashboard (see {doc}`figures`).
+
+The data-preparation stages are **not** part of the typical workflow. They are run once, only when a new model is built (new countries, technologies or base data), and their outputs are the workbooks that B1 reads:
+
+- **Configure countries and technologies** in `Config_country_codes.yaml`.
+- **Generate the Tech-Country Matrix** (`A0`).
+- **Preprocess raw CSVs into Excel model files** (`A1`).
+- **Add transmission technologies** (`A2`).
+- **Apply the calibration rules** (`A3_process`, optional).
+- **Edit secondary technologies** (`D1` + manual editing + `D2`, optional).
 
 See {doc}`pipeline` for a detailed walkthrough of each stage.

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-04 12:17-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #: ../../quickstart.md:5
 msgid "1. Run the Full Pipeline"
-msgstr "1. Ejecutar el pipeline completo"
+msgstr "1\\. Ejecutar el pipeline completo"
 
 #: ../../quickstart.md:7
 msgid "From an **Anaconda Prompt** (or any terminal with conda available):"
@@ -133,7 +133,7 @@ msgstr "Ejemplo con una fecha personalizada:"
 
 #: ../../quickstart.md:37
 msgid "2. Pipeline Stages"
-msgstr "2. Etapas del pipeline"
+msgstr "2\\. Etapas del pipeline"
 
 #: ../../quickstart.md:39
 msgid "The DVC pipeline has two stages that run in sequence:"
@@ -166,7 +166,7 @@ msgstr ""
 
 #: ../../quickstart.md:57
 msgid "3. Output Files"
-msgstr "3. Archivos de salida"
+msgstr "3\\. Archivos de salida"
 
 #: ../../quickstart.md:59
 msgid "After a successful run, results are generated in `outputs/`:"
@@ -234,57 +234,99 @@ msgstr ""
 
 #: ../../quickstart.md:72
 msgid "4. Directory Structure Overview"
-msgstr "4. Resumen de la estructura de directorios"
+msgstr "4\\. Resumen de la estructura de directorios"
 
 #: ../../quickstart.md:100
 msgid "5. Typical Workflow"
-msgstr "5. Flujo de trabajo típico"
+msgstr "5\\. Flujo de trabajo típico"
 
 #: ../../quickstart.md:102
-msgid "A typical modeling workflow follows these steps:"
-msgstr "Un flujo de trabajo de modelado típico sigue estos pasos:"
+msgid ""
+"The typical workflow, run every time the model inputs or the "
+"configuration change, has only two stages:"
+msgstr ""
+"El flujo de trabajo típico, que se ejecuta cada vez que cambian los "
+"insumos o la configuración del modelo, tiene solo dos etapas:"
 
 #: ../../quickstart.md:104
+msgid ""
+"**Run B1 and B2**, either together with `python run.py` (the full "
+"pipeline) or one by one with `python -u "
+"scripts/pipeline/B1_Run_Compiler.py` and `python -u "
+"scripts/pipeline/B2_Executing_OG_Model.py`."
+msgstr ""
+"**Ejecutar B1 y B2**, juntos con `python run.py` (el pipeline completo) o"
+" uno por uno con `python -u scripts/pipeline/B1_Run_Compiler.py` y "
+"`python -u scripts/pipeline/B2_Executing_OG_Model.py`."
+
+#: ../../quickstart.md:105
+#, python-brace-format
+msgid ""
+"**Analyze results** using the output CSVs or the interactive dashboard "
+"(see {doc}`figures`)."
+msgstr ""
+"**Analizar los resultados** usando los CSV de salida o el dashboard "
+"interactivo (ver {doc}`figures`)."
+
+#: ../../quickstart.md:107
+msgid ""
+"The data-preparation stages are **not** part of the typical workflow. "
+"They are run once, only when a new model is built (new countries, "
+"technologies or base data), and their outputs are the workbooks that B1 "
+"reads:"
+msgstr ""
+"Las etapas de preparación de datos **no** forman parte del flujo de "
+"trabajo típico. Se ejecutan una vez, solo cuando se construye un modelo "
+"nuevo (países, tecnologías o datos base nuevos), y sus salidas son los "
+"libros que lee B1:"
+
+#: ../../quickstart.md:109
 msgid "**Configure countries and technologies** in `Config_country_codes.yaml`."
 msgstr "**Configurar países y tecnologías** en `Config_country_codes.yaml`."
 
-#: ../../quickstart.md:105
+#: ../../quickstart.md:110
 msgid "**Generate the Tech-Country Matrix** (`A0`)."
 msgstr "**Generar la matriz Tech-Country** (`A0`)."
 
-#: ../../quickstart.md:106
+#: ../../quickstart.md:111
 msgid "**Preprocess raw CSVs into Excel model files** (`A1`)."
 msgstr "**Preprocesar los CSV crudos en archivos Excel del modelo** (`A1`)."
 
-#: ../../quickstart.md:107
+#: ../../quickstart.md:112
 msgid "**Add transmission technologies** (`A2`)."
 msgstr "**Agregar tecnologías de transmisión** (`A2`)."
 
-#: ../../quickstart.md:108
-msgid "**Optionally edit secondary technologies** (`D1` + manual editing + `D2`)."
-msgstr ""
-"**Editar opcionalmente las tecnologías secundarias** (`D1` + edición "
-"manual + `D2`)."
+#: ../../quickstart.md:113
+msgid "**Apply the calibration rules** (`A3_process`, optional)."
+msgstr "**Aplicar las reglas de calibración** (`A3_process`, opcional)."
 
-#: ../../quickstart.md:109
-msgid ""
-"**Run the full pipeline** with `python run.py` (this executes stages "
-"**B1** and **B2** only -- data preparation stages A0--A2 and the "
-"secondary techs editor D1/D2 must be run separately beforehand)."
+#: ../../quickstart.md:114
+msgid "**Edit secondary technologies** (`D1` + manual editing + `D2`, optional)."
 msgstr ""
-"**Ejecutar el pipeline completo** con `python run.py` (esto ejecuta "
-"únicamente las etapas **B1** y **B2** -- las etapas de preparación de "
-"datos A0--A2 y el editor de tecnologías secundarias D1/D2 deben "
-"ejecutarse por separado de antemano)."
+"**Editar las tecnologías secundarias** (`D1` + edición manual + `D2`, "
+"opcional)."
 
-#: ../../quickstart.md:110
-msgid "**Analyze results** using the output CSVs or the interactive dashboards."
-msgstr ""
-"**Analizar los resultados** usando los CSV de salida o los paneles "
-"interactivos."
-
-#: ../../quickstart.md:112
+#: ../../quickstart.md:116
 #, python-brace-format
 msgid "See {doc}`pipeline` for a detailed walkthrough of each stage."
 msgstr "Consulte {doc}`pipeline` para un recorrido detallado de cada etapa."
+
+#~ msgid "A typical modeling workflow follows these steps:"
+#~ msgstr "Un flujo de trabajo de modelado típico sigue estos pasos:"
+
+#~ msgid ""
+#~ "**Run the full pipeline** with `python"
+#~ " run.py` (this executes stages **B1** "
+#~ "and **B2** only -- data preparation "
+#~ "stages A0--A2 and the secondary "
+#~ "techs editor D1/D2 must be run "
+#~ "separately beforehand)."
+#~ msgstr ""
+#~ "**Ejecutar el pipeline completo** con "
+#~ "`python run.py` (esto ejecuta únicamente "
+#~ "las etapas **B1** y **B2** -- las"
+#~ " etapas de preparación de datos A0"
+#~ "--A2 y el editor de tecnologías "
+#~ "secundarias D1/D2 deben ejecutarse por "
+#~ "separado de antemano)."
 

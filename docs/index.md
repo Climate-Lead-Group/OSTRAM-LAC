@@ -1,6 +1,6 @@
 # OSTRAM LAC
 
-OSTRAM LAC is the regional transmission-expansion model, built on the Open Source Energy Modelling System (OSeMOSYS), developed by Climate Lead Group for the Inter-American Development Bank to assess whether the planned transmission infrastructure of Latin America and the Caribbean can support the enhanced renewable targets of the RELAC initiative. This site documents both the **study** (context, methodology, scenarios, results) and the **tool** (installation, pipeline, configuration, data).
+OSTRAM LAC (OSeMOSYS for Transmission, Latin America and the Caribbean) is the regional transmission-expansion model, built on the Open Source Energy Modelling System (OSeMOSYS), developed by Climate Lead Group for the Inter-American Development Bank to assess whether the planned transmission infrastructure of Latin America and the Caribbean can support the enhanced renewable targets of the RELAC initiative. This site documents both the **study** (context, methodology, scenarios, results) and the **tool** (installation, pipeline, configuration, data).
 
 Source code: <https://github.com/Climate-Lead-Group/OSTRAM-LAC>
 

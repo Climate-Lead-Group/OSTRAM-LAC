@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-04 12:17-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -255,7 +255,7 @@ msgstr "Los modificadores"
 
 #: ../../solver-patchers.md:71
 msgid "1. DaysInDayType injector"
-msgstr "1. Inyector de DaysInDayType"
+msgstr "1\\. Inyector de DaysInDayType"
 
 #: ../../solver-patchers.md:73
 msgid ""
@@ -285,7 +285,7 @@ msgstr ""
 
 #: ../../solver-patchers.md:77
 msgid "2. Storage-delay modifier"
-msgstr "2. Modificador de retraso de almacenamiento"
+msgstr "2\\. Modificador de retraso de almacenamiento"
 
 #: ../../solver-patchers.md:79
 msgid ""
@@ -398,8 +398,8 @@ msgid "Root datafile name"
 msgstr "Nombre del archivo de datos raíz"
 
 #: ../../solver-patchers.md:91
-msgid "3. Storage-strip modifier (diagnostic)"
-msgstr "3. Modificador de eliminación de almacenamiento (diagnóstico)"
+msgid "3. Storage-strip modifier"
+msgstr "3\\. Modificador de eliminación de almacenamiento"
 
 #: ../../solver-patchers.md:93
 msgid ""
@@ -459,10 +459,8 @@ msgid "Filename suffix"
 msgstr "Sufijo de nombre de archivo"
 
 #: ../../solver-patchers.md:103
-msgid "4. Backstop (PWRBCK) cap-opening modifier (diagnostic)"
-msgstr ""
-"4. Modificador de apertura de topes de la tecnología de respaldo (PWRBCK)"
-" (diagnóstico)"
+msgid "4. Backstop cap-opening modifier"
+msgstr "4\\. Modificador de apertura de topes de la tecnología de respaldo"
 
 #: ../../solver-patchers.md:105
 msgid ""
@@ -521,8 +519,8 @@ msgid "`\"OpenBCK\"`"
 msgstr "`\"OpenBCK\"`"
 
 #: ../../solver-patchers.md:115
-msgid "5. Reserve-margin repair — careful XLSX"
-msgstr "5. Reparación de margen de reserva — XLSX cuidadoso"
+msgid "5. Reserve-Margin repair"
+msgstr "5\\. Reparación del margen de reserva"
 
 #: ../../solver-patchers.md:117
 msgid ""
@@ -663,9 +661,13 @@ msgstr "`reserve_margin_xlsx_suffix`"
 msgid "`\"RMCarefulXLSX\"`"
 msgstr "`\"RMCarefulXLSX\"`"
 
+#: ../../solver-patchers.md:61
+msgid "Filename suffix (`RM` = reserve margin)"
+msgstr "Sufijo del nombre de archivo (`RM` = margen de reserva)"
+
 #: ../../solver-patchers.md:133
 msgid "6. Activity-upper-limit modifier"
-msgstr "6. Modificador de límite superior de actividad"
+msgstr "6\\. Modificador de límite superior de actividad"
 
 #: ../../solver-patchers.md:135
 msgid ""
@@ -795,8 +797,8 @@ msgid "`\"ActUpLim\"`"
 msgstr "`\"ActUpLim\"`"
 
 #: ../../solver-patchers.md:151
-msgid "7. Dispatch floors (FLOORED)"
-msgstr "7. Pisos de despacho (FLOORED)"
+msgid "7. Lower Constraints Modifiers"
+msgstr "7\\. Modificadores de restricciones inferiores"
 
 #: ../../solver-patchers.md:153
 msgid ""
@@ -883,8 +885,8 @@ msgid "Gate script"
 msgstr "Script de barrera"
 
 #: ../../solver-patchers.md:165
-msgid "8. Veg Tx constraints (VEGCON)"
-msgstr "8. Restricciones Veg Tx (VEGCON)"
+msgid "8. Inertial Transmission Constraints"
+msgstr "8\\. Restricciones inerciales de transmisión"
 
 #: ../../solver-patchers.md:167
 msgid ""
@@ -899,20 +901,28 @@ msgstr ""
 #: ../../solver-patchers.md:169
 #, python-brace-format
 msgid ""
-"Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB"
-" **simultaneously** (floor raise, calibration of the cost slope, planned-"
-"lines ceiling taken from OPT). Runs **once** after every base scenario "
-"has been floored and writes one `*_VEGCON.txt` per scenario into "
-"`Executables/<S>_0/`, creating the folders of the derived scenarios BAC, "
-"OPC, INVWF and VGBWF. See the transmission-chain subsection of "
-"{doc}`pipeline` for stages B/C/D and the scenario-code table."
+"Constrains transmission expansion so that it follows its historical "
+"(inertial) trend in the trend scenarios. The file suffix `VEGCON` is "
+"historical: it comes from *vegetative constraints*, the former name of "
+"these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU,"
+" OPT, INV and VGB **simultaneously** (floor raise, calibration of the "
+"cost slope, planned-lines ceiling taken from OPT). Runs **once** after "
+"every base scenario has been floored and writes one `*_VEGCON.txt` per "
+"scenario into `Executables/<S>_0/`, creating the folders of the derived "
+"scenarios BAC, OPC, INVWF and VGBWF. See the transmission-chain "
+"subsection of {doc}`pipeline` for stages B/C/D and the scenario-code "
+"table."
 msgstr ""
-"Barrera transversal a escenarios: necesita el `_FLOORED.txt` de BAU, OPT,"
-" INV y VGB **simultáneamente** (elevación de pisos, calibración de la "
-"pendiente de costo, techo de líneas planeadas tomado de OPT). Se ejecuta "
-"**una vez** después de que cada escenario base ha recibido sus pisos, y "
-"escribe un `*_VEGCON.txt` por escenario en `Executables/<S>_0/`, creando "
-"las carpetas de los escenarios derivados BAC, OPC, INVWF y VGBWF. Ver la "
+"Restringe la expansión de la transmisión para que siga su tendencia "
+"histórica (inercial) en los escenarios tendenciales. El sufijo de archivo"
+" `VEGCON` es histórico: viene de *vegetative constraints* (restricciones "
+"vegetativas), el nombre anterior de estos escenarios. Barrera transversal"
+" a escenarios: necesita el `_FLOORED.txt` de BAU, OPT, INV y VGB "
+"**simultáneamente** (elevación de pisos, calibración de la pendiente de "
+"costo, techo de líneas planeadas tomado de OPT). Se ejecuta **una vez** "
+"después de que cada escenario base ha recibido sus pisos, y escribe un "
+"`*_VEGCON.txt` por escenario en `Executables/<S>_0/`, creando las "
+"carpetas de los escenarios derivados BAC, OPC, INVWF y VGBWF. Ver la "
 "subsección de la cadena de transmisión de {doc}`pipeline` para las etapas"
 " B/C/D y la tabla de códigos de escenario."
 
@@ -1018,4 +1028,10 @@ msgid ""
 msgstr ""
 "El inyector de `DaysInDayType` se sigue ejecutando (solo corrige un "
 "bloque faltante y no cambia los supuestos de modelado)."
+
+#~ msgid "7. Dispatch floors (FLOORED)"
+#~ msgstr "7. Pisos de despacho (FLOORED)"
+
+#~ msgid "8. Vegetative constraints (VEGCON)"
+#~ msgstr "8. Restricciones vegetativas (VEGCON)"
 

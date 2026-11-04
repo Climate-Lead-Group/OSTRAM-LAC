@@ -27,13 +27,13 @@ For each scenario, B2 runs (in [`B2_Executing_OG_Model.py`](../scripts/pipeline/
 ```
 otoole conversion → OSeMOSYS preprocessing
    ↓
-0. DaysInDayType injector         (always; no suffix)
-1. Storage-delay modifier         (storage_delay_active)        suffix StorageDelayN5
-2. Storage-strip modifier         (strip_storage_active)        suffix NoStorage   [forced off when 1 is on]
-3. PWRBCK cap-opening modifier    (open_pwrbck_active)          suffix OpenBCK
-4. Reserve-margin repair (XLSX)   (reserve_margin_xlsx_active)  suffix RMCarefulXLSX
-5. Dispatch floors                (dispatch_floors_active)      suffix FLOORED   [per base scenario]
-6. Veg Tx constraints             (veg_tx_active)               suffix VEGCON    [cross-scenario barrier]
+0. DaysInDayType injector              (always; no suffix)
+1. Storage-delay modifier              (storage_delay_active)        suffix StorageDelayN5
+2. Storage-strip modifier              (strip_storage_active)        suffix NoStorage   [forced off when 1 is on]
+3. Backstop cap-opening modifier       (open_pwrbck_active)          suffix OpenBCK
+4. Reserve-Margin repair               (reserve_margin_xlsx_active)  suffix RMCarefulXLSX
+5. Lower Constraints Modifiers         (dispatch_floors_active)      suffix FLOORED   [per base scenario]
+6. Inertial Transmission Constraints   (veg_tx_active)               suffix VEGCON    [cross-scenario barrier]
    ↓
 Scenario transforms (derived scenarios) → Sync modified CSVs → solver → results
 
@@ -88,7 +88,7 @@ The `B1 → otoole → preprocess` chain never generates the `DaysInDayType` blo
 | `storage_delay_model_output` | `osemosys_fast_preprocessed_storage_delay.txt` | Modified model file the solver is redirected to |
 | `storage_delay_root_datafile` | `RELAC_TX_data_storage_delay.txt` | Root datafile name |
 
-### 3. Storage-strip modifier (diagnostic)
+### 3. Storage-strip modifier
 
 **Script:** [`strip_storage.py`](../scripts/pipeline/strip_storage.py) · **Switch:** `strip_storage_active` · **Shipped default: True** (forced off when storage-delay is on)
 
@@ -100,7 +100,7 @@ Produces a new `.txt` with selected storage facilities **and their feeding PWR t
 | `strip_storage_targets` | `[]` | Facility names (`tech` mode) or prefixes (`class` mode) |
 | `strip_storage_suffix` | `"NoStorage"` | Filename suffix |
 
-### 4. Backstop (PWRBCK) cap-opening modifier (diagnostic)
+### 4. Backstop cap-opening modifier
 
 **Script:** [`open_pwrbck_caps.py`](../scripts/pipeline/open_pwrbck_caps.py) · **Switch:** `open_pwrbck_active` · **Shipped default: True**
 
@@ -112,7 +112,7 @@ Produces a new `.txt` with selected storage facilities **and their feeding PWR t
 | `open_pwrbck_pattern` | `"PWRBCK"` | Technology-name prefix to match |
 | `open_pwrbck_suffix` | `"OpenBCK"` | Filename suffix |
 
-### 5. Reserve-margin repair — careful XLSX
+### 5. Reserve-Margin repair
 
 **Script:** [`patch_reserve_margin_repair_careful_xlsx.py`](../scripts/pipeline/patch_reserve_margin_repair_careful_xlsx.py) · **Switch:** `reserve_margin_xlsx_active` · **Shipped default: True**
 
@@ -128,7 +128,7 @@ Adds reserve-margin tags and repairs firm fossil capacity caps using per-country
 | `reserve_margin_xlsx_sentinel_values` | `[0, 9999]` | Only these existing cap values are replaced |
 | `reserve_margin_xlsx_global_value` | `0.15` | Global `ReserveMargin` written for every (REGION, YEAR); unset = leave block untouched |
 | `reserve_margin_xlsx_modify_from_year` | `2026` | Forwarded as `--modify-from-year`: caps are only repaired for years ≥ this value, so historical years synced from BAU stay untouched; unset = repair all years |
-| `reserve_margin_xlsx_suffix` | `"RMCarefulXLSX"` | Filename suffix |
+| `reserve_margin_xlsx_suffix` | `"RMCarefulXLSX"` | Filename suffix (`RM` = reserve margin) |
 
 ### 6. Activity-upper-limit modifier
 
@@ -148,7 +148,7 @@ Reads rows from the **Secondary Techs** sheet of `A-O_Parametrization.xlsx` whos
 | `activity_upper_limit_coverage_tolerance` | `0.15` | If summed fractions per region/fuel/year fall below `1 − tolerance`, B1b raises a **V4** warning |
 | `activity_upper_limit_suffix` | `"ActUpLim"` | Filename suffix |
 
-### 7. Dispatch floors (FLOORED)
+### 7. Lower Constraints Modifiers
 
 **Script:** [`write_floors.py`](../scripts/fix_dispatch/write_floors.py) · **Switch:** `dispatch_floors_active` · **Shipped default: True**
 
@@ -162,11 +162,11 @@ Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the f
 | `preflight_separation_active` | `True` | Run the separation gate before writing floors |
 | `preflight_separation_script` | `scripts/fix_dispatch/preflight_separation.py` | Gate script |
 
-### 8. Veg Tx constraints (VEGCON)
+### 8. Inertial Transmission Constraints
 
 **Script:** [`veg_tx_constraints.py`](../scripts/tx_chain/veg_tx_constraints.py) · **Switch:** `veg_tx_active` · **Shipped default: True**
 
-Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC, OPC, INVWF and VGBWF. See the transmission-chain subsection of {doc}`pipeline` for stages B/C/D and the scenario-code table.
+Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC, OPC, INVWF and VGBWF. See the transmission-chain subsection of {doc}`pipeline` for stages B/C/D and the scenario-code table.
 
 | Param | Default | Description |
 |-------|---------|-------------|

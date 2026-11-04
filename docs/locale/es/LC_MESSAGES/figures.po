@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 12:11-0600\n"
+"POT-Creation-Date: 2026-11-04 12:17-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -161,13 +161,13 @@ msgstr "Ejecución"
 #: ../../figures.md:29
 msgid ""
 "`run_all.py` first builds (or reuses) a Parquet subset of the combined "
-"CSV for the BAC and ISR scenarios; report, presentation and dashboard "
+"CSV for the OPT and ETT scenarios; report, presentation and dashboard "
 "then run in-process, and `tablas` runs in a subprocess because it streams"
 " the full CSV in chunks. A failing branch does not stop the others; the "
 "exit code is 1 if any branch failed."
 msgstr ""
 "`run_all.py` primero construye (o reutiliza) un subconjunto Parquet del "
-"CSV combinado para los escenarios BAC e ISR; luego report, presentation y"
+"CSV combinado para los escenarios OPT y ETT; luego report, presentation y"
 " dashboard se ejecutan en el mismo proceso, y `tablas` se ejecuta en un "
 "subproceso porque transmite el CSV completo en bloques. Una rama que "
 "falla no detiene a las demás; el código de salida es 1 si alguna rama "
@@ -193,8 +193,72 @@ msgstr ""
 "energía no suministrada) y vienen deshabilitadas de fábrica."
 
 #: ../../figures.md:39
-msgid "Report figures (`report/run_figures.yaml`, shipped enabled)"
-msgstr "Figuras de reporte (`report/run_figures.yaml`, habilitadas de fábrica)"
+msgid "Report figures"
+msgstr "Figuras del informe"
+
+#: ../../figures.md:41
+msgid ""
+"Every figure in the table below has one entry in "
+"[`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml),"
+" and all of them ship **enabled** (`true`), so a plain `python "
+"scripts/figures/report/run_figures.py` (or the `report` branch of "
+"`run_all.py`) produces all of them. To control which figures run:"
+msgstr ""
+"Cada figura de la tabla siguiente tiene una entrada en "
+"[`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml),"
+" y todas vienen **habilitadas** (`true`) de fábrica, de modo que un "
+"simple `python scripts/figures/report/run_figures.py` (o la rama `report`"
+" de `run_all.py`) las genera todas. Para controlar qué figuras se "
+"ejecutan:"
+
+#: ../../figures.md:43
+msgid ""
+"**Enable or disable a figure:** set its entry to `true` or `false`, e.g. "
+"`fig_costo_unitario: false`. The key order in the YAML is the execution "
+"order."
+msgstr ""
+"**Habilitar o deshabilitar una figura:** poner su entrada en `true` o "
+"`false`, p. ej. `fig_costo_unitario: false`. El orden de las claves en el"
+" YAML es el orden de ejecución."
+
+#: ../../figures.md:44
+#, python-brace-format
+msgid ""
+"**Pass arguments:** use the long form `fig_almacenamiento_2050: {enabled:"
+" true, args: [\"--years\", \"2030\", \"2050\"]}` (`enabled` defaults to "
+"`true` when omitted)."
+msgstr ""
+"**Pasar argumentos:** usar la forma larga `fig_almacenamiento_2050: "
+"{enabled: true, args: [\"--years\", \"2030\", \"2050\"]}` (`enabled` vale"
+" `true` si se omite)."
+
+#: ../../figures.md:45
+msgid ""
+"**Run a single figure regardless of the YAML:** `python "
+"scripts/figures/report/run_figures.py --only fig_costo_unitario` (any "
+"YAML arguments of that figure are reused)."
+msgstr ""
+"**Ejecutar una sola figura sin importar el YAML:** `python "
+"scripts/figures/report/run_figures.py --only fig_costo_unitario` (se "
+"reutilizan los argumentos que esa figura tenga en el YAML)."
+
+#: ../../figures.md:46
+msgid ""
+"**Check the resolved state without running anything:** `python "
+"scripts/figures/report/run_figures.py --list`."
+msgstr ""
+"**Revisar el estado resuelto sin ejecutar nada:** `python "
+"scripts/figures/report/run_figures.py --list`."
+
+#: ../../figures.md:48
+msgid ""
+"A `fig_*.py` script that has no entry in the YAML is **not** run; the "
+"runner prints a warning for it. The presentation figures follow the same "
+"rules with `scripts/figures/presentation/run_figures.yaml`."
+msgstr ""
+"Un script `fig_*.py` que no tiene entrada en el YAML **no** se ejecuta; "
+"el runner imprime un aviso por él. Las figuras de presentación siguen las"
+" mismas reglas con `scripts/figures/presentation/run_figures.yaml`."
 
 #: ../../figures.md
 msgid "Script"
@@ -344,11 +408,11 @@ msgstr "`fig_seguridad_energetica_trayectoria`"
 msgid "Domestic energy share [%], trajectory 2025–2050"
 msgstr "Participación de energía doméstica [%], trayectoria 2025–2050"
 
-#: ../../figures.md:58
+#: ../../figures.md:67
 msgid "Dashboard charts"
 msgstr "Gráficos del Dashboard"
 
-#: ../../figures.md:60
+#: ../../figures.md:69
 #, python-brace-format
 msgid ""
 "`dashboard.html` is a single self-contained Plotly page with scenario, "
@@ -536,7 +600,7 @@ msgstr "18"
 msgid "Reference energy system diagram (iframe)"
 msgstr "Diagrama del sistema energético de referencia (iframe)"
 
-#: ../../figures.md:85
+#: ../../figures.md:94
 msgid ""
 "Colours are fixed per technology type across the whole dashboard: "
 "generation blue `#4e79a7`, transmission `#e15759`, storage `#76b7b2`."
@@ -544,4 +608,7 @@ msgstr ""
 "Los colores están fijados por tipo de tecnología en todo el dashboard: "
 "generación azul `#4e79a7`, transmisión `#e15759`, almacenamiento "
 "`#76b7b2`."
+
+#~ msgid "Report figures (`report/run_figures.yaml`, shipped enabled)"
+#~ msgstr "Figuras de reporte (`report/run_figures.yaml`, habilitadas de fábrica)"
 

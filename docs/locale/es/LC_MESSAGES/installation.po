@@ -347,9 +347,9 @@ msgstr ""
 
 #: ../../installation.md:61
 msgid ""
-"If your `OSTRAM-env` was created before the solvers were added, `run.py`"
-" detects the missing `glpsol`/`cbc` binaries and installs them on its "
-"next run. You can also do it manually:"
+"If your `OSTRAM-env` was created before the solvers were added, `run.py` "
+"detects the missing `glpsol`/`cbc` binaries and installs them on its next"
+" run. You can also do it manually:"
 msgstr ""
 "Si su `OSTRAM-env` se creó antes de que se agregaran los solvers, "
 "`run.py` detecta los binarios `glpsol`/`cbc` faltantes y los instala en "

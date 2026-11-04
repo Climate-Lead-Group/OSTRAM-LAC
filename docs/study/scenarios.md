@@ -9,6 +9,8 @@ The analysis is organised in four **scenario families**. Each family has a base 
 | **PLAN** | Planned expansion (national plans only) | `OPC` | — |
 | **ETT-GP** | Trend expansion with planned generation | `VSR` | — |
 
+The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present results; outside this page the documentation refers to scenarios by them. They describe what each base scenario represents, for ease of reading: `BAC` is an optimal expansion, so it is shown as **OPT**; `ISR` is a trend expansion, so it is shown as **ETT**. Note that the display name OPT is not the `OPT` input workbook described below: that workbook is the base from which `OPC` (PLAN) is built.
+
 ## Reading a scenario code
 
 - **First letter:** `B` = optimal family (OPT), `I` = trend family (ETT).
@@ -20,10 +22,6 @@ The analysis is organised in four **scenario families**. Each family has a base 
   - `RB` — renewables cost **low**.
 - `INV` is the trend family **with** repowering (the ETT base `ISR` is `INV` without repowering).
 
-:::{note}
-The multipliers of the renewables-high variants (`BRA`, `IRA`) are pending calibration; in the current configuration they equal those of `BRB` / `IRB`. Their results should be read as provisional.
-:::
-
 ## How the scenarios are built
 
-The four families derive from four input workbooks (`BAU`, `INV`, `OPT`, `VGB`) through the transmission-constraint chain of Stage B2: dispatch floors, cross-scenario transmission constraints and a registry of scenario transforms that create the variants by changing parameter values only. The full mapping from each code to its base workbook and generating script, together with the list of scenarios actually solved, is in the *Scenario codes* table of {doc}`../pipeline`.
+The four input workbooks `BAU`, `INV`, `OPT` and `VGB` are the **base scenarios**: every scenario listed above, and any scenario added later, is derived from one of them. The derivation happens in the transmission-constraint chain of Stage B2 (see {doc}`../solver-patchers`): the Lower Constraints Modifiers, the Inertial Transmission Constraints, and a registry of scenario transforms that create the variants by changing parameter values only. The full mapping from each code to its base workbook and generating script, together with the list of scenarios actually solved, is in the *Scenario codes* table of {doc}`../pipeline`.

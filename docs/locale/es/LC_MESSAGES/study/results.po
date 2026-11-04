@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 12:11-0600\n"
+"POT-Creation-Date: 2026-11-04 12:17-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -29,18 +29,17 @@ msgid ""
 "The figures below are the static report figures produced by "
 "`scripts/figures/report/` (see {doc}`../figures`) from the model run of "
 "2026-09-17. They compare the base scenarios of the two main families, "
-"**OPT** (`BAC`) and **ETT** (`ISR`), for the milestone years 2030, 2040 "
-"and 2050 or as trajectories over 2025–2050. Interactive versions with "
-"every solved scenario and country filters are available in the Plotly "
-"dashboard."
+"**OPT** and **ETT**, for the milestone years 2030, 2040 and 2050 or as "
+"trajectories over 2025–2050. Interactive versions with every solved "
+"scenario and country filters are available in the Plotly dashboard."
 msgstr ""
 "Las figuras a continuación son las figuras estáticas del informe "
 "generadas por `scripts/figures/report/` (ver {doc}`../figures`) a partir "
 "de la corrida del modelo del 2026-09-17. Comparan los escenarios base de "
-"las dos familias principales, **OPT** (`BAC`) y **ETT** (`ISR`), para los"
-" años hito 2030, 2040 y 2050, o como trayectorias durante 2025–2050. Las "
-"versiones interactivas con todos los escenarios resueltos y filtros por "
-"país están disponibles en el dashboard de Plotly."
+"las dos familias principales, **OPT** y **ETT**, para los años hito 2030,"
+" 2040 y 2050, o como trayectorias durante 2025–2050. Las versiones "
+"interactivas con todos los escenarios resueltos y filtros por país están "
+"disponibles en el dashboard de Plotly."
 
 #: ../../study/results.md:5
 msgid "Generation"
@@ -124,22 +123,14 @@ msgstr ""
 "acumulado por período [billones de USD]."
 
 #: ../../study/results.md:60
-msgid ""
-"Total system cost and \"cost of non-investment\", cumulative per period "
-"[trillion USD], including the transmission-capped case."
-msgstr ""
-"Costo total del sistema y \"costo de la no inversión\", acumulado por "
-"período [billones de USD], incluyendo el caso con tope de transmisión."
-
-#: ../../study/results.md:65
 msgid "Unit system cost by scenario [USD/MWh]."
 msgstr "Costo unitario del sistema por escenario [USD/MWh]."
 
-#: ../../study/results.md:68
+#: ../../study/results.md:63
 msgid "Security and resilience"
 msgstr "Seguridad y resiliencia"
 
-#: ../../study/results.md:72
+#: ../../study/results.md:67
 msgid ""
 "Energy security by scenario in 2030, 2040 and 2050: domestic versus "
 "imported primary energy [%]."
@@ -147,13 +138,13 @@ msgstr ""
 "Seguridad energética por escenario en 2030, 2040 y 2050: energía primaria"
 " doméstica versus importada [%]."
 
-#: ../../study/results.md:77
+#: ../../study/results.md:72
 msgid "Domestic energy share [%] by scenario, trajectory 2025–2050."
 msgstr ""
 "Participación de energía doméstica [%] por escenario, trayectoria "
 "2025–2050."
 
-#: ../../study/results.md:82
+#: ../../study/results.md:77
 msgid ""
 "Effective number of generation sources (inverse of the Herfindahl-"
 "Hirschman index) by scenario in 2030, 2040 and 2050. A higher value means"
@@ -162,4 +153,15 @@ msgstr ""
 "Número efectivo de fuentes de generación (inverso del índice de "
 "Herfindahl-Hirschman) por escenario en 2030, 2040 y 2050. Un valor más "
 "alto significa una mezcla más diversificada y más resiliente."
+
+#~ msgid ""
+#~ "Total system cost and \"cost of "
+#~ "non-investment\", cumulative per period "
+#~ "[trillion USD], including the transmission-"
+#~ "capped case."
+#~ msgstr ""
+#~ "Costo total del sistema y \"costo "
+#~ "de la no inversión\", acumulado por "
+#~ "período [billones de USD], incluyendo el"
+#~ " caso con tope de transmisión."
 

@@ -6,25 +6,27 @@ OSTRAM LAC processes energy system data through a multi-stage pipeline. This pag
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                        DATA PREPARATION                             │
+│          DATA PREPARATION (once, only when building a new model)     │
 │                                                                      │
 │  A0: Generate Tech-Country Matrix                                    │
 │   ↓                                                                  │
-│  A1: Preprocess Raw CSVs → Excel Model Files                        │
+│  A1: Preprocess Raw CSVs → Excel Model Files                         │
 │   ↓                                                                  │
 │  A2: Add Transmission Technologies                                   │
 │   ↓                                                                  │
-│  (Optional) A3_process: LID → lowerlimits → B1b → BAU sync          │
+│  (Optional) A3_process: lid → lowerlimits → B1b → BAU sync           │
 │   ↓                                                                  │
-│  (Optional) D1 → Manual Editing → D2: Secondary Techs Editing       │
+│  (Optional) D1 → Manual Editing → D2: Secondary Techs Editing        │
 ├──────────────────────────────────────────────────────────────────────┤
-│                        MODEL EXECUTION                               │
+│          MODEL EXECUTION (typical workflow: python run.py)           │
 │                                                                      │
-│  B1: B1b pre-solver validation → Compile Excel → OSeMOSYS CSVs      │
+│  B1: B1b pre-solver validation → Compile Excel → OSeMOSYS CSVs       │
 │   ↓                                                                  │
 │  B2: Modifier chain → Execute Solver → Results                       │
 └──────────────────────────────────────────────────────────────────────┘
 ```
+
+The **typical workflow** is only the model-execution block: B1 and B2, run together with `python run.py` (the full DVC pipeline) or one at a time. The data-preparation stages (A0, A1, A2, and the optional A3_process and D1/D2) are not run routinely: they are run once, when a new model is built, and produce the workbooks under `inputs/A1_Outputs/` that B1 reads.
 
 ---
 
@@ -156,11 +158,11 @@ python scripts/pipeline/A2_AddTx.py
 | Code | Description |
 |------|-------------|
 | `RNWTRN` | Renewable transmission (existing) |
-| `RNWRPO` | Renewable transmission (repowered) |
-| `RNWNLI` | Renewable transmission (new lines) |
+| `RNWRPO` | Renewable transmission (repowering: reconductoring of existing lines) |
+| `RNWNLI` | Renewable transmission (new unplanned lines) |
 | `PWRTRN` | Non-renewable transmission (existing) |
-| `TRNRPO` | Non-renewable transmission (repowered) |
-| `TRNNLI` | Non-renewable transmission (new lines) |
+| `TRNRPO` | Non-renewable transmission (repowering: reconductoring of existing lines) |
+| `TRNNLI` | Non-renewable transmission (new unplanned lines) |
 | `DSPTRN` | Dispatch (interconnection routing, 2 modes) |
 
 ### Fuel Routing
@@ -243,7 +245,7 @@ The script assigns fuel codes for the energy flow:
 
 An orchestrator that applies a set of post-A1/A2 calibration rules to each scenario's `A-O_Parametrization.xlsx`. For every scenario folder under `A1_Outputs/A1_Outputs_<scenario>/` it runs three per-scenario steps in order, followed by one global harmonization pass:
 
-1. **LID rule** ([`add_max_cap_investment_lid_rule.py`](../scripts/pipeline/A3_process/rules_scripts/add_max_cap_investment_lid_rule.py)) — fills `TotalAnnualMaxCapacityInvestment` placeholders with calibrated "lid" values, configured in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml).
+1. **Lid rule** ([`add_max_cap_investment_lid_rule.py`](../scripts/pipeline/A3_process/rules_scripts/add_max_cap_investment_lid_rule.py)) — fills `TotalAnnualMaxCapacityInvestment` placeholders with calibrated lid (top) values, i.e. upper bounds on annual capacity investment, configured in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml).
 2. **Extend lower limits** ([`extend_lowerlimits_pwr.py`](../scripts/pipeline/A3_process/rules_scripts/extend_lowerlimits_pwr.py)) — extends the 2024 value of `TotalTechnologyAnnualActivityLowerLimit` for PWR techs flat through 2050 in the **Secondary Techs** sheet, so the calibration floor does not expire and the optimizer cannot dump thermal generation in 2025+.
 3. **Pre-solver validation** — runs `B1b_Pre_solver_validation.py --auto-fix-all` to reconcile any residual inconsistencies. It is the same validator that B1 runs at startup; see [Pre-solver validation (B1b)](#pre-solver-validation-b1b) under Stage B1.
 4. **Historical sync to BAU (global, after all scenarios)** — for every scenario listed under `historical_sync_through` in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), runs [`sync_historical_from_bau.py`](../scripts/pipeline/sync_historical_from_bau.py) `--apply --scenarios <S> --years 2023,…,<through_year>`. It copies the year cells 2023..`<through_year>` from the current BAU workbook into the target scenario so that all scenarios share the same historical/near-term values (shipped: INV 2030, OPT 2026, VGB 2030). Two per-scenario refinements are forwarded from the same YAML: `historical_sync_protect_from_2026` (parameters passed as `--protect-params`, which are *not* snapped back to BAU for years ≥ 2027 — shipped for VGB: `TotalTechnologyAnnualActivityLowerLimit`, `TotalAnnualMinCapacityInvestment`, `TotalAnnualMaxCapacityInvestment`) and `historical_sync_tx_follow_bau` (scenarios passed `--no-protect-tx`, whose transmission `TotalAnnualMaxCapacityInvestment` *is* synced to BAU across the whole window — shipped: OPT). BAU is always the source and never a target. The sync aborts on any structural mismatch between workbooks (row order, sheet names), which stops A3 with a non-zero exit.
@@ -272,7 +274,7 @@ python scripts/pipeline/A3_process.py --scenario INV --force-overwrite  # re-run
 | `--skip-historical-sync` | Skip the final BAU harmonization pass (step 4) |
 
 :::{note}
-The LID script writes a JSON change log (`lid_rule_changes_<timestamp>.json`) inside each scenario directory but does **not** make a folder-level backup — recovery is via git. B1b makes its own timestamped backup of the xlsx before writing.
+The lid-rule script writes a JSON change log (`lid_rule_changes_<timestamp>.json`) inside each scenario directory but does **not** make a folder-level backup — recovery is via git. B1b makes its own timestamped backup of the xlsx before writing.
 :::
 
 ---
@@ -371,9 +373,9 @@ python -u scripts/pipeline/B2_Executing_OG_Model.py
 
 1. **CSV to datafile conversion** via otoole (per base scenario: BAU, OPT, INV, VGB).
 2. **Preprocessing** -- runs the OSeMOSYS preprocessor.
-3. **Modifier chain** -- rewrites parameter blocks directly in the GNU MathProg `.txt` to apply the reserve-margin and storage features plus feasibility safeguards (DaysInDayType, storage-delay, backstop (PWRBCK) caps, reserve margin, activity upper limits, dispatch floors). See {doc}`solver-patchers` for the full chain.
+3. **Modifier chain** -- rewrites parameter blocks directly in the GNU MathProg `.txt` to apply the reserve-margin and storage features plus feasibility safeguards (DaysInDayType, storage-delay, backstop (PWRBCK) caps, reserve margin, activity upper limits, lower constraints). See {doc}`solver-patchers` for the full chain.
 4. **Sync modified CSVs** -- overwrites the affected otoole CSVs in place so the combined input/output files reflect the modified values the solver consumed.
-5. **Transmission chain (FLOORED → VEGCON → scenario transforms)** -- see subsection below; produces the 17 derived scenarios (BAC, OPC, INVWF, VGBWF, BSR, ISR, VSR, ISRWF, VSRWF, BFA, IFA, BFB, IFB, BRB, IRB, BRA, IRA) that the rest of the pipeline treats like any other scenario.
+5. **Transmission chain (lower constraints → inertial transmission constraints → scenario transforms)** -- see subsection below; produces the 17 derived scenarios (BAC, OPC, INVWF, VGBWF, BSR, ISR, VSR, ISRWF, VSRWF, BFA, IFA, BFB, IFB, BRB, IRB, BRA, IRA) that the rest of the pipeline treats like any other scenario.
 6. **Solver execution** -- runs the selected solver (GLPK, CBC, CPLEX or Gurobi) over the configured `solve_scenarios` universe (base + derived).
 7. **Result extraction** -- converts solver output back to CSV, using each derived scenario's base A2 as the otoole-results reference (derived scenarios share sets with their base; only values differ).
 8. **Post-processing** -- input re-sync from the final `.txt` (fixes stale-input bug for derived scenarios), capital annualization, scenario concatenation.
@@ -382,9 +384,9 @@ python -u scripts/pipeline/B2_Executing_OG_Model.py
 The final CSVs always use `prefix_final_files` (`RELAC_TX_`), regardless of which modifiers are active; `dvc.yaml` declares them as `outs` under that name and B2 aborts at startup if they disagree. When `storage_delay_active: True` (the shipped default) only the solver model file and the root datafile are redirected. See {doc}`solver-patchers` for details.
 :::
 
-### Transmission Chain Integration (FLOORED → VEGCON → scenario transforms)
+### Transmission Chain Integration (lower constraints → inertial transmission constraints → scenario transforms)
 
-B2 orchestrates four previously-manual scripts as subprocesses, with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON`; B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the four scripts below have it hardcoded in their file-matching logic).
+B2 orchestrates four previously-manual scripts as subprocesses, with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` = reserve margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial Transmission Constraints; the `VEGCON` suffix is historical, from *vegetative constraints*); B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the four scripts below have it hardcoded in their file-matching logic).
 
 | Stage | What runs | Script (unmodified logic) | Output |
 |---|---|---|---|
@@ -398,11 +400,11 @@ Solve universe: `solve_universe()` resolves `solve_scenarios` from the YAML (def
 
 #### Scenario codes (shipped `Config_MOMF_T1_AB.yaml`, 2026-09-17)
 
-Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by the transmission chain. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low, `WF` = water-fill weights for new lines (NLI). Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
+Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by the transmission chain. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low, `WF` = water-fill weights for new unplanned lines (NLI). Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
 
 | Derived code | Base (A2 sets reused) | Produced by | Notes |
 |---|---|---|---|
-| BAC | BAU | stage C (`veg_tx_constraints.py`, new-line mode `ramp`) | reporting base of the OPT family |
+| BAC | BAU | stage C (`veg_tx_constraints.py`, new-unplanned-line mode `ramp`) | reporting base of the OPT family |
 | OPC | OPT | stage C (`ramp`) | PLAN |
 | INVWF | INV | stage C (water-fill) | parent of ISRWF; not solved |
 | VGBWF | VGB | stage C (water-fill) | parent of VSRWF; not solved |

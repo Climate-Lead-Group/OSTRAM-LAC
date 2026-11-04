@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-04 13:36-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -57,7 +57,7 @@ msgstr "Componente"
 msgid "Length"
 msgstr "Longitud"
 
-#: ../../data-reference.md
+#: ../../data-reference.md ../../data-reference.md:88
 msgid "Description"
 msgstr "Descripción"
 
@@ -192,8 +192,14 @@ msgid "`RNW`"
 msgstr "`RNW`"
 
 #: ../../data-reference.md
-msgid "Renewable energy supply"
-msgstr "Suministro de energía renovable"
+msgid ""
+"Renewable resource supply (e.g. `RNWSPVCHLXX` makes the solar resource "
+"`SPVCHLXX` available to `PWRSPVCHLXX`); also the prefix of renewable "
+"transmission (`RNWTRN`, `RNWRPO`, `RNWNLI`)"
+msgstr ""
+"Suministro de recurso renovable (p. ej. `RNWSPVCHLXX` pone el recurso "
+"solar `SPVCHLXX` a disposición de `PWRSPVCHLXX`); también es el prefijo "
+"de la transmisión renovable (`RNWTRN`, `RNWRPO`, `RNWNLI`)"
 
 #: ../../data-reference.md
 msgid "`ELC`"
@@ -274,64 +280,140 @@ msgid "`ELCARGXX03`"
 msgstr "`ELCARGXX03`"
 
 #: ../../data-reference.md
-msgid "Dispatch-ready electricity for interconnection, Argentina"
-msgstr "Electricidad lista para despacho de interconexión, Argentina"
+msgid ""
+"Demand node (final electricity demand) and export point to "
+"interconnections, Argentina"
+msgstr ""
+"Nodo de demanda (demanda final de electricidad) y punto de exportación "
+"hacia las interconexiones, Argentina"
 
-#: ../../data-reference.md:62
+#: ../../data-reference.md
+msgid "`ELCARGXX04`"
+msgstr "`ELCARGXX04`"
+
+#: ../../data-reference.md
+msgid "Electricity imported through interconnections, Argentina"
+msgstr "Electricidad importada por las interconexiones, Argentina"
+
+#: ../../data-reference.md:63
 msgid "Emission Codes"
 msgstr "Códigos de emisión"
 
-#: ../../data-reference.md:68
+#: ../../data-reference.md:69
 msgid "Example: `CO2ARG` = CO2 emissions for Argentina."
 msgstr "Ejemplo: `CO2ARG` = emisiones de CO2 para Argentina."
 
-#: ../../data-reference.md:70
+#: ../../data-reference.md:71
 msgid "Storage Codes"
 msgstr "Códigos de almacenamiento"
 
-#: ../../data-reference.md:72
-msgid "Storage is modelled as power technologies with the `PWR` prefix:"
+#: ../../data-reference.md:73
+msgid ""
+"Each storage type is modelled as a power technology with the `PWR` prefix"
+" (the charge/discharge side) linked to a storage facility of the same "
+"family (the energy side):"
 msgstr ""
-"El almacenamiento se modela como tecnologías de generación con el prefijo"
-" `PWR`:"
+"Cada tipo de almacenamiento se modela como una tecnología de generación "
+"con prefijo `PWR` (el lado de carga/descarga) vinculada a una instalación"
+" de almacenamiento de la misma familia (el lado de energía):"
 
 #: ../../data-reference.md
-msgid "`PWRSDSARGXX01`"
-msgstr "`PWRSDSARGXX01`"
+msgid "Technology"
+msgstr "Tecnología"
+
+#: ../../data-reference.md
+msgid "Storage facility"
+msgstr "Instalación de almacenamiento"
+
+#: ../../data-reference.md
+msgid "`PWRSDSARGXX`"
+msgstr "`PWRSDSARGXX`"
+
+#: ../../data-reference.md
+msgid "`SDSARGXX01`"
+msgstr "`SDSARGXX01`"
 
 #: ../../data-reference.md
 msgid "Short Duration Storage (batteries), Argentina"
 msgstr "Almacenamiento de Corta Duración (baterías), Argentina"
 
 #: ../../data-reference.md
-msgid "`PWRLDSARGXX01`"
-msgstr "`PWRLDSARGXX01`"
+msgid "`PWRLDSARGXX`"
+msgstr "`PWRLDSARGXX`"
+
+#: ../../data-reference.md
+msgid "`LDSARGXX01`"
+msgstr "`LDSARGXX01`"
 
 #: ../../data-reference.md
 msgid "Long Duration Storage (pumped hydro), Argentina"
 msgstr "Almacenamiento de Larga Duración (hidroeléctrica de bombeo), Argentina"
 
-#: ../../data-reference.md:83
+#: ../../data-reference.md
+msgid "`PWRBDSCHLXX`"
+msgstr "`PWRBDSCHLXX`"
+
+#: ../../data-reference.md
+msgid "`BDSCHLXX01`"
+msgstr "`BDSCHLXX01`"
+
+#: ../../data-reference.md
+msgid "Backstop Duration Storage (BDS), Chile"
+msgstr "Backstop Duration Storage (BDS), Chile"
+
+#: ../../data-reference.md:86
+msgid ""
+"SDS and LDS exist for the 19 modelled countries and sit on the renewable "
+"electricity node `ELC*00`."
+msgstr ""
+"SDS y LDS existen para los 19 países modelados y están en el nodo de "
+"electricidad renovable `ELC*00`."
+
+#: ../../data-reference.md:89
+msgid ""
+"**BDS (Backstop Duration Storage) is the storage counterpart of the "
+"backstop.** It is a clone of SDS (same costs and technical parameters, no"
+" existing stock) connected to `ELC*02`, the post-transmission node that "
+"feeds demand, where the `PWRBCK` backstop also injects. Because it sits "
+"on the demand side of the transmission links, it can cover a shortfall "
+"that would otherwise be met with backstop generation (energy not served) "
+"without needing transmission capacity. It currently exists only for Chile"
+" and Peru, and is added after A3 with "
+"[`add_bds_storage.py`](../scripts/tools/data_patches/add_bds_storage.py) "
+"(see `scripts/tools/data_patches/README.md`)."
+msgstr ""
+"**BDS (Backstop Duration Storage) es el equivalente del backstop en "
+"almacenamiento.** Es un clon de SDS (mismos costos y parámetros técnicos,"
+" sin stock existente) conectado a `ELC*02`, el nodo posterior a la "
+"transmisión que alimenta la demanda, donde también inyecta el backstop "
+"`PWRBCK`. Como está del lado de la demanda de los enlaces de transmisión,"
+" puede cubrir un déficit que de otro modo se cubriría con generación de "
+"backstop (energía no suministrada) sin necesitar capacidad de "
+"transmisión. Por ahora existe solo para Chile y Perú, y se agrega después"
+" de A3 con "
+"[`add_bds_storage.py`](../scripts/tools/data_patches/add_bds_storage.py) "
+"(ver `scripts/tools/data_patches/README.md`)."
+
+#: ../../data-reference.md:92
 #, python-brace-format
 msgid ""
-"Both families exist for the 19 modelled countries. The Stage B2 storage-"
-"delay modifier (see {doc}`solver-patchers`) blocks their builds for the "
-"first N years using the prefixes in `storage_delay_storage_prefixes`."
+"The Stage B2 storage-delay modifier (see {doc}`solver-patchers`) blocks "
+"their builds for the first N years using the prefixes in "
+"`storage_delay_storage_prefixes`."
 msgstr ""
-"Ambas familias existen para los 19 países modelados. El modificador de "
-"retraso de almacenamiento de la Etapa B2 (ver {doc}`solver-patchers`) "
-"bloquea su construcción durante los primeros N años usando los prefijos "
-"en `storage_delay_storage_prefixes`."
+"El modificador de retraso de almacenamiento de la Etapa B2 (ver {doc"
+"}`solver-patchers`) bloquea su construcción durante los primeros N años "
+"usando los prefijos en `storage_delay_storage_prefixes`."
 
-#: ../../data-reference.md:87
+#: ../../data-reference.md:96
 msgid "CSV File Structure"
 msgstr "Estructura de archivos CSV"
 
-#: ../../data-reference.md:89
+#: ../../data-reference.md:98
 msgid "SET Files"
 msgstr "Archivos SET"
 
-#: ../../data-reference.md:91
+#: ../../data-reference.md:100
 msgid ""
 "SET files define the elements of each OSeMOSYS set. They have a single "
 "column:"
@@ -339,111 +421,111 @@ msgstr ""
 "Los archivos SET definen los elementos de cada conjunto de OSeMOSYS. "
 "Tienen una sola columna:"
 
-#: ../../data-reference.md:100
+#: ../../data-reference.md:109
 msgid "SET files in `OG_csvs_inputs/`:"
 msgstr "Archivos SET en `OG_csvs_inputs/`:"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "File"
 msgstr "Archivo"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Content"
 msgstr "Contenido"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`TECHNOLOGY.csv`"
 msgstr "`TECHNOLOGY.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "All technology codes"
 msgstr "Todos los códigos de tecnología"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`FUEL.csv`"
 msgstr "`FUEL.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "All fuel codes"
 msgstr "Todos los códigos de energético"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`EMISSION.csv`"
 msgstr "`EMISSION.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "All emission codes"
 msgstr "Todos los códigos de emisión"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`STORAGE.csv`"
 msgstr "`STORAGE.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "All storage codes"
 msgstr "Todos los códigos de almacenamiento"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`REGION.csv`"
 msgstr "`REGION.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Region codes (typically just `GLOBAL`)"
 msgstr "Códigos de región (típicamente solo `GLOBAL`)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`YEAR.csv`"
 msgstr "`YEAR.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Model years (2023--2050)"
 msgstr "Años del modelo (2023--2050)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`TIMESLICE.csv`"
 msgstr "`TIMESLICE.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Timeslice codes (S1D1, S1D2, ..., S4D3)"
 msgstr "Códigos de timeslice (S1D1, S1D2, ..., S4D3)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`SEASON.csv`"
 msgstr "`SEASON.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Season codes (1, 2, 3, 4)"
 msgstr "Códigos de estación (1, 2, 3, 4)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`DAYTYPE.csv`"
 msgstr "`DAYTYPE.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Day type codes (1)"
 msgstr "Códigos de tipo de día (1)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`DAILYTIMEBRACKET.csv`"
 msgstr "`DAILYTIMEBRACKET.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Daily time bracket codes (1, 2, 3)"
 msgstr "Códigos de franja horaria diaria (1, 2, 3)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`MODE_OF_OPERATION.csv`"
 msgstr "`MODE_OF_OPERATION.csv`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Mode codes (1, 2)"
 msgstr "Códigos de modo (1, 2)"
 
-#: ../../data-reference.md:116
+#: ../../data-reference.md:125
 msgid "Parameter Files"
 msgstr "Archivos de parámetros"
 
-#: ../../data-reference.md:118
+#: ../../data-reference.md:127
 msgid ""
 "Parameter files contain data values indexed by OSeMOSYS dimensions. The "
 "column structure varies by parameter:"
@@ -452,11 +534,11 @@ msgstr ""
 "dimensiones de OSeMOSYS. La estructura de columnas varía según el "
 "parámetro:"
 
-#: ../../data-reference.md:120
+#: ../../data-reference.md:129
 msgid "**4-column format** (Region, Technology, Year, Value):"
 msgstr "**Formato de 4 columnas** (Region, Technology, Year, Value):"
 
-#: ../../data-reference.md:128
+#: ../../data-reference.md:137
 msgid ""
 "Used by: `CapitalCost`, `FixedCost`, `VariableCost`, `ResidualCapacity`, "
 "`TotalAnnualMaxCapacity`, `TotalAnnualMaxCapacityInvestment`, "
@@ -466,11 +548,11 @@ msgstr ""
 "`ResidualCapacity`, `TotalAnnualMaxCapacity`, "
 "`TotalAnnualMaxCapacityInvestment`, `AvailabilityFactor`, y otros."
 
-#: ../../data-reference.md:130
+#: ../../data-reference.md:139
 msgid "**6-column format** (Region, Technology, Fuel, Mode, Year, Value):"
 msgstr "**Formato de 6 columnas** (Region, Technology, Fuel, Mode, Year, Value):"
 
-#: ../../data-reference.md:137
+#: ../../data-reference.md:146
 msgid ""
 "Used by: `InputActivityRatio`, `OutputActivityRatio`, "
 "`EmissionActivityRatio`."
@@ -478,171 +560,171 @@ msgstr ""
 "Usado por: `InputActivityRatio`, `OutputActivityRatio`, "
 "`EmissionActivityRatio`."
 
-#: ../../data-reference.md:139
+#: ../../data-reference.md:148
 msgid "**Other formats:**"
 msgstr "**Otros formatos:**"
 
-#: ../../data-reference.md:141
+#: ../../data-reference.md:150
 msgid "`CapacityFactor`: REGION, TECHNOLOGY, TIMESLICE, YEAR, VALUE"
 msgstr "`CapacityFactor`: REGION, TECHNOLOGY, TIMESLICE, YEAR, VALUE"
 
-#: ../../data-reference.md:142
+#: ../../data-reference.md:151
 msgid "`SpecifiedDemandProfile`: REGION, FUEL, TIMESLICE, YEAR, VALUE"
 msgstr "`SpecifiedDemandProfile`: REGION, FUEL, TIMESLICE, YEAR, VALUE"
 
-#: ../../data-reference.md:143
+#: ../../data-reference.md:152
 msgid "`TradeRoute`: REGION, FUEL, REGION, YEAR, VALUE"
 msgstr "`TradeRoute`: REGION, FUEL, REGION, YEAR, VALUE"
 
-#: ../../data-reference.md:147
+#: ../../data-reference.md:156
 msgid "Temporal Structure"
 msgstr "Estructura temporal"
 
-#: ../../data-reference.md:149
+#: ../../data-reference.md:158
 msgid "OSTRAM LAC uses a hierarchical temporal structure:"
 msgstr "OSTRAM LAC usa una estructura temporal jerárquica:"
 
-#: ../../data-reference.md:158
+#: ../../data-reference.md:167
 msgid "This produces **12 timeslices** (4 seasons x 3 brackets):"
 msgstr "Esto produce **12 timeslices** (4 estaciones x 3 franjas):"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Timeslice"
 msgstr "Timeslice"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Season"
 msgstr "Estación"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Bracket"
 msgstr "Franja"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "S1D1"
 msgstr "S1D1"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "1"
 msgstr "1"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Season 1, Bracket 1"
 msgstr "Estación 1, Franja 1"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "S1D2"
 msgstr "S1D2"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "2"
 msgstr "2"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Season 1, Bracket 2"
 msgstr "Estación 1, Franja 2"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "S1D3"
 msgstr "S1D3"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "3"
 msgstr "3"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Season 1, Bracket 3"
 msgstr "Estación 1, Franja 3"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "S2D1"
 msgstr "S2D1"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Season 2, Bracket 1"
 msgstr "Estación 2, Franja 1"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "..."
 msgstr "..."
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "S4D3"
 msgstr "S4D3"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "4"
 msgstr "4"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Season 4, Bracket 3"
 msgstr "Estación 4, Franja 3"
 
-#: ../../data-reference.md:169
+#: ../../data-reference.md:178
 msgid "Conversion Matrices"
 msgstr "Matrices de conversión"
 
-#: ../../data-reference.md:171
+#: ../../data-reference.md:180
 msgid "Three matrices map timeslices to temporal dimensions:"
 msgstr "Tres matrices mapean los timeslices a las dimensiones temporales:"
 
-#: ../../data-reference.md:173
+#: ../../data-reference.md:182
 msgid "**Conversionls** (12x4): Maps timeslices to seasons (identity-like)."
 msgstr ""
 "**Conversionls** (12x4): Mapea los timeslices a las estaciones (tipo "
 "identidad)."
 
-#: ../../data-reference.md:174
+#: ../../data-reference.md:183
 msgid "**Conversionld** (12x1): Maps timeslices to day types (all 1)."
 msgstr ""
 "**Conversionld** (12x1): Mapea los timeslices a los tipos de día (todos "
 "1)."
 
-#: ../../data-reference.md:175
+#: ../../data-reference.md:184
 msgid "**Conversionlh** (12x3): Maps timeslices to daily time brackets."
 msgstr ""
 "**Conversionlh** (12x3): Mapea los timeslices a las franjas horarias "
 "diarias."
 
-#: ../../data-reference.md:179
+#: ../../data-reference.md:188
 msgid "Excel Model Files"
 msgstr "Archivos Excel del modelo"
 
-#: ../../data-reference.md:181
+#: ../../data-reference.md:190
 msgid "A-O_Parametrization.xlsx"
 msgstr "A-O_Parametrization.xlsx"
 
-#: ../../data-reference.md:183
+#: ../../data-reference.md:192
 msgid "The main parameter file per scenario. Contains multiple sheets:"
 msgstr "El archivo principal de parámetros por escenario. Contiene varias hojas:"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Sheet"
 msgstr "Hoja"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Fixed Horizon Parameters"
 msgstr "Fixed Horizon Parameters"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Non-yearly parameters: `CapacityToActivityUnit`, `OperationalLife`, …"
 msgstr "Parámetros no anuales: `CapacityToActivityUnit`, `OperationalLife`, …"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Primary Techs"
 msgstr "Primary Techs"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Yearly parameters of primary-supply technologies (`MIN*`, imports)"
 msgstr ""
 "Parámetros anuales de las tecnologías de suministro primario (`MIN*`, "
 "importaciones)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Secondary Techs"
 msgstr "Secondary Techs"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid ""
 "Yearly cost, capacity and activity-limit parameters of power technologies"
 " (`PWR*`), including `TotalAnnualMaxCapacityInvestment` and "
@@ -655,59 +737,59 @@ msgstr ""
 "`TotalTechnologyAnnualActivityLowerLimit`; la columna G `Projection.Mode`"
 " decide qué filas se usan"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Capacities"
 msgstr "Capacities"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`ResidualCapacity`, `TotalAnnualMaxCapacity`, …"
 msgstr "`ResidualCapacity`, `TotalAnnualMaxCapacity`, …"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Yearsplit"
 msgstr "Yearsplit"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`YearSplit` per timeslice"
 msgstr "`YearSplit` por timeslice"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "DaySplit"
 msgstr "DaySplit"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`DaySplit` per timeslice"
 msgstr "`DaySplit` por timeslice"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "VariableCost"
 msgstr "VariableCost"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`VariableCost` per technology and mode"
 msgstr "`VariableCost` por tecnología y modo"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Other_Techs"
 msgstr "Other_Techs"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Auxiliary technologies outside the PWR/Demand families"
 msgstr "Tecnologías auxiliares fuera de las familias PWR/Demand"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Demand Techs"
 msgstr "Demand Techs"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Parameters for demand and transmission technologies (`DSP*`, `TRN*`)"
 msgstr "Parámetros para las tecnologías de demanda y transmisión (`DSP*`, `TRN*`)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Vehicle Techs, Vehicle Groups, Transport Fuel Distribution"
 msgstr "Vehicle Techs, Vehicle Groups, Transport Fuel Distribution"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid ""
 "Transport-sector blocks kept from the OSeMOSYS-CLG template (not used by "
 "the electricity model)"
@@ -715,11 +797,11 @@ msgstr ""
 "Bloques del sector transporte conservados de la plantilla OSeMOSYS-CLG "
 "(no usados por el modelo eléctrico)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Fuentes"
 msgstr "Fuentes"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid ""
 "Documentation sheet: data source, origin file/sheet and transformation "
 "per data block (added 2026-09-14 by "
@@ -731,31 +813,31 @@ msgstr ""
 "`scripts/tools/data_patches/add_fuentes_sheet.py`). Sin columnas de año; "
 "`B1_Compiler.py` y `sync_historical_from_bau.py` la omiten"
 
-#: ../../data-reference.md:199
+#: ../../data-reference.md:208
 msgid "A-O_Demand.xlsx"
 msgstr "A-O_Demand.xlsx"
 
-#: ../../data-reference.md:201
+#: ../../data-reference.md:210
 msgid "Demand data per scenario:"
 msgstr "Datos de demanda por escenario:"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Demand_Projection"
 msgstr "Demand_Projection"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`SpecifiedAnnualDemand` values"
 msgstr "Valores de `SpecifiedAnnualDemand`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Profiles"
 msgstr "Profiles"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`SpecifiedDemandProfile` timeslice distribution"
 msgstr "Distribución por timeslice de `SpecifiedDemandProfile`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid ""
 "Documentation sheet (data provenance), same convention as in "
 "`A-O_Parametrization.xlsx`"
@@ -763,7 +845,7 @@ msgstr ""
 "Hoja de documentación (procedencia de datos), misma convención que en "
 "`A-O_Parametrization.xlsx`"
 
-#: ../../data-reference.md:209
+#: ../../data-reference.md:218
 #, python-brace-format
 msgid ""
 "See {doc}`sources` for a summary of the external datasets and national "
@@ -772,43 +854,43 @@ msgstr ""
 "Ver {doc}`sources` para un resumen de los conjuntos de datos externos y "
 "los documentos de planificación nacional que citan estas hojas `Fuentes`."
 
-#: ../../data-reference.md:211
+#: ../../data-reference.md:220
 msgid "A-O_AR_Model_Base_Year.xlsx"
 msgstr "A-O_AR_Model_Base_Year.xlsx"
 
-#: ../../data-reference.md:213
+#: ../../data-reference.md:222
 msgid "Base year activity ratios:"
 msgstr "Ratios de actividad del año base:"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Primary"
 msgstr "Primary"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "InputActivityRatio / OutputActivityRatio for primary supply"
 msgstr "InputActivityRatio / OutputActivityRatio para el suministro primario"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Secondary"
 msgstr "Secondary"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Activity ratios for power generation"
 msgstr "Ratios de actividad para la generación de energía"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Demands"
 msgstr "Demands"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Activity ratios for demand technologies"
 msgstr "Ratios de actividad para las tecnologías de demanda"
 
-#: ../../data-reference.md:221
+#: ../../data-reference.md:230
 msgid "A-O_AR_Projections.xlsx"
 msgstr "A-O_AR_Projections.xlsx"
 
-#: ../../data-reference.md:223
+#: ../../data-reference.md:232
 msgid ""
 "Projection activity ratios (same structure as base year, with projection "
 "modes)."
@@ -816,311 +898,311 @@ msgstr ""
 "Ratios de actividad de proyección (misma estructura que el año base, con "
 "modos de proyección)."
 
-#: ../../data-reference.md:227
+#: ../../data-reference.md:236
 msgid "OSeMOSYS Parameters Reference"
 msgstr "Referencia de parámetros de OSeMOSYS"
 
-#: ../../data-reference.md:229
+#: ../../data-reference.md:238
 msgid "Cost Parameters"
 msgstr "Parámetros de costo"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Parameter"
 msgstr "Parámetro"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Unit"
 msgstr "Unidad"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`CapitalCost`"
 msgstr "`CapitalCost`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "M$/GW"
 msgstr "M$/GW"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Overnight capital cost"
 msgstr "Costo de capital instantáneo (overnight)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`FixedCost`"
 msgstr "`FixedCost`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "M$/GW/yr"
 msgstr "M$/GW/yr"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Annual fixed operation and maintenance cost"
 msgstr "Costo fijo anual de operación y mantenimiento"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`VariableCost`"
 msgstr "`VariableCost`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "M$/PJ"
 msgstr "M$/PJ"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Variable operation and maintenance cost"
 msgstr "Costo variable de operación y mantenimiento"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`CapitalCostStorage`"
 msgstr "`CapitalCostStorage`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Storage capital cost"
 msgstr "Costo de capital de almacenamiento"
 
-#: ../../data-reference.md:238
+#: ../../data-reference.md:247
 msgid "Capacity Parameters"
 msgstr "Parámetros de capacidad"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`ResidualCapacity`"
 msgstr "`ResidualCapacity`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "GW"
 msgstr "GW"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Existing installed capacity"
 msgstr "Capacidad instalada existente"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`TotalAnnualMaxCapacity`"
 msgstr "`TotalAnnualMaxCapacity`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Maximum total capacity allowed"
 msgstr "Capacidad total máxima permitida"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`TotalAnnualMaxCapacityInvestment`"
 msgstr "`TotalAnnualMaxCapacityInvestment`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Maximum new capacity per year"
 msgstr "Capacidad nueva máxima por año"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`TotalAnnualMinCapacity`"
 msgstr "`TotalAnnualMinCapacity`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Minimum required capacity"
 msgstr "Capacidad mínima requerida"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`TotalAnnualMinCapacityInvestment`"
 msgstr "`TotalAnnualMinCapacityInvestment`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Minimum new capacity per year"
 msgstr "Capacidad nueva mínima por año"
 
-#: ../../data-reference.md:248
+#: ../../data-reference.md:257
 msgid "Performance Parameters"
 msgstr "Parámetros de desempeño"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`AvailabilityFactor`"
 msgstr "`AvailabilityFactor`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "fraction"
 msgstr "fracción"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Maximum available fraction of capacity"
 msgstr "Fracción máxima disponible de capacidad"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`CapacityFactor`"
 msgstr "`CapacityFactor`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Capacity factor by timeslice"
 msgstr "Factor de capacidad por timeslice"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`CapacityToActivityUnit`"
 msgstr "`CapacityToActivityUnit`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "PJ/GW/yr"
 msgstr "PJ/GW/yr"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Conversion factor (typically 31.536)"
 msgstr "Factor de conversión (típicamente 31.536)"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`OperationalLife`"
 msgstr "`OperationalLife`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "years"
 msgstr "años"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Technology lifetime"
 msgstr "Vida útil de la tecnología"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`InputActivityRatio`"
 msgstr "`InputActivityRatio`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "-"
 msgstr "-"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Fuel input per unit activity"
 msgstr "Energético de entrada por unidad de actividad"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`OutputActivityRatio`"
 msgstr "`OutputActivityRatio`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Fuel output per unit activity"
 msgstr "Energético de salida por unidad de actividad"
 
-#: ../../data-reference.md:259
+#: ../../data-reference.md:268
 msgid "Demand Parameters"
 msgstr "Parámetros de demanda"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`SpecifiedAnnualDemand`"
 msgstr "`SpecifiedAnnualDemand`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "PJ"
 msgstr "PJ"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Annual energy demand"
 msgstr "Demanda energética anual"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`SpecifiedDemandProfile`"
 msgstr "`SpecifiedDemandProfile`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Timeslice distribution (must sum to 1.0)"
 msgstr "Distribución por timeslice (debe sumar 1.0)"
 
-#: ../../data-reference.md:266
+#: ../../data-reference.md:275
 msgid "Emission Parameters"
 msgstr "Parámetros de emisión"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`EmissionActivityRatio`"
 msgstr "`EmissionActivityRatio`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Mt/PJ"
 msgstr "Mt/PJ"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Emissions per unit activity"
 msgstr "Emisiones por unidad de actividad"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`AnnualEmissionLimit`"
 msgstr "`AnnualEmissionLimit`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Mt"
 msgstr "Mt"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Maximum annual emissions"
 msgstr "Emisiones anuales máximas"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`ModelPeriodEmissionLimit`"
 msgstr "`ModelPeriodEmissionLimit`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Maximum total emissions"
 msgstr "Emisiones totales máximas"
 
-#: ../../data-reference.md:274
+#: ../../data-reference.md:283
 msgid "Activity Limits"
 msgstr "Límites de actividad"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`TotalTechnologyAnnualActivityLowerLimit`"
 msgstr "`TotalTechnologyAnnualActivityLowerLimit`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Minimum annual generation"
 msgstr "Generación anual mínima"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`TotalTechnologyAnnualActivityUpperLimit`"
 msgstr "`TotalTechnologyAnnualActivityUpperLimit`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Maximum annual generation"
 msgstr "Generación anual máxima"
 
-#: ../../data-reference.md:281
+#: ../../data-reference.md:290
 msgid "Storage Parameters"
 msgstr "Parámetros de almacenamiento"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`StorageLevelStart`"
 msgstr "`StorageLevelStart`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Initial storage level"
 msgstr "Nivel inicial de almacenamiento"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`StorageMaxChargeRate`"
 msgstr "`StorageMaxChargeRate`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Maximum charging rate"
 msgstr "Tasa máxima de carga"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`StorageMaxDischargeRate`"
 msgstr "`StorageMaxDischargeRate`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Maximum discharging rate"
 msgstr "Tasa máxima de descarga"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`OperationalLifeStorage`"
 msgstr "`OperationalLifeStorage`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Storage technology lifetime"
 msgstr "Vida útil de la tecnología de almacenamiento"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "`ResidualStorageCapacity`"
 msgstr "`ResidualStorageCapacity`"
 
-#: ../../data-reference.md
+#: ../../data-reference.md:88
 msgid "Existing storage capacity"
 msgstr "Capacidad de almacenamiento existente"
 
-#: ../../data-reference.md:293
+#: ../../data-reference.md:302
 msgid "Model Architecture"
 msgstr "Arquitectura del modelo"
 
-#: ../../data-reference.md:295
+#: ../../data-reference.md:304
 msgid ""
 "OSTRAM LAC uses a single-region (`GLOBAL`) architecture where geographic "
 "granularity is embedded in the technology and fuel naming conventions. "
@@ -1133,65 +1215,161 @@ msgstr ""
 "operan de forma independiente, conectadas solo a través de tecnologías de"
 " transmisión (TRN) explícitas."
 
-#: ../../data-reference.md:307
+#: ../../data-reference.md:327
+#, python-brace-format
+msgid ""
+"`RNW` is **not** a separate node on the network: it plays, for "
+"renewables, the role that `MIN` plays for fossil fuels. Each "
+"`RNW{SOURCE}{COUNTRY}XX` technology (e.g. `RNWSPVCHLXX`) supplies the "
+"renewable resource (`SPVCHLXX`) that the matching renewable power plant "
+"(`PWRSPVCHLXX`) converts into electricity. Renewable resources are local:"
+" they cannot be traded between countries, unlike the commodities of "
+"`MIN`. The same prefix is reused by the renewable transmission "
+"technologies (`RNWTRN`, `RNWRPO`, `RNWNLI`), which carry renewable "
+"electricity from `ELC*00` to `ELC*02`."
+msgstr ""
+"`RNW` **no** es un nodo aparte de la red: cumple, para las renovables, el"
+" papel que `MIN` cumple para los combustibles fósiles. Cada tecnología "
+"`RNW{SOURCE}{COUNTRY}XX` (p. ej. `RNWSPVCHLXX`) suministra el recurso "
+"renovable (`SPVCHLXX`) que la central renovable correspondiente "
+"(`PWRSPVCHLXX`) convierte en electricidad. Los recursos renovables son "
+"locales: no se comercian entre países, a diferencia de los energéticos de"
+" `MIN`. El mismo prefijo lo usan las tecnologías de transmisión renovable"
+" (`RNWTRN`, `RNWRPO`, `RNWNLI`), que llevan la electricidad renovable de "
+"`ELC*00` a `ELC*02`."
+
+#: ../../data-reference.md:329
 msgid "Energy Flow"
 msgstr "Flujo de energía"
 
-#: ../../data-reference.md:309
+#: ../../data-reference.md:331
 msgid ""
-"**Mining technologies** extract primary commodities (coal, gas, oil, "
-"etc.)."
+"**Supply technologies** provide primary energy: `MIN` for fossil "
+"commodities (coal, gas, oil, etc.) and `RNW` for local renewable "
+"resources (solar, wind, hydro, biomass, etc.)."
 msgstr ""
-"Las **tecnologías de minería** extraen materias primas (carbón, gas, "
-"petróleo, etc.)."
+"Las **tecnologías de suministro** aportan la energía primaria: `MIN` para"
+" los energéticos fósiles (carbón, gas, petróleo, etc.) y `RNW` para los "
+"recursos renovables locales (solar, eólica, hidro, biomasa, etc.)."
 
-#: ../../data-reference.md:310
+#: ../../data-reference.md:332
 msgid ""
-"**Power technologies** convert fuels into electricity (`ELC*00` "
-"renewable, `ELC*01` non-renewable)."
+"**Power technologies** convert them into electricity: renewable plants "
+"deliver to `ELC*00`, non-renewable plants to `ELC*01`."
 msgstr ""
-"Las **tecnologías de generación** convierten energéticos en electricidad "
-"(`ELC*00` renovable, `ELC*01` no renovable)."
+"Las **tecnologías de generación** los convierten en electricidad: las "
+"centrales renovables entregan a `ELC*00` y las no renovables a `ELC*01`."
 
-#: ../../data-reference.md:311
-msgid "**Renewable technologies** supply renewable electricity."
-msgstr "Las **tecnologías renovables** suministran electricidad renovable."
-
-#: ../../data-reference.md:312
+#: ../../data-reference.md:333
 msgid ""
-"**Transmission technologies** route electricity within the country grid "
-"(`ELC*02` transmission output)."
+"**Transmission technologies** carry electricity within the country to "
+"`ELC*02`: `RNWTRN`/`RNWRPO`/`RNWNLI` from `ELC*00`, "
+"`PWRTRN`/`TRNRPO`/`TRNNLI` from `ELC*01` (existing lines, repowering, new"
+" unplanned lines)."
 msgstr ""
-"Las **tecnologías de transmisión** enrutan la electricidad dentro de la "
-"red del país (`ELC*02` salida de transmisión)."
+"Las **tecnologías de transmisión** llevan la electricidad dentro del país"
+" hasta `ELC*02`: `RNWTRN`/`RNWRPO`/`RNWNLI` desde `ELC*00` y "
+"`PWRTRN`/`TRNRPO`/`TRNNLI` desde `ELC*01` (líneas existentes, "
+"repotenciación y líneas nuevas no planificadas)."
 
-#: ../../data-reference.md:313
+#: ../../data-reference.md:334
 msgid ""
-"**Dispatch technologies** (DSPTRN) route electricity to/from cross-border"
-" interconnections (`ELC*02` → `ELC*03` for export, `ELC*03` → `ELC*01` "
-"for import)."
+"**Dispatch technologies** (DSPTRN) deliver to the demand node `ELC*03`: "
+"mode 1 from domestic transmission (`ELC*02`), mode 2 from imports "
+"(`ELC*04`)."
 msgstr ""
-"Las **tecnologías de despacho** (DSPTRN) enrutan la electricidad "
-"hacia/desde las interconexiones transfronterizas (`ELC*02` → `ELC*03` "
-"para exportación, `ELC*03` → `ELC*01` para importación)."
+"Las **tecnologías de despacho** (DSPTRN) entregan al nodo de demanda "
+"`ELC*03`: el modo 1 desde la transmisión nacional (`ELC*02`) y el modo 2 "
+"desde las importaciones (`ELC*04`)."
 
-#: ../../data-reference.md:314
+#: ../../data-reference.md:335
 msgid ""
-"**Interconnection technologies** (TRN) transport electricity between "
-"countries via `ELC*03`."
+"**Interconnection technologies** (TRN) take electricity from a country's "
+"`ELC*03` and deliver it to the neighbour's `ELC*04` (export), or the "
+"other way round."
 msgstr ""
-"Las **tecnologías de interconexión** (TRN) transportan electricidad entre"
-" países mediante `ELC*03`."
+"Las **tecnologías de interconexión** (TRN) toman electricidad del "
+"`ELC*03` de un país y la entregan al `ELC*04` del vecino (exportación), o"
+" en sentido inverso."
 
-#: ../../data-reference.md:315
-msgid "**Electricity distribution** delivers power to meet demand from `ELC*02`."
-msgstr ""
-"La **distribución de electricidad** entrega energía para satisfacer la "
-"demanda a partir de `ELC*02`."
+#: ../../data-reference.md:336
+msgid "**Final demand** (`SpecifiedAnnualDemand`) is defined on `ELC*03`."
+msgstr "La **demanda final** (`SpecifiedAnnualDemand`) se define en `ELC*03`."
 
-#: ../../data-reference.md:316
-msgid "**Storage technologies** balance supply and demand across timeslices."
+#: ../../data-reference.md:337
+msgid ""
+"**Storage technologies** balance supply and demand across timeslices: SDS"
+" and LDS on `ELC*00`, BDS on `ELC*02`."
 msgstr ""
 "Las **tecnologías de almacenamiento** equilibran la oferta y la demanda "
-"entre timeslices."
+"entre timeslices: SDS y LDS en `ELC*00`, BDS en `ELC*02`."
+
+#: ../../data-reference.md:338
+msgid ""
+"**Backstop** (`PWRBCK`) injects directly into `ELC*02` at a high cost; "
+"its output is reported as energy not served."
+msgstr ""
+"El **backstop** (`PWRBCK`) inyecta directamente en `ELC*02` a un costo "
+"alto; su producción se reporta como energía no suministrada."
+
+#~ msgid "Renewable energy supply"
+#~ msgstr "Suministro de energía renovable"
+
+#~ msgid "Storage is modelled as power technologies with the `PWR` prefix:"
+#~ msgstr ""
+#~ "El almacenamiento se modela como "
+#~ "tecnologías de generación con el prefijo"
+#~ " `PWR`:"
+
+#~ msgid ""
+#~ "**Mining technologies** extract primary "
+#~ "commodities (coal, gas, oil, etc.)."
+#~ msgstr ""
+#~ "Las **tecnologías de minería** extraen "
+#~ "materias primas (carbón, gas, petróleo, "
+#~ "etc.)."
+
+#~ msgid "**Renewable technologies** supply renewable electricity."
+#~ msgstr "Las **tecnologías renovables** suministran electricidad renovable."
+
+#~ msgid ""
+#~ "**Transmission technologies** route electricity "
+#~ "within the country grid (`ELC*02` "
+#~ "transmission output)."
+#~ msgstr ""
+#~ "Las **tecnologías de transmisión** enrutan "
+#~ "la electricidad dentro de la red "
+#~ "del país (`ELC*02` salida de "
+#~ "transmisión)."
+
+#~ msgid ""
+#~ "**Dispatch technologies** (DSPTRN) route "
+#~ "electricity to/from cross-border "
+#~ "interconnections (`ELC*02` → `ELC*03` for "
+#~ "export, `ELC*03` → `ELC*01` for import)."
+#~ msgstr ""
+#~ "Las **tecnologías de despacho** (DSPTRN) "
+#~ "enrutan la electricidad hacia/desde las "
+#~ "interconexiones transfronterizas (`ELC*02` → "
+#~ "`ELC*03` para exportación, `ELC*03` → "
+#~ "`ELC*01` para importación)."
+
+#~ msgid ""
+#~ "**Interconnection technologies** (TRN) transport "
+#~ "electricity between countries via `ELC*03`."
+#~ msgstr ""
+#~ "Las **tecnologías de interconexión** (TRN) "
+#~ "transportan electricidad entre países mediante"
+#~ " `ELC*03`."
+
+#~ msgid ""
+#~ "**Electricity distribution** delivers power to"
+#~ " meet demand from `ELC*02`."
+#~ msgstr ""
+#~ "La **distribución de electricidad** entrega"
+#~ " energía para satisfacer la demanda a"
+#~ " partir de `ELC*02`."
+
+#~ msgid "BDS: battery storage on the demand node, Chile"
+#~ msgstr "BDS: almacenamiento en baterías en el nodo de demanda, Chile"
 

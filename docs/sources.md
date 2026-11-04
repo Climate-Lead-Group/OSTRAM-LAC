@@ -16,7 +16,7 @@ source means editing the CSV and re-running that script, never the sheet itself.
 
 | Source | What it provides |
 |---|---|
-| OLACDE — annual generation-by-source statistics and energy balance matrix (regional energy information system, Latin America and the Caribbean) | Existing generation mix shares by country (calibrates minimum/maximum generation floors); base-year (2023–2024) electricity demand, from generation plus net imports/exports; historical bilateral interconnection flows |
+| Latin American and Caribbean Energy Organization (OLACDE) — annual generation-by-source statistics and energy balance matrix (regional energy information system, Latin America and the Caribbean) | Existing generation mix shares by country (calibrates minimum/maximum generation floors); base-year (2023–2024) electricity demand, from generation plus net imports/exports; historical bilateral interconnection flows |
 | National official electricity- and transmission-expansion planning documents (one set per country) | Minimum mandatory investment floors for generation and transmission, 2023–2039 (only committed/contracted/in-service projects); high-demand-growth scenarios, 2025–2050; for the Optimal (OPT) scenario, planned projects dated 2040–2050. See the country table below |
 | International Energy Agency (IEA) — World Energy Outlook 2020, via OSeMOSYS Global | Generation-technology capital and fixed costs (2019 USD/kW). OSeMOSYS Global maps each country to the closest World Energy Outlook region (South America → Brazil; Mexico, Central America and the Caribbean → United States) and interpolates between the outlook's 2019/2030/2040 values, holding them constant after 2040 |
 | International Energy Agency — World Energy Outlook 2025, Net Zero Emissions scenario | Haiti's 2025–2050 demand trajectory, in the absence of a national planning document (creates a step from OLACDE's 2024 value to the agency's 2025 value) |
@@ -67,14 +67,14 @@ published forecast:
 - **Annual capacity-growth caps** for new generation investment (a declining percentage of
   each country's existing capacity, by technology). Introduced because, without a cap, the
   model's cost-minimisation produced unrealistic, disproportionate capacity build-outs.
-- **Solar and wind annual capacity ceilings** in the Reference (BAU) scenario, for the same
+- **Solar and wind annual capacity ceilings** in the `BAU` input workbook (base of the OPT family), for the same
   reason; the team's supporting documentation for these specific ceilings is not archived in
   the repository.
 - **Internal transmission network cost estimates**, per country, carried over from an earlier
   version of the model (August 2025); the original estimation methodology is not documented.
 - **Internal transmission network technical lifetime** (50 years, all countries).
-- **The trend scenario's (`INV` workbook) transmission investment cap**, derived from the
-  Reference scenario's own model results rather than from any external document.
+- **The transmission investment cap of the `INV` input workbook** (base of the ETT family),
+  derived from the `BAU` workbook's own model results rather than from any external document.
 
 ## OSeMOSYS Global internal defaults
 

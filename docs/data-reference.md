@@ -34,7 +34,7 @@ Technology names in OSTRAM LAC follow a structured format that encodes the techn
 |--------|-------------|
 | `PWR` | Power generation |
 | `MIN` | Mining (commodity extraction) |
-| `RNW` | Renewable energy supply |
+| `RNW` | Renewable resource supply (e.g. `RNWSPVCHLXX` makes the solar resource `SPVCHLXX` available to `PWRSPVCHLXX`); also the prefix of renewable transmission (`RNWTRN`, `RNWRPO`, `RNWNLI`) |
 | `ELC` | Electricity distribution |
 | `TRN` | Transmission (cross-border) |
 | `DSPTRN` | Dispatch (interconnection routing) |
@@ -57,7 +57,8 @@ ELC{COUNTRY}{REGION}{NN}      # electricity fuels (2-digit suffix NN encodes the
 | `ELCARGXX00` | Renewable electricity, Argentina |
 | `ELCARGXX01` | Non-renewable electricity, Argentina |
 | `ELCARGXX02` | Transmission output electricity, Argentina |
-| `ELCARGXX03` | Dispatch-ready electricity for interconnection, Argentina |
+| `ELCARGXX03` | Demand node (final electricity demand) and export point to interconnections, Argentina |
+| `ELCARGXX04` | Electricity imported through interconnections, Argentina |
 
 ### Emission Codes
 
@@ -69,18 +70,26 @@ Example: `CO2ARG` = CO2 emissions for Argentina.
 
 ### Storage Codes
 
-Storage is modelled as power technologies with the `PWR` prefix:
+Each storage type is modelled as a power technology with the `PWR` prefix (the charge/discharge side) linked to a storage facility of the same family (the energy side):
 
 ```
-PWR{SDS|LDS}{COUNTRY}{REGION}{NN}
+PWR{SDS|LDS|BDS}{COUNTRY}{REGION}     # technology
+{SDS|LDS|BDS}{COUNTRY}{REGION}01      # storage facility
 ```
 
-| Code | Meaning |
-|------|---------|
-| `PWRSDSARGXX01` | Short Duration Storage (batteries), Argentina |
-| `PWRLDSARGXX01` | Long Duration Storage (pumped hydro), Argentina |
+| Technology | Storage facility | Meaning |
+|------|------|---------|
+| `PWRSDSARGXX` | `SDSARGXX01` | Short Duration Storage (batteries), Argentina |
+| `PWRLDSARGXX` | `LDSARGXX01` | Long Duration Storage (pumped hydro), Argentina |
+| `PWRBDSCHLXX` | `BDSCHLXX01` | Backstop Duration Storage (BDS), Chile |
 
-Both families exist for the 19 modelled countries. The Stage B2 storage-delay modifier (see {doc}`solver-patchers`) blocks their builds for the first N years using the prefixes in `storage_delay_storage_prefixes`.
+SDS and LDS exist for the 19 modelled countries and sit on the renewable electricity node `ELC*00`.
+
+:::{important}
+**BDS (Backstop Duration Storage) is the storage counterpart of the backstop.** It is a clone of SDS (same costs and technical parameters, no existing stock) connected to `ELC*02`, the post-transmission node that feeds demand, where the `PWRBCK` backstop also injects. Because it sits on the demand side of the transmission links, it can cover a shortfall that would otherwise be met with backstop generation (energy not served) without needing transmission capacity. It currently exists only for Chile and Peru, and is added after A3 with [`add_bds_storage.py`](../scripts/tools/data_patches/add_bds_storage.py) (see `scripts/tools/data_patches/README.md`).
+:::
+
+The Stage B2 storage-delay modifier (see {doc}`solver-patchers`) blocks their builds for the first N years using the prefixes in `storage_delay_storage_prefixes`.
 
 ---
 
@@ -295,22 +304,35 @@ Projection activity ratios (same structure as base year, with projection modes).
 OSTRAM LAC uses a single-region (`GLOBAL`) architecture where geographic granularity is embedded in the technology and fuel naming conventions. Each country's technologies operate independently, connected only through explicit transmission (TRN) technologies.
 
 ```
-Mining (MIN)  →  Power (PWR)  →  Electricity (ELC)  →  Transmission  →  Demand
-                                                            ↕
-                                                    Dispatch (DSPTRN)
-                                                            ↕
-                                                Interconnection (TRN)  ←→  Other Countries
-                                                            ↕
-                                                     Renewables (RNW)
+  MIN (fossil fuel supply)              RNW (local renewable resource)
+           │                                       │
+           ▼                                       ▼
+  PWR fossil plants                       PWR renewable plants
+           │                                       │
+           ▼                                       ▼
+        ELC*01                                  ELC*00 ◄──► SDS / LDS storage
+           │                                       │
+  PWRTRN / TRNRPO / TRNNLI              RNWTRN / RNWRPO / RNWNLI
+           │                                       │
+           └──────────────► ELC*02 ◄───────────────┘
+                              │   ◄── PWRBCK backstop
+                              │   ◄──► BDS storage
+                       DSPTRN (mode 1)
+                              ▼
+  ELC*04 ──DSPTRN (mode 2)──► ELC*03 = final demand ──TRN──► ELC*04 of the neighbour
+     ▲
+     └──────TRN────── ELC*03 of the neighbour
 ```
+
+`RNW` is **not** a separate node on the network: it plays, for renewables, the role that `MIN` plays for fossil fuels. Each `RNW{SOURCE}{COUNTRY}XX` technology (e.g. `RNWSPVCHLXX`) supplies the renewable resource (`SPVCHLXX`) that the matching renewable power plant (`PWRSPVCHLXX`) converts into electricity. Renewable resources are local: they cannot be traded between countries, unlike the commodities of `MIN`. The same prefix is reused by the renewable transmission technologies (`RNWTRN`, `RNWRPO`, `RNWNLI`), which carry renewable electricity from `ELC*00` to `ELC*02`.
 
 ### Energy Flow
 
-1. **Mining technologies** extract primary commodities (coal, gas, oil, etc.).
-2. **Power technologies** convert fuels into electricity (`ELC*00` renewable, `ELC*01` non-renewable).
-3. **Renewable technologies** supply renewable electricity.
-4. **Transmission technologies** route electricity within the country grid (`ELC*02` transmission output).
-5. **Dispatch technologies** (DSPTRN) route electricity to/from cross-border interconnections (`ELC*02` → `ELC*03` for export, `ELC*03` → `ELC*01` for import).
-6. **Interconnection technologies** (TRN) transport electricity between countries via `ELC*03`.
-7. **Electricity distribution** delivers power to meet demand from `ELC*02`.
-8. **Storage technologies** balance supply and demand across timeslices.
+1. **Supply technologies** provide primary energy: `MIN` for fossil commodities (coal, gas, oil, etc.) and `RNW` for local renewable resources (solar, wind, hydro, biomass, etc.).
+2. **Power technologies** convert them into electricity: renewable plants deliver to `ELC*00`, non-renewable plants to `ELC*01`.
+3. **Transmission technologies** carry electricity within the country to `ELC*02`: `RNWTRN`/`RNWRPO`/`RNWNLI` from `ELC*00`, `PWRTRN`/`TRNRPO`/`TRNNLI` from `ELC*01` (existing lines, repowering, new unplanned lines).
+4. **Dispatch technologies** (DSPTRN) deliver to the demand node `ELC*03`: mode 1 from domestic transmission (`ELC*02`), mode 2 from imports (`ELC*04`).
+5. **Interconnection technologies** (TRN) take electricity from a country's `ELC*03` and deliver it to the neighbour's `ELC*04` (export), or the other way round.
+6. **Final demand** (`SpecifiedAnnualDemand`) is defined on `ELC*03`.
+7. **Storage technologies** balance supply and demand across timeslices: SDS and LDS on `ELC*00`, BDS on `ELC*02`.
+8. **Backstop** (`PWRBCK`) injects directly into `ELC*02` at a high cost; its output is reported as energy not served.

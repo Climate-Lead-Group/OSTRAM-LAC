@@ -26,7 +26,7 @@ python scripts/figures/dashboard/build_dashboard.py        # dashboard.html only
 python scripts/figures/dashboard/build_dashboard.py --png  # also export one PNG per chart
 ```
 
-`run_all.py` first builds (or reuses) a Parquet subset of the combined CSV for the BAC and ISR scenarios; report, presentation and dashboard then run in-process, and `tablas` runs in a subprocess because it streams the full CSV in chunks. A failing branch does not stop the others; the exit code is 1 if any branch failed.
+`run_all.py` first builds (or reuses) a Parquet subset of the combined CSV for the OPT and ETT scenarios; report, presentation and dashboard then run in-process, and `tablas` runs in a subprocess because it streams the full CSV in chunks. A failing branch does not stop the others; the exit code is 1 if any branch failed.
 
 `run_all.yaml` switches whole branches (`report`, `presentation`, `dashboard`, `tablas`: `true`/`false`). Each `run_figures.yaml` switches individual figures; the long form passes arguments:
 
@@ -36,7 +36,16 @@ fig_almacenamiento_2050: {enabled: true, args: ["--years", "2030", "2050"]}
 
 Figures ending in `_tmp` are exploratory (energy-not-served variants) and ship disabled.
 
-## Report figures (`report/run_figures.yaml`, shipped enabled)
+## Report figures
+
+Every figure in the table below has one entry in [`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml), and all of them ship **enabled** (`true`), so a plain `python scripts/figures/report/run_figures.py` (or the `report` branch of `run_all.py`) produces all of them. To control which figures run:
+
+- **Enable or disable a figure:** set its entry to `true` or `false`, e.g. `fig_costo_unitario: false`. The key order in the YAML is the execution order.
+- **Pass arguments:** use the long form `fig_almacenamiento_2050: {enabled: true, args: ["--years", "2030", "2050"]}` (`enabled` defaults to `true` when omitted).
+- **Run a single figure regardless of the YAML:** `python scripts/figures/report/run_figures.py --only fig_costo_unitario` (any YAML arguments of that figure are reused).
+- **Check the resolved state without running anything:** `python scripts/figures/report/run_figures.py --list`.
+
+A `fig_*.py` script that has no entry in the YAML is **not** run; the runner prints a warning for it. The presentation figures follow the same rules with `scripts/figures/presentation/run_figures.yaml`.
 
 | Script | Figure |
 |---|---|

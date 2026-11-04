@@ -1,6 +1,6 @@
 # Secondary Technologies Editor
 
-The Secondary Technologies Editor provides a user-friendly Excel interface for modifying technology parameters across scenarios, with support for automatic integration of data from the Latin American Energy Organization (OLADE).
+The Secondary Technologies Editor provides a user-friendly Excel interface for modifying technology parameters across scenarios, with support for automatic integration of data from the Latin American and Caribbean Energy Organization (OLACDE; the editor sheets and files keep the older acronym OLADE).
 
 ## Overview
 

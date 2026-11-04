@@ -27,7 +27,7 @@ country_data:
 ```
 
 - `english_name`: Display name used in reports and documentation.
-- `olade_name`: Name used for matching against source data files of the Latin American Energy Organization (OLADE) (note Spanish spellings, e.g. `"Brasil"`).
+- `olade_name`: Name used for matching against source data files of the Latin American and Caribbean Energy Organization (OLACDE; the files and keys keep the older acronym OLADE) (note Spanish spellings, e.g. `"Brasil"`).
 
 ### `special_entries`
 
@@ -77,7 +77,9 @@ first_year: 2023
 
 ### `pwr_cleanup_mode`
 
-Controls how duplicate PWR (power) technology entries are handled during preprocessing:
+Controls how duplicate PWR (power) technology entries are handled during preprocessing.
+
+The base data come from OSeMOSYS Global, which can carry each power technology twice: a code ending in `00` for the existing fleet and one ending in `01` for new builds (for example `PWRCOAARGXX00` and `PWRCOAARGXX01`). OSTRAM LAC does not need that split: each country and source is modelled as a single power technology, whose existing stock enters through `ResidualCapacity` and whose new builds are decided by the optimiser. The cleanup collapses each `00`/`01` pair into one technology code without the suffix.
 
 ```yaml
 pwr_cleanup_mode: "merge"
@@ -87,7 +89,7 @@ pwr_cleanup_mode: "merge"
 |-------|----------|
 | `"drop"` | Drop PWR00 when PWR01 exists, rename PWR01 to PWR |
 | `"merge"` | Sum PWR00 values into PWR01, drop PWR00, rename PWR01 to PWR |
-| `false` | Skip PWR cleanup entirely |
+| `false` | Skip PWR cleanup entirely (keeps the OSeMOSYS Global `00`/`01` split) |
 
 ### `add_missing_countries_from_olade`
 
@@ -113,7 +115,7 @@ olade_tech_mapping:
 ```
 
 :::{note}
-Keys are the OLADE source names, in Spanish (note accents). BIO (Biomass) is a special case: it is the sum of Biogas + Solid biomass + Liquid biofuels from the source data.
+Keys are lookup keys, not display text: `D2_update_secondary_techs.py` matches each row label of the source workbooks against them, character for character (accents included). They must therefore be written in the language of the input data. In this model they are in Spanish because most of its source data is in Spanish, starting with the OLACDE workbooks (`OLADE - Capacidad instalada por fuente - Anual.xlsx`, `OLADE - Generación eléctrica por fuente - Anual.xlsx` in `inputs/data/`); a model built from source data in another language would use that language's labels. A key that does not match its source label makes that technology silently disappear from the editor. BIO (Biomass) is a special case: it is the sum of Biogas + Solid biomass + Liquid biofuels from the source data, matched in `D2_update_secondary_techs.py` by their Spanish labels (`Biogás`, `Biomasa sólida`).
 :::
 
 ### `code_to_energy`
@@ -157,6 +159,10 @@ shares_tech_mapping:
   "Búnker": OIL
   # ... (12 entries)
 ```
+
+:::{note}
+As with `olade_tech_mapping`, the keys are the row labels of `inputs/data/Shares_Power_Generation_Technologies.xlsx`, matched character for character by `D2_update_secondary_techs.py`. They are in Spanish because that workbook, like most of this model's input data, is in Spanish; they must follow whatever language the input data uses.
+:::
 
 ### `implausible_combinations`
 
@@ -219,11 +225,11 @@ Seven sections define default parameters for transmission and dispatch technolog
 | Section | Description |
 |---------|-------------|
 | `RNWTRN` | Renewable transmission (existing) |
-| `RNWRPO` | Renewable transmission (repowered) |
-| `RNWNLI` | Renewable transmission (new lines) |
+| `RNWRPO` | Renewable transmission (repowering: reconductoring of existing lines) |
+| `RNWNLI` | Renewable transmission (new unplanned lines) |
 | `PWRTRN` | Non-renewable transmission (existing) |
-| `TRNRPO` | Non-renewable transmission (repowered) |
-| `TRNNLI` | Non-renewable transmission (new lines) |
+| `TRNRPO` | Non-renewable transmission (repowering: reconductoring of existing lines) |
+| `TRNNLI` | Non-renewable transmission (new unplanned lines) |
 | `DSPTRN` | Dispatch (interconnection routing) |
 
 Each section contains:
@@ -402,10 +408,10 @@ All paths are relative to the repository root. Values shown are the shipped ones
 | `storage_delay_active` | `True` | Block storage builds for the first N years (redirects the solver model file; final CSVs keep the `RELAC_TX_` prefix) |
 | `strip_storage_active` | `True` | Disable storage + feeding PWR techs (diagnostic; forced off when storage-delay is on) |
 | `open_pwrbck_active` | `True` | Reopen PWRBCK* backstop capacity caps |
-| `reserve_margin_xlsx_active` | `True` | Careful reserve-margin repair from `firm_capacity_fallbacks_by_cr.xlsx` |
+| `reserve_margin_xlsx_active` | `True` | Reserve-Margin repair from `firm_capacity_fallbacks_by_cr.xlsx` |
 | `activity_upper_limit_active` | `False` | Cap `TotalTechnologyAnnualActivityUpperLimit` from demand fractions |
-| `dispatch_floors_active` | `True` | Write fossil dispatch floors (`FLOORED`) per base scenario, gated by `preflight_separation_active` |
-| `veg_tx_active` | `True` | Cross-scenario transmission constraints (`VEGCON`); creates BAC/OPC/INVWF/VGBWF |
+| `dispatch_floors_active` | `True` | Lower Constraints Modifiers: write fossil dispatch floors (`FLOORED`) per base scenario, gated by `preflight_separation_active` |
+| `veg_tx_active` | `True` | Inertial Transmission Constraints, cross-scenario (`VEGCON`); creates BAC/OPC/INVWF/VGBWF |
 | `sync_patched_csvs_active` | `True` | Sync modified values back into the otoole CSVs (`sync_patched_csvs_params` lists the parameter blocks copied) |
 
 See {doc}`solver-patchers` for the full chain, execution order, and every per-patcher parameter.

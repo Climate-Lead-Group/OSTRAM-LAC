@@ -62,14 +62,14 @@ Values within `0.0001` of 1.0 are considered acceptable. Values outside this ran
 
 ---
 
-## Region Consolidation (Brazil)
+## Region Consolidation (Brazil as example)
 
 **Script:** `scripts/tools/Z_AUX_united_regions.py`
 
-A specialized, manually-configured script for consolidating Brazilian sub-regions (CN, NW, NE, CW, SO, SE, WE) into a unified XX region.
+A manually-configured script that consolidates the sub-regions of a country into a single `XX` region. Brazil, whose OSeMOSYS Global data is split into seven sub-regions (CN, NW, NE, CW, SO, SE, WE), is the worked example, but the same procedure applies to any other country modelled with several regions (for example Mexico, if it were added with its sub-regions).
 
 :::{note}
-This is a legacy script with hardcoded Brazil-specific logic. For general region consolidation, use the configurable system in `Config_region_consolidation.yaml` (see {doc}`country-management`).
+The script is a legacy tool: the Brazil codes (`BRA`, the region list and the `BRACN` region kept as the anchor) are hardcoded, so using it for another country means replacing them at the top of each branch. For new consolidations prefer the configurable system in `Config_region_consolidation.yaml`, where each country is one entry with its region list (see {doc}`country-management`).
 :::
 
 ### Usage

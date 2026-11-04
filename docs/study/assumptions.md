@@ -1,23 +1,30 @@
 # Assumptions
 
-The model is based on the following key assumptions:
+The assumptions below apply to **every scenario**. What changes from one scenario to another is described in {doc}`scenarios`. Each assumption names the parameter or script that sets it, so it can be checked against the configuration.
 
-**Technical**
+**Optimisation and costs**
 
-- Transmission repowering is assumed to be significantly more cost-effective than building new lines.
-- Energy storage technologies are included: short-duration systems such as batteries, and long-duration systems such as pumped-hydro storage.
+- The model follows a least-cost optimisation approach (OSeMOSYS): it minimises the discounted capital and operating costs of generation, transmission and storage, subject to the constraints listed on this page.
+- Repowering an existing transmission line costs 45% of building a new unplanned line of the same country and type (`CapitalCost` of `TRNRPO`/`RNWRPO` = 0.45 × `TRNNLI`/`RNWNLI`).
+- The backstop technologies (`PWRBCK`) cover any demand the rest of the system cannot meet, at a variable cost of 1750 M$/PJ (about 6,300 USD/MWh), so the model only uses them as a last resort. Their output is reported as energy not served and valued at 1,500 USD/MWh (value of lost load) in the results.
 
-**Economic**
+**Demand**
 
-- Electricity demand is expected to grow at an average annual rate of 2.6%, aligned with historical economic growth.
-- The model follows a least-cost optimisation approach, minimising capital and operating costs across generation, transmission and storage.
+- Electricity demand is the same in all scenarios. It comes from the high-demand-growth scenarios of the national planning documents (see {doc}`../sources`) and grows on average about 3.6% per year for the region as a whole between 2023 and 2050.
 
-**Policy**
+**Shared history**
 
-- Transmission expansion aligns with national plans and supports RELAC goals for renewable energy and electrification.
-- Includes energy efficiency and electrification of end uses in line with current policies and commitments.
+- All scenarios are identical to the `BAU` input workbook through 2026 and diverge from 2027 (`TX_DIVERGE_YEAR = 2027` in `sync_historical_from_bau.py`, `EQUAL_THROUGH_YEAR = 2026` in `D4_load_dsptrn_max_cap_inv.py`).
+
+**Reliability**
+
+- A reserve margin of 15% applies in every year (`reserve_margin_xlsx_global_value: 0.15`). Each technology counts towards it with a capacity credit (`ReserveMarginTagTechnology`): 0.9 for thermal plants (fossil, nuclear, biomass, geothermal); 0.7 for storage; 0.5 for cogeneration; 0.3 for hydro and concentrated solar; 0.1 for wind and wave; solar PV does not count. These credits are OSeMOSYS Global defaults (`inputs/OG_csvs_inputs/ReserveMarginTagTechnology.csv`). Two are set by the Stage B2 Reserve-Margin repair instead: 1.0 for the backstop (`reserve_margin_xlsx_backstop_credit`) and 0.9 for carbon-capture plants (`reserve_margin_xlsx_ccs_credit`).
+
+**Storage**
+
+- No new storage can be built in the first five model years, 2023–2027; storage investment opens in 2028 (`storage_delay_first_n_years: 5`).
 
 **Implementation constraints**
 
-- Repowering of existing lines not included in national plans is only allowed from 2027.
-- New transmission lines not planned in official documents are allowed only from 2030, accounting for typical development timelines and permitting processes.
+- Repowering of existing lines not included in national plans is allowed only from 2028, at a maximum rate of 1% per year of each country's existing 2023 transmission stock (`RPO_FIRST_YEAR = 2028` in `veg_tx_constraints.py`). Barbados is the only exception: its rate is multiplied by 3.5 through 2030, because before 2030 repowering is its only way to add transmission.
+- New transmission lines not planned in official documents are allowed only from 2030, accounting for typical development timelines and permitting processes (`NLI_FIRST_YEAR = 2030` in `veg_tx_constraints.py`).

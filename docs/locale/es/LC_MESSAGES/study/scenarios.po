@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 12:11-0600\n"
+"POT-Creation-Date: 2026-11-04 13:36-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -123,40 +123,59 @@ msgid "`VSR`"
 msgstr "`VSR`"
 
 #: ../../study/scenarios.md:12
+msgid ""
+"The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present "
+"results; outside this page the documentation refers to scenarios by them."
+" They describe what each base scenario represents, for ease of reading: "
+"`BAC` is an optimal expansion, so it is shown as **OPT**; `ISR` is a "
+"trend expansion, so it is shown as **ETT**. Note that the display name "
+"OPT is not the `OPT` input workbook described below: that workbook is the"
+" base from which `OPC` (PLAN) is built."
+msgstr ""
+"Los nombres de familia (OPT, ETT, PLAN, ETT-GP) son los que se usan para "
+"presentar los resultados; fuera de esta página, la documentación se "
+"refiere a los escenarios con ellos. Describen lo que representa cada "
+"escenario base, para facilitar la lectura: `BAC` es una expansión óptima,"
+" por eso se muestra como **OPT**; `ISR` es una expansión tendencial, por "
+"eso se muestra como **ETT**. Ojo: el nombre OPT de los resultados no es "
+"el libro de entrada `OPT` descrito más abajo; ese libro es la base a "
+"partir de la cual se construye `OPC` (PLAN)."
+
+#: ../../study/scenarios.md:14
 msgid "Reading a scenario code"
 msgstr "Cómo leer un código de escenario"
 
-#: ../../study/scenarios.md:14
+#: ../../study/scenarios.md:16
 msgid "**First letter:** `B` = optimal family (OPT), `I` = trend family (ETT)."
 msgstr ""
 "**Primera letra:** `B` = familia óptima (OPT), `I` = familia tendencial "
 "(ETT)."
 
-#: ../../study/scenarios.md:15
+#: ../../study/scenarios.md:17
 msgid "**Suffixes:**"
 msgstr "**Sufijos:**"
 
-#: ../../study/scenarios.md:16
+#: ../../study/scenarios.md:18
 msgid "`SR` — without repowering."
 msgstr "`SR` — sin repotenciación."
 
-#: ../../study/scenarios.md:17
+#: ../../study/scenarios.md:19
 msgid "`FA` — fossil-fuel cost **high**."
 msgstr "`FA` — costo de combustible fósil **alto**."
 
-#: ../../study/scenarios.md:18
+#: ../../study/scenarios.md:20
 msgid "`FB` — fossil-fuel cost **low**."
 msgstr "`FB` — costo de combustible fósil **bajo**."
 
-#: ../../study/scenarios.md:19
+#: ../../study/scenarios.md:21
 msgid "`RA` — renewables cost **high**."
 msgstr "`RA` — costo de renovables **alto**."
 
-#: ../../study/scenarios.md:20
+#: ../../study/scenarios.md:22
 msgid "`RB` — renewables cost **low**."
 msgstr "`RB` — costo de renovables **bajo**."
 
-#: ../../study/scenarios.md:21
+#: ../../study/scenarios.md:23
 msgid ""
 "`INV` is the trend family **with** repowering (the ETT base `ISR` is "
 "`INV` without repowering)."
@@ -164,37 +183,47 @@ msgstr ""
 "`INV` es la familia tendencial **con** repotenciación (la base de ETT, "
 "`ISR`, es `INV` sin repotenciación)."
 
-#: ../../study/scenarios.md:24
-msgid ""
-"The multipliers of the renewables-high variants (`BRA`, `IRA`) are "
-"pending calibration; in the current configuration they equal those of "
-"`BRB` / `IRB`. Their results should be read as provisional."
-msgstr ""
-"Los multiplicadores de las variantes de renovables alto (`BRA`, `IRA`) "
-"están pendientes de calibración; en la configuración actual son iguales a"
-" los de `BRB` / `IRB`. Sus resultados deben leerse como provisionales."
-
-#: ../../study/scenarios.md:27
+#: ../../study/scenarios.md:25
 msgid "How the scenarios are built"
 msgstr "Cómo se construyen los escenarios"
 
-#: ../../study/scenarios.md:29
+#: ../../study/scenarios.md:27
 #, python-brace-format
 msgid ""
-"The four families derive from four input workbooks (`BAU`, `INV`, `OPT`, "
-"`VGB`) through the transmission-constraint chain of Stage B2: dispatch "
-"floors, cross-scenario transmission constraints and a registry of "
-"scenario transforms that create the variants by changing parameter values"
-" only. The full mapping from each code to its base workbook and "
-"generating script, together with the list of scenarios actually solved, "
-"is in the *Scenario codes* table of {doc}`../pipeline`."
+"The four input workbooks `BAU`, `INV`, `OPT` and `VGB` are the **base "
+"scenarios**: every scenario listed above, and any scenario added later, "
+"is derived from one of them. The derivation happens in the transmission-"
+"constraint chain of Stage B2 (see {doc}`../solver-patchers`): the Lower "
+"Constraints Modifiers, the Inertial Transmission Constraints, and a "
+"registry of scenario transforms that create the variants by changing "
+"parameter values only. The full mapping from each code to its base "
+"workbook and generating script, together with the list of scenarios "
+"actually solved, is in the *Scenario codes* table of {doc}`../pipeline`."
 msgstr ""
-"Las cuatro familias derivan de cuatro libros de entrada (`BAU`, `INV`, "
-"`OPT`, `VGB`) a través de la cadena de restricciones de transmisión de la"
-" Etapa B2: pisos de despacho, restricciones de transmisión entre "
-"escenarios y un registro de transformaciones de escenario que crea las "
-"variantes cambiando únicamente valores de parámetros. El mapeo completo "
-"de cada código a su libro base y script generador, junto con la lista de "
+"Los cuatro libros de entrada `BAU`, `INV`, `OPT` y `VGB` son los "
+"**escenarios base**: todos los escenarios listados arriba, y cualquier "
+"escenario que se agregue después, se derivan de uno de ellos. La "
+"derivación ocurre en la cadena de restricciones de transmisión de la "
+"Etapa B2 (ver {doc}`../solver-patchers`): los modificadores de "
+"restricciones inferiores, las restricciones inerciales de transmisión y "
+"un registro de transformaciones de escenario que crea las variantes "
+"cambiando únicamente valores de parámetros. El mapeo completo de cada "
+"código a su libro base y script generador, junto con la lista de "
 "escenarios efectivamente resueltos, está en la tabla *Códigos de "
 "escenario* de {doc}`../pipeline`."
+
+#~ msgid ""
+#~ "The multipliers of the renewables-high"
+#~ " variants (`BRA`, `IRA`) are pending "
+#~ "calibration; in the current configuration "
+#~ "they equal those of `BRB` / `IRB`."
+#~ " Their results should be read as "
+#~ "provisional."
+#~ msgstr ""
+#~ "Los multiplicadores de las variantes de"
+#~ " renovables alto (`BRA`, `IRA`) están "
+#~ "pendientes de calibración; en la "
+#~ "configuración actual son iguales a los"
+#~ " de `BRB` / `IRB`. Sus resultados "
+#~ "deben leerse como provisionales."
 

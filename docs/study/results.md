@@ -1,6 +1,6 @@
 # Results
 
-The figures below are the static report figures produced by `scripts/figures/report/` (see {doc}`../figures`) from the model run of 2026-09-17. They compare the base scenarios of the two main families, **OPT** (`BAC`) and **ETT** (`ISR`), for the milestone years 2030, 2040 and 2050 or as trajectories over 2025–2050. Interactive versions with every solved scenario and country filters are available in the Plotly dashboard.
+The figures below are the static report figures produced by `scripts/figures/report/` (see {doc}`../figures`) from the model run of 2026-09-17. They compare the base scenarios of the two main families, **OPT** and **ETT**, for the milestone years 2030, 2040 and 2050 or as trajectories over 2025–2050. Interactive versions with every solved scenario and country filters are available in the Plotly dashboard.
 
 ## Generation
 
@@ -53,11 +53,6 @@ Fossil fuel consumption by scenario, cumulative per period [million barrels of o
 ```{figure} /_static/results/fig_costo_no_inversion_2026_2050.png
 :width: 85%
 Total system cost and "cost of non-investment" by scenario, cumulative per period [trillion USD].
-```
-
-```{figure} /_static/results/fig_costo_no_inversion_tope_2026_2050.png
-:width: 85%
-Total system cost and "cost of non-investment", cumulative per period [trillion USD], including the transmission-capped case.
 ```
 
 ```{figure} /_static/results/fig_costo_unitario.png
