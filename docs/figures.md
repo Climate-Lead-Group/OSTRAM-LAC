@@ -58,7 +58,6 @@ A `fig_*.py` script that has no entry in the YAML is **not** run; the runner pri
 | `fig_almacenamiento_2050` | Installed storage capacity in 2030/2040/2050 [GW] |
 | `fig_combustibles_fosiles_2050` | Fossil fuel consumption, cumulative per period [million barrels of oil equivalent] |
 | `fig_costo_no_inversion` | Total system cost and "cost of non-investment", cumulative per period [trillion USD] |
-| `fig_costo_no_inversion_tope` | Same, including the transmission-capped case |
 | `fig_costo_unitario` | Unit system cost [USD/MWh] (static version of dashboard chart 11) |
 | `fig_diversidad_fuentes` | Effective number of generation sources (inverse Herfindahl-Hirschman index) in 2030/2040/2050 |
 | `fig_seguridad_energetica_2050` | Energy security in 2030/2040/2050: domestic vs imported primary energy [%] |

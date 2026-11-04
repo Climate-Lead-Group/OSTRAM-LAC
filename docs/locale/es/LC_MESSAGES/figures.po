@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 12:17-0600\n"
+"POT-Creation-Date: 2026-11-04 14:17-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -361,14 +361,6 @@ msgstr ""
 "periodo [billones de USD]"
 
 #: ../../figures.md
-msgid "`fig_costo_no_inversion_tope`"
-msgstr "`fig_costo_no_inversion_tope`"
-
-#: ../../figures.md
-msgid "Same, including the transmission-capped case"
-msgstr "Igual, incluyendo el caso con tope de transmisión"
-
-#: ../../figures.md
 msgid "`fig_costo_unitario`"
 msgstr "`fig_costo_unitario`"
 
@@ -408,11 +400,11 @@ msgstr "`fig_seguridad_energetica_trayectoria`"
 msgid "Domestic energy share [%], trajectory 2025–2050"
 msgstr "Participación de energía doméstica [%], trayectoria 2025–2050"
 
-#: ../../figures.md:67
+#: ../../figures.md:66
 msgid "Dashboard charts"
 msgstr "Gráficos del Dashboard"
 
-#: ../../figures.md:69
+#: ../../figures.md:68
 #, python-brace-format
 msgid ""
 "`dashboard.html` is a single self-contained Plotly page with scenario, "
@@ -600,7 +592,7 @@ msgstr "18"
 msgid "Reference energy system diagram (iframe)"
 msgstr "Diagrama del sistema energético de referencia (iframe)"
 
-#: ../../figures.md:94
+#: ../../figures.md:93
 msgid ""
 "Colours are fixed per technology type across the whole dashboard: "
 "generation blue `#4e79a7`, transmission `#e15759`, storage `#76b7b2`."
@@ -611,4 +603,10 @@ msgstr ""
 
 #~ msgid "Report figures (`report/run_figures.yaml`, shipped enabled)"
 #~ msgstr "Figuras de reporte (`report/run_figures.yaml`, habilitadas de fábrica)"
+
+#~ msgid "`fig_costo_no_inversion_tope`"
+#~ msgstr "`fig_costo_no_inversion_tope`"
+
+#~ msgid "Same, including the transmission-capped case"
+#~ msgstr "Igual, incluyendo el caso con tope de transmisión"
 

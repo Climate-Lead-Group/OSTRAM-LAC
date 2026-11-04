@@ -11,7 +11,7 @@ fig_combustibles_fosiles_2050: true
 fig_combustibles_fosiles_ens_tmp: false
 fig_costo_no_inversion: true
 fig_costo_no_inversion_ens_tmp: false
-fig_costo_no_inversion_tope: true
+fig_costo_no_inversion_tope: false
 fig_costo_unitario: true
 fig_costo_unitario_ens_tmp: false
 fig_diversidad_fuentes: true
