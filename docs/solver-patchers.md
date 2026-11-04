@@ -34,8 +34,9 @@ otoole conversion → OSeMOSYS preprocessing
 4. Reserve-Margin repair               (reserve_margin_xlsx_active)  suffix RMCarefulXLSX
 5. Lower Constraints Modifiers         (dispatch_floors_active)      suffix FLOORED   [per base scenario]
 6. Inertial Transmission Constraints   (veg_tx_active)               suffix VEGCON    [cross-scenario barrier]
+7. Scenario transforms                 (scenario_transforms)         no suffix        [creates the derived scenarios]
    ↓
-Scenario transforms (derived scenarios) → Sync modified CSVs → solver → results
+Sync modified CSVs → solver → results
 
 Off-chain: Activity-upper-limit modifier (activity_upper_limit_active, default False)
            runs after step 4 and mirrors its output back onto its input file,
@@ -166,13 +167,30 @@ Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the f
 
 **Script:** [`veg_tx_constraints.py`](../scripts/tx_chain/veg_tx_constraints.py) · **Switch:** `veg_tx_active` · **Shipped default: True**
 
-Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC, OPC, INVWF and VGBWF. See the transmission-chain subsection of {doc}`pipeline` for stages B/C/D and the scenario-code table.
+Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC and OPC. See the transmission-chain subsections of {doc}`pipeline` and the scenario-code table.
 
 | Param | Default | Description |
 |-------|---------|-------------|
 | `veg_tx_script` | `scripts/tx_chain/veg_tx_constraints.py` | Barrier script |
 | `veg_tx_suffix` | `"VEGCON"` | Filename suffix |
 | `veg_tx_needs_csv` | `inputs/tx_chain/outputs_BSR/NewCapacity.csv` | Pinned "revealed need" input; must exist before the barrier runs |
+
+### 9. Scenario transforms
+
+**Scripts:** the rest of `scripts/tx_chain/` (documented in its `README.md`) · **Switch:** the `scenario_transforms` list in `Config_MOMF_T1_AB.yaml` · **Shipped: six entries, all active**
+
+Once the Inertial Transmission Constraints have written the `*_VEGCON.txt` files, B2 runs each entry of `scenario_transforms` in list order. Each transform reads the final datafile of one or more scenarios and either writes the datafile of a **new** scenario (`produces: {NEW: SOURCE}`, in `Executables/NEW_0/`) or edits existing datafiles **in place** (`in_place`). Transforms change parameter **values** only, never sets or structure, so every derived scenario reuses the A2 sets of its base scenario. These transforms create most of the scenarios that are actually solved and reported in {doc}`study/scenarios`.
+
+| Entry (`name`) | Script | Reads → writes | What it changes |
+|---|---|---|---|
+| `cost_sensitivity` | [`cost_sensitivity_v_SR_WF.py`](../scripts/tx_chain/cost_sensitivity_v_SR_WF.py) | BAU → `BSR`, INV → `ISR`, VGB → `VSR` | Repowering limited to what is planned: for every repowering technology (`TRNRPO*`, `RNWRPO*`) `TotalAnnualMaxCapacityInvestment` is pinned to `TotalAnnualMinCapacityInvestment` in every year, so the model can only build the committed repowering |
+| `nli_sr_recompute` | [`nli_sr_recompute.py`](../scripts/tx_chain/nli_sr_recompute.py) | `ISR`, `VSR` (in place) | Recomputes the new-unplanned-line ceilings (`TRNNLI*`, `RNWNLI*`, 2030+) using the pinned repowering as its true cost, so the investment budget that repowering no longer uses goes to new lines. Must run after `cost_sensitivity` |
+| `cost_sensitivity_FA` | [`cost_sensitivity_v_FA.py`](../scripts/tx_chain/cost_sensitivity_v_FA.py) | BAC → `BFA`, INV → `IFA` | Fossil fuel cost high: `VariableCost` of the fossil supply technologies (`MIN*` coal, gas, oil, petroleum, other, cogeneration) ×1.70 (EIA AEO2025 High Oil Price case) |
+| `cost_sensitivity_FB` | [`cost_sensitivity_v_FB.py`](../scripts/tx_chain/cost_sensitivity_v_FB.py) | BAC → `BFB`, INV → `IFB` | Fossil fuel cost low: the same `VariableCost` ×0.52 (EIA AEO2025 Low Oil Price case) |
+| `cost_sensitivity_RB` | [`cost_sensitivity_v_RB.py`](../scripts/tx_chain/cost_sensitivity_v_RB.py) | BAC → `BRB`, INV → `IRB` | Renewables cost low: `CapitalCost` of solar PV and concentrated solar ×0.60, wind ×0.75, batteries (`PWRSDS`) ×0.50 (NREL ATB 2024 Moderate case); pumped hydro unchanged |
+| `cost_sensitivity_RA` | [`cost_sensitivity_v_RA.py`](../scripts/tx_chain/cost_sensitivity_v_RA.py) | BAC → `BRA`, INV → `IRA` | Renewables cost high: the same `CapitalCost` families, solar ×1.33, wind ×1.17, batteries ×1.49 |
+
+To add a scenario, add an entry to `scenario_transforms`, map the new code to its base in `derived_scenarios` and, if it should be solved, list it in `solve_scenarios` (see {doc}`configuration`). B2 needs no code change.
 
 ---
 

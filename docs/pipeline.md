@@ -63,6 +63,7 @@ python scripts/pipeline/A0_generate_tech_country_matrix.py
 | GAS | Natural Gas |
 | GEO | Geothermal |
 | HYD | Hydroelectric |
+| BDS | Backstop Duration Storage (not part of the A0 matrix: added after A3 by `scripts/tools/data_patches/add_bds_storage.py`) |
 | LDS | Long Duration Storage |
 | NGS | Natural Gas (CCG + OCG unified) |
 | OIL | Oil |
@@ -375,7 +376,7 @@ python -u scripts/pipeline/B2_Executing_OG_Model.py
 2. **Preprocessing** -- runs the OSeMOSYS preprocessor.
 3. **Modifier chain** -- rewrites parameter blocks directly in the GNU MathProg `.txt` to apply the reserve-margin and storage features plus feasibility safeguards (DaysInDayType, storage-delay, backstop (PWRBCK) caps, reserve margin, activity upper limits, lower constraints). See {doc}`solver-patchers` for the full chain.
 4. **Sync modified CSVs** -- overwrites the affected otoole CSVs in place so the combined input/output files reflect the modified values the solver consumed.
-5. **Transmission chain (lower constraints → inertial transmission constraints → scenario transforms)** -- see subsection below; produces the 17 derived scenarios (BAC, OPC, INVWF, VGBWF, BSR, ISR, VSR, ISRWF, VSRWF, BFA, IFA, BFB, IFB, BRB, IRB, BRA, IRA) that the rest of the pipeline treats like any other scenario.
+5. **Transmission chain (lower constraints → inertial transmission constraints → scenario transforms)** -- see the three subsections below; produces the 13 derived scenarios (BAC, OPC, BSR, ISR, VSR, BFA, IFA, BFB, IFB, BRB, IRB, BRA, IRA) that the rest of the pipeline treats like any other scenario.
 6. **Solver execution** -- runs the selected solver (GLPK, CBC, CPLEX or Gurobi) over the configured `solve_scenarios` universe (base + derived).
 7. **Result extraction** -- converts solver output back to CSV, using each derived scenario's base A2 as the otoole-results reference (derived scenarios share sets with their base; only values differ).
 8. **Post-processing** -- input re-sync from the final `.txt` (fixes stale-input bug for derived scenarios), capital annualization, scenario concatenation.
@@ -384,38 +385,51 @@ python -u scripts/pipeline/B2_Executing_OG_Model.py
 The final CSVs always use `prefix_final_files` (`RELAC_TX_`), regardless of which modifiers are active; `dvc.yaml` declares them as `outs` under that name and B2 aborts at startup if they disagree. When `storage_delay_active: True` (the shipped default) only the solver model file and the root datafile are redirected. See {doc}`solver-patchers` for details.
 :::
 
-### Transmission Chain Integration (lower constraints → inertial transmission constraints → scenario transforms)
+### Transmission chain: Lower Constraints Modifiers (stage B)
 
-B2 orchestrates four previously-manual scripts as subprocesses, with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` = reserve margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial Transmission Constraints; the `VEGCON` suffix is historical, from *vegetative constraints*); B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the four scripts below have it hardcoded in their file-matching logic).
+After the modifier chain, B2 runs four previously-manual scripts as subprocesses, in three stages (B, C and D, described in this and the next two subsections), with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` = reserve margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial Transmission Constraints; the `VEGCON` suffix is historical, from *vegetative constraints*); B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the scripts have it hardcoded in their file-matching logic).
 
-| Stage | What runs | Script (unmodified logic) | Output |
-|---|---|---|---|
-| B (per-scenario) | `preflight_separation` gate once, then `write_floors.py --scenarios <S>` per base scenario | `scripts/fix_dispatch/write_floors.py` | `Executables/<S>_0/..._FLOORED.txt` |
-| C (barrier, 1 call) | `veg_tx_constraints.py --base-dir Executables --needs-csv <pin>` | `scripts/tx_chain/veg_tx_constraints.py` | `..._FLOORED_VEGCON.txt` for BAU, OPT, INV, VGB, BAC, OPC, INVWF, VGBWF (creates the derived scenarios' `<S>_0/` folders) |
-| D (barrier, registry) | `cost_sensitivity_v_SR_WF.py`, then `nli_sr_recompute.py`, then `cost_sensitivity_v_FA/FB/RB/RA.py`, all `--executables-dir Executables` | `scripts/tx_chain/cost_sensitivity_v_SR_WF.py`, `nli_sr_recompute.py`, `cost_sensitivity_v_{FA,FB,RB,RA}.py` | BSR, ISR, VSR, ISRWF, VSRWF (new scenarios); ISR/VSR/ISRWF/VSRWF edited in place; BFA/IFA, BFB/IFB, BRB/IRB, BRA/IRA (cost sensitivities from BAC/INV) |
+Stage B runs per base scenario. B2 first runs the read-only `preflight_separation` gate once, then `write_floors.py --scenarios <S>` for each base scenario (BAU, OPT, INV, VGB).
+
+- **Script:** `scripts/fix_dispatch/write_floors.py`
+- **Output:** `Executables/<S>_0/..._FLOORED.txt`
+- **Details:** {doc}`solver-patchers` (section 7)
+
+### Transmission chain: Inertial Transmission Constraints (stage C)
+
+Stage C is a barrier: it runs once, after every base scenario has its `_FLOORED.txt`, because it needs all four at the same time. B2 calls `veg_tx_constraints.py --base-dir Executables --needs-csv <pin>`.
+
+- **Script:** `scripts/tx_chain/veg_tx_constraints.py`
+- **Output:** `..._FLOORED_VEGCON.txt` for BAU, OPT, INV, VGB, BAC and OPC (it creates the `<S>_0/` folders of BAC and OPC)
+- **Details:** {doc}`solver-patchers` (section 8)
+
+### Transmission chain: Scenario Transforms (stage D)
+
+Stage D runs the `scenario_transforms` registry of `Config_MOMF_T1_AB.yaml` in list order, every script with `--executables-dir Executables`: `cost_sensitivity_v_SR_WF.py`, then `nli_sr_recompute.py`, then `cost_sensitivity_v_FA/FB/RB/RA.py`. Together they create most of the scenarios that are solved and reported.
+
+- **Scripts:** `scripts/tx_chain/cost_sensitivity_v_SR_WF.py`, `nli_sr_recompute.py`, `cost_sensitivity_v_{FA,FB,RB,RA}.py`
+- **Output:** BSR, ISR and VSR (new scenarios; ISR and VSR are then edited in place by `nli_sr_recompute.py`), and the cost sensitivities BFA/IFA, BFB/IFB, BRB/IRB and BRA/IRA, built from BAC and INV
+- **Details:** {doc}`solver-patchers` (section 9)
 
 Extensibility: a new constraint script or derived scenario is added entirely in `Config_MOMF_T1_AB.yaml` -- a `scenario_transforms` entry (script + `produces`/`in_place`) plus a `derived_scenarios` mapping and, if it should be solved, an entry in `solve_scenarios`. No B2 code change is needed.
 
 Solve universe: `solve_universe()` resolves `solve_scenarios` from the YAML (defaulting to the base scenarios) and validates each has its final datafile before the solver stage runs; `scenario_base()` maps a derived scenario back to the base whose A2/sets it reuses for otoole results.
 
-#### Scenario codes (shipped `Config_MOMF_T1_AB.yaml`, 2026-09-17)
+#### Scenario codes
 
-Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by the transmission chain. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low, `WF` = water-fill weights for new unplanned lines (NLI). Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
+Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by the transmission chain. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low. Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
 
 | Derived code | Base (A2 sets reused) | Produced by | Notes |
 |---|---|---|---|
 | BAC | BAU | stage C (`veg_tx_constraints.py`, new-unplanned-line mode `ramp`) | reporting base of the OPT family |
 | OPC | OPT | stage C (`ramp`) | PLAN |
-| INVWF | INV | stage C (water-fill) | parent of ISRWF; not solved |
-| VGBWF | VGB | stage C (water-fill) | parent of VSRWF; not solved |
 | BSR | BAU | `cost_sensitivity_v_SR_WF.py` | OPT without repowering |
 | ISR | INV | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | reporting base of the ETT family |
 | VSR | VGB | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | ETT-GP |
-| ISRWF, VSRWF | INV, VGB | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | not solved |
 | BFA, IFA | BAU, INV | `cost_sensitivity_v_FA.py` | fossil `VariableCost` ×1.70 (applied on BAC / INV VEGCON files) |
 | BFB, IFB | BAU, INV | `cost_sensitivity_v_FB.py` | fossil `VariableCost` ×0.52 |
 | BRB, IRB | BAU, INV | `cost_sensitivity_v_RB.py` | `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50 |
-| BRA, IRA | BAU, INV | `cost_sensitivity_v_RA.py` | renewables high; **multipliers pending calibration** (currently equal to RB) |
+| BRA, IRA | BAU, INV | `cost_sensitivity_v_RA.py` | `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49 |
 
 Shipped `solve_scenarios` (14, solved in this order when `parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IRB, VSR`. INV is solved as-is (its VEGCON file) and reported as "ETT with repowering".
 

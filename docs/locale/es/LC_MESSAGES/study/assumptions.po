@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 13:51-0600\n"
+"POT-Creation-Date: 2026-11-04 15:39-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -26,14 +26,12 @@ msgstr "Supuestos"
 #: ../../study/assumptions.md:3
 #, python-brace-format
 msgid ""
-"The assumptions below apply to **every scenario**. What changes from one "
-"scenario to another is described in {doc}`scenarios`. Each assumption "
-"names the parameter or script that sets it, so it can be checked against "
-"the configuration."
+"What changes from one scenario to another is described in "
+"{doc}`scenarios`. Each assumption names the parameter or script that sets"
+" it, so it can be checked against the configuration."
 msgstr ""
-"Los supuestos siguientes aplican a **todos los escenarios**. Lo que "
-"cambia de un escenario a otro se describe en {doc}`scenarios`. Cada "
-"supuesto indica el parámetro o script que lo define, para poder "
+"Lo que cambia de un escenario a otro se describe en {doc}`scenarios`. "
+"Cada supuesto indica el parámetro o script que lo define, para poder "
 "contrastarlo con la configuración."
 
 #: ../../study/assumptions.md:5
@@ -62,42 +60,11 @@ msgstr ""
 "construir una línea nueva no planificada del mismo país y tipo "
 "(`CapitalCost` de `TRNRPO`/`RNWRPO` = 0,45 × `TRNNLI`/`RNWNLI`)."
 
-#: ../../study/assumptions.md:9
-msgid ""
-"The backstop technologies (`PWRBCK`) cover any demand the rest of the "
-"system cannot meet, at a variable cost of 1750 M$/PJ (about 6,300 "
-"USD/MWh), so the model only uses them as a last resort. Their output is "
-"reported as energy not served and valued at 1,500 USD/MWh (value of lost "
-"load) in the results."
-msgstr ""
-"Las tecnologías de respaldo (`PWRBCK`) cubren cualquier demanda que el "
-"resto del sistema no pueda atender, con un costo variable de 1750 M$/PJ "
-"(unos 6300 USD/MWh), de modo que el modelo solo las usa como último "
-"recurso. Su producción se reporta como energía no suministrada y se "
-"valora en 1500 USD/MWh (valor de la carga perdida) en los resultados."
-
-#: ../../study/assumptions.md:11
-msgid "**Demand**"
-msgstr "**Demanda**"
-
-#: ../../study/assumptions.md:13
-#, python-brace-format
-msgid ""
-"Electricity demand is the same in all scenarios. It comes from the high-"
-"demand-growth scenarios of the national planning documents (see "
-"{doc}`../sources`) and grows on average about 3.6% per year for the "
-"region as a whole between 2023 and 2050."
-msgstr ""
-"La demanda de electricidad es la misma en todos los escenarios. Proviene "
-"de los escenarios de crecimiento de demanda alta de los documentos "
-"nacionales de planificación (ver {doc}`../sources`) y crece en promedio "
-"cerca de 3,6 % por año para la región en conjunto entre 2023 y 2050."
-
-#: ../../study/assumptions.md:15
+#: ../../study/assumptions.md:10
 msgid "**Shared history**"
 msgstr "**Historia común**"
 
-#: ../../study/assumptions.md:17
+#: ../../study/assumptions.md:12
 msgid ""
 "All scenarios are identical to the `BAU` input workbook through 2026 and "
 "diverge from 2027 (`TX_DIVERGE_YEAR = 2027` in "
@@ -109,11 +76,11 @@ msgstr ""
 "`sync_historical_from_bau.py`, `EQUAL_THROUGH_YEAR = 2026` en "
 "`D4_load_dsptrn_max_cap_inv.py`)."
 
-#: ../../study/assumptions.md:19
+#: ../../study/assumptions.md:14
 msgid "**Reliability**"
 msgstr "**Confiabilidad**"
 
-#: ../../study/assumptions.md:21
+#: ../../study/assumptions.md:16
 msgid ""
 "A reserve margin of 15% applies in every year "
 "(`reserve_margin_xlsx_global_value: 0.15`). Each technology counts "
@@ -138,11 +105,11 @@ msgstr ""
 "backstop (`reserve_margin_xlsx_backstop_credit`) y 0,9 para las centrales"
 " con captura de carbono (`reserve_margin_xlsx_ccs_credit`)."
 
-#: ../../study/assumptions.md:23
+#: ../../study/assumptions.md:18
 msgid "**Storage**"
 msgstr "**Almacenamiento**"
 
-#: ../../study/assumptions.md:25
+#: ../../study/assumptions.md:20
 msgid ""
 "No new storage can be built in the first five model years, 2023–2027; "
 "storage investment opens in 2028 (`storage_delay_first_n_years: 5`)."
@@ -151,11 +118,11 @@ msgstr ""
 " modelo, 2023–2027; la inversión en almacenamiento se abre en 2028 "
 "(`storage_delay_first_n_years: 5`)."
 
-#: ../../study/assumptions.md:27
+#: ../../study/assumptions.md:22
 msgid "**Implementation constraints**"
 msgstr "**Restricciones de implementación**"
 
-#: ../../study/assumptions.md:29
+#: ../../study/assumptions.md:24
 msgid ""
 "Repowering of existing lines not included in national plans is allowed "
 "only from 2028, at a maximum rate of 1% per year of each country's "
@@ -171,7 +138,7 @@ msgstr ""
 "única excepción: su ritmo se multiplica por 3,5 hasta 2030, porque antes "
 "de 2030 la repotenciación es su única vía para agregar transmisión."
 
-#: ../../study/assumptions.md:30
+#: ../../study/assumptions.md:25
 msgid ""
 "New transmission lines not planned in official documents are allowed only"
 " from 2030, accounting for typical development timelines and permitting "
@@ -274,4 +241,49 @@ msgstr ""
 #~ " Chile y Perú, ubicado en el "
 #~ "nodo que alimenta la demanda (ver "
 #~ "{doc}`../data-reference`)."
+
+#~ msgid ""
+#~ "The backstop technologies (`PWRBCK`) cover "
+#~ "any demand the rest of the system"
+#~ " cannot meet, at a variable cost "
+#~ "of 1750 M$/PJ (about 6,300 USD/MWh), "
+#~ "so the model only uses them as "
+#~ "a last resort. Their output is "
+#~ "reported as energy not served and "
+#~ "valued at 1,500 USD/MWh (value of "
+#~ "lost load) in the results."
+#~ msgstr ""
+#~ "Las tecnologías de respaldo (`PWRBCK`) "
+#~ "cubren cualquier demanda que el resto"
+#~ " del sistema no pueda atender, con"
+#~ " un costo variable de 1750 M$/PJ "
+#~ "(unos 6300 USD/MWh), de modo que "
+#~ "el modelo solo las usa como último"
+#~ " recurso. Su producción se reporta "
+#~ "como energía no suministrada y se "
+#~ "valora en 1500 USD/MWh (valor de "
+#~ "la carga perdida) en los resultados."
+
+#~ msgid "**Demand**"
+#~ msgstr "**Demanda**"
+
+#~ msgid ""
+#~ "Electricity demand is the same in "
+#~ "all scenarios. It comes from the "
+#~ "high-demand-growth scenarios of the "
+#~ "national planning documents (see "
+#~ "{doc}`../sources`) and grows on average "
+#~ "about 3.6% per year for the region"
+#~ " as a whole between 2023 and "
+#~ "2050."
+#~ msgstr ""
+#~ "La demanda de electricidad es la "
+#~ "misma en todos los escenarios. Proviene"
+#~ " de los escenarios de crecimiento de"
+#~ " demanda alta de los documentos "
+#~ "nacionales de planificación (ver "
+#~ "{doc}`../sources`) y crece en promedio "
+#~ "cerca de 3,6 % por año para "
+#~ "la región en conjunto entre 2023 y"
+#~ " 2050."
 

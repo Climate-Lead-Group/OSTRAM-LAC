@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 12:17-0600\n"
+"POT-Creation-Date: 2026-11-04 15:39-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -19,66 +19,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: ../../study/authors.md:1
+#: ../../study/authors.md ../../study/authors.md:1
 msgid "Authors"
 msgstr "Autores"
 
 #: ../../study/authors.md:3
-msgid ""
-"This project was developed by the Climate Lead Group team for the Inter-"
-"American Development Bank, within the RELAC initiative."
-msgstr ""
-"Este proyecto fue desarrollado por el equipo de Climate Lead Group para "
-"el Banco Interamericano de Desarrollo, en el marco de la iniciativa "
-"RELAC."
+msgid "This project was developed by the Climate Lead Group."
+msgstr "Este proyecto fue desarrollado por Climate Lead Group."
 
 #: ../../study/authors.md
-msgid "Name"
-msgstr "Nombre"
+msgid "[Andrey Salazar-Vargas](https://github.com/andreysava19)"
+msgstr "[Andrey Salazar-Vargas](https://github.com/andreysava19)"
 
 #: ../../study/authors.md
-msgid "GitHub"
-msgstr "GitHub"
+msgid "[Luis Víctor-Gallardo](https://github.com/luviga)"
+msgstr "[Luis Víctor-Gallardo](https://github.com/luviga)"
 
 #: ../../study/authors.md
-msgid "Andrey Salazar-Vargas"
-msgstr "Andrey Salazar-Vargas"
+msgid "[Jairo Quiros-Tortós](https://github.com/jairoclg)"
+msgstr "[Jairo Quiros-Tortós](https://github.com/jairoclg)"
 
 #: ../../study/authors.md
-msgid "[andreysava19](https://github.com/andreysava19)"
-msgstr "[andreysava19](https://github.com/andreysava19)"
+msgid "[Javier Monje-Matamoros](https://github.com/javierclg)"
+msgstr "[Javier Monje-Matamoros](https://github.com/javierclg)"
 
 #: ../../study/authors.md
-msgid "Luis Víctor-Gallardo"
-msgstr "Luis Víctor-Gallardo"
-
-#: ../../study/authors.md
-msgid "[luviga](https://github.com/luviga)"
-msgstr "[luviga](https://github.com/luviga)"
-
-#: ../../study/authors.md
-msgid "Jairo Quiros-Tortós"
-msgstr "Jairo Quiros-Tortós"
-
-#: ../../study/authors.md
-msgid "[jairoclg](https://github.com/jairoclg)"
-msgstr "[jairoclg](https://github.com/jairoclg)"
-
-#: ../../study/authors.md
-msgid "Javier Monje-Matamoros"
-msgstr "Javier Monje-Matamoros"
-
-#: ../../study/authors.md
-msgid "[javierclg](https://github.com/javierclg)"
-msgstr "[javierclg](https://github.com/javierclg)"
-
-#: ../../study/authors.md
-msgid "Natalia Víctor-Gallardo"
-msgstr "Natalia Víctor-Gallardo"
-
-#: ../../study/authors.md
-msgid "[natyvicg](https://github.com/natyvicg)"
-msgstr "[natyvicg](https://github.com/natyvicg)"
+msgid "[Natalia Víctor-Gallardo](https://github.com/natyvicg)"
+msgstr "[Natalia Víctor-Gallardo](https://github.com/natyvicg)"
 
 #: ../../study/authors.md:13
 msgid ""
@@ -87,4 +54,37 @@ msgid ""
 msgstr ""
 "Código fuente y seguimiento de incidencias: <https://github.com/Climate-"
 "Lead-Group/OSTRAM-LAC>"
+
+#~ msgid ""
+#~ "This project was developed by the "
+#~ "Climate Lead Group team for the "
+#~ "Inter-American Development Bank, within the"
+#~ " RELAC initiative."
+#~ msgstr ""
+#~ "Este proyecto fue desarrollado por el"
+#~ " equipo de Climate Lead Group para"
+#~ " el Banco Interamericano de Desarrollo, "
+#~ "en el marco de la iniciativa "
+#~ "RELAC."
+
+#~ msgid "Name"
+#~ msgstr "Nombre"
+
+#~ msgid "GitHub"
+#~ msgstr "GitHub"
+
+#~ msgid "Andrey Salazar-Vargas"
+#~ msgstr "Andrey Salazar-Vargas"
+
+#~ msgid "Luis Víctor-Gallardo"
+#~ msgstr "Luis Víctor-Gallardo"
+
+#~ msgid "Jairo Quiros-Tortós"
+#~ msgstr "Jairo Quiros-Tortós"
+
+#~ msgid "Javier Monje-Matamoros"
+#~ msgstr "Javier Monje-Matamoros"
+
+#~ msgid "Natalia Víctor-Gallardo"
+#~ msgstr "Natalia Víctor-Gallardo"
 

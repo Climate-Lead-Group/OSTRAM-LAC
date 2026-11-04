@@ -1,16 +1,11 @@
 # Assumptions
 
-The assumptions below apply to **every scenario**. What changes from one scenario to another is described in {doc}`scenarios`. Each assumption names the parameter or script that sets it, so it can be checked against the configuration.
+What changes from one scenario to another is described in {doc}`scenarios`. Each assumption names the parameter or script that sets it, so it can be checked against the configuration.
 
 **Optimisation and costs**
 
 - The model follows a least-cost optimisation approach (OSeMOSYS): it minimises the discounted capital and operating costs of generation, transmission and storage, subject to the constraints listed on this page.
 - Repowering an existing transmission line costs 45% of building a new unplanned line of the same country and type (`CapitalCost` of `TRNRPO`/`RNWRPO` = 0.45 × `TRNNLI`/`RNWNLI`).
-- The backstop technologies (`PWRBCK`) cover any demand the rest of the system cannot meet, at a variable cost of 1750 M$/PJ (about 6,300 USD/MWh), so the model only uses them as a last resort. Their output is reported as energy not served and valued at 1,500 USD/MWh (value of lost load) in the results.
-
-**Demand**
-
-- Electricity demand is the same in all scenarios. It comes from the high-demand-growth scenarios of the national planning documents (see {doc}`../sources`) and grows on average about 3.6% per year for the region as a whole between 2023 and 2050.
 
 **Shared history**
 
