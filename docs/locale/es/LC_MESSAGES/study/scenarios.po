@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 10:38-0600\n"
+"POT-Creation-Date: 2026-11-05 11:35-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -27,16 +27,16 @@ msgstr "Escenarios"
 msgid ""
 "The analysis is organised in four **scenario families**. Each family has "
 "a base scenario and, for the two main families, a set of sensitivity "
-"variants on repowering and on cost assumptions. Model codes (the "
-"identifiers used in configuration files and result CSVs) are shown in "
-"monospace."
+"variants on repowering and on cost assumptions. Scenarios are named as in"
+" the results; their model codes (the identifiers used in configuration "
+"files and result CSVs) are shown in monospace."
 msgstr ""
 "El análisis se organiza en cuatro **familias de escenarios**. Cada "
-"familia tiene un escenario base y, para las dos familias principales, un "
-"conjunto de variantes de sensibilidad sobre repotenciación y sobre "
-"supuestos de costos. Los códigos del modelo (los identificadores usados "
-"en los archivos de configuración y en los CSV de resultados) se muestran "
-"en fuente monoespaciada."
+"familia tiene un escenario base y, en las dos familias principales, un "
+"conjunto de variantes de sensibilidad sobre la repotenciación y sobre los"
+" supuestos de costo. Los escenarios se nombran como en los resultados; "
+"sus códigos de modelo (los identificadores usados en los archivos de "
+"configuración y en los CSV de resultados) se muestran en monoespaciado."
 
 #: ../../study/scenarios.md
 msgid "Family"
@@ -51,10 +51,6 @@ msgid "Base scenario"
 msgstr "Escenario base"
 
 #: ../../study/scenarios.md
-msgid "Variants"
-msgstr "Variantes"
-
-#: ../../study/scenarios.md
 msgid "**OPT**"
 msgstr "**OPT**"
 
@@ -63,16 +59,8 @@ msgid "Optimal expansion"
 msgstr "Expansión óptima"
 
 #: ../../study/scenarios.md
-msgid "`BAC`"
-msgstr "`BAC`"
-
-#: ../../study/scenarios.md
-msgid ""
-"`BSR` without repowering · `BFA` / `BFB` fossil-fuel cost high / low · "
-"`BRA` / `BRB` renewables cost high / low"
-msgstr ""
-"`BSR` sin repotenciación · `BFA` / `BFB` costo de combustible fósil alto "
-"/ bajo · `BRA` / `BRB` costo de renovables alto / bajo"
+msgid "OPT (`BAC`)"
+msgstr "OPT (`BAC`)"
 
 #: ../../study/scenarios.md
 msgid "**ETT**"
@@ -83,16 +71,8 @@ msgid "Trend expansion"
 msgstr "Expansión tendencial"
 
 #: ../../study/scenarios.md
-msgid "`ISR`"
-msgstr "`ISR`"
-
-#: ../../study/scenarios.md
-msgid ""
-"`INV` with repowering · `IFA` / `IFB` fossil-fuel cost high / low · `IRA`"
-" / `IRB` renewables cost high / low"
-msgstr ""
-"`INV` con repotenciación · `IFA` / `IFB` costo de combustible fósil alto "
-"/ bajo · `IRA` / `IRB` costo de renovables alto / bajo"
+msgid "ETT (`ISR`)"
+msgstr "ETT (`ISR`)"
 
 #: ../../study/scenarios.md
 msgid "**PLAN**"
@@ -103,12 +83,8 @@ msgid "Public planned generation and transmission portfolio"
 msgstr "Cartera pública planificada de generación y de transmisión"
 
 #: ../../study/scenarios.md
-msgid "`OPC`"
-msgstr "`OPC`"
-
-#: ../../study/scenarios.md
-msgid "—"
-msgstr "—"
+msgid "PLAN (`OPC`)"
+msgstr "PLAN (`OPC`)"
 
 #: ../../study/scenarios.md
 msgid "**ETT-GP**"
@@ -119,10 +95,214 @@ msgid "Trend expansion with the public planned generation portfolio (GP)"
 msgstr "Expansión tendencial con la cartera pública planificada de generación (GP)"
 
 #: ../../study/scenarios.md
+msgid "ETT-GP (`VSR`)"
+msgstr "ETT-GP (`VSR`)"
+
+#: ../../study/scenarios.md:12
+msgid "The 14 scenarios that are solved:"
+msgstr "Los 14 escenarios que se resuelven:"
+
+#: ../../study/scenarios.md
+msgid "Scenario"
+msgstr "Escenario"
+
+#: ../../study/scenarios.md
+msgid "Code"
+msgstr "Código"
+
+#: ../../study/scenarios.md
+msgid "Description"
+msgstr "Descripción"
+
+#: ../../study/scenarios.md
+msgid "OPT"
+msgstr "OPT"
+
+#: ../../study/scenarios.md
+msgid "`BAC`"
+msgstr "`BAC`"
+
+#: ../../study/scenarios.md
+msgid "Base scenario of the OPT family"
+msgstr "Escenario base de la familia OPT"
+
+#: ../../study/scenarios.md
+msgid "OPT without repowering"
+msgstr "OPT sin repotenciación"
+
+#: ../../study/scenarios.md
+msgid "`BSR`"
+msgstr "`BSR`"
+
+#: ../../study/scenarios.md
+msgid ""
+"Only the committed (planned) repowering can be built; built from the "
+"`BAU` workbook"
+msgstr ""
+"Solo se puede construir la repotenciación comprometida (planificada); se "
+"construye a partir del libro `BAU`"
+
+#: ../../study/scenarios.md
+msgid "OPT higher fuel cost"
+msgstr "OPT mayor costo combustible"
+
+#: ../../study/scenarios.md
+msgid "`BFA`"
+msgstr "`BFA`"
+
+#: ../../study/scenarios.md
+msgid "OPT with fossil fuel `VariableCost` ×1.70"
+msgstr "OPT con `VariableCost` de combustibles fósiles ×1.70"
+
+#: ../../study/scenarios.md
+msgid "OPT lower fuel cost"
+msgstr "OPT menor costo combustible"
+
+#: ../../study/scenarios.md
+msgid "`BFB`"
+msgstr "`BFB`"
+
+#: ../../study/scenarios.md
+msgid "OPT with fossil fuel `VariableCost` ×0.52"
+msgstr "OPT con `VariableCost` de combustibles fósiles ×0.52"
+
+#: ../../study/scenarios.md
+msgid "OPT higher renewables cost"
+msgstr "OPT mayor costo renovables"
+
+#: ../../study/scenarios.md
+msgid "`BRA`"
+msgstr "`BRA`"
+
+#: ../../study/scenarios.md
+msgid "OPT with `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49"
+msgstr "OPT con `CapitalCost` solar ×1.33, eólica ×1.17, baterías ×1.49"
+
+#: ../../study/scenarios.md
+msgid "OPT lower renewables cost"
+msgstr "OPT menor costo renovables"
+
+#: ../../study/scenarios.md
+msgid "`BRB`"
+msgstr "`BRB`"
+
+#: ../../study/scenarios.md
+msgid "OPT with `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50"
+msgstr "OPT con `CapitalCost` solar ×0.60, eólica ×0.75, baterías ×0.50"
+
+#: ../../study/scenarios.md
+msgid "ETT"
+msgstr "ETT"
+
+#: ../../study/scenarios.md
+msgid "`ISR`"
+msgstr "`ISR`"
+
+#: ../../study/scenarios.md
+msgid ""
+"Base scenario of the ETT family: only the committed repowering can be "
+"built"
+msgstr ""
+"Escenario base de la familia ETT: solo se puede construir la "
+"repotenciación comprometida"
+
+#: ../../study/scenarios.md
+msgid "ETT with repowering"
+msgstr "ETT con repotenciación"
+
+#: ../../study/scenarios.md
+msgid "`INV`"
+msgstr "`INV`"
+
+#: ../../study/scenarios.md
+msgid ""
+"The `INV` workbook solved as is: repowering beyond the committed one is "
+"allowed"
+msgstr ""
+"El libro `INV` resuelto tal cual: se permite repotenciación más allá de "
+"la comprometida"
+
+#: ../../study/scenarios.md
+msgid "ETT higher fuel cost"
+msgstr "ETT mayor costo combustible"
+
+#: ../../study/scenarios.md
+msgid "`IFA`"
+msgstr "`IFA`"
+
+#: ../../study/scenarios.md
+msgid "ETT with repowering with fossil fuel `VariableCost` ×1.70"
+msgstr "ETT con repotenciación con `VariableCost` de combustibles fósiles ×1.70"
+
+#: ../../study/scenarios.md
+msgid "ETT lower fuel cost"
+msgstr "ETT menor costo combustible"
+
+#: ../../study/scenarios.md
+msgid "`IFB`"
+msgstr "`IFB`"
+
+#: ../../study/scenarios.md
+msgid "ETT with repowering with fossil fuel `VariableCost` ×0.52"
+msgstr "ETT con repotenciación con `VariableCost` de combustibles fósiles ×0.52"
+
+#: ../../study/scenarios.md
+msgid "ETT higher renewables cost"
+msgstr "ETT mayor costo renovables"
+
+#: ../../study/scenarios.md
+msgid "`IRA`"
+msgstr "`IRA`"
+
+#: ../../study/scenarios.md
+msgid ""
+"ETT with repowering with `CapitalCost` solar ×1.33, wind ×1.17, batteries"
+" ×1.49"
+msgstr ""
+"ETT con repotenciación con `CapitalCost` solar ×1.33, eólica ×1.17, "
+"baterías ×1.49"
+
+#: ../../study/scenarios.md
+msgid "ETT lower renewables cost"
+msgstr "ETT menor costo renovables"
+
+#: ../../study/scenarios.md
+msgid "`IRB`"
+msgstr "`IRB`"
+
+#: ../../study/scenarios.md
+msgid ""
+"ETT with repowering with `CapitalCost` solar ×0.60, wind ×0.75, batteries"
+" ×0.50"
+msgstr ""
+"ETT con repotenciación con `CapitalCost` solar ×0.60, eólica ×0.75, "
+"baterías ×0.50"
+
+#: ../../study/scenarios.md
+msgid "PLAN"
+msgstr "PLAN"
+
+#: ../../study/scenarios.md
+msgid "`OPC`"
+msgstr "`OPC`"
+
+#: ../../study/scenarios.md
+msgid "Base scenario of the PLAN family"
+msgstr "Escenario base de la familia PLAN"
+
+#: ../../study/scenarios.md
+msgid "ETT-GP"
+msgstr "ETT-GP"
+
+#: ../../study/scenarios.md
 msgid "`VSR`"
 msgstr "`VSR`"
 
-#: ../../study/scenarios.md:12
+#: ../../study/scenarios.md
+msgid "Base scenario of the ETT-GP family"
+msgstr "Escenario base de la familia ETT-GP"
+
+#: ../../study/scenarios.md:31
 msgid ""
 "The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present "
 "results; outside this page the documentation refers to scenarios by them."
@@ -141,77 +321,78 @@ msgstr ""
 "el libro de entrada `OPT` descrito más abajo; ese libro es la base a "
 "partir de la cual se construye `OPC` (PLAN)."
 
-#: ../../study/scenarios.md:14
+#: ../../study/scenarios.md:33
 msgid "Reading a scenario code"
 msgstr "Cómo leer un código de escenario"
 
-#: ../../study/scenarios.md:16
+#: ../../study/scenarios.md:35
 msgid "**First letter:** `B` = optimal family (OPT), `I` = trend family (ETT)."
 msgstr ""
 "**Primera letra:** `B` = familia óptima (OPT), `I` = familia tendencial "
 "(ETT)."
 
-#: ../../study/scenarios.md:17
+#: ../../study/scenarios.md:36
 msgid "**Suffixes:**"
 msgstr "**Sufijos:**"
 
-#: ../../study/scenarios.md:18
+#: ../../study/scenarios.md:37
 msgid "`SR` — without repowering."
 msgstr "`SR` — sin repotenciación."
 
-#: ../../study/scenarios.md:19
-msgid "`FA` — fossil-fuel cost **high**."
-msgstr "`FA` — costo de combustible fósil **alto**."
+#: ../../study/scenarios.md:38
+msgid "`FA` — higher fuel cost."
+msgstr "`FA` — mayor costo de combustible."
 
-#: ../../study/scenarios.md:20
-msgid "`FB` — fossil-fuel cost **low**."
-msgstr "`FB` — costo de combustible fósil **bajo**."
+#: ../../study/scenarios.md:39
+msgid "`FB` — lower fuel cost."
+msgstr "`FB` — menor costo de combustible."
 
-#: ../../study/scenarios.md:21
-msgid "`RA` — renewables cost **high**."
-msgstr "`RA` — costo de renovables **alto**."
+#: ../../study/scenarios.md:40
+msgid "`RA` — higher renewables cost."
+msgstr "`RA` — mayor costo de renovables."
 
-#: ../../study/scenarios.md:22
-msgid "`RB` — renewables cost **low**."
-msgstr "`RB` — costo de renovables **bajo**."
+#: ../../study/scenarios.md:41
+msgid "`RB` — lower renewables cost."
+msgstr "`RB` — menor costo de renovables."
 
-#: ../../study/scenarios.md:23
+#: ../../study/scenarios.md:42
 msgid ""
-"`INV` is the trend family **with** repowering (the ETT base `ISR` is "
-"`INV` without repowering)."
+"`INV` is ETT with repowering (the ETT base `ISR` is `INV` without "
+"repowering)."
 msgstr ""
-"`INV` es la familia tendencial **con** repotenciación (la base de ETT, "
-"`ISR`, es `INV` sin repotenciación)."
+"`INV` es ETT con repotenciación (la base de ETT, `ISR`, es `INV` sin "
+"repotenciación)."
 
-#: ../../study/scenarios.md:25
+#: ../../study/scenarios.md:44
 msgid "How the scenarios are built"
 msgstr "Cómo se construyen los escenarios"
 
-#: ../../study/scenarios.md:27
+#: ../../study/scenarios.md:46
 #, python-brace-format
 msgid ""
 "The four input workbooks `BAU`, `INV`, `OPT` and `VGB` are the **base "
 "scenarios**: every scenario listed above, and any scenario added later, "
 "is derived from one of them. The derivation happens in the transmission-"
 "constraint chain of Stage B2: the Lower Constraints Modifiers, the "
-"Inertial Transmission Constraints (which create `BAC` and `OPC`), and the"
-" scenario transforms of `scripts/tx_chain/`, which create the remaining "
-"variants by changing parameter values only (see sections 7 to 9 of {doc"
-"}`../solver-patchers`). The full mapping from each code to its base "
-"workbook and generating script, together with the list of scenarios "
-"actually solved, is in the *Scenario codes* table of {doc}`../pipeline`."
+"Inertial Transmission Constraints (which create OPT (`BAC`) and PLAN "
+"(`OPC`)), and the scenario transforms of `scripts/tx_chain/`, which "
+"create the remaining variants by changing parameter values only (see "
+"sections 7 to 9 of {doc}`../solver-patchers`). The full mapping from each"
+" code to its base workbook and generating script, together with the list "
+"of scenarios actually solved, is in the *Scenario codes* table of "
+"{doc}`../pipeline`."
 msgstr ""
 "Los cuatro libros de entrada `BAU`, `INV`, `OPT` y `VGB` son los "
 "**escenarios base**: todos los escenarios listados arriba, y cualquier "
 "escenario que se agregue después, se derivan de uno de ellos. La "
 "derivación ocurre en la cadena de restricciones de transmisión de la "
 "Etapa B2: los modificadores de restricciones inferiores, las "
-"restricciones inerciales de transmisión (que crean `BAC` y `OPC`) y las "
-"transformaciones de escenario de `scripts/tx_chain/`, que crean las "
-"variantes restantes cambiando únicamente valores de parámetros (ver las "
-"secciones 7 a 9 de {doc}`../solver-patchers`). El mapeo completo de cada "
-"código a su libro base y script generador, junto con la lista de "
-"escenarios efectivamente resueltos, está en la tabla *Códigos de "
+"restricciones inerciales de transmisión (que crean OPT (`BAC`) y PLAN "
+"(`OPC`)) y las transformaciones de escenario de `scripts/tx_chain/`, que "
+"crean las variantes restantes cambiando únicamente valores de parámetros "
+"(ver las secciones 7 a 9 de {doc}`../solver-patchers`). El mapeo completo"
+" de cada código a su libro base y script generador, junto con la lista de"
+" escenarios efectivamente resueltos, está en la tabla *Códigos de "
 "escenario* de {doc}`../pipeline`."
 
 #~ msgid ""
@@ -231,4 +412,32 @@ msgstr ""
 
 #~ msgid "Planned expansion (national plans only)"
 #~ msgstr "Expansión planificada (solo planes nacionales)"
+
+#~ msgid "Variants"
+#~ msgstr "Variantes"
+
+#~ msgid ""
+#~ "`BSR` without repowering · `BFA` / "
+#~ "`BFB` fossil-fuel cost high / low"
+#~ " · `BRA` / `BRB` renewables cost "
+#~ "high / low"
+#~ msgstr ""
+#~ "`BSR` sin repotenciación · `BFA` / "
+#~ "`BFB` costo de combustible fósil alto"
+#~ " / bajo · `BRA` / `BRB` costo"
+#~ " de renovables alto / bajo"
+
+#~ msgid ""
+#~ "`INV` with repowering · `IFA` / "
+#~ "`IFB` fossil-fuel cost high / low"
+#~ " · `IRA` / `IRB` renewables cost "
+#~ "high / low"
+#~ msgstr ""
+#~ "`INV` con repotenciación · `IFA` / "
+#~ "`IFB` costo de combustible fósil alto"
+#~ " / bajo · `IRA` / `IRB` costo"
+#~ " de renovables alto / bajo"
+
+#~ msgid "—"
+#~ msgstr "—"
 
