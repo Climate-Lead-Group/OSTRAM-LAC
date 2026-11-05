@@ -387,7 +387,7 @@ The final CSVs always use `prefix_final_files` (`RELAC_TX_`), regardless of whic
 
 ### Transmission chain: Lower Constraints Modifiers (stage B)
 
-After the modifier chain, B2 runs four previously-manual scripts as subprocesses, in three stages (B, C and D, described in this and the next two subsections), with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` = reserve margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial Transmission Constraints; the `VEGCON` suffix is historical, from *vegetative constraints*); B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the scripts have it hardcoded in their file-matching logic).
+After the modifier chain, B2 runs four previously-manual scripts as subprocesses, in three stages (B, C and D, described in this and the next two subsections), with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` = reserve margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial Transmission Constraints); B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the scripts have it hardcoded in their file-matching logic).
 
 Stage B runs per base scenario. B2 first runs the read-only `preflight_separation` gate once, then `write_floors.py --scenarios <S>` for each base scenario (BAU, OPT, INV, VGB).
 
@@ -426,16 +426,12 @@ Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. E
 | BSR | BAU | `cost_sensitivity_v_SR_WF.py` | OPT without repowering |
 | ISR | INV | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | reporting base of the ETT family |
 | VSR | VGB | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | ETT-GP |
-| BFA, IFA | BAU, INV | `cost_sensitivity_v_FA.py` | fossil `VariableCost` ×1.70 (applied on BAC / INV VEGCON files) |
+| BFA, IFA | BAU, INV | `cost_sensitivity_v_FA.py` | fossil `VariableCost` ×1.70 (applied on BAC / INV files) |
 | BFB, IFB | BAU, INV | `cost_sensitivity_v_FB.py` | fossil `VariableCost` ×0.52 |
 | BRB, IRB | BAU, INV | `cost_sensitivity_v_RB.py` | `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50 |
 | BRA, IRA | BAU, INV | `cost_sensitivity_v_RA.py` | `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49 |
 
-Shipped `solve_scenarios` (14, solved in this order when `parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IRB, VSR`. INV is solved as-is (its VEGCON file) and reported as "ETT with repowering".
-
-:::{note}
-The chain was validated end-to-end on 2026-09-03 with the then-current 9 derived scenarios (all reached VEGCON with `preflight_separation` PASS and `veg_tx` PASS=35/FAIL=0; BAC and ISR reached CPLEX optimal). The four cost-sensitivity transforms (FA/FB/RA/RB) were added on 2026-09-16/17 and follow the same mechanism. Two prerequisites surfaced by that validation still hold: the chain suffix must equal `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` before VEGCON (B2 asserts it), and `inputs/tx_chain/outputs_BSR/NewCapacity.csv` (`veg_tx_needs_csv`) must exist before the VEGCON barrier runs.
-:::
+Shipped `solve_scenarios` (14, solved in this order when `parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IRB, VSR`. INV is solved as-is and reported as "ETT with repowering".
 
 ### Solver Configuration
 

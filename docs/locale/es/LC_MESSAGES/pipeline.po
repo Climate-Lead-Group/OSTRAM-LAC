@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 15:39-0600\n"
+"POT-Creation-Date: 2026-11-05 08:34-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -380,7 +380,7 @@ msgstr "Escrito en `A1_Outputs/A1_Outputs_{scenario}/`:"
 msgid "File"
 msgstr "Archivo"
 
-#: ../../pipeline.md:80 ../../pipeline.md:436
+#: ../../pipeline.md:80 ../../pipeline.md:384
 msgid "Content"
 msgstr "Contenido"
 
@@ -944,7 +944,7 @@ msgstr ""
 msgid "`Config_MOMF_T1_A.yaml` -- Compiler configuration."
 msgstr "`Config_MOMF_T1_A.yaml` -- Configuración del compilador."
 
-#: ../../pipeline.md:303 ../../pipeline.md:459
+#: ../../pipeline.md:303 ../../pipeline.md:455
 msgid "Output Files"
 msgstr "Archivos de salida"
 
@@ -1337,8 +1337,7 @@ msgid ""
 "arguments were added). The canonical suffix chain is "
 "`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` = reserve "
 "margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial "
-"Transmission Constraints; the `VEGCON` suffix is historical, from "
-"*vegetative constraints*); B2 asserts this at startup and aborts with a "
+"Transmission Constraints); B2 asserts this at startup and aborts with a "
 "clear message if the YAML's active flags would produce a different chain "
 "(the scripts have it hardcoded in their file-matching logic)."
 msgstr ""
@@ -1348,11 +1347,10 @@ msgstr ""
 " lógica interna (solo se agregaron argumentos de ruta CLI). La cadena de "
 "sufijos canónica es `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON`"
 " (`RM` = margen de reserva, `FLOORED` = modificadores de restricciones "
-"inferiores, `VEGCON` = restricciones inerciales de transmisión; el sufijo"
-" `VEGCON` es histórico, de *vegetative constraints*); B2 verifica esto al"
-" inicio y aborta con un mensaje claro si los flags activos del YAML "
-"producirían una cadena diferente (los scripts la tienen codificada en su "
-"lógica de coincidencia de archivos)."
+"inferiores, `VEGCON` = restricciones inerciales de transmisión); B2 "
+"verifica esto al inicio y aborta con un mensaje claro si los flags "
+"activos del YAML producirían una cadena diferente (los scripts la tienen "
+"codificada en su lógica de coincidencia de archivos)."
 
 #: ../../pipeline.md:392
 msgid ""
@@ -1608,10 +1606,8 @@ msgid "`cost_sensitivity_v_FA.py`"
 msgstr "`cost_sensitivity_v_FA.py`"
 
 #: ../../pipeline.md:384
-msgid "fossil `VariableCost` ×1.70 (applied on BAC / INV VEGCON files)"
-msgstr ""
-"`VariableCost` fósil ×1.70 (aplicado sobre los archivos VEGCON de BAC / "
-"INV)"
+msgid "fossil `VariableCost` ×1.70 (applied on BAC / INV files)"
+msgstr "`VariableCost` fósil ×1.70 (aplicado sobre los archivos de BAC / INV)"
 
 #: ../../pipeline.md:384
 msgid "BFB, IFB"
@@ -1653,51 +1649,26 @@ msgstr "`CapitalCost` solar ×1.33, eólica ×1.17, baterías ×1.49"
 msgid ""
 "Shipped `solve_scenarios` (14, solved in this order when `parallel: "
 "False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, "
-"IRB, VSR`. INV is solved as-is (its VEGCON file) and reported as \"ETT "
-"with repowering\"."
+"IRB, VSR`. INV is solved as-is and reported as \"ETT with repowering\"."
 msgstr ""
 "`solve_scenarios` de fábrica (14, resueltos en este orden cuando "
 "`parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, "
-"INV, IRA, IRB, VSR`. INV se resuelve tal cual (su archivo VEGCON) y se "
-"reporta como \"ETT con repotenciación\"."
+"INV, IRA, IRB, VSR`. INV se resuelve tal cual y se reporta como \"ETT con"
+" repotenciación\"."
 
-#: ../../pipeline.md:437
-msgid ""
-"The chain was validated end-to-end on 2026-09-03 with the then-current 9 "
-"derived scenarios (all reached VEGCON with `preflight_separation` PASS "
-"and `veg_tx` PASS=35/FAIL=0; BAC and ISR reached CPLEX optimal). The four"
-" cost-sensitivity transforms (FA/FB/RA/RB) were added on 2026-09-16/17 "
-"and follow the same mechanism. Two prerequisites surfaced by that "
-"validation still hold: the chain suffix must equal "
-"`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` before VEGCON (B2 asserts "
-"it), and `inputs/tx_chain/outputs_BSR/NewCapacity.csv` "
-"(`veg_tx_needs_csv`) must exist before the VEGCON barrier runs."
-msgstr ""
-"La cadena fue validada de extremo a extremo el 2026-09-03 con los 9 "
-"escenarios derivados vigentes en ese momento (todos alcanzaron VEGCON con"
-" `preflight_separation` PASS y `veg_tx` PASS=35/FAIL=0; BAC e ISR "
-"alcanzaron el óptimo de CPLEX). Las cuatro transformaciones de "
-"sensibilidad de costo (FA/FB/RA/RB) se agregaron el 2026-09-16/17 y "
-"siguen el mismo mecanismo. Dos prerrequisitos identificados por esa "
-"validación siguen vigentes: el sufijo de la cadena debe ser igual a "
-"`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` antes de VEGCON (B2 lo "
-"verifica), y `inputs/tx_chain/outputs_BSR/NewCapacity.csv` "
-"(`veg_tx_needs_csv`) debe existir antes de que se ejecute la barrera de "
-"VEGCON."
-
-#: ../../pipeline.md:440
+#: ../../pipeline.md:436
 msgid "Solver Configuration"
 msgstr "Configuración del solver"
 
-#: ../../pipeline.md:442
+#: ../../pipeline.md:438
 msgid "Configure in `Config_MOMF_T1_AB.yaml`:"
 msgstr "Configurar en `Config_MOMF_T1_AB.yaml`:"
 
-#: ../../pipeline.md:450
+#: ../../pipeline.md:446
 msgid "Parallel Execution"
 msgstr "Ejecución en paralelo"
 
-#: ../../pipeline.md:452
+#: ../../pipeline.md:448
 msgid ""
 "When `parallel: True` and `only_main_scenario: False`, multiple scenarios"
 " are solved simultaneously:"
@@ -1705,16 +1676,16 @@ msgstr ""
 "Cuando `parallel: True` y `only_main_scenario: False`, se resuelven "
 "varios escenarios simultáneamente:"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid "Directory/File"
 msgstr "Directorio/Archivo"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 #, python-brace-format
 msgid "`A2_Outputs_Params_otoole/{scenario}/`"
 msgstr "`A2_Outputs_Params_otoole/{scenario}/`"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid ""
 "otoole-format CSVs (one per parameter); for derived scenarios (see the "
 "scenario-code table above) this is a copy of the base scenario's folder, "
@@ -1725,12 +1696,12 @@ msgstr ""
 "carpeta del escenario base, resincronizada desde el `.txt` final propio "
 "de ese escenario derivado"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 #, python-brace-format
 msgid "`Executables/{scenario}_0/`"
 msgstr "`Executables/{scenario}_0/`"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid ""
 "Compiled solver data files -- one folder per scenario, base or derived; "
 "derived scenarios' folders are created by the transmission chain (stages "
@@ -1740,47 +1711,47 @@ msgstr ""
 "base o derivado; las carpetas de los escenarios derivados son creadas por"
 " la cadena de transmisión (etapas C/D), no por A1/A2"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid "`RELAC_TX_Inputs.csv`"
 msgstr "`RELAC_TX_Inputs.csv`"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid "Combined inputs (all scenarios)"
 msgstr "Entradas combinadas (todos los escenarios)"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid "`RELAC_TX_Outputs.csv`"
 msgstr "`RELAC_TX_Outputs.csv`"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid "Combined outputs (all scenarios)"
 msgstr "Salidas combinadas (todos los escenarios)"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid "`RELAC_TX_Combined_Inputs_Outputs.csv`"
 msgstr "`RELAC_TX_Combined_Inputs_Outputs.csv`"
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:384
 msgid "Merged inputs and outputs"
 msgstr "Entradas y salidas combinadas"
 
-#: ../../pipeline.md:469
+#: ../../pipeline.md:465
 msgid "Reproducibility"
 msgstr "Reproducibilidad"
 
-#: ../../pipeline.md:471
+#: ../../pipeline.md:467
 msgid "Deterministic results are ensured through:"
 msgstr "Los resultados determinísticos se garantizan mediante:"
 
-#: ../../pipeline.md:473
+#: ../../pipeline.md:469
 msgid "`PYTHONHASHSEED=0` (set by `run.py`)."
 msgstr "`PYTHONHASHSEED=0` (establecido por `run.py`)."
 
-#: ../../pipeline.md:474
+#: ../../pipeline.md:470
 msgid "Configurable random seeds per solver."
 msgstr "Semillas aleatorias configurables por solver."
 
-#: ../../pipeline.md:475
+#: ../../pipeline.md:471
 msgid "Sorted CSV files for consistent ordering."
 msgstr "Archivos CSV ordenados para un orden consistente."
 
@@ -1957,4 +1928,42 @@ msgstr "Archivos CSV ordenados para un orden consistente."
 #~ "renovables alto; **multiplicadores pendientes "
 #~ "de calibración** (actualmente igual a "
 #~ "RB)"
+
+#~ msgid ""
+#~ "The chain was validated end-to-end"
+#~ " on 2026-09-03 with the then-current"
+#~ " 9 derived scenarios (all reached "
+#~ "VEGCON with `preflight_separation` PASS and"
+#~ " `veg_tx` PASS=35/FAIL=0; BAC and ISR "
+#~ "reached CPLEX optimal). The four "
+#~ "cost-sensitivity transforms (FA/FB/RA/RB) were"
+#~ " added on 2026-09-16/17 and follow "
+#~ "the same mechanism. Two prerequisites "
+#~ "surfaced by that validation still hold:"
+#~ " the chain suffix must equal "
+#~ "`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` before "
+#~ "VEGCON (B2 asserts it), and "
+#~ "`inputs/tx_chain/outputs_BSR/NewCapacity.csv` "
+#~ "(`veg_tx_needs_csv`) must exist before the "
+#~ "VEGCON barrier runs."
+#~ msgstr ""
+#~ "La cadena fue validada de extremo "
+#~ "a extremo el 2026-09-03 con los 9"
+#~ " escenarios derivados vigentes en ese "
+#~ "momento (todos alcanzaron VEGCON con "
+#~ "`preflight_separation` PASS y `veg_tx` "
+#~ "PASS=35/FAIL=0; BAC e ISR alcanzaron el"
+#~ " óptimo de CPLEX). Las cuatro "
+#~ "transformaciones de sensibilidad de costo "
+#~ "(FA/FB/RA/RB) se agregaron el 2026-09-16/17"
+#~ " y siguen el mismo mecanismo. Dos "
+#~ "prerrequisitos identificados por esa "
+#~ "validación siguen vigentes: el sufijo de"
+#~ " la cadena debe ser igual a "
+#~ "`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` antes de"
+#~ " VEGCON (B2 lo verifica), y "
+#~ "`inputs/tx_chain/outputs_BSR/NewCapacity.csv` "
+#~ "(`veg_tx_needs_csv`) debe existir antes de "
+#~ "que se ejecute la barrera de "
+#~ "VEGCON."
 
