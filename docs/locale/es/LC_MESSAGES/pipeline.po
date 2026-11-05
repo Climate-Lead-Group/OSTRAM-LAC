@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 08:34-0600\n"
+"POT-Creation-Date: 2026-11-05 09:11-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -74,7 +74,7 @@ msgstr ""
 msgid "Usage"
 msgstr "Uso"
 
-#: ../../pipeline.md:45 ../../pipeline.md:178
+#: ../../pipeline.md:45 ../../pipeline.md:178 ../../pipeline.md:373
 msgid "What It Does"
 msgstr "Qué hace"
 
@@ -380,7 +380,7 @@ msgstr "Escrito en `A1_Outputs/A1_Outputs_{scenario}/`:"
 msgid "File"
 msgstr "Archivo"
 
-#: ../../pipeline.md:80 ../../pipeline.md:384
+#: ../../pipeline.md:80 ../../pipeline.md:353
 msgid "Content"
 msgstr "Contenido"
 
@@ -944,7 +944,7 @@ msgstr ""
 msgid "`Config_MOMF_T1_A.yaml` -- Compiler configuration."
 msgstr "`Config_MOMF_T1_A.yaml` -- Configuración del compilador."
 
-#: ../../pipeline.md:303 ../../pipeline.md:455
+#: ../../pipeline.md:303 ../../pipeline.md:416
 msgid "Output Files"
 msgstr "Archivos de salida"
 
@@ -1221,454 +1221,230 @@ msgstr "**Script:** `scripts/pipeline/B2_Executing_OG_Model.py`"
 msgid "Runs the OSeMOSYS optimization model using the configured solver."
 msgstr "Ejecuta el modelo de optimización OSeMOSYS usando el solver configurado."
 
-#: ../../pipeline.md:373
-msgid "Execution Steps"
-msgstr "Pasos de ejecución"
-
 #: ../../pipeline.md:375
 msgid ""
-"**CSV to datafile conversion** via otoole (per base scenario: BAU, OPT, "
-"INV, VGB)."
+"For each base scenario (BAU, OPT, INV, VGB), B2 converts the otoole CSVs "
+"into a GNU MathProg datafile and applies the solver modifier chain to it."
+" It then creates the derived scenarios, solves every scenario listed in "
+"`solve_scenarios` with the configured solver, and combines the inputs and"
+" outputs of all scenarios into the final `RELAC_TX_*.csv` files."
 msgstr ""
-"**Conversión de CSV a archivo de datos** mediante otoole (por escenario "
-"base: BAU, OPT, INV, VGB)."
-
-#: ../../pipeline.md:376
-msgid "**Preprocessing** -- runs the OSeMOSYS preprocessor."
-msgstr "**Preprocesamiento** -- ejecuta el preprocesador de OSeMOSYS."
+"Para cada escenario base (BAU, OPT, INV, VGB), B2 convierte los CSV de "
+"otoole en un archivo de datos GNU MathProg y le aplica la cadena de "
+"modificadores del solver. Luego crea los escenarios derivados, resuelve "
+"cada escenario listado en `solve_scenarios` con el solver configurado y "
+"combina las entradas y salidas de todos los escenarios en los archivos "
+"finales `RELAC_TX_*.csv`."
 
 #: ../../pipeline.md:377
 #, python-brace-format
 msgid ""
-"**Modifier chain** -- rewrites parameter blocks directly in the GNU "
-"MathProg `.txt` to apply the reserve-margin and storage features plus "
-"feasibility safeguards (DaysInDayType, storage-delay, backstop (PWRBCK) "
-"caps, reserve margin, activity upper limits, lower constraints). See {doc"
-"}`solver-patchers` for the full chain."
+"The full sequence, step by step, with the switch and the parameters of "
+"each step, is documented in {doc}`solver-patchers`. To add a constraint "
+"script or a derived scenario, see section 9 of that page."
 msgstr ""
-"**Cadena de modificadores** -- reescribe bloques de parámetros "
-"directamente en el `.txt` de GNU MathProg para aplicar las funciones de "
-"margen de reserva y almacenamiento, además de salvaguardas de "
-"factibilidad (DaysInDayType, retraso de almacenamiento, topes de la "
-"tecnología de respaldo (PWRBCK), margen de reserva, límites superiores de"
-" actividad, restricciones inferiores). Ver {doc}`solver-patchers` para la"
-" cadena completa."
-
-#: ../../pipeline.md:378
-msgid ""
-"**Sync modified CSVs** -- overwrites the affected otoole CSVs in place so"
-" the combined input/output files reflect the modified values the solver "
-"consumed."
-msgstr ""
-"**Sincronización de CSV modificados** -- sobrescribe en el lugar los CSV "
-"de otoole afectados para que los archivos combinados de entrada/salida "
-"reflejen los valores modificados que consumió el solver."
+"La secuencia completa, paso a paso, con el interruptor y los parámetros "
+"de cada paso, está documentada en {doc}`solver-patchers`. Para agregar un"
+" script de restricciones o un escenario derivado, ver la sección 9 de esa"
+" página."
 
 #: ../../pipeline.md:379
-msgid ""
-"**Transmission chain (lower constraints → inertial transmission "
-"constraints → scenario transforms)** -- see the three subsections below; "
-"produces the 13 derived scenarios (BAC, OPC, BSR, ISR, VSR, BFA, IFA, "
-"BFB, IFB, BRB, IRB, BRA, IRA) that the rest of the pipeline treats like "
-"any other scenario."
-msgstr ""
-"**Cadena de transmisión (restricciones inferiores → restricciones "
-"inerciales de transmisión → transformaciones de escenario)** -- ver las "
-"tres subsecciones a continuación; produce los 13 escenarios derivados "
-"(BAC, OPC, BSR, ISR, VSR, BFA, IFA, BFB, IFB, BRB, IRB, BRA, IRA) que el "
-"resto del pipeline trata como cualquier otro escenario."
-
-#: ../../pipeline.md:380
-msgid ""
-"**Solver execution** -- runs the selected solver (GLPK, CBC, CPLEX or "
-"Gurobi) over the configured `solve_scenarios` universe (base + derived)."
-msgstr ""
-"**Ejecución del solver** -- ejecuta el solver seleccionado (GLPK, CBC, "
-"CPLEX o Gurobi) sobre el universo `solve_scenarios` configurado (base + "
-"derivados)."
-
-#: ../../pipeline.md:381
-msgid ""
-"**Result extraction** -- converts solver output back to CSV, using each "
-"derived scenario's base A2 as the otoole-results reference (derived "
-"scenarios share sets with their base; only values differ)."
-msgstr ""
-"**Extracción de resultados** -- convierte la salida del solver de vuelta "
-"a CSV, usando el A2 base de cada escenario derivado como referencia de "
-"otoole-results (los escenarios derivados comparten conjuntos con su base;"
-" solo difieren los valores)."
-
-#: ../../pipeline.md:382
-msgid ""
-"**Post-processing** -- input re-sync from the final `.txt` (fixes stale-"
-"input bug for derived scenarios), capital annualization, scenario "
-"concatenation."
-msgstr ""
-"**Postprocesamiento** -- resincronización de entradas desde el `.txt` "
-"final (corrige el error de entradas obsoletas en escenarios derivados), "
-"anualización de capital, concatenación de escenarios."
-
-#: ../../pipeline.md:385
-#, python-brace-format
-msgid ""
-"The final CSVs always use `prefix_final_files` (`RELAC_TX_`), regardless "
-"of which modifiers are active; `dvc.yaml` declares them as `outs` under "
-"that name and B2 aborts at startup if they disagree. When "
-"`storage_delay_active: True` (the shipped default) only the solver model "
-"file and the root datafile are redirected. See {doc}`solver-patchers` for"
-" details."
-msgstr ""
-"Los CSV finales siempre usan `prefix_final_files` (`RELAC_TX_`), sin "
-"importar qué modificadores estén activos; `dvc.yaml` los declara como "
-"`outs` bajo ese nombre y B2 aborta al inicio si no coinciden. Cuando "
-"`storage_delay_active: True` (el valor de fábrica) solo se redirigen el "
-"archivo de modelo del solver y el archivo de datos raíz. Ver {doc"
-"}`solver-patchers` para más detalles."
-
-#: ../../pipeline.md:388
-msgid "Transmission chain: Lower Constraints Modifiers (stage B)"
-msgstr "Cadena de transmisión: modificadores de restricciones inferiores (etapa B)"
-
-#: ../../pipeline.md:390
-msgid ""
-"After the modifier chain, B2 runs four previously-manual scripts as "
-"subprocesses, in three stages (B, C and D, described in this and the next"
-" two subsections), with their internal logic untouched (only CLI path "
-"arguments were added). The canonical suffix chain is "
-"`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` = reserve "
-"margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial "
-"Transmission Constraints); B2 asserts this at startup and aborts with a "
-"clear message if the YAML's active flags would produce a different chain "
-"(the scripts have it hardcoded in their file-matching logic)."
-msgstr ""
-"Después de la cadena de modificadores, B2 ejecuta cuatro scripts "
-"previamente manuales como subprocesos, en tres etapas (B, C y D, "
-"descritas en esta y en las dos subsecciones siguientes), sin modificar su"
-" lógica interna (solo se agregaron argumentos de ruta CLI). La cadena de "
-"sufijos canónica es `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON`"
-" (`RM` = margen de reserva, `FLOORED` = modificadores de restricciones "
-"inferiores, `VEGCON` = restricciones inerciales de transmisión); B2 "
-"verifica esto al inicio y aborta con un mensaje claro si los flags "
-"activos del YAML producirían una cadena diferente (los scripts la tienen "
-"codificada en su lógica de coincidencia de archivos)."
-
-#: ../../pipeline.md:392
-msgid ""
-"Stage B runs per base scenario. B2 first runs the read-only "
-"`preflight_separation` gate once, then `write_floors.py --scenarios <S>` "
-"for each base scenario (BAU, OPT, INV, VGB)."
-msgstr ""
-"La etapa B se ejecuta por escenario base. B2 corre primero, una vez, la "
-"verificación de solo lectura `preflight_separation` y luego "
-"`write_floors.py --scenarios <S>` para cada escenario base (BAU, OPT, "
-"INV, VGB)."
-
-#: ../../pipeline.md:394
-msgid "**Script:** `scripts/fix_dispatch/write_floors.py`"
-msgstr "**Script:** `scripts/fix_dispatch/write_floors.py`"
-
-#: ../../pipeline.md:395
-msgid "**Output:** `Executables/<S>_0/..._FLOORED.txt`"
-msgstr "**Salida:** `Executables/<S>_0/..._FLOORED.txt`"
-
-#: ../../pipeline.md:396
-#, python-brace-format
-msgid "**Details:** {doc}`solver-patchers` (section 7)"
-msgstr "**Detalles:** {doc}`solver-patchers` (sección 7)"
-
-#: ../../pipeline.md:398
-msgid "Transmission chain: Inertial Transmission Constraints (stage C)"
-msgstr "Cadena de transmisión: restricciones inerciales de transmisión (etapa C)"
-
-#: ../../pipeline.md:400
-msgid ""
-"Stage C is a barrier: it runs once, after every base scenario has its "
-"`_FLOORED.txt`, because it needs all four at the same time. B2 calls "
-"`veg_tx_constraints.py --base-dir Executables --needs-csv <pin>`."
-msgstr ""
-"La etapa C es una barrera: se ejecuta una sola vez, cuando todos los "
-"escenarios base tienen su `_FLOORED.txt`, porque necesita los cuatro a la"
-" vez. B2 llama a `veg_tx_constraints.py --base-dir Executables --needs-"
-"csv <pin>`."
-
-#: ../../pipeline.md:402
-msgid "**Script:** `scripts/tx_chain/veg_tx_constraints.py`"
-msgstr "**Script:** `scripts/tx_chain/veg_tx_constraints.py`"
-
-#: ../../pipeline.md:403
-msgid ""
-"**Output:** `..._FLOORED_VEGCON.txt` for BAU, OPT, INV, VGB, BAC and OPC "
-"(it creates the `<S>_0/` folders of BAC and OPC)"
-msgstr ""
-"**Salida:** `..._FLOORED_VEGCON.txt` para BAU, OPT, INV, VGB, BAC y OPC "
-"(crea las carpetas `<S>_0/` de BAC y OPC)"
-
-#: ../../pipeline.md:404
-#, python-brace-format
-msgid "**Details:** {doc}`solver-patchers` (section 8)"
-msgstr "**Detalles:** {doc}`solver-patchers` (sección 8)"
-
-#: ../../pipeline.md:406
-msgid "Transmission chain: Scenario Transforms (stage D)"
-msgstr "Cadena de transmisión: transformaciones de escenario (etapa D)"
-
-#: ../../pipeline.md:408
-msgid ""
-"Stage D runs the `scenario_transforms` registry of "
-"`Config_MOMF_T1_AB.yaml` in list order, every script with `--executables-"
-"dir Executables`: `cost_sensitivity_v_SR_WF.py`, then "
-"`nli_sr_recompute.py`, then `cost_sensitivity_v_FA/FB/RB/RA.py`. Together"
-" they create most of the scenarios that are solved and reported."
-msgstr ""
-"La etapa D ejecuta el registro `scenario_transforms` de "
-"`Config_MOMF_T1_AB.yaml` en el orden de la lista, cada script con "
-"`--executables-dir Executables`: `cost_sensitivity_v_SR_WF.py`, luego "
-"`nli_sr_recompute.py` y luego `cost_sensitivity_v_FA/FB/RB/RA.py`. En "
-"conjunto crean la mayoría de los escenarios que se resuelven y se "
-"reportan."
-
-#: ../../pipeline.md:410
-#, python-brace-format
-msgid ""
-"**Scripts:** `scripts/tx_chain/cost_sensitivity_v_SR_WF.py`, "
-"`nli_sr_recompute.py`, `cost_sensitivity_v_{FA,FB,RB,RA}.py`"
-msgstr ""
-"**Scripts:** `scripts/tx_chain/cost_sensitivity_v_SR_WF.py`, "
-"`nli_sr_recompute.py`, `cost_sensitivity_v_{FA,FB,RB,RA}.py`"
-
-#: ../../pipeline.md:411
-msgid ""
-"**Output:** BSR, ISR and VSR (new scenarios; ISR and VSR are then edited "
-"in place by `nli_sr_recompute.py`), and the cost sensitivities BFA/IFA, "
-"BFB/IFB, BRB/IRB and BRA/IRA, built from BAC and INV"
-msgstr ""
-"**Salida:** BSR, ISR y VSR (escenarios nuevos; luego "
-"`nli_sr_recompute.py` edita ISR y VSR en el lugar), y las sensibilidades "
-"de costo BFA/IFA, BFB/IFB, BRB/IRB y BRA/IRA, construidas a partir de BAC"
-" e INV"
-
-#: ../../pipeline.md:412
-#, python-brace-format
-msgid "**Details:** {doc}`solver-patchers` (section 9)"
-msgstr "**Detalles:** {doc}`solver-patchers` (sección 9)"
-
-#: ../../pipeline.md:414
-msgid ""
-"Extensibility: a new constraint script or derived scenario is added "
-"entirely in `Config_MOMF_T1_AB.yaml` -- a `scenario_transforms` entry "
-"(script + `produces`/`in_place`) plus a `derived_scenarios` mapping and, "
-"if it should be solved, an entry in `solve_scenarios`. No B2 code change "
-"is needed."
-msgstr ""
-"Extensibilidad: un nuevo script de restricciones o escenario derivado se "
-"agrega completamente en `Config_MOMF_T1_AB.yaml` -- una entrada de "
-"`scenario_transforms` (script + `produces`/`in_place`) más un mapeo en "
-"`derived_scenarios` y, si debe resolverse, una entrada en "
-"`solve_scenarios`. No se necesita ningún cambio de código en B2."
-
-#: ../../pipeline.md:416
-msgid ""
-"Solve universe: `solve_universe()` resolves `solve_scenarios` from the "
-"YAML (defaulting to the base scenarios) and validates each has its final "
-"datafile before the solver stage runs; `scenario_base()` maps a derived "
-"scenario back to the base whose A2/sets it reuses for otoole results."
-msgstr ""
-"Universo de resolución: `solve_universe()` resuelve `solve_scenarios` "
-"desde el YAML (por defecto los escenarios base) y valida que cada uno "
-"tenga su archivo de datos final antes de que se ejecute la etapa del "
-"solver; `scenario_base()` mapea un escenario derivado de vuelta a la base"
-" cuyo A2/conjuntos reutiliza para los resultados de otoole."
-
-#: ../../pipeline.md:418
 msgid "Scenario codes"
 msgstr "Códigos de escenario"
 
-#: ../../pipeline.md:420
+#: ../../pipeline.md:381
 #, python-brace-format
 msgid ""
 "Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, "
-"VGB**. Every other code is derived by the transmission chain. Reading a "
-"code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend "
-"family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = "
-"fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low. Report "
-"names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, "
-"ETT-GP = VSR."
+"VGB**. Every other code is derived by steps 8 and 9 of the {doc}`solver-"
+"patchers`. Reading a code: first letter `B` = optimal family (built on "
+"BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no "
+"repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables"
+" cost high/low. Report names (see {doc}`study/scenarios`): OPT = BAC, ETT"
+" = ISR, PLAN = OPC, ETT-GP = VSR."
 msgstr ""
 "Los escenarios base son las cuatro carpetas `A1_Outputs_<S>/`: **BAU, "
-"INV, OPT, VGB**. Cualquier otro código es derivado por la cadena de "
-"transmisión. Cómo leer un código: la primera letra `B` = familia óptima "
-"(construida sobre BAU/BAC), `I` = familia de tendencia (construida sobre "
-"INV/ISR); sufijos `SR` = sin repotenciación, `FA`/`FB` = costo de "
-"combustible fósil alto/bajo, `RA`/`RB` = costo de renovables alto/bajo. "
-"Nombres de reporte (ver {doc}`study/scenarios`): OPT = BAC, ETT = ISR, "
-"PLAN = OPC, ETT-GP = VSR."
+"INV, OPT, VGB**. Cualquier otro código es derivado por los pasos 8 y 9 de"
+" la {doc}`solver-patchers`. Cómo leer un código: la primera letra `B` = "
+"familia óptima (construida sobre BAU/BAC), `I` = familia de tendencia "
+"(construida sobre INV/ISR); sufijos `SR` = sin repotenciación, `FA`/`FB` "
+"= costo de combustible fósil alto/bajo, `RA`/`RB` = costo de renovables "
+"alto/bajo. Nombres de reporte (ver {doc}`study/scenarios`): OPT = BAC, "
+"ETT = ISR, PLAN = OPC, ETT-GP = VSR."
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "Derived code"
 msgstr "Código derivado"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "Base (A2 sets reused)"
 msgstr "Base (conjuntos A2 reutilizados)"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "Produced by"
 msgstr "Producido por"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "Notes"
 msgstr "Notas"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "BAC"
 msgstr "BAC"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "BAU"
 msgstr "BAU"
 
-#: ../../pipeline.md:384
-msgid "stage C (`veg_tx_constraints.py`, new-unplanned-line mode `ramp`)"
+#: ../../pipeline.md:353
+msgid ""
+"Inertial Transmission Constraints (`veg_tx_constraints.py`, new-"
+"unplanned-line mode `ramp`)"
 msgstr ""
-"etapa C (`veg_tx_constraints.py`, modo de líneas nuevas no planificadas "
-"`ramp`)"
+"Restricciones inerciales de transmisión (`veg_tx_constraints.py`, modo de"
+" líneas nuevas no planificadas `ramp`)"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "reporting base of the OPT family"
 msgstr "base de reporte de la familia OPT"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "OPC"
 msgstr "OPC"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "OPT"
 msgstr "OPT"
 
-#: ../../pipeline.md:384
-msgid "stage C (`ramp`)"
-msgstr "etapa C (`ramp`)"
+#: ../../pipeline.md:353
+msgid "Inertial Transmission Constraints (`ramp`)"
+msgstr "Restricciones inerciales de transmisión (`ramp`)"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "PLAN"
 msgstr "PLAN"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "BSR"
 msgstr "BSR"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_SR_WF.py`"
 msgstr "`cost_sensitivity_v_SR_WF.py`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "OPT without repowering"
 msgstr "OPT sin repotenciación"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "ISR"
 msgstr "ISR"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "INV"
 msgstr "INV"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py`"
 msgstr "`cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "reporting base of the ETT family"
 msgstr "base de reporte de la familia ETT"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "VSR"
 msgstr "VSR"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "VGB"
 msgstr "VGB"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "ETT-GP"
 msgstr "ETT-GP"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "BFA, IFA"
 msgstr "BFA, IFA"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "BAU, INV"
 msgstr "BAU, INV"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_FA.py`"
 msgstr "`cost_sensitivity_v_FA.py`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "fossil `VariableCost` ×1.70 (applied on BAC / INV files)"
 msgstr "`VariableCost` fósil ×1.70 (aplicado sobre los archivos de BAC / INV)"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "BFB, IFB"
 msgstr "BFB, IFB"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_FB.py`"
 msgstr "`cost_sensitivity_v_FB.py`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "fossil `VariableCost` ×0.52"
 msgstr "`VariableCost` fósil ×0.52"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "BRB, IRB"
 msgstr "BRB, IRB"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_RB.py`"
 msgstr "`cost_sensitivity_v_RB.py`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50"
 msgstr "`CapitalCost` solar ×0.60, eólica ×0.75, baterías ×0.50"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "BRA, IRA"
 msgstr "BRA, IRA"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_RA.py`"
 msgstr "`cost_sensitivity_v_RA.py`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49"
 msgstr "`CapitalCost` solar ×1.33, eólica ×1.17, baterías ×1.49"
 
-#: ../../pipeline.md:434
+#: ../../pipeline.md:395
 msgid ""
 "Shipped `solve_scenarios` (14, solved in this order when `parallel: "
 "False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, "
-"IRB, VSR`. INV is solved as-is and reported as \"ETT with repowering\"."
+"IRB, VSR`. INV is solved as-is and reported as \"ETT with repowering\". "
+"Before solving, B2 checks that every scenario in `solve_scenarios` has "
+"its final datafile; when the list is absent, only the four base scenarios"
+" are solved."
 msgstr ""
 "`solve_scenarios` de fábrica (14, resueltos en este orden cuando "
 "`parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, "
 "INV, IRA, IRB, VSR`. INV se resuelve tal cual y se reporta como \"ETT con"
-" repotenciación\"."
+" repotenciación\". Antes de resolver, B2 verifica que cada escenario de "
+"`solve_scenarios` tenga su archivo de datos final; si la lista no existe,"
+" solo se resuelven los cuatro escenarios base."
 
-#: ../../pipeline.md:436
+#: ../../pipeline.md:397
 msgid "Solver Configuration"
 msgstr "Configuración del solver"
 
-#: ../../pipeline.md:438
+#: ../../pipeline.md:399
 msgid "Configure in `Config_MOMF_T1_AB.yaml`:"
 msgstr "Configurar en `Config_MOMF_T1_AB.yaml`:"
 
-#: ../../pipeline.md:446
+#: ../../pipeline.md:407
 msgid "Parallel Execution"
 msgstr "Ejecución en paralelo"
 
-#: ../../pipeline.md:448
+#: ../../pipeline.md:409
 msgid ""
 "When `parallel: True` and `only_main_scenario: False`, multiple scenarios"
 " are solved simultaneously:"
@@ -1676,16 +1452,16 @@ msgstr ""
 "Cuando `parallel: True` y `only_main_scenario: False`, se resuelven "
 "varios escenarios simultáneamente:"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "Directory/File"
 msgstr "Directorio/Archivo"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 #, python-brace-format
 msgid "`A2_Outputs_Params_otoole/{scenario}/`"
 msgstr "`A2_Outputs_Params_otoole/{scenario}/`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid ""
 "otoole-format CSVs (one per parameter); for derived scenarios (see the "
 "scenario-code table above) this is a copy of the base scenario's folder, "
@@ -1696,62 +1472,62 @@ msgstr ""
 "carpeta del escenario base, resincronizada desde el `.txt` final propio "
 "de ese escenario derivado"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 #, python-brace-format
 msgid "`Executables/{scenario}_0/`"
 msgstr "`Executables/{scenario}_0/`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid ""
 "Compiled solver data files -- one folder per scenario, base or derived; "
-"derived scenarios' folders are created by the transmission chain (stages "
-"C/D), not by A1/A2"
+"derived scenarios' folders are created by steps 8 and 9 of the solver "
+"modifier chain, not by A1/A2"
 msgstr ""
 "Archivos de datos del solver compilados -- una carpeta por escenario, "
-"base o derivado; las carpetas de los escenarios derivados son creadas por"
-" la cadena de transmisión (etapas C/D), no por A1/A2"
+"base o derivado; las carpetas de los escenarios derivados las crean los "
+"pasos 8 y 9 de la cadena de modificadores del solver, no A1/A2"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`RELAC_TX_Inputs.csv`"
 msgstr "`RELAC_TX_Inputs.csv`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "Combined inputs (all scenarios)"
 msgstr "Entradas combinadas (todos los escenarios)"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`RELAC_TX_Outputs.csv`"
 msgstr "`RELAC_TX_Outputs.csv`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "Combined outputs (all scenarios)"
 msgstr "Salidas combinadas (todos los escenarios)"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "`RELAC_TX_Combined_Inputs_Outputs.csv`"
 msgstr "`RELAC_TX_Combined_Inputs_Outputs.csv`"
 
-#: ../../pipeline.md:384
+#: ../../pipeline.md:353
 msgid "Merged inputs and outputs"
 msgstr "Entradas y salidas combinadas"
 
-#: ../../pipeline.md:465
+#: ../../pipeline.md:426
 msgid "Reproducibility"
 msgstr "Reproducibilidad"
 
-#: ../../pipeline.md:467
+#: ../../pipeline.md:428
 msgid "Deterministic results are ensured through:"
 msgstr "Los resultados determinísticos se garantizan mediante:"
 
-#: ../../pipeline.md:469
+#: ../../pipeline.md:430
 msgid "`PYTHONHASHSEED=0` (set by `run.py`)."
 msgstr "`PYTHONHASHSEED=0` (establecido por `run.py`)."
 
-#: ../../pipeline.md:470
+#: ../../pipeline.md:431
 msgid "Configurable random seeds per solver."
 msgstr "Semillas aleatorias configurables por solver."
 
-#: ../../pipeline.md:471
+#: ../../pipeline.md:432
 msgid "Sorted CSV files for consistent ordering."
 msgstr "Archivos CSV ordenados para un orden consistente."
 
@@ -1966,4 +1742,332 @@ msgstr "Archivos CSV ordenados para un orden consistente."
 #~ "(`veg_tx_needs_csv`) debe existir antes de "
 #~ "que se ejecute la barrera de "
 #~ "VEGCON."
+
+#~ msgid "Execution Steps"
+#~ msgstr "Pasos de ejecución"
+
+#~ msgid ""
+#~ "**CSV to datafile conversion** via "
+#~ "otoole (per base scenario: BAU, OPT, "
+#~ "INV, VGB)."
+#~ msgstr ""
+#~ "**Conversión de CSV a archivo de "
+#~ "datos** mediante otoole (por escenario "
+#~ "base: BAU, OPT, INV, VGB)."
+
+#~ msgid "**Preprocessing** -- runs the OSeMOSYS preprocessor."
+#~ msgstr "**Preprocesamiento** -- ejecuta el preprocesador de OSeMOSYS."
+
+#~ msgid ""
+#~ "**Modifier chain** -- rewrites parameter "
+#~ "blocks directly in the GNU MathProg "
+#~ "`.txt` to apply the reserve-margin "
+#~ "and storage features plus feasibility "
+#~ "safeguards (DaysInDayType, storage-delay, "
+#~ "backstop (PWRBCK) caps, reserve margin, "
+#~ "activity upper limits, lower constraints). "
+#~ "See {doc}`solver-patchers` for the full"
+#~ " chain."
+#~ msgstr ""
+#~ "**Cadena de modificadores** -- reescribe "
+#~ "bloques de parámetros directamente en el"
+#~ " `.txt` de GNU MathProg para aplicar"
+#~ " las funciones de margen de reserva"
+#~ " y almacenamiento, además de salvaguardas"
+#~ " de factibilidad (DaysInDayType, retraso de"
+#~ " almacenamiento, topes de la tecnología "
+#~ "de respaldo (PWRBCK), margen de reserva,"
+#~ " límites superiores de actividad, "
+#~ "restricciones inferiores). Ver {doc}`solver-"
+#~ "patchers` para la cadena completa."
+
+#~ msgid ""
+#~ "**Sync modified CSVs** -- overwrites the"
+#~ " affected otoole CSVs in place so "
+#~ "the combined input/output files reflect "
+#~ "the modified values the solver consumed."
+#~ msgstr ""
+#~ "**Sincronización de CSV modificados** -- "
+#~ "sobrescribe en el lugar los CSV de"
+#~ " otoole afectados para que los "
+#~ "archivos combinados de entrada/salida reflejen"
+#~ " los valores modificados que consumió "
+#~ "el solver."
+
+#~ msgid ""
+#~ "**Transmission chain (lower constraints → "
+#~ "inertial transmission constraints → scenario"
+#~ " transforms)** -- see the three "
+#~ "subsections below; produces the 13 "
+#~ "derived scenarios (BAC, OPC, BSR, ISR,"
+#~ " VSR, BFA, IFA, BFB, IFB, BRB, "
+#~ "IRB, BRA, IRA) that the rest of"
+#~ " the pipeline treats like any other"
+#~ " scenario."
+#~ msgstr ""
+#~ "**Cadena de transmisión (restricciones "
+#~ "inferiores → restricciones inerciales de "
+#~ "transmisión → transformaciones de escenario)**"
+#~ " -- ver las tres subsecciones a "
+#~ "continuación; produce los 13 escenarios "
+#~ "derivados (BAC, OPC, BSR, ISR, VSR, "
+#~ "BFA, IFA, BFB, IFB, BRB, IRB, BRA,"
+#~ " IRA) que el resto del pipeline "
+#~ "trata como cualquier otro escenario."
+
+#~ msgid ""
+#~ "**Solver execution** -- runs the "
+#~ "selected solver (GLPK, CBC, CPLEX or "
+#~ "Gurobi) over the configured `solve_scenarios`"
+#~ " universe (base + derived)."
+#~ msgstr ""
+#~ "**Ejecución del solver** -- ejecuta el"
+#~ " solver seleccionado (GLPK, CBC, CPLEX "
+#~ "o Gurobi) sobre el universo "
+#~ "`solve_scenarios` configurado (base + "
+#~ "derivados)."
+
+#~ msgid ""
+#~ "**Result extraction** -- converts solver "
+#~ "output back to CSV, using each "
+#~ "derived scenario's base A2 as the "
+#~ "otoole-results reference (derived scenarios "
+#~ "share sets with their base; only "
+#~ "values differ)."
+#~ msgstr ""
+#~ "**Extracción de resultados** -- convierte "
+#~ "la salida del solver de vuelta a"
+#~ " CSV, usando el A2 base de cada"
+#~ " escenario derivado como referencia de "
+#~ "otoole-results (los escenarios derivados "
+#~ "comparten conjuntos con su base; solo"
+#~ " difieren los valores)."
+
+#~ msgid ""
+#~ "**Post-processing** -- input re-sync "
+#~ "from the final `.txt` (fixes stale-"
+#~ "input bug for derived scenarios), "
+#~ "capital annualization, scenario concatenation."
+#~ msgstr ""
+#~ "**Postprocesamiento** -- resincronización de "
+#~ "entradas desde el `.txt` final (corrige"
+#~ " el error de entradas obsoletas en"
+#~ " escenarios derivados), anualización de "
+#~ "capital, concatenación de escenarios."
+
+#~ msgid ""
+#~ "The final CSVs always use "
+#~ "`prefix_final_files` (`RELAC_TX_`), regardless of"
+#~ " which modifiers are active; `dvc.yaml` "
+#~ "declares them as `outs` under that "
+#~ "name and B2 aborts at startup if"
+#~ " they disagree. When `storage_delay_active: "
+#~ "True` (the shipped default) only the "
+#~ "solver model file and the root "
+#~ "datafile are redirected. See {doc}`solver-"
+#~ "patchers` for details."
+#~ msgstr ""
+#~ "Los CSV finales siempre usan "
+#~ "`prefix_final_files` (`RELAC_TX_`), sin importar "
+#~ "qué modificadores estén activos; `dvc.yaml`"
+#~ " los declara como `outs` bajo ese "
+#~ "nombre y B2 aborta al inicio si"
+#~ " no coinciden. Cuando `storage_delay_active: "
+#~ "True` (el valor de fábrica) solo "
+#~ "se redirigen el archivo de modelo "
+#~ "del solver y el archivo de datos"
+#~ " raíz. Ver {doc}`solver-patchers` para "
+#~ "más detalles."
+
+#~ msgid "Transmission chain: Lower Constraints Modifiers (stage B)"
+#~ msgstr ""
+#~ "Cadena de transmisión: modificadores de "
+#~ "restricciones inferiores (etapa B)"
+
+#~ msgid ""
+#~ "After the modifier chain, B2 runs "
+#~ "four previously-manual scripts as "
+#~ "subprocesses, in three stages (B, C "
+#~ "and D, described in this and the"
+#~ " next two subsections), with their "
+#~ "internal logic untouched (only CLI path"
+#~ " arguments were added). The canonical "
+#~ "suffix chain is "
+#~ "`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` "
+#~ "= reserve margin, `FLOORED` = Lower "
+#~ "Constraints Modifiers, `VEGCON` = Inertial "
+#~ "Transmission Constraints); B2 asserts this "
+#~ "at startup and aborts with a clear"
+#~ " message if the YAML's active flags"
+#~ " would produce a different chain (the"
+#~ " scripts have it hardcoded in their"
+#~ " file-matching logic)."
+#~ msgstr ""
+#~ "Después de la cadena de modificadores,"
+#~ " B2 ejecuta cuatro scripts previamente "
+#~ "manuales como subprocesos, en tres "
+#~ "etapas (B, C y D, descritas en "
+#~ "esta y en las dos subsecciones "
+#~ "siguientes), sin modificar su lógica "
+#~ "interna (solo se agregaron argumentos de"
+#~ " ruta CLI). La cadena de sufijos "
+#~ "canónica es "
+#~ "`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` "
+#~ "= margen de reserva, `FLOORED` = "
+#~ "modificadores de restricciones inferiores, "
+#~ "`VEGCON` = restricciones inerciales de "
+#~ "transmisión); B2 verifica esto al inicio"
+#~ " y aborta con un mensaje claro "
+#~ "si los flags activos del YAML "
+#~ "producirían una cadena diferente (los "
+#~ "scripts la tienen codificada en su "
+#~ "lógica de coincidencia de archivos)."
+
+#~ msgid ""
+#~ "Stage B runs per base scenario. B2"
+#~ " first runs the read-only "
+#~ "`preflight_separation` gate once, then "
+#~ "`write_floors.py --scenarios <S>` for each "
+#~ "base scenario (BAU, OPT, INV, VGB)."
+#~ msgstr ""
+#~ "La etapa B se ejecuta por "
+#~ "escenario base. B2 corre primero, una"
+#~ " vez, la verificación de solo lectura"
+#~ " `preflight_separation` y luego `write_floors.py"
+#~ " --scenarios <S>` para cada escenario "
+#~ "base (BAU, OPT, INV, VGB)."
+
+#~ msgid "**Script:** `scripts/fix_dispatch/write_floors.py`"
+#~ msgstr "**Script:** `scripts/fix_dispatch/write_floors.py`"
+
+#~ msgid "**Output:** `Executables/<S>_0/..._FLOORED.txt`"
+#~ msgstr "**Salida:** `Executables/<S>_0/..._FLOORED.txt`"
+
+#~ msgid "**Details:** {doc}`solver-patchers` (section 7)"
+#~ msgstr "**Detalles:** {doc}`solver-patchers` (sección 7)"
+
+#~ msgid ""
+#~ "Stage C is a barrier: it runs "
+#~ "once, after every base scenario has "
+#~ "its `_FLOORED.txt`, because it needs all"
+#~ " four at the same time. B2 "
+#~ "calls `veg_tx_constraints.py --base-dir "
+#~ "Executables --needs-csv <pin>`."
+#~ msgstr ""
+#~ "La etapa C es una barrera: se "
+#~ "ejecuta una sola vez, cuando todos "
+#~ "los escenarios base tienen su "
+#~ "`_FLOORED.txt`, porque necesita los cuatro "
+#~ "a la vez. B2 llama a "
+#~ "`veg_tx_constraints.py --base-dir Executables "
+#~ "--needs-csv <pin>`."
+
+#~ msgid "**Script:** `scripts/tx_chain/veg_tx_constraints.py`"
+#~ msgstr "**Script:** `scripts/tx_chain/veg_tx_constraints.py`"
+
+#~ msgid ""
+#~ "**Output:** `..._FLOORED_VEGCON.txt` for BAU, "
+#~ "OPT, INV, VGB, BAC and OPC (it "
+#~ "creates the `<S>_0/` folders of BAC "
+#~ "and OPC)"
+#~ msgstr ""
+#~ "**Salida:** `..._FLOORED_VEGCON.txt` para BAU, "
+#~ "OPT, INV, VGB, BAC y OPC (crea "
+#~ "las carpetas `<S>_0/` de BAC y "
+#~ "OPC)"
+
+#~ msgid "**Details:** {doc}`solver-patchers` (section 8)"
+#~ msgstr "**Detalles:** {doc}`solver-patchers` (sección 8)"
+
+#~ msgid "Transmission chain: Scenario Transforms (stage D)"
+#~ msgstr "Cadena de transmisión: transformaciones de escenario (etapa D)"
+
+#~ msgid ""
+#~ "Stage D runs the `scenario_transforms` "
+#~ "registry of `Config_MOMF_T1_AB.yaml` in list"
+#~ " order, every script with "
+#~ "`--executables-dir Executables`: "
+#~ "`cost_sensitivity_v_SR_WF.py`, then `nli_sr_recompute.py`,"
+#~ " then `cost_sensitivity_v_FA/FB/RB/RA.py`. Together "
+#~ "they create most of the scenarios "
+#~ "that are solved and reported."
+#~ msgstr ""
+#~ "La etapa D ejecuta el registro "
+#~ "`scenario_transforms` de `Config_MOMF_T1_AB.yaml` en"
+#~ " el orden de la lista, cada "
+#~ "script con `--executables-dir Executables`:"
+#~ " `cost_sensitivity_v_SR_WF.py`, luego "
+#~ "`nli_sr_recompute.py` y luego "
+#~ "`cost_sensitivity_v_FA/FB/RB/RA.py`. En conjunto "
+#~ "crean la mayoría de los escenarios "
+#~ "que se resuelven y se reportan."
+
+#~ msgid ""
+#~ "**Scripts:** `scripts/tx_chain/cost_sensitivity_v_SR_WF.py`, "
+#~ "`nli_sr_recompute.py`, `cost_sensitivity_v_{FA,FB,RB,RA}.py`"
+#~ msgstr ""
+#~ "**Scripts:** `scripts/tx_chain/cost_sensitivity_v_SR_WF.py`, "
+#~ "`nli_sr_recompute.py`, `cost_sensitivity_v_{FA,FB,RB,RA}.py`"
+
+#~ msgid ""
+#~ "**Output:** BSR, ISR and VSR (new "
+#~ "scenarios; ISR and VSR are then "
+#~ "edited in place by `nli_sr_recompute.py`), "
+#~ "and the cost sensitivities BFA/IFA, "
+#~ "BFB/IFB, BRB/IRB and BRA/IRA, built from"
+#~ " BAC and INV"
+#~ msgstr ""
+#~ "**Salida:** BSR, ISR y VSR (escenarios"
+#~ " nuevos; luego `nli_sr_recompute.py` edita "
+#~ "ISR y VSR en el lugar), y "
+#~ "las sensibilidades de costo BFA/IFA, "
+#~ "BFB/IFB, BRB/IRB y BRA/IRA, construidas "
+#~ "a partir de BAC e INV"
+
+#~ msgid "**Details:** {doc}`solver-patchers` (section 9)"
+#~ msgstr "**Detalles:** {doc}`solver-patchers` (sección 9)"
+
+#~ msgid ""
+#~ "Extensibility: a new constraint script "
+#~ "or derived scenario is added entirely"
+#~ " in `Config_MOMF_T1_AB.yaml` -- a "
+#~ "`scenario_transforms` entry (script + "
+#~ "`produces`/`in_place`) plus a `derived_scenarios`"
+#~ " mapping and, if it should be "
+#~ "solved, an entry in `solve_scenarios`. "
+#~ "No B2 code change is needed."
+#~ msgstr ""
+#~ "Extensibilidad: un nuevo script de "
+#~ "restricciones o escenario derivado se "
+#~ "agrega completamente en `Config_MOMF_T1_AB.yaml` "
+#~ "-- una entrada de `scenario_transforms` "
+#~ "(script + `produces`/`in_place`) más un "
+#~ "mapeo en `derived_scenarios` y, si debe"
+#~ " resolverse, una entrada en "
+#~ "`solve_scenarios`. No se necesita ningún "
+#~ "cambio de código en B2."
+
+#~ msgid ""
+#~ "Solve universe: `solve_universe()` resolves "
+#~ "`solve_scenarios` from the YAML (defaulting"
+#~ " to the base scenarios) and validates"
+#~ " each has its final datafile before"
+#~ " the solver stage runs; `scenario_base()`"
+#~ " maps a derived scenario back to "
+#~ "the base whose A2/sets it reuses "
+#~ "for otoole results."
+#~ msgstr ""
+#~ "Universo de resolución: `solve_universe()` "
+#~ "resuelve `solve_scenarios` desde el YAML "
+#~ "(por defecto los escenarios base) y "
+#~ "valida que cada uno tenga su "
+#~ "archivo de datos final antes de "
+#~ "que se ejecute la etapa del "
+#~ "solver; `scenario_base()` mapea un escenario"
+#~ " derivado de vuelta a la base "
+#~ "cuyo A2/conjuntos reutiliza para los "
+#~ "resultados de otoole."
+
+#~ msgid "stage C (`ramp`)"
+#~ msgstr "etapa C (`ramp`)"
 

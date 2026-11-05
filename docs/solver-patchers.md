@@ -1,11 +1,11 @@
 # Solver Modifier Chain (Stage B2)
 
-After the OSeMOSYS preprocessor produces the GNU MathProg datafile (`.txt`) but **before** the solver runs, Stage B2 applies an ordered chain of *modifiers* that rewrite parameter blocks directly in the `.txt`. These modifiers implement the **reserve-margin and storage** modeling features and several feasibility safeguards.
+Stage B2 ([`B2_Executing_OG_Model.py`](../scripts/pipeline/B2_Executing_OG_Model.py)) turns each base scenario into a GNU MathProg datafile (`.txt`), modifies it, creates the derived scenarios and solves them. This page is the reference for that sequence: it lists every step in the order the code runs it, with the switch and the parameters that control each one. How to launch B2, the solver settings, the scenarios that are solved and the output files are described in the Stage B2 section of {doc}`pipeline`.
 
-This page documents the chain, what each modifier does, and the configuration that controls it. All modifier settings live in [`Config_MOMF_T1_AB.yaml`](configuration.md#config_momf_t1_abyaml).
+The *modifiers* rewrite parameter blocks directly in the `.txt`, after the OSeMOSYS preprocessor and before the solver. They implement the reserve-margin and storage features, several feasibility safeguards, the transmission constraints, and the creation of the derived scenarios. All their settings live in [`Config_MOMF_T1_AB.yaml`](configuration.md#config_momf_t1_abyaml).
 
 :::{important}
-Every modifier is gated by an `*_active` master switch. When a switch is `False` (or absent), that modifier is a **no-op** and the pipeline behaves as if it were not there. Some switches ship **enabled** in the current `Config_MOMF_T1_AB.yaml` — see the "Shipped default" column in each section.
+Every modifier is gated by an `*_active` master switch (the scenario transforms, by the `scenario_transforms` list). When a switch is `False` (or absent), that modifier is a **no-op** and the pipeline behaves as if it were not there. Some switches ship **enabled** in the current `Config_MOMF_T1_AB.yaml` — see the "Shipped default" line of each section.
 :::
 
 ---
@@ -22,28 +22,37 @@ Some adjustments are easier or only possible on the fully-assembled GNU MathProg
 
 ## Execution order
 
-For each scenario, B2 runs (in [`B2_Executing_OG_Model.py`](../scripts/pipeline/B2_Executing_OG_Model.py)):
+The numbers are the section numbers used on this page.
 
 ```
-otoole conversion → OSeMOSYS preprocessing
-   ↓
-0. DaysInDayType injector              (always; no suffix)
-1. Storage-delay modifier              (storage_delay_active)        suffix StorageDelayN5
-2. Storage-strip modifier              (strip_storage_active)        suffix NoStorage   [forced off when 1 is on]
-3. Backstop cap-opening modifier       (open_pwrbck_active)          suffix OpenBCK
-4. Reserve-Margin repair               (reserve_margin_xlsx_active)  suffix RMCarefulXLSX
-5. Lower Constraints Modifiers         (dispatch_floors_active)      suffix FLOORED   [per base scenario]
-6. Inertial Transmission Constraints   (veg_tx_active)               suffix VEGCON    [cross-scenario barrier]
-7. Scenario transforms                 (scenario_transforms)         no suffix        [creates the derived scenarios]
-   ↓
-Sync modified CSVs → solver → results
+Once, before the scenario loop:
+   Preflight separation gate              (preflight_separation_active, only if 7 is on)
 
-Off-chain: Activity-upper-limit modifier (activity_upper_limit_active, default False)
-           runs after step 4 and mirrors its output back onto its input file,
-           so no ActUpLim suffix appears in the file the solver reads.
+For each base scenario (BAU, OPT, INV, VGB):
+   otoole conversion → OSeMOSYS preprocessing
+   1. DaysInDayType injector              (always)                       no suffix
+   2. Storage-delay modifier              (storage_delay_active)         StorageDelayN5
+   3. Storage-strip modifier              (strip_storage_active)         NoStorage      [forced off when 2 is on]
+   4. Backstop cap-opening modifier       (open_pwrbck_active)           OpenBCK
+   5. Reserve-Margin repair               (reserve_margin_xlsx_active)   RMCarefulXLSX
+   6. Activity-upper-limit modifier       (activity_upper_limit_active)  no suffix      [off by default]
+   7. Lower Constraints Modifiers         (dispatch_floors_active)       FLOORED
+   First CSV sync                         (sync_patched_csvs_active)
+
+Once, across all base scenarios:
+   8. Inertial Transmission Constraints   (veg_tx_active)                VEGCON         [creates BAC, OPC]
+   9. Scenario transforms                 (scenario_transforms)          no suffix      [creates BSR, ISR, VSR and the cost sensitivities]
+
+For each scenario in solve_scenarios:
+   Final CSV sync → solver → solver results converted to CSV with otoole
+
+Once, at the end:
+   All scenarios concatenated into RELAC_TX_*.csv → capital annualization (annualize_capital)
 ```
 
-Each active modifier appends a suffix to the datafile name and feeds its output to the next modifier in the chain. With the shipped configuration the file that reaches the solver is `Executables/<S>_0/Pre_processed_<S>_0_StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON.txt`. The order is fixed in `CHAIN_ORDER` inside [`B2_Executing_OG_Model.py`](../scripts/pipeline/B2_Executing_OG_Model.py); B2 aborts at startup if the active flags would produce a chain other than `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` before VEGCON, because the transmission-chain scripts have that prefix hardcoded in their file matching.
+Steps 2–5 and 7–8 each append a suffix to the datafile name and feed their output to the next step. With the shipped configuration the file that reaches the solver is `Executables/<S>_0/Pre_processed_<S>_0_StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON.txt` (`RM` = reserve margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial Transmission Constraints); the scenario transforms keep that name in the folders of the scenarios they create. The order is fixed in `CHAIN_ORDER` inside [`B2_Executing_OG_Model.py`](../scripts/pipeline/B2_Executing_OG_Model.py). When step 8 or 9 is active, B2 aborts at startup if the active flags would produce a chain other than `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` before `VEGCON`, because the scripts of steps 8 and 9 have that name hardcoded in their file matching.
+
+Derived scenarios are solved with the A2 sets of their base scenario (`derived_scenarios` maps each one to its base): the transforms change parameter values, never sets.
 
 ---
 
@@ -167,7 +176,7 @@ Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the f
 
 **Script:** [`veg_tx_constraints.py`](../scripts/tx_chain/veg_tx_constraints.py) · **Switch:** `veg_tx_active` · **Shipped default: True**
 
-Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC and OPC. See the transmission-chain subsections of {doc}`pipeline` and the scenario-code table.
+Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC and OPC. See the scenario-code table in {doc}`pipeline`.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -198,9 +207,12 @@ To add a scenario, add an entry to `scenario_transforms`, map the new code to it
 
 **Script:** [`sync_patched_csvs_from_txt.py`](../scripts/pipeline/sync_patched_csvs_from_txt.py) · **Switch:** `sync_patched_csvs_active` · **Shipped default: True**
 
-After the chain runs, this step extracts the listed parameter blocks from the **final** modified `.txt` and overwrites the matching CSVs in `A2_Outputs_Params_otoole/<scenario>/` **in place**. `generate_combined_input_file()` then reads those CSVs, so the modified values appear in `RELAC_TX_Combined_Inputs_Outputs.csv`.
+The sync extracts the listed parameter blocks from a modified `.txt` and overwrites the matching CSVs in `A2_Outputs_Params_otoole/<scenario>/` **in place**, so the combined input/output files (`RELAC_TX_Combined_Inputs_Outputs.csv`) show the values the solver actually consumed. It runs twice (see [Execution order](#execution-order)):
 
-`sync_patched_csvs_params` lists which parameters are synced (default):
+1. **First sync**, for each base scenario right after step 7. It reads the file produced by steps 2–6 (before `FLOORED`), so it does not yet include the Lower Constraints Modifiers or later steps.
+2. **Final sync**, after step 9, for every scenario in `solve_scenarios`, just before the solver. It reads that scenario's final `.txt` (`..._FLOORED_VEGCON.txt`). A derived scenario first gets a copy of its base scenario's CSV folder, which is then synced from its own final `.txt`; a base scenario is re-synced in place. The scenario's combined input file is then regenerated from the synced CSVs.
+
+`sync_patched_csvs_params` lists which parameters are synced (shipped):
 
 ```yaml
 sync_patched_csvs_params:
@@ -211,17 +223,20 @@ sync_patched_csvs_params:
   - TotalAnnualMinCapacity
   - TotalAnnualMinCapacityInvestment
   - TotalTechnologyAnnualActivityUpperLimit
+  - TotalTechnologyAnnualActivityLowerLimit   # Lower Constraints Modifiers (FLOORED)
+  - CapitalCost                               # Inertial Transmission Constraints; RB/RA transforms
+  - VariableCost                              # FA/FB transforms (fossil fuel)
 ```
 
 :::{note}
-The sync writes into the original A2 folder in place. Re-running the pipeline regenerates those CSVs from A1 before the modifier chain re-applies, so the operation is repeatable.
+The sync writes into the A2 folder in place. Re-running the pipeline regenerates those CSVs from A1 before the modifier chain re-applies, so the operation is repeatable.
 :::
 
 ---
 
 ## Turning the chain off
 
-To run the plain baseline pipeline (no modifiers, single `RELAC_TX_*` output set), set every master switch to `False` in `Config_MOMF_T1_AB.yaml`:
+To run the plain baseline pipeline (no modifiers, only the four base scenarios), set every master switch to `False` and remove the scenario transforms in `Config_MOMF_T1_AB.yaml`:
 
 ```yaml
 storage_delay_active: False
@@ -229,7 +244,12 @@ strip_storage_active: False
 open_pwrbck_active: False
 reserve_margin_xlsx_active: False
 activity_upper_limit_active: False
+dispatch_floors_active: False
+veg_tx_active: False
+scenario_transforms: []
 sync_patched_csvs_active: False
 ```
+
+`solve_scenarios` must then list only base scenarios (or be removed, which defaults to the four base scenarios): B2 checks that every scenario in it has its final datafile, and the derived scenarios are no longer created. Switching off any of steps 2, 4, 5 or 7 while step 8 or 9 stays active makes B2 abort at startup, because steps 8 and 9 expect the full `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED` chain.
 
 The `DaysInDayType` injector still runs (it only fixes a missing block and does not change modeling assumptions).

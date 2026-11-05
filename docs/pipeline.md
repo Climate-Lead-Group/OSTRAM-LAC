@@ -370,59 +370,20 @@ This stage runs automatically via the DVC pipeline:
 python -u scripts/pipeline/B2_Executing_OG_Model.py
 ```
 
-### Execution Steps
+### What It Does
 
-1. **CSV to datafile conversion** via otoole (per base scenario: BAU, OPT, INV, VGB).
-2. **Preprocessing** -- runs the OSeMOSYS preprocessor.
-3. **Modifier chain** -- rewrites parameter blocks directly in the GNU MathProg `.txt` to apply the reserve-margin and storage features plus feasibility safeguards (DaysInDayType, storage-delay, backstop (PWRBCK) caps, reserve margin, activity upper limits, lower constraints). See {doc}`solver-patchers` for the full chain.
-4. **Sync modified CSVs** -- overwrites the affected otoole CSVs in place so the combined input/output files reflect the modified values the solver consumed.
-5. **Transmission chain (lower constraints → inertial transmission constraints → scenario transforms)** -- see the three subsections below; produces the 13 derived scenarios (BAC, OPC, BSR, ISR, VSR, BFA, IFA, BFB, IFB, BRB, IRB, BRA, IRA) that the rest of the pipeline treats like any other scenario.
-6. **Solver execution** -- runs the selected solver (GLPK, CBC, CPLEX or Gurobi) over the configured `solve_scenarios` universe (base + derived).
-7. **Result extraction** -- converts solver output back to CSV, using each derived scenario's base A2 as the otoole-results reference (derived scenarios share sets with their base; only values differ).
-8. **Post-processing** -- input re-sync from the final `.txt` (fixes stale-input bug for derived scenarios), capital annualization, scenario concatenation.
+For each base scenario (BAU, OPT, INV, VGB), B2 converts the otoole CSVs into a GNU MathProg datafile and applies the solver modifier chain to it. It then creates the derived scenarios, solves every scenario listed in `solve_scenarios` with the configured solver, and combines the inputs and outputs of all scenarios into the final `RELAC_TX_*.csv` files.
 
-:::{note}
-The final CSVs always use `prefix_final_files` (`RELAC_TX_`), regardless of which modifiers are active; `dvc.yaml` declares them as `outs` under that name and B2 aborts at startup if they disagree. When `storage_delay_active: True` (the shipped default) only the solver model file and the root datafile are redirected. See {doc}`solver-patchers` for details.
-:::
+The full sequence, step by step, with the switch and the parameters of each step, is documented in {doc}`solver-patchers`. To add a constraint script or a derived scenario, see section 9 of that page.
 
-### Transmission chain: Lower Constraints Modifiers (stage B)
+### Scenario codes
 
-After the modifier chain, B2 runs four previously-manual scripts as subprocesses, in three stages (B, C and D, described in this and the next two subsections), with their internal logic untouched (only CLI path arguments were added). The canonical suffix chain is `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON` (`RM` = reserve margin, `FLOORED` = Lower Constraints Modifiers, `VEGCON` = Inertial Transmission Constraints); B2 asserts this at startup and aborts with a clear message if the YAML's active flags would produce a different chain (the scripts have it hardcoded in their file-matching logic).
-
-Stage B runs per base scenario. B2 first runs the read-only `preflight_separation` gate once, then `write_floors.py --scenarios <S>` for each base scenario (BAU, OPT, INV, VGB).
-
-- **Script:** `scripts/fix_dispatch/write_floors.py`
-- **Output:** `Executables/<S>_0/..._FLOORED.txt`
-- **Details:** {doc}`solver-patchers` (section 7)
-
-### Transmission chain: Inertial Transmission Constraints (stage C)
-
-Stage C is a barrier: it runs once, after every base scenario has its `_FLOORED.txt`, because it needs all four at the same time. B2 calls `veg_tx_constraints.py --base-dir Executables --needs-csv <pin>`.
-
-- **Script:** `scripts/tx_chain/veg_tx_constraints.py`
-- **Output:** `..._FLOORED_VEGCON.txt` for BAU, OPT, INV, VGB, BAC and OPC (it creates the `<S>_0/` folders of BAC and OPC)
-- **Details:** {doc}`solver-patchers` (section 8)
-
-### Transmission chain: Scenario Transforms (stage D)
-
-Stage D runs the `scenario_transforms` registry of `Config_MOMF_T1_AB.yaml` in list order, every script with `--executables-dir Executables`: `cost_sensitivity_v_SR_WF.py`, then `nli_sr_recompute.py`, then `cost_sensitivity_v_FA/FB/RB/RA.py`. Together they create most of the scenarios that are solved and reported.
-
-- **Scripts:** `scripts/tx_chain/cost_sensitivity_v_SR_WF.py`, `nli_sr_recompute.py`, `cost_sensitivity_v_{FA,FB,RB,RA}.py`
-- **Output:** BSR, ISR and VSR (new scenarios; ISR and VSR are then edited in place by `nli_sr_recompute.py`), and the cost sensitivities BFA/IFA, BFB/IFB, BRB/IRB and BRA/IRA, built from BAC and INV
-- **Details:** {doc}`solver-patchers` (section 9)
-
-Extensibility: a new constraint script or derived scenario is added entirely in `Config_MOMF_T1_AB.yaml` -- a `scenario_transforms` entry (script + `produces`/`in_place`) plus a `derived_scenarios` mapping and, if it should be solved, an entry in `solve_scenarios`. No B2 code change is needed.
-
-Solve universe: `solve_universe()` resolves `solve_scenarios` from the YAML (defaulting to the base scenarios) and validates each has its final datafile before the solver stage runs; `scenario_base()` maps a derived scenario back to the base whose A2/sets it reuses for otoole results.
-
-#### Scenario codes
-
-Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by the transmission chain. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low. Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
+Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by steps 8 and 9 of the {doc}`solver-patchers`. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low. Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
 
 | Derived code | Base (A2 sets reused) | Produced by | Notes |
 |---|---|---|---|
-| BAC | BAU | stage C (`veg_tx_constraints.py`, new-unplanned-line mode `ramp`) | reporting base of the OPT family |
-| OPC | OPT | stage C (`ramp`) | PLAN |
+| BAC | BAU | Inertial Transmission Constraints (`veg_tx_constraints.py`, new-unplanned-line mode `ramp`) | reporting base of the OPT family |
+| OPC | OPT | Inertial Transmission Constraints (`ramp`) | PLAN |
 | BSR | BAU | `cost_sensitivity_v_SR_WF.py` | OPT without repowering |
 | ISR | INV | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | reporting base of the ETT family |
 | VSR | VGB | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | ETT-GP |
@@ -431,7 +392,7 @@ Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. E
 | BRB, IRB | BAU, INV | `cost_sensitivity_v_RB.py` | `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50 |
 | BRA, IRA | BAU, INV | `cost_sensitivity_v_RA.py` | `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49 |
 
-Shipped `solve_scenarios` (14, solved in this order when `parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IRB, VSR`. INV is solved as-is and reported as "ETT with repowering".
+Shipped `solve_scenarios` (14, solved in this order when `parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IRB, VSR`. INV is solved as-is and reported as "ETT with repowering". Before solving, B2 checks that every scenario in `solve_scenarios` has its final datafile; when the list is absent, only the four base scenarios are solved.
 
 ### Solver Configuration
 
@@ -457,7 +418,7 @@ max_x_per_iter: 4  # Max scenarios per batch
 | Directory/File | Content |
 |----------------|---------|
 | `A2_Outputs_Params_otoole/{scenario}/` | otoole-format CSVs (one per parameter); for derived scenarios (see the scenario-code table above) this is a copy of the base scenario's folder, re-synced from that derived scenario's own final `.txt` |
-| `Executables/{scenario}_0/` | Compiled solver data files -- one folder per scenario, base or derived; derived scenarios' folders are created by the transmission chain (stages C/D), not by A1/A2 |
+| `Executables/{scenario}_0/` | Compiled solver data files -- one folder per scenario, base or derived; derived scenarios' folders are created by steps 8 and 9 of the solver modifier chain, not by A1/A2 |
 | `RELAC_TX_Inputs.csv` | Combined inputs (all scenarios) |
 | `RELAC_TX_Outputs.csv` | Combined outputs (all scenarios) |
 | `RELAC_TX_Combined_Inputs_Outputs.csv` | Merged inputs and outputs |

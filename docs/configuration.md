@@ -418,7 +418,7 @@ See {doc}`solver-patchers` for the full chain, execution order, and every per-pa
 
 ### Transmission Chain: Derived Scenarios
 
-Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive the transmission chain that B2 runs after VEGCON (see the transmission-chain subsection of {doc}`pipeline`). Adding a constraint script or a derived scenario is done **only** here; B2 needs no code change.
+Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive steps 8 and 9 of the B2 chain, which create the derived scenarios (see sections 8 and 9 of {doc}`solver-patchers` and the scenario-code table of {doc}`pipeline`). Adding a constraint script or a derived scenario is done **only** here; B2 needs no code change.
 
 ```yaml
 scenario_transforms:
