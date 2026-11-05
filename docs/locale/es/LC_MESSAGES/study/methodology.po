@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 09:17-0600\n"
+"POT-Creation-Date: 2026-11-05 11:16-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -24,55 +24,1947 @@ msgid "Methodology"
 msgstr "Metodología"
 
 #: ../../study/methodology.md:3
+#, python-brace-format
 msgid ""
-"The study applies a regional modelling framework using OSeMOSYS to "
-"evaluate long-term electricity system expansion strategies across the "
-"Latin American and Caribbean countries represented in the model. A "
-"harmonised dataset was developed to ensure comparability and consistency "
-"among national models. Calibration relied on official national planning "
-"documents, transmission expansion plans and investment roadmaps, "
-"supported by data from national system operators and international "
-"databases."
+"This page reproduces Chapter 2 of the report \"The Benefit of Investing "
+"in Electricity Grids: A comparative analysis to 2050 for Latin America "
+"and the Caribbean\" (Inter-American Development Bank). The scenario codes"
+" used by the model are listed in {doc}`scenarios`."
 msgstr ""
-"El estudio aplica un marco de modelación regional utilizando OSeMOSYS "
-"para evaluar estrategias de expansión del sistema eléctrico a largo plazo"
-" en los países de América Latina y el Caribe representados en el modelo. "
-"Se desarrolló un conjunto de datos armonizado para garantizar la "
-"comparabilidad y consistencia entre los modelos nacionales. La "
-"calibración se basó en documentos oficiales de planificación nacional, "
-"planes de expansión de la transmisión y hojas de ruta de inversión, con "
-"el respaldo de datos de los operadores nacionales del sistema y bases de "
-"datos internacionales."
+"Esta página reproduce el capítulo 2 del informe «El Beneficio de Invertir"
+" en Redes Eléctricas: Un análisis comparativo hacia 2050 para América "
+"Latina y el Caribe» (Banco Interamericano de Desarrollo). Los códigos de "
+"escenario que usa el modelo se listan en {doc}`scenarios`."
 
 #: ../../study/methodology.md:5
-#, python-brace-format, python-format
 msgid ""
-"The scenario families described in {doc}`scenarios` explore the system's "
-"behaviour under different levels of climate ambition, renewable energy "
-"penetration, repowering strategies and cost assumptions. The model "
-"estimates generation and transmission expansion needs, focusing on cross-"
-"border interconnections, system flexibility and infrastructure "
-"bottlenecks. These country-level insights are synthesised into regional "
-"strategies that support RELAC's 2030 target of 80% renewable electricity "
-"generation."
+"This chapter describes how the cost of not investing in electricity "
+"transmission is estimated. The analysis relies on an optimisation model "
+"of the electricity system, OSTRAM (OSeMOSYS for Transmission Modelling"
+")[^ostram-repo], which, for each year between 2023 and 2050 and with a "
+"temporal resolution of 12 time slices per year, determines the lowest-"
+"cost combination of generation, transmission and storage capable of "
+"supplying the demand of each of the 19 countries while respecting the "
+"technical constraints of the system. On that basis, the study compares "
+"two scenarios that share the objective of supplying the same demand but "
+"differ in how supply is allowed to evolve, in particular in how much the "
+"transmission grid can expand. The difference in total system costs "
+"(generation, transmission, storage, interconnections) between a grid that"
+" expands in time, or optimally, and one that lags behind because of trend"
+" investment is interpreted as an indicator of the systemic cost of not "
+"investing."
 msgstr ""
-"Las familias de escenarios descritas en {doc}`scenarios` exploran el "
-"comportamiento del sistema bajo distintos niveles de ambición climática, "
-"penetración de energía renovable, estrategias de repotenciación y "
-"supuestos de costos. El modelo estima las necesidades de expansión de "
-"generación y transmisión, con énfasis en las interconexiones "
-"transfronterizas, la flexibilidad del sistema y los cuellos de botella de"
-" infraestructura. Estos hallazgos a nivel país se sintetizan en "
-"estrategias regionales que respaldan la meta de RELAC de alcanzar el 80% "
-"de generación eléctrica renovable para 2030."
+"Este capítulo describe cómo se estima el costo de no invertir en la "
+"transmisión eléctrica. El análisis se apoya en un modelo de optimización "
+"del sistema eléctrico, OSTRAM (OSeMOSYS for Transmission Modelling"
+")[^ostram-repo], que para cada año entre 2023 y 2050, con una "
+"temporalidad de 12 intervalos de tiempo por año, determina la combinación"
+" de generación, transmisión y almacenamiento de menor costo capaz de "
+"abastecer la demanda de cada uno de los 19 países, respetando las "
+"restricciones técnicas del sistema. Sobre esa base, el estudio compara "
+"dos escenarios que comparten el objetivo de abastecer la misma demanda, "
+"pero difieren en cómo se permite que evolucione la oferta, en particular "
+"en cuánto puede expandirse la red de transmisión. La diferencia en costos"
+" totales del sistema (generación, transmisión, almacenamiento, "
+"interconexiones) entre una red que se expande oportunamente, o de forma "
+"óptima, y otra que se rezaga por una inversión tendencial se interpreta "
+"como indicador del costo sistémico de no invertir."
 
 #: ../../study/methodology.md:7
+#, python-brace-format
 msgid ""
-"The modelling tool itself, its data pipeline and its configuration are "
-"documented in the *Getting started*, *Pipeline* and *Reference* sections "
-"of this site."
+"The chapter is organised in five blocks. First, the OSTRAM model and its "
+"optimisation logic are described ({ref}`meth-model`). Then the data "
+"sources, the calibration and the technical and cost assumptions that feed"
+" the model are documented ({ref}`meth-data`). Next, the design of the two"
+" main scenarios is defined and their assumptions by sector are detailed: "
+"demand, generation and transmission ({ref}`meth-scenarios`). After that, "
+"the metrics used to evaluate the results are specified: costs, grid "
+"capacity, cost of fossil generation, dependence on fuel imports, "
+"diversification and composition of the electricity mix ({ref}`meth-"
+"indicators`). Finally, a sensitivity analysis is introduced to understand"
+" the effect of several uncertain variables (such as the costs of "
+"technologies and energy resources) on the cost of not investing ({ref"
+"}`meth-sensitivity`)."
 msgstr ""
-"La propia herramienta de modelación, su pipeline de datos y su "
-"configuración se documentan en las secciones *Primeros pasos*, *Pipeline*"
-" y *Referencia* de este sitio."
+"El capítulo se organiza en cinco bloques. Primero se describe el modelo "
+"OSTRAM y su lógica de optimización ({ref}`meth-model`). Luego se "
+"documentan las fuentes de datos, la calibración y los supuestos técnicos "
+"y de costo que lo alimentan ({ref}`meth-data`). A continuación, se define"
+" el diseño de los dos escenarios principales y se detallan sus supuestos "
+"por sector: demanda, generación y transmisión ({ref}`meth-scenarios`). "
+"Después se especifican las métricas con las que se evalúan los "
+"resultados: costos, capacidad red, costo de generación fósil, dependencia"
+" a importación de combustibles, diversificación y composición de la "
+"matriz eléctrica ({ref}`meth-indicators`). Por último, se introduce un "
+"análisis de sensibilidad que permite entender el efecto de diversas "
+"variables inciertas (como los costos de tecnologías y recursos "
+"energéticos) sobre el costo de no invertir ({ref}`meth-sensitivity`)."
+
+#: ../../study/methodology.md:10
+msgid "The OSTRAM model"
+msgstr "Modelo OSTRAM"
+
+#: ../../study/methodology.md:12
+msgid ""
+"OSTRAM is introduced in this study as an optimisation model of the "
+"regional electricity system, with an emphasis on transmission. The model "
+"combines elements of OSeMOSYS Global (Barnes et al., 2022) and of the "
+"Multipurpose OSeMOSYS-based Framework (MOMF; Victor Gallardo, 2022), and "
+"is implemented in GNU MathProg through a reproducible workflow, adapted "
+"to differentiate generation, storage, planned, repowered and new lines, "
+"and interconnections between countries. The same OSTRAM model applied to "
+"LAC was used in the RELAC study (Quirós-Tortós et al., 2025) and was "
+"adjusted to address the research question on the value of adequate "
+"transmission expansion."
+msgstr ""
+"OSTRAM se introduce en este estudio como un modelo de optimización del "
+"sistema eléctrico regional, con énfasis en la transmisión. El modelo "
+"combina elementos de OSeMOSYS Global (Barnes et al., 2022) y del "
+"Multipurpose OSeMOSYS-based Framework (MOMF; Victor Gallardo, 2022), y se"
+" implementa en GNU MathProg mediante un flujo de trabajo reproducible, "
+"adaptado para diferenciar generación, almacenamiento, líneas "
+"planificadas, repotenciadas y nuevas, e interconexiones entre países. El "
+"mismo modelo OSTRAM aplicado para ALC fue utilizado en el estudio RELAC "
+"(Quirós-Tortós et al., 2025) y se ajustó para atender la pregunta de "
+"investigación sobre el valor de la expansión adecuada en la transmisión."
+
+#: ../../study/methodology.md:14
+msgid ""
+"The model currently has a geographical scope of 19 LAC countries: "
+"Argentina, Barbados, Bolivia, Brazil, Chile, Colombia, Costa Rica, "
+"Ecuador, El Salvador, Guatemala, Haiti, Honduras, Mexico, Nicaragua, "
+"Panama, Paraguay, Peru, the Dominican Republic and Uruguay. The temporal "
+"resolution is annual, with 12 representative time slices that reflect 4 "
+"seasons and 3 daily blocks, which capture the variability of demand and "
+"of the solar and wind resources."
+msgstr ""
+"El modelo actualmente tiene un alcance geográfico de 19 países de ALC: "
+"Argentina, Barbados, Bolivia, Brasil, Chile, Colombia, Costa Rica, "
+"Ecuador, El Salvador, Guatemala, Haití, Honduras, México, Nicaragua, "
+"Panamá, Paraguay, Perú, República Dominicana y Uruguay. La resolución "
+"temporal es anual con 12 intervalos representativos que reflejan 4 "
+"estaciones y 3 franjas diarias que reflejan la variabilidad de la demanda"
+" y de los recursos solares y eólicos."
+
+#: ../../study/methodology.md:16
+#, python-brace-format
+msgid ""
+"For each year of the horizon, the model chooses the investments and the "
+"operation that minimise the total cost of the system, investment (CAPEX) "
+"plus operation and maintenance (OPEX), adding up the three components it "
+"represents: generation (by technology and country), transmission "
+"(distinguishing planned, repowered and new unplanned lines) and storage "
+"(short-duration batteries and long-duration pumped hydro). The region is "
+"represented with several technologies per country and with the "
+"interconnections as links between the transmission technologies of the "
+"countries ({ref}`Figure 1 <fig-ostram-structure>`), which makes it "
+"possible to capture cross-border exchanges."
+msgstr ""
+"Para cada año del horizonte, el modelo elige las inversiones y la "
+"operación que minimizan el costo total del sistema, inversión (CAPEX) más"
+" operación y mantenimiento (OPEX), sumando los tres componentes que "
+"representa: generación (por tecnología y país), transmisión "
+"(diferenciando líneas planificadas, repotenciadas y nuevas no "
+"planificadas) y almacenamiento (baterías de corta duración y bombeo "
+"reversible de larga duración). La región se representa con varias "
+"tecnologías por país y con las interconexiones, como enlaces entre las "
+"tecnologías de transmisión de los países ({ref}`Figura 1 <fig-ostram-"
+"structure>`), lo que permite capturar los intercambios transfronterizos."
+
+#: ../../study/methodology.md:18
+#, python-brace-format
+msgid ""
+"To ensure technically feasible results, OSTRAM verifies the adequacy of "
+"the system, that is, sufficient firm capacity to cover peak demand with a"
+" reserve margin (hard constraint), in a manner analogous to "
+"internationally recognised long-term planning models such as NREL's ReEDS"
+" or SEI's LEAP. {ref}`Figure 1 <fig-ostram-structure>` illustrates the "
+"structure of the model: in each country there is a generation bus for "
+"renewable technologies, with battery storage (BESS), and one for non-"
+"renewable technologies, and both (they are generation buses) connect to "
+"the demand bus through planned lines (according to the portfolio under "
+"execution or the expansion plans), repowered lines (according to the "
+"portfolio under execution or the expansion plans) and new lines "
+"(necessary projects that do not appear in the official portfolios and "
+"that the model has available to meet demand); the countries are linked to"
+" each other through interconnection lines. All non-renewable technologies"
+" (e.g., oil, coal, bunker fuel), conventional renewables (e.g., "
+"hydropower or renewable thermal plants) and batteries contribute to the "
+"reserve margin of the system."
+msgstr ""
+"Para asegurar resultados técnicamente factibles, OSTRAM verifica la "
+"adecuación del sistema, es decir, la capacidad firme suficiente para "
+"cubrir la demanda pico con un margen de reserva (restricción dura), de "
+"manera análoga a los modelos de planificación de largo plazo de "
+"referencia internacional, como el modelo ReEDS de NREL o LEAP de SEI. La "
+"{ref}`Figura 1 <fig-ostram-structure>` ilustra la estructura del modelo: "
+"en cada país, existe una barra de generación de tecnologías renovables "
+"con el almacenamiento en baterías (BESS) y una de no renovables, y ambas "
+"(son barras de generación) se conectan con la barra de demanda mediante "
+"líneas planificadas (según la cartera en ejecución o planes de "
+"expansión), repotenciadas (según la cartera en ejecución o planes de "
+"expansión) y nuevas (proyectos necesarios que no aparecen en las carteras"
+" oficiales que el modelo tiene a disposición para satisfacer la demanda);"
+" los países se enlazan entre sí a través de líneas de interconexión. "
+"Todas las tecnologías no renovables (e.j., petróleo, carbón, bunker, "
+"etc), las renovables convencionales (e.j., hidroeléctricas o "
+"termoeléctricas renovables), y las baterías aportan al margen de reserva "
+"del sistema."
+
+#: ../../study/methodology.md:24
+msgid ""
+"Figure 1. Structure of the OSTRAM model: generation and demand buses, "
+"storage (BESS), lines by type and interconnections between countries."
+msgstr ""
+"Figura 1. Estructura del modelo OSTRAM: barras de generación y demanda, "
+"almacenamiento (BESS), líneas por tipo e interconexiones entre países."
+
+#: ../../study/methodology.md:27
+msgid ""
+"The simplifications of the model should be made explicit. OSTRAM is a "
+"capacity expansion model, not a model of detailed grid operation. Each "
+"country is represented by buses that connect source, generation, "
+"transmission, demand and interconnection, and transmission is modelled as"
+" aggregate capacity between those buses: the internal topology of each "
+"system is not represented, nor are the limits of individual lines, nor is"
+" a distinction made between alternating and direct current links. Because"
+" power flows are not solved, stability constraints, voltage control and "
+"dynamic reserves are outside the scope of the analysis. The temporal "
+"resolution of 12 representative time slices per year captures seasonal "
+"and daily variability, but not short-duration events."
+msgstr ""
+"Conviene explicitar las simplificaciones del modelo. OSTRAM es un modelo "
+"de expansión de capacidad, no de operación detallada de la red. Cada país"
+" se representa mediante barras que conectan fuente, generación, "
+"transmisión, demanda e interconexión, y la transmisión se modela como "
+"capacidad agregada entre esas barras: no se representa la topología "
+"interna de cada sistema, ni los límites de las líneas individuales, ni se"
+" distingue entre enlaces en corriente alterna y continua. Al no resolver "
+"los flujos de potencia, quedan fuera del análisis las restricciones de "
+"estabilidad, el control de tensión y las reservas dinámicas. La "
+"resolución temporal de 12 intervalos representativos por año capta la "
+"variabilidad estacional y diaria, pero no los eventos de corta duración."
+
+#: ../../study/methodology.md:29
+msgid ""
+"These simplifications are common in long-term planning models and are "
+"adequate for the objective of the study: to estimate the order of "
+"magnitude of the need for transmission investment and of the cost of not "
+"investing. The study does not replace the transmission planning of each "
+"country. For this reason, the results aggregated at the regional scale "
+"are the most reliable conclusions of the analysis, while the figures by "
+"country or by corridor should be read as indicative guidance, which "
+"requires detailed grid studies (power flows, N-1 criterion and stability)"
+" before being translated into concrete projects."
+msgstr ""
+"Estas simplificaciones son habituales en los modelos de planificación de "
+"largo plazo y resultan adecuadas para el objetivo del estudio: estimar el"
+" orden de magnitud de la necesidad de inversión en transmisión y del "
+"costo de no invertir. El estudio no sustituye la planificación de la "
+"transmisión de cada país. Por ello, los resultados agregados a escala "
+"regional son las conclusiones más robustas del análisis, mientras que las"
+" cifras por país o por corredor deben leerse como orientaciones "
+"indicativas, que requieren estudios de red detallados (flujos de "
+"potencia, criterio N-1 y estabilidad) antes de traducirse en proyectos "
+"concretos."
+
+#: ../../study/methodology.md:32
+msgid "Data, calibration and assumptions"
+msgstr "Datos, calibración y supuestos"
+
+#: ../../study/methodology.md:34
+msgid ""
+"The model inputs come from official and international sources and are "
+"calibrated with national information. The years 2023 and 2024 are "
+"calibrated with the information available in sieLAC (OLADE, n.d"
+".)[^thermal-floor]. Electricity demand is built country by country from "
+"the official electricity expansion plans of each one, adopting the "
+"highest-growth scenario reported (\"High\") in order to capture high-"
+"electrification scenarios and interpolating its compound annual growth "
+"rate (CAGR) between the actual base year and the horizons of each plan, "
+"and it is identical in all scenarios: only the way that energy is "
+"supplied changes between them. When the aggregate trajectory is compared "
+"with regional studies, such as the World Energy Outlook (WEO) for LAC and"
+" the World Energy Transitions Outlook (WETO) for LAC, the values are "
+"close, particularly at the starting point; towards 2050, the "
+"electrification of end uses (transport and industry) raises the demand "
+"estimated by the model above the current-policy trajectories reported by "
+"the IEA. Table 1 compares the adopted projection with those regional "
+"references."
+msgstr ""
+"Las entradas del modelo provienen de fuentes oficiales e internacionales "
+"y se calibran con información nacional. Los años 2023 y 2024 se calibran "
+"con la información disponible en sieLAC (OLADE, s.f.)[^thermal-floor]. La"
+" demanda eléctrica se construye país por país a partir de los planes "
+"oficiales de expansión eléctrica de cada uno, adoptando el escenario de "
+"mayor crecimiento reportado (\"Alto\") para así capturar escenarios de "
+"alta electrificación e interpolando su tasa de crecimiento compuesta "
+"(CAGR) entre el año base real y los horizontes de cada plan, y es "
+"idéntica en todos los escenarios: lo que cambia entre ellos no es cuánta "
+"energía se consume, sino cómo se abastece. Al contrastar la trayectoria "
+"agregada con estudios regionales, como el World Energy Outlook (WEO) para"
+" ALC y el World Energy Transition Outlook (WETO) para ALC, los valores "
+"resultan cercanos, en particular en el punto de partida; hacia 2050, la "
+"electrificación de los usos finales (transporte e industria) eleva la "
+"demanda estimada por el modelo por encima de las trayectorias de "
+"políticas vigentes reportadas por la IEA. La Tabla 1 compara la "
+"proyección adoptada con esas referencias regionales."
+
+#: ../../study/methodology.md:36
+msgid ""
+"**Table 1.** Aggregate electricity demand of the 19 countries: adopted "
+"projection (built country by country) and comparison with regional "
+"studies."
+msgstr ""
+"**Tabla 1.** Demanda eléctrica agregada de los 19 países: proyección "
+"adoptada (construida país por país) y comparación con estudios "
+"regionales."
+
+#: ../../study/methodology.md:20
+msgid "Source"
+msgstr "Fuente"
+
+#: ../../study/methodology.md:20
+msgid "2025 (PJ)"
+msgstr "2025 (PJ)"
+
+#: ../../study/methodology.md:20
+msgid "2025 (TWh)"
+msgstr "2025 (TWh)"
+
+#: ../../study/methodology.md:20
+msgid "2050 (PJ)"
+msgstr "2050 (PJ)"
+
+#: ../../study/methodology.md:20
+msgid "2050 (TWh)"
+msgstr "2050 (TWh)"
+
+#: ../../study/methodology.md:20
+msgid "Adopted projection"
+msgstr "Proyección adoptada"
+
+#: ../../study/methodology.md:20
+msgid "6,363.7"
+msgstr "6.363,7"
+
+#: ../../study/methodology.md:20
+msgid "1,767.7"
+msgstr "1.767,7"
+
+#: ../../study/methodology.md:20
+msgid "15,444.7"
+msgstr "15.444,7"
+
+#: ../../study/methodology.md:20
+msgid "4,290.2"
+msgstr "4.290,2"
+
+#: ../../study/methodology.md:20
+msgid "WEO – STEPS"
+msgstr "WEO – STEPS"
+
+#: ../../study/methodology.md:20
+msgid "5,772.8"
+msgstr "5.772,8"
+
+#: ../../study/methodology.md:20
+msgid "1,603.6"
+msgstr "1.603,6"
+
+#: ../../study/methodology.md:20
+msgid "10,205.0"
+msgstr "10.205,0"
+
+#: ../../study/methodology.md:20
+msgid "2,834.7"
+msgstr "2.834,7"
+
+#: ../../study/methodology.md:20
+msgid "WEO – CPS"
+msgstr "WEO – CPS"
+
+#: ../../study/methodology.md:20
+msgid "5,783.7"
+msgstr "5.783,7"
+
+#: ../../study/methodology.md:20
+msgid "1,606.6"
+msgstr "1.606,6"
+
+#: ../../study/methodology.md:20
+msgid "10,567.7"
+msgstr "10.567,7"
+
+#: ../../study/methodology.md:20
+msgid "2,935.5"
+msgstr "2.935,5"
+
+#: ../../study/methodology.md:20
+msgid "WETO – 1.5 °C"
+msgstr "WETO – 1,5 °C"
+
+#: ../../study/methodology.md:20
+msgid "5,846.4"
+msgstr "5.846,4"
+
+#: ../../study/methodology.md:20
+msgid "1,624.0"
+msgstr "1.624,0"
+
+#: ../../study/methodology.md:20
+msgid "13,585.2"
+msgstr "13.585,2"
+
+#: ../../study/methodology.md:20
+msgid "3,773.7"
+msgstr "3.773,7"
+
+#: ../../study/methodology.md:45
+msgid ""
+"Note: STEPS: Stated Policies Scenario. CPS: Current Policies Scenario. "
+"1.5 °C: scenario compatible with 1.5 °C of the World Energy Transitions "
+"Outlook 2026."
+msgstr ""
+"Nota: STEPS: Escenario de Políticas Declaradas (por siglas del inglés "
+"Stated Policies Scenario). CPS: Escenario de Políticas Actuales (por "
+"siglas del inglés Current Policies Scenario). 1,5 °C: escenario "
+"compatible con 1,5 °C del World Energy Transition Outlook 2026."
+
+#: ../../study/methodology.md:47
+msgid ""
+"Capital and operating costs by technology come from international "
+"references (IEA, 2024; Mirletz et al., 2024), and installed generation "
+"capacity is taken from sieLAC (OLADE), adjusted with national sources. "
+"The project portfolio distinguishes between firmly committed projects "
+"(with construction started, contract awarded or financing secured) and "
+"the national generation and transmission expansion plans (PEGs and PETs"
+")[^demand-plans], even if part of them is not yet committed. Table 2 "
+"summarises the main technical and cost parameters and the rules of the "
+"model. The model applies a set of constraints that keep the results "
+"within what is physically realistic (Table 2): annual caps on new "
+"generation capacity linked to demand growth, a gradual incorporation of "
+"storage, a reserve margin, and a technology connected to the demand bus "
+"to detect unserved energy. The historical years (2023–2026) are made "
+"equal across scenarios so that the differences reflect future policy "
+"decisions."
+msgstr ""
+"Los costos de capital y operación por tecnología provienen de referencias"
+" internacionales (IEA, 2024; Mirletz et al., 2024), y la capacidad "
+"instalada de generación se obtiene de sieLAC (OLADE), ajustada con "
+"fuentes nacionales. La cartera de proyectos se distingue entre proyectos "
+"firmemente comprometidos (con construcción iniciada, contrato adjudicado "
+"o financiamiento asegurado) y los planes nacionales de expansión (PEGs o "
+"PETs)[^demand-plans], aunque parte no esté aún comprometida. La Tabla 2 "
+"resume los principales parámetros técnicos, de costo y las reglas del "
+"modelo. El modelo aplica un conjunto de restricciones que mantienen los "
+"resultados dentro de lo físicamente realista (Tabla 2): topes anuales a "
+"la nueva capacidad de generación ligados al crecimiento de la demanda, "
+"una incorporación gradual del almacenamiento, un margen de reserva, y una"
+" tecnología conectada en la barra de demanda para detectar energía no "
+"suministrada. Los años históricos (2023-2026) se igualan entre escenarios"
+" para que las diferencias reflejen decisiones de política futura."
+
+#: ../../study/methodology.md:49
+msgid ""
+"Line repowering is enabled from 2028 (before that, only in the countries "
+"that already have it planned) and new unplanned lines can only enter from"
+" 2030. That year is a methodological floor: it sets the earliest moment "
+"at which the model can deploy a new line, in recognition of the "
+"maturation times of a transmission project (engineering, rights of way, "
+"environmental assessment, financing and commissioning). It does not "
+"represent a realistic execution period for an unplanned line."
+msgstr ""
+"La repotenciación de líneas se habilita a partir de 2028 (antes, solo en "
+"los países que ya la tienen planificada) y las nuevas líneas no "
+"planificadas solo pueden entrar a partir de 2030. Ese año no representa "
+"un plazo de ejecución realista para una línea no planificada, sino un "
+"piso metodológico: fija el momento más temprano en que el modelo puede "
+"desplegar una línea nueva, en reconocimiento de los plazos de maduración "
+"de un proyecto de transmisión (ingeniería, servidumbres, evaluación "
+"ambiental, financiamiento y puesta en servicio)."
+
+#: ../../study/methodology.md:51
+msgid "**Table 2.** Technical and cost parameters and rules of the model."
+msgstr "**Tabla 2.** Parámetros técnicos, de costo y reglas del modelo."
+
+#: ../../study/methodology.md:20
+msgid "Parameter"
+msgstr "Parámetro"
+
+#: ../../study/methodology.md:20
+msgid "Value"
+msgstr "Valor"
+
+#: ../../study/methodology.md:20
+msgid "Source / note"
+msgstr "Fuente nota"
+
+#: ../../study/methodology.md:20
+msgid "Battery (short duration)"
+msgstr "Batería (corta duración)"
+
+#: ../../study/methodology.md:20
+#, python-format
+msgid "944 MUSD/GW – 85% efficiency – 4 h"
+msgstr "944 MUSD/GW - eficiencia 85% - 4 h"
+
+#: ../../study/methodology.md:20
+msgid "NREL ATB (Mirletz et al., 2024)"
+msgstr "NREL ATB (Mirletz et al., 2024)"
+
+#: ../../study/methodology.md:20
+msgid "Pumped hydro (long duration)"
+msgstr "Bombeo reversible (larga duración)"
+
+#: ../../study/methodology.md:20
+#, python-format
+msgid "2,540 MUSD/GW – 80% efficiency – 10 h"
+msgstr "2.540 MUSD/GW - eficiencia 80% - 10 h"
+
+#: ../../study/methodology.md:20
+msgid "Transmission OPEX"
+msgstr "OPEX de transmisión"
+
+#: ../../study/methodology.md:20
+#, python-format
+msgid "2% of CAPEX"
+msgstr "2% del CAPEX"
+
+#: ../../study/methodology.md:20
+#, python-format
+msgid ""
+"World Bank/ESMAP (2025); 2% ≈ lower bound of the reported range of 2%–3% "
+"of CAPEX."
+msgstr ""
+"World Bank/ESMAP (2025); 2% ≈ límite inferior del rango 2%–3% del CAPEX "
+"reportado."
+
+#: ../../study/methodology.md:20
+msgid "Repowering – conductors"
+msgstr "Repotenciación - conductores"
+
+#: ../../study/methodology.md:20
+#, python-format
+msgid ""
+"+~50% capacity – ~55% lower cost than a new line. For each country it is "
+"restricted with an upper limit of 1% per year"
+msgstr ""
+"+~50% de capacidad - ~55% menor costo que línea nueva. Para cada país se "
+"restringe con un límite superior de 1% anual"
+
+#: ../../study/methodology.md:20
+msgid "U.S. DOE (2023); O'Boyle et al. (2024). IEA (2023b)"
+msgstr "U.S. DOE (2023); O’Boyle et al. (2024). IEA (2023b)"
+
+#: ../../study/methodology.md:20
+msgid "Repowering – double circuit"
+msgstr "Repotenciación - doble circuito"
+
+#: ../../study/methodology.md:20
+#, python-format
+msgid "~+100% capacity"
+msgstr "~+100% de capacidad"
+
+#: ../../study/methodology.md:20
+msgid "U.S. DOE (2023)"
+msgstr "U.S. DOE (2023)"
+
+#: ../../study/methodology.md:20
+msgid "Reserve margin"
+msgstr "Margen de reserva"
+
+#: ../../study/methodology.md:20
+msgid "15%"
+msgstr "15%"
+
+#: ../../study/methodology.md:20
+msgid "Assumption"
+msgstr "Supuesto"
+
+#: ../../study/methodology.md:20
+msgid "Rules for repowered lines"
+msgstr "Reglas Líneas Repotenciación"
+
+#: ../../study/methodology.md:20
+msgid ""
+"In the period 2026–2027 no repowered lines can enter, except for planned "
+"repowered lines. From 2028 repowered lines can enter. Moving these "
+"periods alters the investment schedule and the use of storage."
+msgstr ""
+"En el periodo 2026-2027 no pueden entrar líneas repotenciadas. Con la "
+"excepción de las líneas repotenciadas planificadas. A partir de 2028 "
+"pueden entrar líneas repotenciadas. Mover estos periodos altera el "
+"calendario de inversión y el uso de almacenamiento."
+
+#: ../../study/methodology.md:20
+msgid "Rules for new unplanned lines"
+msgstr "Reglas Líneas Nuevas No Planificadas"
+
+#: ../../study/methodology.md:20
+msgid ""
+"In the period 2026–2029 no new unplanned lines can enter. From 2030 new "
+"unplanned lines can enter. Moving these periods alters the investment "
+"schedule and the use of storage."
+msgstr ""
+"En el periodo 2026-2029 no pueden entrar líneas nuevas no planificadas. A"
+" partir de 2030 pueden entrar líneas nuevas no planificadas. Mover estos "
+"periodos altera el calendario de inversión y el uso de almacenamiento."
+
+#: ../../study/methodology.md:64
+msgid ""
+"The technologies that represent new lines carry an \"increase rate\" that"
+" prevents unrealistic investment \"peaks\". The increase rate was defined"
+" from the PETs, by evaluating typical investment changes between years, "
+"and from the IEA trajectory. The difference in investment between years "
+"is multiplied by an arbitrary factor of 1.5 to give slack to the "
+"optimisation."
+msgstr ""
+"Las tecnologías que representan nuevas líneas contienen un “increase "
+"rate” que evita “picos” de inversión irreales. El increase rate se "
+"definió utilizando los PET al evaluar cambios de inversión típicos entre "
+"años y la trayectoria de la IEA. La diferencia de inversión entre años se"
+" multiplica por un factor arbitrario de 1,5 para brindar holgura en la "
+"optimización."
+
+#: ../../study/methodology.md:66
+msgid ""
+"The firmly planned interconnections are included according to Table 3. "
+"The capacity is the same in all scenarios. The existing interconnections "
+"in operation are also represented in the model from the base year. The "
+"model can optimise additional interconnections between neighbouring "
+"countries, and the cost of that decision is included in the model."
+msgstr ""
+"Las interconexiones firmemente planificadas se incluyen según la Tabla 3."
+" La capacidad es la misma en todos los escenarios. Las interconexiones "
+"existentes y en operación también se representan en el modelo desde el "
+"año base. El modelo puede optimizar interconexiones adicionales entre "
+"países vecinos y el costo de dicha decisión se incluye en el modelo."
+
+#: ../../study/methodology.md:68
+msgid "**Table 3.** Updated international interconnections included in the model."
+msgstr ""
+"**Tabla 3.** Interconexiones internacionales actualizadas incluidas en el"
+" modelo."
+
+#: ../../study/methodology.md:20
+msgid "Interconnection"
+msgstr "Interconexión"
+
+#: ../../study/methodology.md:20
+msgid "Capacity"
+msgstr "Capacidad"
+
+#: ../../study/methodology.md:20
+msgid "Technology"
+msgstr "Tecnología"
+
+#: ../../study/methodology.md:20
+msgid "Operation"
+msgstr "Operación"
+
+#: ../../study/methodology.md:20
+msgid "Maximum annual generation limit (TWh/year)"
+msgstr "Límite máximo de generación anual (TWh/año)"
+
+#: ../../study/methodology.md:20
+msgid "Argentina–Paraguay"
+msgstr "Argentina–Paraguay"
+
+#: ../../study/methodology.md:20
+msgid "270 MW"
+msgstr "270 MW"
+
+#: ../../study/methodology.md:20
+msgid "500 kV AC"
+msgstr "500 kV AC"
+
+#: ../../study/methodology.md:20
+msgid "2026 (projected)"
+msgstr "2026 (proyectada)"
+
+#: ../../study/methodology.md:20
+msgid "9.366"
+msgstr "9,366"
+
+#: ../../study/methodology.md:20
+msgid "Argentina–Chile"
+msgstr "Argentina–Chile"
+
+#: ../../study/methodology.md:20
+msgid "2,135 MW"
+msgstr "2.135 MW"
+
+#: ../../study/methodology.md:20
+msgid "345/500 kV AC"
+msgstr "345/500 kV AC"
+
+#: ../../study/methodology.md:20
+msgid "2030 (assumed)"
+msgstr "2030 (supuesta)"
+
+#: ../../study/methodology.md:20
+msgid "0.020"
+msgstr "0,020"
+
+#: ../../study/methodology.md:20
+msgid "Bolivia–Chile"
+msgstr "Bolivia–Chile"
+
+#: ../../study/methodology.md:20
+msgid "150 MW"
+msgstr "150 MW"
+
+#: ../../study/methodology.md:20
+msgid "AC (to be defined)"
+msgstr "AC (por definir)"
+
+#: ../../study/methodology.md:20
+msgid "2030 (proposed)"
+msgstr "2030 (propuesta)"
+
+#: ../../study/methodology.md:20
+msgid "0.000"
+msgstr "0,000"
+
+#: ../../study/methodology.md:20
+msgid "Bolivia–Brazil"
+msgstr "Bolivia–Brasil"
+
+#: ../../study/methodology.md:20
+msgid "420 MW"
+msgstr "420 MW"
+
+#: ../../study/methodology.md:20
+msgid "AC 500 kV + frequency converter"
+msgstr "AC 500 kV + conversora de frecuencia"
+
+#: ../../study/methodology.md:20
+msgid "2032 (committed)"
+msgstr "2032 (comprometida)"
+
+#: ../../study/methodology.md:20
+msgid "3.679"
+msgstr "3,679"
+
+#: ../../study/methodology.md:20
+msgid "Bolivia–Peru"
+msgstr "Bolivia–Perú"
+
+#: ../../study/methodology.md:20
+msgid "230 kV AC"
+msgstr "230 kV AC"
+
+#: ../../study/methodology.md:20
+msgid "Chile–Peru"
+msgstr "Chile–Perú"
+
+#: ../../study/methodology.md:20
+msgid "200 MW"
+msgstr "200 MW"
+
+#: ../../study/methodology.md:20
+msgid "220 kV"
+msgstr "220 kV"
+
+#: ../../study/methodology.md:20
+msgid "2032 (proposed)"
+msgstr "2032 (propuesta)"
+
+#: ../../study/methodology.md:20
+msgid "0.014"
+msgstr "0,014"
+
+#: ../../study/methodology.md:20
+msgid "1,000 MW"
+msgstr "1.000 MW"
+
+#: ../../study/methodology.md:20
+msgid "HVDC"
+msgstr "HVDC"
+
+#: ../../study/methodology.md:20
+msgid "2040 (assumed)"
+msgstr "2040 (supuesta)"
+
+#: ../../study/methodology.md:20
+msgid "0.02"
+msgstr "0,02"
+
+#: ../../study/methodology.md:20
+msgid "Colombia–Panama"
+msgstr "Colombia–Panamá"
+
+#: ../../study/methodology.md:20
+msgid "400 MW"
+msgstr "400 MW"
+
+#: ../../study/methodology.md:20
+msgid "HVDC, 500 kV"
+msgstr "HVDC, 500 kV"
+
+#: ../../study/methodology.md:20
+msgid "2029 (projected)"
+msgstr "2029 (proyectada)"
+
+#: ../../study/methodology.md:20
+msgid "3.504"
+msgstr "3,504"
+
+#: ../../study/methodology.md:20
+msgid "Costa Rica–Nicaragua"
+msgstr "Costa Rica–Nicaragua"
+
+#: ../../study/methodology.md:20
+msgid "300 MW"
+msgstr "300 MW"
+
+#: ../../study/methodology.md:20
+msgid "230 kV AC, 2nd SIEPAC circuit"
+msgstr "230 kV AC, 2.° circuito SIEPAC"
+
+#: ../../study/methodology.md:20
+msgid "2029 (under construction)"
+msgstr "2029 (en construcción)"
+
+#: ../../study/methodology.md:20
+msgid "1.380"
+msgstr "1,380"
+
+#: ../../study/methodology.md:20
+msgid "Costa Rica–Panama"
+msgstr "Costa Rica–Panamá"
+
+#: ../../study/methodology.md:20
+msgid "0.530"
+msgstr "0,530"
+
+#: ../../study/methodology.md:20
+msgid "2031 (projected)"
+msgstr "2031 (proyectada)"
+
+#: ../../study/methodology.md:20
+msgid "0.519"
+msgstr "0,519"
+
+#: ../../study/methodology.md:20
+msgid "Ecuador–Peru"
+msgstr "Ecuador–Perú"
+
+#: ../../study/methodology.md:20
+msgid "600 MW"
+msgstr "600 MW"
+
+#: ../../study/methodology.md:20
+msgid "500 kV AC, double circuit"
+msgstr "500 kV AC, doble circuito"
+
+#: ../../study/methodology.md:20
+msgid "2027 (under construction)"
+msgstr "2027 (en construcción)"
+
+#: ../../study/methodology.md:20
+msgid "0.106"
+msgstr "0,106"
+
+#: ../../study/methodology.md:20
+msgid "Guatemala–Mexico"
+msgstr "Guatemala–México"
+
+#: ../../study/methodology.md:20
+msgid "400 kV AC, 2nd circuit"
+msgstr "400 kV AC, 2.° circuito"
+
+#: ../../study/methodology.md:20
+msgid "1.967"
+msgstr "1,967"
+
+#: ../../study/methodology.md:20
+msgid "Guatemala–El Salvador"
+msgstr "Guatemala–El Salvador"
+
+#: ../../study/methodology.md:20
+msgid "0.254"
+msgstr "0,254"
+
+#: ../../study/methodology.md:20
+msgid "2033 (projected)"
+msgstr "2033 (proyectada)"
+
+#: ../../study/methodology.md:20
+msgid "Guatemala–Honduras"
+msgstr "Guatemala–Honduras"
+
+#: ../../study/methodology.md:20
+msgid "0.613"
+msgstr "0,613"
+
+#: ../../study/methodology.md:20
+msgid "2035 (projected)"
+msgstr "2035 (proyectada)"
+
+#: ../../study/methodology.md:20
+msgid "0.596"
+msgstr "0,596"
+
+#: ../../study/methodology.md:20
+msgid "Honduras–El Salvador"
+msgstr "Honduras–El Salvador"
+
+#: ../../study/methodology.md:20
+msgid "2032 (projected)"
+msgstr "2032 (proyectada)"
+
+#: ../../study/methodology.md:20
+msgid "0.721"
+msgstr "0,721"
+
+#: ../../study/methodology.md:20
+msgid "2034 (projected)"
+msgstr "2034 (proyectada)"
+
+#: ../../study/methodology.md:20
+msgid "0.719"
+msgstr "0,719"
+
+#: ../../study/methodology.md:20
+msgid "Honduras–Nicaragua"
+msgstr "Honduras–Nicaragua"
+
+#: ../../study/methodology.md:20
+msgid "1.167"
+msgstr "1,167"
+
+#: ../../study/methodology.md:20
+msgid "1.48"
+msgstr "1,48"
+
+#: ../../study/methodology.md:94
+msgid ""
+"Note: the values in the column \"Maximum annual generation limit "
+"(TWh/year)\" are constraint values, not a maximum physical limit. These "
+"values start from the total sum of the capacity of the interconnections "
+"between the countries, not only from the added capacity presented in this"
+" table."
+msgstr ""
+"Nota: los valores de la columna \"Límite máximo de generación anual "
+"(TWh/año)\" es un valor de restricción, no un límite físico máximo. Estos"
+" valores parten de la suma total de la capacidad de las interconexiones "
+"entre los países, no solamente de la capacidad añadida que se presenta en"
+" esta tabla."
+
+#: ../../study/methodology.md:96
+#, python-format
+msgid ""
+"Finally, the average conductor efficiency of each line is represented by "
+"country and line type, as a function of the properties of the conductors "
+"and of the average distance between generation and the load centres; a "
+"value of 0.960, for example, implies about 4% losses on that stretch. "
+"These values were checked against IDB references (Jimenez Mori et al., "
+"2014) and OLADE references, and are reported in the technical annex "
+"\"Detailed assumptions and model parameters\" of the report. The full "
+"detail of sources, parameters, thresholds and calibration rules of the "
+"model is documented in the technical annexes of the report (section 7.1)."
+msgstr ""
+"Finalmente, la eficiencia promedio del conductor de cada línea se "
+"representa por país y tipo de línea, en función de las propiedades de los"
+" conductores y de la distancia media entre la generación y los centros de"
+" carga; un valor de 0,960, por ejemplo, implica cerca de 4% de pérdidas "
+"en el tramo. Estos valores fueron contrastados con referencias del BID "
+"(Jimenez Mori et al., 2014) y de OLADE, y se reportan en el Anexo Técnico"
+" “Supuestos detallados y parámetros del modelo” del informe. El detalle "
+"completo de fuentes, parámetros, umbrales y reglas de calibración del "
+"modelo se documenta en los Anexos Técnicos del informe (sección 7.1)."
+
+#: ../../study/methodology.md:99
+msgid "Scenario design"
+msgstr "Diseño de escenarios"
+
+#: ../../study/methodology.md:101
+#, python-brace-format
+msgid ""
+"Two scenarios are explored with the model (see Table 4). Demand is kept "
+"identical in all scenarios (the trajectory of {ref}`meth-data`) to ensure"
+" comparability; what varies is supply: which projects are considered "
+"firm, whether the transmission grid is allowed to expand, and which "
+"technologies sustain a minimum generation floor. This structure makes it "
+"possible to approximate the effect of investment in transmission under "
+"comparable portfolios."
+msgstr ""
+"Dos escenarios son explorados con el modelo (ver Tabla 4). La demanda se "
+"mantiene idéntica en todos los escenarios (la trayectoria de {ref}`meth-"
+"data`) para asegurar la comparabilidad; lo que varía es la oferta: qué "
+"proyectos se consideran firmes, si se permite expandir la red de "
+"transmisión y qué tecnologías sostienen un piso mínimo de generación. "
+"Esta estructura permite aproximar el efecto de la inversión en "
+"transmisión bajo carteras comparables."
+
+#: ../../study/methodology.md:103
+msgid ""
+"**Table 4.** Assumptions by scenario. Generation and transmission "
+"projects considered by each scenario and where the grid is limited to its"
+" trend growth."
+msgstr ""
+"**Tabla 4.** Supuestos por escenario. Proyectos de generación y "
+"transmisión que considera cada escenario y dónde se limita la red a su "
+"crecimiento tendencial."
+
+#: ../../study/methodology.md:20
+msgid "OPT"
+msgstr "OPT"
+
+#: ../../study/methodology.md:20
+msgid "ETT"
+msgstr "ETT"
+
+#: ../../study/methodology.md:20
+msgid "Electricity demand"
+msgstr "Demanda eléctrica"
+
+#: ../../study/methodology.md:20
+msgid "1,768 TWh (2025) → 4,290 TWh (2050)"
+msgstr "1.768 TWh (2025) → 4.290 TWh (2050)"
+
+#: ../../study/methodology.md:20
+msgid "**Generation**"
+msgstr "**Generación**"
+
+#: ../../study/methodology.md:20
+msgid "Projects awarded or under construction"
+msgstr "Proyectos asignados o en construcción"
+
+#: ../../study/methodology.md:20
+msgid "✔"
+msgstr "✔"
+
+#: ../../study/methodology.md:20
+msgid "Planned projects (PEG)"
+msgstr "Proyectos planificados (PEG)"
+
+#: ../../study/methodology.md:20
+msgid "No"
+msgstr "No"
+
+#: ../../study/methodology.md:20
+msgid ""
+"If more generation is required, the creation of new capacity is optimised"
+" with the technologies that yield the lowest cost"
+msgstr ""
+"Si se requiere más generación, se optimiza la creación de nueva capacidad"
+" con tecnologías que generen menor costo"
+
+#: ../../study/methodology.md:20
+msgid "**Transmission**"
+msgstr "**Transmisión**"
+
+#: ../../study/methodology.md:20
+msgid "Planned projects (PET)"
+msgstr "Proyectos planificados (PET)"
+
+#: ../../study/methodology.md:20
+msgid "Repowering of existing lines"
+msgstr "Repotenciación de líneas existentes"
+
+#: ../../study/methodology.md:20
+msgid ""
+"Expansion limited to the trend (≈ +1.9% per year from USD 3.3 billion in "
+"2022)"
+msgstr ""
+"Expansión limitada a la tendencia (≈ +1,9 % anual desde USD 3.300 M en "
+"2022)"
+
+#: ../../study/methodology.md:20
+msgid "Least-cost optimisation if more transmission is required"
+msgstr "Optimización de menor costo si se requiere más transmisión"
+
+#: ../../study/methodology.md:20
+msgid "**Other**"
+msgstr "**Otros**"
+
+#: ../../study/methodology.md:20
+msgid "Battery storage (BESS)"
+msgstr "Almacenamiento en baterías (BESS)"
+
+#: ../../study/methodology.md:20
+msgid "Interconnections"
+msgstr "Interconexiones"
+
+#: ../../study/methodology.md:122
+msgid "The two scenarios evaluated are:"
+msgstr "Los dos escenarios evaluados son:"
+
+#: ../../study/methodology.md:124
+msgid ""
+"**Optimal (OPT, `BAC`).** It takes as its base only the generation and "
+"transmission (G&T) projects already awarded or under construction, does "
+"not incorporate the national expansion plans, and optimises the expansion"
+" of G&T at least cost until the end of the period, without imposing "
+"limits on grid investment. It is the scenario of the adequate or required"
+" grid: transmission grows according to what the system requires, so its "
+"total cost serves as the benchmark against which the cost of not "
+"investing is measured."
+msgstr ""
+"**Óptimo (OPT, `BAC`).** Toma como base únicamente los proyectos de "
+"generación y transmisión (G&T) ya asignados o en construcción, no "
+"incorpora los planes nacionales de expansión y optimiza al menor costo la"
+" expansión de G&T hasta el final del periodo, sin imponer límites a la "
+"inversión en red. Es el escenario de red adecuada o requerida: la "
+"transmisión crece según lo que el sistema requiere, por lo que su costo "
+"total sirve de patrón contra el cual se mide el costo de no invertir."
+
+#: ../../study/methodology.md:125
+msgid ""
+"**Trend (Trend Transmission Expansion, ETT, `ISR`).** It starts from the "
+"firm portfolio of the Optimal scenario, but investment in transmission is"
+" limited to its trend growth: a path that starts from about USD 3.3 "
+"billion per year in 2022 and grows until 2050 at the historical pace of "
+"regional transmission investment, an average of approximately 1.9% per "
+"year, for the recent years (2023–2025)[^trend-cap]. Generation expands at"
+" least cost, without incorporating the national generation plans."
+msgstr ""
+"**Tendencial (Expansión en Transmisión Tendencial, ETT, `ISR`).** Parte "
+"de la cartera firme del Óptimo, pero la inversión en transmisión se "
+"limita a su crecimiento tendencial: una senda que parte de unos USD 3.300"
+" millones anuales en 2022 y crece hasta 2050 al ritmo histórico de la "
+"inversión regional en transmisión, un promedio de aproximadamente 1,9% "
+"anual[^trend-cap], para los años recientes (2023–2025). La generación se "
+"expande por menor costo, sin incorporar los planes nacionales de "
+"generación."
+
+#: ../../study/methodology.md:128
+msgid "Evaluation indicators"
+msgstr "Indicadores de evaluación"
+
+#: ../../study/methodology.md:130
+msgid ""
+"The model results are summarised in a set of indicators that cover the "
+"economic, physical and systemic dimensions (see section 7.2 of the report"
+" for details)."
+msgstr ""
+"Los resultados del modelo se resumen en un conjunto de indicadores que "
+"cubren las dimensiones económicas, física y sistémicas (ver la sección "
+"7.2 del informe para más detalles)."
+
+#: ../../study/methodology.md:132
+msgid "**Economic and cost indicators**"
+msgstr "**Indicadores económicos y de costo**"
+
+#: ../../study/methodology.md:134
+msgid ""
+"**Investment.** Total capital investment and, in particular, investment "
+"in transmission lines (MUSD), by scenario and period."
+msgstr ""
+"**Inversión.** Inversión de capital total y, en particular, inversión en "
+"líneas de transmisión (MUSD), por escenario y periodo."
+
+#: ../../study/methodology.md:135
+msgid "**Total system cost.** Sum of CAPEX plus OPEX and fuel costs (MUSD/year)."
+msgstr ""
+"**Costo total del sistema.** Suma de CAPEX más OPEX y costos de "
+"combustible (MUSD/año)."
+
+#: ../../study/methodology.md:136
+msgid "**Unit cost.** Annualised total system cost per unit of energy (MUSD/TWh)."
+msgstr ""
+"**Costo unitario.** Costo total anualizado del sistema por unidad de "
+"energía (MUSD/TWh)."
+
+#: ../../study/methodology.md:137
+msgid ""
+"**Cost of not investing.** Difference in total system cost between the "
+"trend transmission scenario (ETT) and the Optimal scenario (OPT), "
+"accumulated over 2026–2050."
+msgstr ""
+"**Costo de no invertir.** Diferencia de costo total del sistema entre el "
+"escenario de transmisión tendencial (ETT) y el Óptimo (OPT), acumulada "
+"2026–2050."
+
+#: ../../study/methodology.md:138
+msgid ""
+"**Net saving per additional dollar.** Ratio between the cost of not "
+"investing and the additional investment in transmission of the Optimal "
+"scenario compared with the Trend scenario. This indicator reflects the "
+"total net saving (at system level) for each dollar invested in the "
+"required transmission."
+msgstr ""
+"**Ahorro neto por dólar adicional.** Razón entre el costo de no invertir "
+"y la inversión adicional en transmisión del Óptimo frente al Tendencial. "
+"Este indicador refleja el ahorro neto total (a nivel sistémico) por cada "
+"dólar invertido en la transmisión requerida."
+
+#: ../../study/methodology.md:140
+msgid "**Physical and technical indicators**"
+msgstr "**Indicadores físicos y técnicos**"
+
+#: ../../study/methodology.md:142
+msgid ""
+"**Generation capacity.** Installed generation capacity (GW), by "
+"technology, scenario and horizon."
+msgstr ""
+"**Capacidad de generación.** Capacidad instalada de generación (GW), por "
+"tecnología, escenario y horizonte."
+
+#: ../../study/methodology.md:143
+msgid ""
+"**Generation and composition of the mix.** Annual generation (TWh) and "
+"share of renewable versus non-renewable sources."
+msgstr ""
+"**Generación y composición de la matriz.** Generación anual (TWh) y "
+"participación de fuentes renovables frente a no renovables."
+
+#: ../../study/methodology.md:144
+msgid "**Storage.** Installed storage capacity (GW)."
+msgstr "**Almacenamiento.** Capacidad instalada de almacenamiento (GW)."
+
+#: ../../study/methodology.md:145
+msgid "**Transmission capacity.** Installed transmission capacity (GW)[^line-km]."
+msgstr ""
+"**Capacidad de transmisión.** Capacidad instalada de transmisión (GW"
+").[^line-km]"
+
+#: ../../study/methodology.md:146
+msgid ""
+"**Fuel consumption.** Volume of fossil fuels consumed by generation "
+"(million barrels of oil equivalent, MBOE), in total and by fuel type."
+msgstr ""
+"**Consumo de combustibles.** Volumen de combustibles fósiles consumido "
+"por la generación (MBEP), en total y por tipo de combustible."
+
+#: ../../study/methodology.md:148
+msgid "**Systemic security and diversification indicators**"
+msgstr "**Indicadores (sistémicos) de seguridad y diversificación de la matriz**"
+
+#: ../../study/methodology.md:150
+msgid ""
+"**Dependence on fuel imports.** Share of indigenous energy (fuel of local"
+" origin plus all renewable generation) compared with imported energy."
+msgstr ""
+"**Dependencia a importación de combustibles.** Participación de energía "
+"autóctona (combustible de origen local más toda la generación renovable) "
+"frente a la importada."
+
+#: ../../study/methodology.md:151
+msgid ""
+"**Diversification of the mix.** Measure of the effective number of "
+"sources. A higher value indicates a more evenly spread mix; it must be "
+"interpreted together with the composition of the mix, because a "
+"fragmentation forced by the lack of grid also raises the count."
+msgstr ""
+"**Diversificación de la matriz.** Medida del número efectivo de fuentes. "
+"Un valor mayor indica una matriz más repartida; debe interpretarse junto "
+"con la composición de la matriz, pues una fragmentación forzada por la "
+"falta de red también eleva el conteo."
+
+#: ../../study/methodology.md:153
+msgid ""
+"All costs reported in this document are undiscounted, although the model "
+"does use a discount rate of 10% to take decisions in the optimisation. "
+"The report presents undiscounted costs because it adds up results for 19 "
+"countries and no social discount rate represents the whole region. This "
+"rate, which governments use to compare future costs and benefits with "
+"present ones, varies between countries: Chile uses 5.5% (MDSF, 2024), "
+"Colombia 9% (DNP, 2022) and Mexico 10% (Campos et al., 2016). Nor is "
+"there consensus among specialists: in a survey of more than 200 of them, "
+"the recommended rates range from 0% to 10% (Drupp et al., 2018). "
+"Presenting undiscounted costs also allows them to be compared with the "
+"international references cited in this report: the IEA presents grid "
+"investment in constant, undiscounted dollars, also when it averages it "
+"over several years (IEA, 2023). To complement the discussion, section 3.5"
+" of the report presents the present value of the costs discussed (cost of"
+" not investing and additional required investment in transmission) at "
+"rates of 3%, 6% and 10%, and Annex 7.4 of the report extends that "
+"calculation to the sensitivity analyses."
+msgstr ""
+"Todos los costos reportados en este documento son no descontados, aunque "
+"el modelo sí utiliza una tasa de descuento de 10% para tomar decisiones "
+"en la optimización. El informe presenta los costos sin descontar porque "
+"suma resultados de 19 países y ninguna tasa de descuento social "
+"representa a toda la región. Esta tasa, que los gobiernos usan para "
+"comparar los costos y beneficios futuros con los de hoy, varía entre "
+"países: Chile usa 5,5% (MDSF, 2024), Colombia 9% (DNP, 2022) y México 10%"
+" (Campos et al., 2016). Entre especialistas tampoco hay consenso: en una "
+"encuesta a más de 200, las tasas recomendadas van de 0% a 10% (Drupp et "
+"al., 2018). Presentar los costos sin descontar también permite "
+"compararlos con las referencias internacionales que cita este informe: la"
+" IEA presenta la inversión en redes en dólares constantes, sin descontar,"
+" también cuando la promedia sobre varios años (IEA, 2023). Con el fin de "
+"complementar la discusión, la sección 3.5 del informe presenta el valor "
+"presente de los costos discutidos (costo de no invertir e inversión "
+"requerida adicional en transmisión) con tasas de 3%, 6% y 10%, y el Anexo"
+" 7.4 del informe extiende ese cálculo a los análisis de sensibilidad."
+
+#: ../../study/methodology.md:155
+msgid ""
+"All results are reported at the regional level, as the aggregate of the "
+"19 countries, even though the model is solved country by country. Each "
+"metric is calculated by period (2026–2030, 2031–2040, 2041–2050) or for "
+"the single years 2030, 2040 and 2050, depending on the metric being "
+"evaluated (e.g., costs are reported by period and capacities for single "
+"years)."
+msgstr ""
+"Todos los resultados se reportan a nivel regional, como agregado de los "
+"19 países, aunque el modelo se resuelve país por país. Cada métrica se "
+"calcula por periodos (2026-2030, 2031-2040, 2041-2050) o para los años "
+"puntuales 2030, 2040 y 2050 según la métrica a evaluar (p.ej., los costos"
+" se reportan por periodos y las capacidades para años puntuales)."
+
+#: ../../study/methodology.md:158
+msgid "Sensitivity analysis"
+msgstr "Análisis de sensibilidad"
+
+#: ../../study/methodology.md:160
+msgid ""
+"Two sensitivity evaluations are carried out. First, two scenarios "
+"alternative to the Optimal and Trend scenarios are evaluated. Second, "
+"variations are made to the base parameters of the Optimal and Trend "
+"scenarios."
+msgstr ""
+"Dos evaluaciones de sensibilidad se llevan a cabo. Primero se evalúan dos"
+" escenarios alternativos al Óptimo y tendencial. Segundo, se realizan "
+"variaciones a los parámetros base de los escenarios Óptimo y Tendencial."
+
+#: ../../study/methodology.md:162
+msgid "Sensitivity to generation and transmission plans"
+msgstr "Sensibilidad en planes de generación y transmisión"
+
+#: ../../study/methodology.md:164
+msgid ""
+"This sensitivity evaluates the effect of executing the national expansion"
+" plans fully and on time under two situations (see Table 5):"
+msgstr ""
+"Esta sensibilidad evalúa el efecto de ejecutar los planes nacionales de "
+"expansión en tiempo y forma bajo dos situaciones (ver Tabla 5):"
+
+#: ../../study/methodology.md:166
+msgid ""
+"**PLAN scenario (`OPC`):** the public planned portfolio of generation "
+"(PEG) and transmission (PET) is executed fully and on time, in addition "
+"to the projects already awarded or under construction."
+msgstr ""
+"**Escenario PLAN (`OPC`):** la cartera pública planificada de generación "
+"(PEG) y de transmisión (PET) se ejecuta en tiempo y forma, además de los "
+"proyectos ya asignados o en construcción."
+
+#: ../../study/methodology.md:167
+msgid ""
+"**ETT-GP scenario (`VSR`):** only the public planned generation portfolio"
+" (PEG) is executed fully and on time, while investment in transmission is"
+" limited to its trend growth and repowering is limited to what is already"
+" planned. The grid thus becomes the bottleneck of the system."
+msgstr ""
+"**Escenario ETT-GP (`VSR`):** solo la cartera pública planificada de "
+"generación (PEG) se ejecuta en tiempo y forma, mientras la inversión en "
+"transmisión se limita a su crecimiento tendencial y la repotenciación, a "
+"la ya planificada. La red se convierte así en el cuello de botella del "
+"sistema."
+
+#: ../../study/methodology.md:169
+msgid ""
+"Comparing both situations with the Optimal scenario (the adequate-grid "
+"scenario) makes it possible to estimate the cost of not expanding "
+"transmission at the pace required by the planned generation."
+msgstr ""
+"Comparar ambas situaciones con el escenario Óptimo (el de red adecuada) "
+"permite estimar el costo de no expandir la transmisión al ritmo que "
+"requiere la generación planificada."
+
+#: ../../study/methodology.md:171
+msgid ""
+"**Table 5.** Scenarios of execution of the generation and transmission "
+"plans and their effect on the cost of not investing in the grid."
+msgstr ""
+"**Tabla 5.** Escenarios de ejecución de los planes de generación y "
+"transmisión y su efecto sobre el costo de no invertir en la red."
+
+#: ../../study/methodology.md:20
+msgid "Variation considered"
+msgstr "Variación considerada"
+
+#: ../../study/methodology.md:20
+msgid "Effect to evaluate on the cost of not investing"
+msgstr "Efecto a evaluar en el costo de no invertir"
+
+#: ../../study/methodology.md:20
+msgid "Generation and transmission plans executed (PLAN)"
+msgstr "Planes de generación y transmisión ejecutados (PLAN)"
+
+#: ../../study/methodology.md:20
+msgid ""
+"All planned generation (PEG) and transmission (PET) projects are executed"
+" fully and on time, in addition to those already awarded or under "
+"construction; the grid expands as planned and accompanies the committed "
+"generation."
+msgstr ""
+"Se ejecutan en tiempo y forma todos los proyectos planificados de "
+"generación (PEG) y transmisión (PET), además de los ya asignados o en "
+"construcción; la red se expande según lo planificado y acompaña a la "
+"generación comprometida."
+
+#: ../../study/methodology.md:20
+msgid ""
+"Quantifies the difference in total system cost compared with the Optimal "
+"scenario when the whole planned G&T portfolio is executed and "
+"transmission does not constrain generation."
+msgstr ""
+"Cuantifica la diferencia de costo total del sistema frente al Óptimo "
+"cuando se ejecuta toda la cartera planificada de G&T y la transmisión no "
+"restringe a la generación."
+
+#: ../../study/methodology.md:20
+msgid "Planned generation with trend transmission (ETT-GP)"
+msgstr "Generación planificada con transmisión tendencial (ETT-GP)"
+
+#: ../../study/methodology.md:20
+msgid ""
+"The planned generation projects (PEG) are executed fully and on time, in "
+"addition to those already awarded or under construction, but investment "
+"in transmission is limited to its trend growth and repowering only to "
+"what is planned."
+msgstr ""
+"Se ejecutan en tiempo y forma los proyectos planificados de generación "
+"(PEG), además de los ya asignados o en construcción, pero la inversión en"
+" transmisión se limita a su crecimiento tendencial y la repotenciación, "
+"únicamente a la planificada."
+
+#: ../../study/methodology.md:20
+msgid ""
+"Quantifies the difference in total system cost compared with the Optimal "
+"scenario when the planned generation is executed and transmission remains"
+" on its trend path."
+msgstr ""
+"Cuantifica la diferencia de costo total del sistema frente al Óptimo "
+"cuando la generación planificada se ejecuta y la transmisión se mantiene "
+"en su senda Tendencial."
+
+#: ../../study/methodology.md:178
+msgid "Sensitivities of OPT and ETT to future conditions"
+msgstr "Sensibilidades OPT y ETT varían al futuro"
+
+#: ../../study/methodology.md:180
+msgid ""
+"The future of technology costs and of energy carriers is uncertain, and "
+"that affects how much it costs not to invest in transmission; for "
+"example, a scenario with favourable costs for renewables would widen the "
+"gap by making more expensive the operation of a system that expands with "
+"trend investment, because it misses the opportunity of low renewable "
+"costs."
+msgstr ""
+"El futuro de los costos tecnológicos y de los vectores energéticos es "
+"incierto, y eso afecta cuánto cuesta no invertir en transmisión; por "
+"ejemplo, un escenario con costos favorables para las renovables "
+"aumentaría la brecha al encarecer la operación de un sistema que se "
+"expande con inversión tendencial al desaprovechar la oportunidad de "
+"costos bajos en renovables."
+
+#: ../../study/methodology.md:182
+msgid ""
+"The initial scenarios (the Optimal, OPT, and the Trend, ETT) are used to "
+"evaluate the effect of altering several parameters. Groups of parameters "
+"are varied (Table 6): Optimal scenario without repowering, Trend scenario"
+" with repowering, lower cost of renewables and storage (for both "
+"scenarios), higher cost of renewables and storage (for both scenarios), "
+"lower cost of fossil fuels (for both scenarios) and higher cost of fossil"
+" fuels (for both scenarios). In total, ten additional scenarios."
+msgstr ""
+"Los escenarios iniciales (el Óptimo, OPT, y el Tendencial, ETT) se usan "
+"para evaluar el efecto de alterar diversos parámetros. Se varían grupos "
+"de parámetros (Tabla 6): escenario Óptimo sin repotenciación, escenario "
+"Tendencial con repotenciación, se disminuye el costo de las renovables y "
+"del almacenamiento (para los dos escenarios), se aumenta el costo de las "
+"renovables y del almacenamiento (para los dos escenarios), se disminuye "
+"el costo de los combustibles fósiles (para los dos escenarios) y se "
+"aumenta el costo de los combustibles fósiles (para los dos escenarios). "
+"En total, diez escenarios adicionales."
+
+#: ../../study/methodology.md:184
+msgid ""
+"**Table 6.** Cost and resource variations to evaluate the cost of not "
+"investing (see section 4 of the report)."
+msgstr ""
+"**Tabla 6.** Variaciones de costos y recursos para evaluar el costo de no"
+" invertir (ver sección 4 del informe)."
+
+#: ../../study/methodology.md:20
+msgid "With repowering (ETT with repowering, `INV`)"
+msgstr "Con repotenciación (ETT con repotenciación, `INV`)"
+
+#: ../../study/methodology.md:20
+msgid ""
+"Repowering can increase and is optimised by the model. Only the Trend "
+"scenario has this sensitivity, because the Optimal scenario already "
+"includes this repowering."
+msgstr ""
+"La repotenciación puede aumentar y optimizarse según el modelo. Esta "
+"sensibilidad solo la presenta el escenario Tendencial porque el Óptimo ya"
+" incluye esta repotenciación."
+
+#: ../../study/methodology.md:20
+msgid ""
+"Evaluates to what extent optimised repowering substitutes grid expansion "
+"and how the total system cost varies in the Trend scenario."
+msgstr ""
+"Evalúa en qué medida la repotenciación optimizada sustituye expansión de "
+"red y cómo varía el costo total del sistema en el escenario Tendencial."
+
+#: ../../study/methodology.md:20
+msgid "Without repowering (OPT without repowering, `BSR`)"
+msgstr "Sin repotenciación (OPT sin repotenciación, `BSR`)"
+
+#: ../../study/methodology.md:20
+msgid ""
+"Repowering is limited to the planned repowering. Only the Optimal "
+"scenario has this sensitivity, because the Trend scenario only includes "
+"the planned repowering."
+msgstr ""
+"La repotenciación se limita a la repotenciación planificada. Esta "
+"sensibilidad solo la presenta el escenario Óptimo porque el Tendencial "
+"solo incluye la repotenciación planificada."
+
+#: ../../study/methodology.md:20
+msgid ""
+"Evaluates how investment is redistributed between repowering and new "
+"lines, and how the total system cost varies, when the Optimal scenario is"
+" limited to the planned repowering."
+msgstr ""
+"Evalúa cómo se redistribuye la inversión entre repotenciación y líneas "
+"nuevas, y cómo varía el costo total del sistema, cuando el Óptimo se "
+"limita a la repotenciación planificada."
+
+#: ../../study/methodology.md:20
+msgid "Low costs of renewables and storage (`BRB`, `IRB`)"
+msgstr "Costos bajos de renovables y almacenamiento (`BRB`, `IRB`)"
+
+#: ../../study/methodology.md:20
+msgid ""
+"Solar PV ×0.608; onshore wind ×0.758; short-duration storage (batteries) "
+"×0.508. Long-duration storage keeps its base trajectory."
+msgstr ""
+"Solar fotovoltaica ×0,608; eólica terrestre ×0,758; almacenamiento de "
+"corta duración (baterías) ×0,508. El almacenamiento de larga duración "
+"conserva su trayectoria base."
+
+#: ../../study/methodology.md:20
+msgid ""
+"Evaluates the sensitivity of the cost of not investing to low costs of "
+"renewables and storage."
+msgstr ""
+"Evalúa la sensibilidad del costo de no invertir a costos bajos de "
+"renovables y almacenamiento."
+
+#: ../../study/methodology.md:20
+msgid "High costs of renewables and storage (`BRA`, `IRA`)"
+msgstr "Costos altos de renovables y almacenamiento (`BRA`, `IRA`)"
+
+#: ../../study/methodology.md:20
+msgid ""
+"Solar PV ×1.338; onshore wind ×1.178; short-duration storage (batteries) "
+"×1.498. Long-duration storage keeps its base trajectory."
+msgstr ""
+"Solar fotovoltaica ×1,338; eólica terrestre ×1,178; almacenamiento de "
+"corta duración (baterías) ×1,498. El almacenamiento de larga duración "
+"conserva su trayectoria base."
+
+#: ../../study/methodology.md:20
+msgid ""
+"Evaluates the sensitivity of the cost of not investing to high costs of "
+"renewables and storage."
+msgstr ""
+"Evalúa la sensibilidad del costo de no invertir a costos altos de "
+"renovables y almacenamiento."
+
+#: ../../study/methodology.md:20
+msgid "Low costs of fossil fuels (`BFB`, `IFB`)"
+msgstr "Costos bajos de combustibles fósiles (`BFB`, `IFB`)"
+
+#: ../../study/methodology.md:20
+msgid "All fossil fuels ×0.528."
+msgstr "Todos los combustibles fósiles ×0,528."
+
+#: ../../study/methodology.md:20
+msgid ""
+"Evaluates the sensitivity of the cost of not investing to low costs of "
+"fossil fuels."
+msgstr ""
+"Evalúa la sensibilidad del costo de no invertir a costos bajos de los "
+"combustibles fósiles."
+
+#: ../../study/methodology.md:20
+msgid "High costs of fossil fuels (`BFA`, `IFA`)"
+msgstr "Costos altos de combustibles fósiles (`BFA`, `IFA`)"
+
+#: ../../study/methodology.md:20
+msgid "All fossil fuels ×1.70[^cost-multipliers]"
+msgstr "Todos los combustibles fósiles ×1,70[^cost-multipliers]"
+
+#: ../../study/methodology.md:20
+msgid ""
+"Evaluates the sensitivity of the cost of not investing to high costs of "
+"fossil fuels."
+msgstr ""
+"Evalúa la sensibilidad del costo de no invertir a costos altos de los "
+"combustibles fósiles."
+
+#: ../../study/methodology.md:207
+msgid "References"
+msgstr "Referencias"
+
+#: ../../study/methodology.md:209
+msgid ""
+"Barnes, T., Shivakumar, A., Brinkerink, M., & Niet, T. (2022). OSeMOSYS "
+"Global, an open-source, open data global electricity system model "
+"generator. *Scientific Data*, 9, Article 623. "
+"<https://doi.org/10.1038/s41597-022-01737-0>"
+msgstr ""
+"Barnes, T., Shivakumar, A., Brinkerink, M., & Niet, T. (2022). OSeMOSYS "
+"Global, an open-source, open data global electricity system model "
+"generator. *Scientific Data*, 9, Article 623. "
+"<https://doi.org/10.1038/s41597-022-01737-0>"
+
+#: ../../study/methodology.md:210
+msgid ""
+"Campos, J., Serebrisky, T., & Suárez-Alemán, A. (2016). *Tasa de "
+"descuento social y evaluación de proyectos: Algunas reflexiones prácticas"
+" para América Latina y el Caribe* (IDB Monograph 413). Inter-American "
+"Development Bank. <https://doi.org/10.18235/0012735>"
+msgstr ""
+"Campos, J., Serebrisky, T., & Suárez-Alemán, A. (2016). *Tasa de "
+"descuento social y evaluación de proyectos: Algunas reflexiones prácticas"
+" para América Latina y el Caribe* (Monografía del BID 413). Banco "
+"Interamericano de Desarrollo. <https://doi.org/10.18235/0012735>"
+
+#: ../../study/methodology.md:211
+msgid ""
+"DNP (Departamento Nacional de Planeación). (2022). *Resolución 1092 de "
+"2022: Por la cual se adopta la Tasa Social de Descuento como parámetro en"
+" la evaluación de proyectos de inversión del sector público*. "
+"<https://dnp.gov.co/publicaciones/Revista-Juridica/Paginas/Adopción-de-"
+"la-Tasa-Social-de-Descuento-para-la-evaluación-de-proyectos-de-"
+"inversión.aspx>"
+msgstr ""
+"DNP (Departamento Nacional de Planeación). (2022). *Resolución 1092 de "
+"2022: Por la cual se adopta la Tasa Social de Descuento como parámetro en"
+" la evaluación de proyectos de inversión del sector público*. "
+"<https://dnp.gov.co/publicaciones/Revista-Juridica/Paginas/Adopción-de-"
+"la-Tasa-Social-de-Descuento-para-la-evaluación-de-proyectos-de-"
+"inversión.aspx>"
+
+#: ../../study/methodology.md:212
+msgid ""
+"Drupp, M. A., Freeman, M. C., Groom, B., & Nesje, F. (2018). Discounting "
+"disentangled. *American Economic Journal: Economic Policy*, 10(4), "
+"109–134. <https://doi.org/10.1257/pol.20160240>"
+msgstr ""
+"Drupp, M. A., Freeman, M. C., Groom, B., & Nesje, F. (2018). Discounting "
+"disentangled. *American Economic Journal: Economic Policy*, 10(4), "
+"109–134. <https://doi.org/10.1257/pol.20160240>"
+
+#: ../../study/methodology.md:213
+msgid ""
+"IEA. (2023). *Electricity grids and secure energy transitions*. "
+"International Energy Agency. <https://www.iea.org/reports/electricity-"
+"grids-and-secure-energy-transitions>"
+msgstr ""
+"IEA. (2023). *Electricity grids and secure energy transitions*. "
+"International Energy Agency. <https://www.iea.org/reports/electricity-"
+"grids-and-secure-energy-transitions>"
+
+#: ../../study/methodology.md:214
+msgid ""
+"IEA. (2023b). *Latin America energy outlook*. International Energy "
+"Agency. <https://www.iea.org/reports/latin-america-energy-outlook>"
+msgstr ""
+"IEA. (2023b). *Latin America energy outlook*. International Energy "
+"Agency. <https://www.iea.org/reports/latin-america-energy-outlook>"
+
+#: ../../study/methodology.md:215
+msgid ""
+"IEA. (2024). *World Energy Outlook 2024*. International Energy Agency. "
+"<https://www.iea.org/reports/world-energy-outlook-2024>"
+msgstr ""
+"IEA. (2024). *World Energy Outlook 2024*. International Energy Agency. "
+"<https://www.iea.org/reports/world-energy-outlook-2024>"
+
+#: ../../study/methodology.md:216
+msgid ""
+"Jimenez Mori, R. A., Serebrisky, T., & Mercado Díaz, J. E. (2014). *Power"
+" lost: Sizing electricity losses in transmission and distribution systems"
+" in Latin America and the Caribbean*. Inter-American Development Bank. "
+"<https://doi.org/10.18235/0012798>"
+msgstr ""
+"Jimenez Mori, R. A., Serebrisky, T., & Mercado Díaz, J. E. (2014). *Power"
+" lost: Sizing electricity losses in transmission and distribution systems"
+" in Latin America and the Caribbean*. Banco Interamericano de Desarrollo."
+" <https://doi.org/10.18235/0012798>"
+
+#: ../../study/methodology.md:217
+msgid ""
+"MDSF (Ministerio de Desarrollo Social y Familia). (2024, 19 June). "
+"*Última actualización de la Tasa Social de Descuento genera mejores "
+"condiciones de promoción de la inversión pública en Chile*. "
+"<https://www.midesof.gob.cl/ultima-actualizacion-de-la-tasa-social-de-"
+"descuento-genera-mejores-condiciones-de-promocion-de-la-in/>"
+msgstr ""
+"MDSF (Ministerio de Desarrollo Social y Familia). (2024, 19 de junio). "
+"*Última actualización de la Tasa Social de Descuento genera mejores "
+"condiciones de promoción de la inversión pública en Chile*. "
+"<https://www.midesof.gob.cl/ultima-actualizacion-de-la-tasa-social-de-"
+"descuento-genera-mejores-condiciones-de-promocion-de-la-in/>"
+
+#: ../../study/methodology.md:218
+msgid ""
+"Mirletz, B., Vimmerstedt, L., Stehly, T., et al. (2024). *2024 Annual "
+"Technology Baseline (ATB) cost and performance data for electricity "
+"generation technologies* [Data set]. National Renewable Energy "
+"Laboratory. <https://doi.org/10.25984/2377191>"
+msgstr ""
+"Mirletz, B., Vimmerstedt, L., Stehly, T., et al. (2024). *2024 Annual "
+"Technology Baseline (ATB) cost and performance data for electricity "
+"generation technologies* [Conjunto de datos]. National Renewable Energy "
+"Laboratory. <https://doi.org/10.25984/2377191>"
+
+#: ../../study/methodology.md:219
+msgid ""
+"O'Boyle, M., Solomon, M., & Baker, C. (2024, 9 April). *The 2035 report: "
+"Reconductoring with advanced conductors can accelerate the rapid "
+"transmission expansion required for a clean grid*. Energy Innovation, "
+"GridLab, & UC Berkeley. <https://energyinnovation.org/report/the-2035"
+"-report-reconductoring-with-advanced-conductors-can-accelerate-the-rapid-"
+"transmission-expansion-needed-for-a-clean-grid/>"
+msgstr ""
+"O'Boyle, M., Solomon, M., & Baker, C. (2024, 9 de abril). *The 2035 "
+"report: Reconductoring with advanced conductors can accelerate the rapid "
+"transmission expansion required for a clean grid*. Energy Innovation, "
+"GridLab, & UC Berkeley. <https://energyinnovation.org/report/the-2035"
+"-report-reconductoring-with-advanced-conductors-can-accelerate-the-rapid-"
+"transmission-expansion-needed-for-a-clean-grid/>"
+
+#: ../../study/methodology.md:220
+msgid ""
+"OLADE (Latin American Energy Organization). (n.d.). *sieLAC: Sistema de "
+"Información Energética de Latinoamérica y el Caribe* [Data portal]. "
+"Retrieved 13 July 2026, from "
+"<https://sielac.olacde.org/WebForms/Reportes/SistemaNumerico.aspx?ss=2>"
+msgstr ""
+"Organización Latinoamericana de Energía (OLADE). (s.f.). *sieLAC: Sistema"
+" de Información Energética de Latinoamérica y el Caribe* [Portal de "
+"datos]. Consultado el 13 de julio de 2026, en "
+"<https://sielac.olacde.org/WebForms/Reportes/SistemaNumerico.aspx?ss=2>"
+
+#: ../../study/methodology.md:221
+msgid ""
+"Quirós-Tortós, J., Monge-Matamoros, J., Victor-Gallardo, L., Salazar-"
+"Vargas, A., Victor-Gallardo, N., Sánchez-Ulloa, Y., & Paredes, J. (2025)."
+" *Análisis regional prospectivo de necesidades de transmisión en los "
+"países RELAC* [Internal technical report]. Inter-American Development "
+"Bank."
+msgstr ""
+"Quirós-Tortós, J., Monge-Matamoros, J., Victor-Gallardo, L., Salazar-"
+"Vargas, A., Victor-Gallardo, N., Sánchez-Ulloa, Y., & Paredes, J. (2025)."
+" *Análisis regional prospectivo de necesidades de transmisión en los "
+"países RELAC* [Informe técnico interno]. Banco Interamericano de "
+"Desarrollo."
+
+#: ../../study/methodology.md:222
+msgid ""
+"U.S. Department of Energy, Grid Deployment Office. (2023). *National "
+"transmission needs study*. U.S. Department of Energy. "
+"<https://www.energy.gov/gdo/national-transmission-needs-study>"
+msgstr ""
+"U.S. Department of Energy, Grid Deployment Office. (2023). *National "
+"transmission needs study*. U.S. Department of Energy. "
+"<https://www.energy.gov/gdo/national-transmission-needs-study>"
+
+#: ../../study/methodology.md:223
+msgid ""
+"Victor Gallardo, L. F. (2022). *Robust energy system planning for "
+"decarbonization under technological uncertainty: From transport "
+"electrification to power system investments* [Master's thesis, "
+"Universidad de Costa Rica]. Kerwa. "
+"<https://kerwa.ucr.ac.cr/items/fa1f4673-2854-4d2b-b43f-fb8bc5d98a06>"
+msgstr ""
+"Victor Gallardo, L. F. (2022). *Robust energy system planning for "
+"decarbonization under technological uncertainty: From transport "
+"electrification to power system investments* [Tesis de maestría, "
+"Universidad de Costa Rica]. Kerwa. "
+"<https://kerwa.ucr.ac.cr/items/fa1f4673-2854-4d2b-b43f-fb8bc5d98a06>"
+
+#: ../../study/methodology.md:224
+msgid ""
+"World Bank. (2025). *Understanding the cost of transmission "
+"infrastructure: Insights from World Bank Group-financed transmission "
+"projects*. Energy Sector Management Assistance Program (ESMAP). "
+"<https://www.esmap.org/publications/understanding-cost-transmission-"
+"infrastructure-insights-world-bank-group-financed>"
+msgstr ""
+"World Bank. (2025). *Understanding the cost of transmission "
+"infrastructure: Insights from World Bank Group-financed transmission "
+"projects*. Energy Sector Management Assistance Program (ESMAP). "
+"<https://www.esmap.org/publications/understanding-cost-transmission-"
+"infrastructure-insights-world-bank-group-financed>"
+
+#: ../../study/methodology.md:195
+msgid ""
+"The OSTRAM model for Latin America and the Caribbean is available on "
+"GitHub: <https://github.com/Climate-Lead-Group/OSTRAM-LAC>."
+msgstr ""
+"El modelo OSTRAM para América Latina y el Caribe se encuentra disponible "
+"en GitHub: <https://github.com/Climate-Lead-Group/OSTRAM-LAC>."
+
+#: ../../study/methodology.md:197
+#, python-format
+msgid ""
+"Each thermal plant must generate per year at least its capacity "
+"(residual, plus the capacity forced by the PEGs where applicable for each"
+" scenario) times a minimum capacity factor specific to each technology "
+"and country, which is kept constant until 2030 and then falls linearly to"
+" at most 5% in 2050, while in 2023–2026 the calibrated historical floor "
+"applies."
+msgstr ""
+"Cada planta térmica debe generar al año al menos su capacidad (residual, "
+"más la forzada por los PEGs, si corresponde para cada escenario) por un "
+"factor de planta mínimo propio de cada tecnología y país, que se mantiene"
+" constante hasta 2030 y luego baja linealmente hasta como máximo 5 % en "
+"2050, mientras que en 2023–2026 rige el piso histórico calibrado."
+
+#: ../../study/methodology.md:199
+msgid ""
+"The projections by country come from the official electricity expansion "
+"plans in force, taking from each one the central scenario (\"Medium\") "
+"and the highest-demand scenario (\"High\"), shown here as Medium/High: "
+"Argentina: Base (E1) / Ambicioso (E3), from Escenarios para la Transición"
+" Energética 2050; Barbados: Base / High, from Roadmap 2030; Bolivia: "
+"Referencial (single), from Plan Eléctrico 2035; Brazil: Referência / "
+"Superior, from PDE 2034 (2035–2050 with PNE 2050); Chile: Carbono "
+"Neutralidad / Transición Acelerada, from PELP 2023–2027; Colombia: Medio "
+"/ IC Superior 68%, from Plan de Expansión de Generación 2025–2039; Costa "
+"Rica: Media (Plan Recomendado) / Alta, from PEG 2024–2040; Ecuador: Caso "
+"Base (single), from PME 2023–2032; El Salvador: Base (BAU) / Alta, from "
+"PIEG 2024–2038; Guatemala: Media / Alta, from PEG 2020–2050 and PEIG "
+"2024–2054; Honduras: Media / Alta (IC 95%), from PIEG 2026–2035; Mexico: "
+"Planeación / Alto, from PRODESEN 2024–2038; Nicaragua: Demanda Media "
+"(single), from PIEG 2021–2035; Panama: Moderado-Medio / Optimista-Alto, "
+"from PESIN 2025–2039; Paraguay: Tendencial + ND Potencial (single), from "
+"Plan Maestro 2024–2043; Peru: Base / Muy Optimista, from Plan de "
+"Transmisión SEIN 2023–2032 (COES); Dominican Republic: Tendencial / "
+"Alternativo, from PEN 2022–2037; Uruguay: Incondicional + Dem. 50 MW / "
+"PES nov-23 + Dem. 50 MW, from PEG 2024–2043. In Bolivia, Ecuador, "
+"Nicaragua and Paraguay the plan does not define a usable high scenario, "
+"so High = Medium is assumed."
+msgstr ""
+"Las proyecciones por país provienen de los planes oficiales de expansión "
+"eléctrica vigentes, tomando de cada uno el escenario central (“Medio”) y "
+"el de mayor demanda (“Alto”), indicados aquí como Medio/Alto: Argentina: "
+"Base (E1) / Ambicioso (E3) — Escenarios para la Transición Energética "
+"2050; Barbados: Base / High — Roadmap 2030; Bolivia: Referencial (único) "
+"— Plan Eléctrico 2035; Brasil: Referência / Superior — PDE 2034 "
+"(2035–2050 con PNE 2050); Chile: Carbono Neutralidad / Transición "
+"Acelerada — PELP 2023–2027; Colombia: Medio / IC Superior 68% — Plan de "
+"Expansión de Generación 2025–2039; Costa Rica: Media (Plan Recomendado) /"
+" Alta — PEG 2024–2040; Ecuador: Caso Base (único) — PME 2023–2032; El "
+"Salvador: Base (BAU) / Alta — PIEG 2024–2038; Guatemala: Media / Alta — "
+"PEG 2020–2050 y PEIG 2024–2054; Honduras: Media / Alta (IC 95%) — PIEG "
+"2026–2035; México: Planeación / Alto — PRODESEN 2024–2038; Nicaragua: "
+"Demanda Media (único) — PIEG 2021–2035; Panamá: Moderado-Medio / "
+"Optimista-Alto — PESIN 2025–2039; Paraguay: Tendencial + ND Potencial "
+"(único) — Plan Maestro 2024–2043; Perú: Base / Muy Optimista — Plan de "
+"Transmisión SEIN 2023–2032 (COES); Rep. Dominicana: Tendencial / "
+"Alternativo — PEN 2022–2037; Uruguay: Incondicional + Dem. 50 MW / PES "
+"nov-23 + Dem. 50 MW — PEG 2024–2043. En Bolivia, Ecuador, Nicaragua y "
+"Paraguay el plan no define un escenario alto utilizable, por lo que se "
+"asume Alto = Medio."
+
+#: ../../study/methodology.md:201
+msgid ""
+"This trend cap is not a physical constraint of the system but a budgetary"
+" assumption: the share of transmission investment of each country is "
+"calibrated from the distribution of the investment observed in 163 "
+"BNAmericas projects in operation and under construction, checked against "
+"the tracking of the expansion plans of the national regulators. That "
+"distribution portrays today's committed portfolio and does not measure "
+"the grid needs to 2050. Keeping that cap rigid over the whole horizon is "
+"equivalent to projecting the current pace of investment, including the "
+"documented underinvestment of several systems, as if that pace were the "
+"maximum delivery capacity of the country."
+msgstr ""
+"Este tope tendencial no es una restricción física del sistema, sino un "
+"supuesto presupuestario: la cuota de inversión en transmisión de cada "
+"país se calibra a partir del reparto de la inversión observada en 163 "
+"proyectos de BNAmericas en operación y construcción, contrastado con el "
+"rastreo de los planes de expansión de los reguladores nacionales. Ese "
+"reparto retrata la cartera comprometida hoy y no mide la necesidad de red"
+" al 2050. Mantener ese tope rígido durante todo el horizonte equivale a "
+"proyectar el ritmo de inversión actual incluida la subinversión "
+"documentada de varios sistemas como si ese ritmo fuera la capacidad "
+"máxima de entrega del país."
+
+#: ../../study/methodology.md:203
+msgid ""
+"Kilometres of lines by type: length of transmission lines distinguished "
+"between planned, repowered and new unplanned lines (km)."
+msgstr ""
+"Kilómetros de líneas por tipo: longitud de líneas de transmisión "
+"diferenciada entre planificadas, repotenciadas y nuevas no planificadas "
+"(km)."
+
+#: ../../study/methodology.md:205
+msgid ""
+"Fuels ×1.70: High Oil Price case of the EIA AEO2025: Brent reaches 155 "
+"USD/b in 2050 compared with 91 USD/b in the Reference case; ratio = 1.7. "
+"Fuels ×0.52: Low Oil Price case of the EIA AEO2025: Brent stands at 47 "
+"USD/b in 2050 compared with 91 USD/b in the Reference case; ratio = 0.52."
+" Solar PV ×1.33: Conservative Technology Innovation scenario of the NREL "
+"ATB 2024, Utility-Scale PV, Class 5: CAPEX (overnight cost plus grid "
+"connection) is 1,148 USD/kW_AC in 2035 compared with 864 USD/kW_AC in the"
+" Moderate scenario (2022 USD); ratio = 1.33. Solar PV ×0.60: Moderate "
+"Technology Innovation scenario of the NREL ATB 2024, Utility-Scale PV, "
+"Class 5: CAPEX (overnight cost plus grid connection) falls to 864 "
+"USD/kW_AC in 2035 compared with 1,431 USD/kW_AC in 2022 (2022 USD); ratio"
+" = 0.60. Storage ×1.49: Conservative scenario of the NREL ATB 2024, "
+"Utility-Scale Battery Storage, 4Hr: CAPEX is 1,492 USD/kW in 2050 "
+"compared with 999 USD/kW in the Moderate scenario (2022 USD); ratio = "
+"1.49. Storage ×0.50: Moderate scenario of the NREL ATB 2024, Utility-"
+"Scale Battery Storage, 4Hr: CAPEX falls to 999 USD/kW in 2050 compared "
+"with 2,027 USD/kW in 2022 (2022 USD); ratio = 0.50. Onshore wind ×1.17: "
+"Conservative scenario of the NREL ATB 2024, Land-Based Wind, Class 4: "
+"CAPEX is 1,488 USD/kW in 2030 and 1,280 USD/kW in 2050 compared with "
+"1,328 and 1,052 USD/kW in the Moderate scenario (2022 USD); mean "
+"2030–2050 of the five-year Conservative/Moderate ratios (1.120; 1.140; "
+"1.163; 1.188; 1.217) = 1.17. Onshore wind ×0.75: Moderate scenario of the"
+" NREL ATB 2024, Land-Based Wind, Class 4: CAPEX falls from 1,572 USD/kW "
+"in 2022 to 1,328 USD/kW in 2030 and 1,052 USD/kW in 2050 (2022 USD); mean"
+" 2030–2050 of the five-year ratios relative to 2022 (0.845; 0.801; 0.757;"
+" 0.713; 0.669) = 0.75."
+msgstr ""
+"Combustibles ×1,70: caso de Precio Alto del Petróleo (High Oil Price) del"
+" AEO2025 de la EIA: el Brent alcanza 155 USD/b en 2050 frente a 91 USD/b "
+"en el caso de Referencia; razón = 1,7. Combustibles ×0,52: caso de Precio"
+" Bajo del Petróleo (Low Oil Price) del AEO2025 de la EIA: el Brent se "
+"sitúa en 47 USD/b en 2050 frente a 91 USD/b en el caso de Referencia; "
+"razón = 0,52. Solar fotovoltaico ×1,33: escenario Conservador "
+"(Conservative Technology Innovation) del NREL ATB 2024, PV a escala de "
+"servicio público (Utility-Scale PV, Clase 5): el CAPEX (costo overnight "
+"más conexión a red) es 1.148 USD/kW_AC en 2035 frente a 864 USD/kW_AC en "
+"el escenario Moderado (USD de 2022); razón = 1,33. Solar fotovoltaico "
+"×0,60: escenario Moderado (Moderate Technology Innovation) del NREL ATB "
+"2024, PV a escala de servicio público (Utility-Scale PV, Clase 5): el "
+"CAPEX (costo overnight más conexión a red) baja a 864 USD/kW_AC en 2035 "
+"frente a 1.431 USD/kW_AC en 2022 (USD de 2022); razón = 0,60. "
+"Almacenamiento ×1,49: escenario Conservador del NREL ATB 2024, batería a "
+"escala de servicio público de 4 horas (Utility-Scale Battery Storage, "
+"4Hr): el CAPEX es 1.492 USD/kW en 2050 frente a 999 USD/kW en el "
+"escenario Moderado (USD de 2022); razón = 1,49. Almacenamiento ×0,50: "
+"escenario Moderado del NREL ATB 2024, batería a escala de servicio "
+"público de 4 horas (Utility-Scale Battery Storage, 4Hr): el CAPEX baja a "
+"999 USD/kW en 2050 frente a 2.027 USD/kW en 2022 (USD de 2022); razón = "
+"0,50. Eólico terrestre ×1,17: escenario Conservador del NREL ATB 2024, "
+"eólica terrestre (Land-Based Wind, Clase 4): el CAPEX es 1.488 USD/kW en "
+"2030 y 1.280 USD/kW en 2050 frente a 1.328 y 1.052 USD/kW en el escenario"
+" Moderado (USD de 2022); razón media 2030–2050 de las razones "
+"quinquenales Conservador/Moderado (1,120; 1,140; 1,163; 1,188; 1,217) = "
+"1,17. Eólico terrestre ×0,75: escenario Moderado del NREL ATB 2024, "
+"eólica terrestre (Land-Based Wind, Clase 4): el CAPEX baja de 1.572 "
+"USD/kW en 2022 a 1.328 USD/kW en 2030 y 1.052 USD/kW en 2050 (USD de "
+"2022); razón media 2030–2050 de las razones quinquenales respecto a 2022 "
+"(0,845; 0,801; 0,757; 0,713; 0,669) = 0,75."
 
