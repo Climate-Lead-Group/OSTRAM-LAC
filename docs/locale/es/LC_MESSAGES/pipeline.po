@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 09:11-0600\n"
+"POT-Creation-Date: 2026-11-05 10:38-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -106,7 +106,7 @@ msgstr "Escribe la matriz en `Tech_Country_Matrix.xlsx` con 5 hojas."
 msgid "Technology Codes"
 msgstr "Códigos de tecnología"
 
-#: ../../pipeline.md ../../pipeline.md:122
+#: ../../pipeline.md ../../pipeline.md:122 ../../pipeline.md:353
 msgid "Code"
 msgstr "Código"
 
@@ -944,7 +944,7 @@ msgstr ""
 msgid "`Config_MOMF_T1_A.yaml` -- Compiler configuration."
 msgstr "`Config_MOMF_T1_A.yaml` -- Configuración del compilador."
 
-#: ../../pipeline.md:303 ../../pipeline.md:416
+#: ../../pipeline.md:303 ../../pipeline.md:420
 msgid "Output Files"
 msgstr "Archivos de salida"
 
@@ -1255,30 +1255,29 @@ msgstr "Códigos de escenario"
 #: ../../pipeline.md:381
 #, python-brace-format
 msgid ""
-"Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, "
-"VGB**. Every other code is derived by steps 8 and 9 of the {doc}`solver-"
-"patchers`. Reading a code: first letter `B` = optimal family (built on "
-"BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no "
-"repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables"
-" cost high/low. Report names (see {doc}`study/scenarios`): OPT = BAC, ETT"
-" = ISR, PLAN = OPC, ETT-GP = VSR."
+"The four input workbooks (`A1_Outputs_<S>/` folders) are the base "
+"scenarios and keep their codes: `BAU`, `INV`, `OPT` and `VGB`. Every "
+"other scenario is derived from them by steps 8 and 9 of the {doc}`solver-"
+"patchers`. The table lists each derived scenario by the name used in the "
+"results, followed by its code, which is the value used in "
+"`Config_MOMF_T1_AB.yaml` and in the `outputs/` folders. What each name "
+"means is explained in {doc}`study/scenarios`."
 msgstr ""
-"Los escenarios base son las cuatro carpetas `A1_Outputs_<S>/`: **BAU, "
-"INV, OPT, VGB**. Cualquier otro código es derivado por los pasos 8 y 9 de"
-" la {doc}`solver-patchers`. Cómo leer un código: la primera letra `B` = "
-"familia óptima (construida sobre BAU/BAC), `I` = familia de tendencia "
-"(construida sobre INV/ISR); sufijos `SR` = sin repotenciación, `FA`/`FB` "
-"= costo de combustible fósil alto/bajo, `RA`/`RB` = costo de renovables "
-"alto/bajo. Nombres de reporte (ver {doc}`study/scenarios`): OPT = BAC, "
-"ETT = ISR, PLAN = OPC, ETT-GP = VSR."
+"Los cuatro libros de entrada (carpetas `A1_Outputs_<S>/`) son los "
+"escenarios base y conservan sus códigos: `BAU`, `INV`, `OPT` y `VGB`. "
+"Todos los demás escenarios se derivan de ellos en los pasos 8 y 9 de la "
+"{doc}`solver-patchers`. La tabla lista cada escenario derivado con el "
+"nombre que se usa en los resultados, seguido de su código, que es el "
+"valor usado en `Config_MOMF_T1_AB.yaml` y en las carpetas de `outputs/`. "
+"El significado de cada nombre se explica en {doc}`study/scenarios`."
 
 #: ../../pipeline.md:353
-msgid "Derived code"
-msgstr "Código derivado"
+msgid "Scenario"
+msgstr "Escenario"
 
 #: ../../pipeline.md:353
-msgid "Base (A2 sets reused)"
-msgstr "Base (conjuntos A2 reutilizados)"
+msgid "Base workbook (A2 sets reused)"
+msgstr "Libro base (sets A2 reutilizados)"
 
 #: ../../pipeline.md:353
 msgid "Produced by"
@@ -1289,12 +1288,16 @@ msgid "Notes"
 msgstr "Notas"
 
 #: ../../pipeline.md:353
-msgid "BAC"
-msgstr "BAC"
+msgid "OPT"
+msgstr "OPT"
 
 #: ../../pipeline.md:353
-msgid "BAU"
-msgstr "BAU"
+msgid "`BAC`"
+msgstr "`BAC`"
+
+#: ../../pipeline.md:353
+msgid "`BAU`"
+msgstr "`BAU`"
 
 #: ../../pipeline.md:353
 msgid ""
@@ -1305,96 +1308,130 @@ msgstr ""
 " líneas nuevas no planificadas `ramp`)"
 
 #: ../../pipeline.md:353
-msgid "reporting base of the OPT family"
-msgstr "base de reporte de la familia OPT"
-
-#: ../../pipeline.md:353
-msgid "OPC"
-msgstr "OPC"
-
-#: ../../pipeline.md:353
-msgid "OPT"
-msgstr "OPT"
-
-#: ../../pipeline.md:353
-msgid "Inertial Transmission Constraints (`ramp`)"
-msgstr "Restricciones inerciales de transmisión (`ramp`)"
+msgid "Reporting base of the OPT family"
+msgstr "Base de reporte de la familia OPT"
 
 #: ../../pipeline.md:353
 msgid "PLAN"
 msgstr "PLAN"
 
 #: ../../pipeline.md:353
-msgid "BSR"
-msgstr "BSR"
+msgid "`OPC`"
+msgstr "`OPC`"
 
 #: ../../pipeline.md:353
-msgid "`cost_sensitivity_v_SR_WF.py`"
-msgstr "`cost_sensitivity_v_SR_WF.py`"
+msgid "`OPT`"
+msgstr "`OPT`"
+
+#: ../../pipeline.md:353
+msgid "Inertial Transmission Constraints (`ramp`)"
+msgstr "Restricciones inerciales de transmisión (`ramp`)"
 
 #: ../../pipeline.md:353
 msgid "OPT without repowering"
 msgstr "OPT sin repotenciación"
 
 #: ../../pipeline.md:353
-msgid "ISR"
-msgstr "ISR"
+msgid "`BSR`"
+msgstr "`BSR`"
 
 #: ../../pipeline.md:353
-msgid "INV"
-msgstr "INV"
+msgid "`cost_sensitivity_v_SR_WF.py`"
+msgstr "`cost_sensitivity_v_SR_WF.py`"
+
+#: ../../pipeline.md:353
+msgid "ETT"
+msgstr "ETT"
+
+#: ../../pipeline.md:353
+msgid "`ISR`"
+msgstr "`ISR`"
+
+#: ../../pipeline.md:353
+msgid "`INV`"
+msgstr "`INV`"
 
 #: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py`"
 msgstr "`cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py`"
 
 #: ../../pipeline.md:353
-msgid "reporting base of the ETT family"
-msgstr "base de reporte de la familia ETT"
-
-#: ../../pipeline.md:353
-msgid "VSR"
-msgstr "VSR"
-
-#: ../../pipeline.md:353
-msgid "VGB"
-msgstr "VGB"
+msgid "Reporting base of the ETT family"
+msgstr "Base de reporte de la familia ETT"
 
 #: ../../pipeline.md:353
 msgid "ETT-GP"
 msgstr "ETT-GP"
 
 #: ../../pipeline.md:353
-msgid "BFA, IFA"
-msgstr "BFA, IFA"
+msgid "`VSR`"
+msgstr "`VSR`"
 
 #: ../../pipeline.md:353
-msgid "BAU, INV"
-msgstr "BAU, INV"
+msgid "`VGB`"
+msgstr "`VGB`"
+
+#: ../../pipeline.md:353
+msgid "OPT higher fuel cost"
+msgstr "OPT mayor costo combustible"
+
+#: ../../pipeline.md:353
+msgid "`BFA`"
+msgstr "`BFA`"
 
 #: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_FA.py`"
 msgstr "`cost_sensitivity_v_FA.py`"
 
 #: ../../pipeline.md:353
-msgid "fossil `VariableCost` ×1.70 (applied on BAC / INV files)"
-msgstr "`VariableCost` fósil ×1.70 (aplicado sobre los archivos de BAC / INV)"
+msgid "Fossil `VariableCost` ×1.70, applied on the OPT file"
+msgstr "`VariableCost` fósil ×1.70, aplicado sobre el archivo de OPT"
 
 #: ../../pipeline.md:353
-msgid "BFB, IFB"
-msgstr "BFB, IFB"
+msgid "ETT higher fuel cost"
+msgstr "ETT mayor costo combustible"
+
+#: ../../pipeline.md:353
+msgid "`IFA`"
+msgstr "`IFA`"
+
+#: ../../pipeline.md:353
+msgid "Fossil `VariableCost` ×1.70, applied on the ETT with repowering file"
+msgstr ""
+"`VariableCost` fósil ×1.70, aplicado sobre el archivo de ETT con "
+"repotenciación"
+
+#: ../../pipeline.md:353
+msgid "OPT lower fuel cost"
+msgstr "OPT menor costo combustible"
+
+#: ../../pipeline.md:353
+msgid "`BFB`"
+msgstr "`BFB`"
 
 #: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_FB.py`"
 msgstr "`cost_sensitivity_v_FB.py`"
 
 #: ../../pipeline.md:353
-msgid "fossil `VariableCost` ×0.52"
+msgid "Fossil `VariableCost` ×0.52"
 msgstr "`VariableCost` fósil ×0.52"
 
 #: ../../pipeline.md:353
-msgid "BRB, IRB"
-msgstr "BRB, IRB"
+msgid "ETT lower fuel cost"
+msgstr "ETT menor costo combustible"
+
+#: ../../pipeline.md:353
+msgid "`IFB`"
+msgstr "`IFB`"
+
+#: ../../pipeline.md:353
+msgid "OPT lower renewables cost"
+msgstr "OPT menor costo renovables"
+
+#: ../../pipeline.md:353
+msgid "`BRB`"
+msgstr "`BRB`"
 
 #: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_RB.py`"
@@ -1405,8 +1442,20 @@ msgid "`CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50"
 msgstr "`CapitalCost` solar ×0.60, eólica ×0.75, baterías ×0.50"
 
 #: ../../pipeline.md:353
-msgid "BRA, IRA"
-msgstr "BRA, IRA"
+msgid "ETT lower renewables cost"
+msgstr "ETT menor costo renovables"
+
+#: ../../pipeline.md:353
+msgid "`IRB`"
+msgstr "`IRB`"
+
+#: ../../pipeline.md:353
+msgid "OPT higher renewables cost"
+msgstr "OPT mayor costo renovables"
+
+#: ../../pipeline.md:353
+msgid "`BRA`"
+msgstr "`BRA`"
 
 #: ../../pipeline.md:353
 msgid "`cost_sensitivity_v_RA.py`"
@@ -1416,35 +1465,45 @@ msgstr "`cost_sensitivity_v_RA.py`"
 msgid "`CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49"
 msgstr "`CapitalCost` solar ×1.33, eólica ×1.17, baterías ×1.49"
 
-#: ../../pipeline.md:395
-msgid ""
-"Shipped `solve_scenarios` (14, solved in this order when `parallel: "
-"False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, "
-"IRB, VSR`. INV is solved as-is and reported as \"ETT with repowering\". "
-"Before solving, B2 checks that every scenario in `solve_scenarios` has "
-"its final datafile; when the list is absent, only the four base scenarios"
-" are solved."
-msgstr ""
-"`solve_scenarios` de fábrica (14, resueltos en este orden cuando "
-"`parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, "
-"INV, IRA, IRB, VSR`. INV se resuelve tal cual y se reporta como \"ETT con"
-" repotenciación\". Antes de resolver, B2 verifica que cada escenario de "
-"`solve_scenarios` tenga su archivo de datos final; si la lista no existe,"
-" solo se resuelven los cuatro escenarios base."
+#: ../../pipeline.md:353
+msgid "ETT higher renewables cost"
+msgstr "ETT mayor costo renovables"
 
-#: ../../pipeline.md:397
+#: ../../pipeline.md:353
+msgid "`IRA`"
+msgstr "`IRA`"
+
+#: ../../pipeline.md:399
+msgid ""
+"Shipped `solve_scenarios` (14 scenarios, solved in this order when "
+"`parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, "
+"INV, IRA, IRB, VSR`. ETT with repowering (`INV`) is the only input "
+"workbook that is solved directly, without a derived copy. Before solving,"
+" B2 checks that every scenario in `solve_scenarios` has its final "
+"datafile; when the list is absent, only the four base scenarios are "
+"solved."
+msgstr ""
+"`solve_scenarios` de fábrica (14 escenarios, resueltos en este orden "
+"cuando `parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, "
+"IFB, INV, IRA, IRB, VSR`. ETT con repotenciación (`INV`) es el único "
+"libro de entrada que se resuelve directamente, sin una copia derivada. "
+"Antes de resolver, B2 verifica que cada escenario de `solve_scenarios` "
+"tenga su archivo de datos final; si la lista no existe, solo se resuelven"
+" los cuatro escenarios base."
+
+#: ../../pipeline.md:401
 msgid "Solver Configuration"
 msgstr "Configuración del solver"
 
-#: ../../pipeline.md:399
+#: ../../pipeline.md:403
 msgid "Configure in `Config_MOMF_T1_AB.yaml`:"
 msgstr "Configurar en `Config_MOMF_T1_AB.yaml`:"
 
-#: ../../pipeline.md:407
+#: ../../pipeline.md:411
 msgid "Parallel Execution"
 msgstr "Ejecución en paralelo"
 
-#: ../../pipeline.md:409
+#: ../../pipeline.md:413
 msgid ""
 "When `parallel: True` and `only_main_scenario: False`, multiple scenarios"
 " are solved simultaneously:"
@@ -1511,23 +1570,23 @@ msgstr "`RELAC_TX_Combined_Inputs_Outputs.csv`"
 msgid "Merged inputs and outputs"
 msgstr "Entradas y salidas combinadas"
 
-#: ../../pipeline.md:426
+#: ../../pipeline.md:430
 msgid "Reproducibility"
 msgstr "Reproducibilidad"
 
-#: ../../pipeline.md:428
+#: ../../pipeline.md:432
 msgid "Deterministic results are ensured through:"
 msgstr "Los resultados determinísticos se garantizan mediante:"
 
-#: ../../pipeline.md:430
+#: ../../pipeline.md:434
 msgid "`PYTHONHASHSEED=0` (set by `run.py`)."
 msgstr "`PYTHONHASHSEED=0` (establecido por `run.py`)."
 
-#: ../../pipeline.md:431
+#: ../../pipeline.md:435
 msgid "Configurable random seeds per solver."
 msgstr "Semillas aleatorias configurables por solver."
 
-#: ../../pipeline.md:432
+#: ../../pipeline.md:436
 msgid "Sorted CSV files for consistent ordering."
 msgstr "Archivos CSV ordenados para un orden consistente."
 
@@ -2070,4 +2129,55 @@ msgstr "Archivos CSV ordenados para un orden consistente."
 
 #~ msgid "stage C (`ramp`)"
 #~ msgstr "etapa C (`ramp`)"
+
+#~ msgid ""
+#~ "Base scenarios are the four "
+#~ "`A1_Outputs_<S>/` folders: **BAU, INV, OPT,"
+#~ " VGB**. Every other code is derived"
+#~ " by steps 8 and 9 of the "
+#~ "{doc}`solver-patchers`. Reading a code: "
+#~ "first letter `B` = optimal family "
+#~ "(built on BAU/BAC), `I` = trend "
+#~ "family (built on INV/ISR); suffixes `SR`"
+#~ " = no repowering, `FA`/`FB` = fossil"
+#~ " fuel cost high/low, `RA`/`RB` = "
+#~ "renewables cost high/low. Report names "
+#~ "(see {doc}`study/scenarios`): OPT = BAC, "
+#~ "ETT = ISR, PLAN = OPC, ETT-"
+#~ "GP = VSR."
+#~ msgstr ""
+#~ "Los escenarios base son las cuatro "
+#~ "carpetas `A1_Outputs_<S>/`: **BAU, INV, OPT,"
+#~ " VGB**. Cualquier otro código es "
+#~ "derivado por los pasos 8 y 9 "
+#~ "de la {doc}`solver-patchers`. Cómo leer"
+#~ " un código: la primera letra `B` "
+#~ "= familia óptima (construida sobre "
+#~ "BAU/BAC), `I` = familia de tendencia "
+#~ "(construida sobre INV/ISR); sufijos `SR` "
+#~ "= sin repotenciación, `FA`/`FB` = costo"
+#~ " de combustible fósil alto/bajo, `RA`/`RB`"
+#~ " = costo de renovables alto/bajo. "
+#~ "Nombres de reporte (ver "
+#~ "{doc}`study/scenarios`): OPT = BAC, ETT "
+#~ "= ISR, PLAN = OPC, ETT-GP ="
+#~ " VSR."
+
+#~ msgid "Derived code"
+#~ msgstr "Código derivado"
+
+#~ msgid "BFA, IFA"
+#~ msgstr "BFA, IFA"
+
+#~ msgid "BAU, INV"
+#~ msgstr "BAU, INV"
+
+#~ msgid "BFB, IFB"
+#~ msgstr "BFB, IFB"
+
+#~ msgid "BRB, IRB"
+#~ msgstr "BRB, IRB"
+
+#~ msgid "BRA, IRA"
+#~ msgstr "BRA, IRA"
 

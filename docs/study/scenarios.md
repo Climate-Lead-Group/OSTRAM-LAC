@@ -6,8 +6,8 @@ The analysis is organised in four **scenario families**. Each family has a base 
 |---|---|---|---|
 | **OPT** | Optimal expansion | `BAC` | `BSR` without repowering · `BFA` / `BFB` fossil-fuel cost high / low · `BRA` / `BRB` renewables cost high / low |
 | **ETT** | Trend expansion | `ISR` | `INV` with repowering · `IFA` / `IFB` fossil-fuel cost high / low · `IRA` / `IRB` renewables cost high / low |
-| **PLAN** | Planned expansion (national plans only) | `OPC` | — |
-| **ETT-GP** | Trend expansion with planned generation | `VSR` | — |
+| **PLAN** | Public planned generation and transmission portfolio | `OPC` | — |
+| **ETT-GP** | Trend expansion with the public planned generation portfolio (GP) | `VSR` | — |
 
 The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present results; outside this page the documentation refers to scenarios by them. They describe what each base scenario represents, for ease of reading: `BAC` is an optimal expansion, so it is shown as **OPT**; `ISR` is a trend expansion, so it is shown as **ETT**. Note that the display name OPT is not the `OPT` input workbook described below: that workbook is the base from which `OPC` (PLAN) is built.
 

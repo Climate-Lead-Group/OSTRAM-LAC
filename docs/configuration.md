@@ -411,7 +411,7 @@ All paths are relative to the repository root. Values shown are the shipped ones
 | `reserve_margin_xlsx_active` | `True` | Reserve-Margin repair from `firm_capacity_fallbacks_by_cr.xlsx` |
 | `activity_upper_limit_active` | `False` | Cap `TotalTechnologyAnnualActivityUpperLimit` from demand fractions |
 | `dispatch_floors_active` | `True` | Lower Constraints Modifiers: write fossil dispatch floors (`FLOORED`) per base scenario, gated by `preflight_separation_active` |
-| `veg_tx_active` | `True` | Inertial Transmission Constraints, cross-scenario (`VEGCON`); creates BAC/OPC |
+| `veg_tx_active` | `True` | Inertial Transmission Constraints, cross-scenario (`VEGCON`); creates OPT (`BAC`) and PLAN (`OPC`) |
 | `sync_patched_csvs_active` | `True` | Sync modified values back into the otoole CSVs (`sync_patched_csvs_params` lists the parameter blocks copied) |
 
 See {doc}`solver-patchers` for the full chain, execution order, and every per-patcher parameter.
@@ -445,7 +445,7 @@ solve_scenarios: [BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IR
 | `derived_scenarios` | Map `derived → base` telling B2 which base scenario's A2 sets/templates to reuse for otoole results (transforms change values, never sets). Every code in `produces` must appear here. |
 | `solve_scenarios` | The universe actually sent to the solver (the solver stage). Order = execution order when `parallel: False`. Comment out codes to skip them. Default when absent: the four base scenarios. |
 
-Shipped transforms (2026-09-17): `cost_sensitivity` (SR variants: BSR, ISR, VSR), `nli_sr_recompute`, `cost_sensitivity_FA` (fossil `VariableCost` ×1.70), `cost_sensitivity_FB` (×0.52), `cost_sensitivity_RB` (`CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50), `cost_sensitivity_RA` (`CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49). See {doc}`solver-patchers` (section 9) for what each transform does.
+Shipped transforms (2026-09-17): `cost_sensitivity` (OPT without repowering `BSR`, ETT `ISR`, ETT-GP `VSR`), `nli_sr_recompute`, `cost_sensitivity_FA` (fossil `VariableCost` ×1.70), `cost_sensitivity_FB` (×0.52), `cost_sensitivity_RB` (`CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50), `cost_sensitivity_RA` (`CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49). See {doc}`solver-patchers` (section 9) for what each transform does.
 
 ---
 

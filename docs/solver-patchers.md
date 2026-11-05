@@ -40,8 +40,8 @@ For each base scenario (BAU, OPT, INV, VGB):
    First CSV sync                         (sync_patched_csvs_active)
 
 Once, across all base scenarios:
-   8. Inertial Transmission Constraints   (veg_tx_active)                VEGCON         [creates BAC, OPC]
-   9. Scenario transforms                 (scenario_transforms)          no suffix      [creates BSR, ISR, VSR and the cost sensitivities]
+   8. Inertial Transmission Constraints   (veg_tx_active)                VEGCON         [creates OPT (BAC) and PLAN (OPC)]
+   9. Scenario transforms                 (scenario_transforms)          no suffix      [creates ETT (ISR), ETT-GP (VSR), OPT without repowering (BSR) and the cost sensitivities]
 
 For each scenario in solve_scenarios:
    Final CSV sync → solver → solver results converted to CSV with otoole
@@ -176,7 +176,7 @@ Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the f
 
 **Script:** [`veg_tx_constraints.py`](../scripts/tx_chain/veg_tx_constraints.py) · **Switch:** `veg_tx_active` · **Shipped default: True**
 
-Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from OPT). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios BAC and OPC. See the scenario-code table in {doc}`pipeline`.
+Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from the `OPT` input workbook). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios OPT (`BAC`) and PLAN (`OPC`). See the scenario-code table in {doc}`pipeline`.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -192,12 +192,12 @@ Once the Inertial Transmission Constraints have written the `*_VEGCON.txt` files
 
 | Entry (`name`) | Script | Reads → writes | What it changes |
 |---|---|---|---|
-| `cost_sensitivity` | [`cost_sensitivity_v_SR_WF.py`](../scripts/tx_chain/cost_sensitivity_v_SR_WF.py) | BAU → `BSR`, INV → `ISR`, VGB → `VSR` | Repowering limited to what is planned: for every repowering technology (`TRNRPO*`, `RNWRPO*`) `TotalAnnualMaxCapacityInvestment` is pinned to `TotalAnnualMinCapacityInvestment` in every year, so the model can only build the committed repowering |
-| `nli_sr_recompute` | [`nli_sr_recompute.py`](../scripts/tx_chain/nli_sr_recompute.py) | `ISR`, `VSR` (in place) | Recomputes the new-unplanned-line ceilings (`TRNNLI*`, `RNWNLI*`, 2030+) using the pinned repowering as its true cost, so the investment budget that repowering no longer uses goes to new lines. Must run after `cost_sensitivity` |
-| `cost_sensitivity_FA` | [`cost_sensitivity_v_FA.py`](../scripts/tx_chain/cost_sensitivity_v_FA.py) | BAC → `BFA`, INV → `IFA` | Fossil fuel cost high: `VariableCost` of the fossil supply technologies (`MIN*` coal, gas, oil, petroleum, other, cogeneration) ×1.70 (EIA AEO2025 High Oil Price case) |
-| `cost_sensitivity_FB` | [`cost_sensitivity_v_FB.py`](../scripts/tx_chain/cost_sensitivity_v_FB.py) | BAC → `BFB`, INV → `IFB` | Fossil fuel cost low: the same `VariableCost` ×0.52 (EIA AEO2025 Low Oil Price case) |
-| `cost_sensitivity_RB` | [`cost_sensitivity_v_RB.py`](../scripts/tx_chain/cost_sensitivity_v_RB.py) | BAC → `BRB`, INV → `IRB` | Renewables cost low: `CapitalCost` of solar PV and concentrated solar ×0.60, wind ×0.75, batteries (`PWRSDS`) ×0.50 (NREL ATB 2024 Moderate case); pumped hydro unchanged |
-| `cost_sensitivity_RA` | [`cost_sensitivity_v_RA.py`](../scripts/tx_chain/cost_sensitivity_v_RA.py) | BAC → `BRA`, INV → `IRA` | Renewables cost high: the same `CapitalCost` families, solar ×1.33, wind ×1.17, batteries ×1.49 |
+| `cost_sensitivity` | [`cost_sensitivity_v_SR_WF.py`](../scripts/tx_chain/cost_sensitivity_v_SR_WF.py) | `BAU` → OPT without repowering (`BSR`); `INV` → ETT (`ISR`); `VGB` → ETT-GP (`VSR`) | Repowering limited to what is planned: for every repowering technology (`TRNRPO*`, `RNWRPO*`) `TotalAnnualMaxCapacityInvestment` is pinned to `TotalAnnualMinCapacityInvestment` in every year, so the model can only build the committed repowering |
+| `nli_sr_recompute` | [`nli_sr_recompute.py`](../scripts/tx_chain/nli_sr_recompute.py) | ETT (`ISR`) and ETT-GP (`VSR`), in place | Recomputes the new-unplanned-line ceilings (`TRNNLI*`, `RNWNLI*`, 2030+) using the pinned repowering as its true cost, so the investment budget that repowering no longer uses goes to new lines. Must run after `cost_sensitivity` |
+| `cost_sensitivity_FA` | [`cost_sensitivity_v_FA.py`](../scripts/tx_chain/cost_sensitivity_v_FA.py) | OPT (`BAC`) → OPT higher fuel cost (`BFA`); ETT with repowering (`INV`) → ETT higher fuel cost (`IFA`) | Fossil fuel cost high: `VariableCost` of the fossil supply technologies (`MIN*` coal, gas, oil, petroleum, other, cogeneration) ×1.70 (EIA AEO2025 High Oil Price case) |
+| `cost_sensitivity_FB` | [`cost_sensitivity_v_FB.py`](../scripts/tx_chain/cost_sensitivity_v_FB.py) | OPT (`BAC`) → OPT lower fuel cost (`BFB`); ETT with repowering (`INV`) → ETT lower fuel cost (`IFB`) | Fossil fuel cost low: the same `VariableCost` ×0.52 (EIA AEO2025 Low Oil Price case) |
+| `cost_sensitivity_RB` | [`cost_sensitivity_v_RB.py`](../scripts/tx_chain/cost_sensitivity_v_RB.py) | OPT (`BAC`) → OPT lower renewables cost (`BRB`); ETT with repowering (`INV`) → ETT lower renewables cost (`IRB`) | Renewables cost low: `CapitalCost` of solar PV and concentrated solar ×0.60, wind ×0.75, batteries (`PWRSDS`) ×0.50 (NREL ATB 2024 Moderate case); pumped hydro unchanged |
+| `cost_sensitivity_RA` | [`cost_sensitivity_v_RA.py`](../scripts/tx_chain/cost_sensitivity_v_RA.py) | OPT (`BAC`) → OPT higher renewables cost (`BRA`); ETT with repowering (`INV`) → ETT higher renewables cost (`IRA`) | Renewables cost high: the same `CapitalCost` families, solar ×1.33, wind ×1.17, batteries ×1.49 |
 
 To add a scenario, add an entry to `scenario_transforms`, map the new code to its base in `derived_scenarios` and, if it should be solved, list it in `solve_scenarios` (see {doc}`configuration`). B2 needs no code change.
 

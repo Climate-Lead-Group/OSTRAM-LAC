@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 09:11-0600\n"
+"POT-Creation-Date: 2026-11-05 10:38-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -934,10 +934,11 @@ msgid ""
 "historical: it comes from *vegetative constraints*, the former name of "
 "these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU,"
 " OPT, INV and VGB **simultaneously** (floor raise, calibration of the "
-"cost slope, planned-lines ceiling taken from OPT). Runs **once** after "
-"every base scenario has been floored and writes one `*_VEGCON.txt` per "
-"scenario into `Executables/<S>_0/`, creating the folders of the derived "
-"scenarios BAC and OPC. See the scenario-code table in {doc}`pipeline`."
+"cost slope, planned-lines ceiling taken from the `OPT` input workbook). "
+"Runs **once** after every base scenario has been floored and writes one "
+"`*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the "
+"folders of the derived scenarios OPT (`BAC`) and PLAN (`OPC`). See the "
+"scenario-code table in {doc}`pipeline`."
 msgstr ""
 "Restringe la expansión de la transmisión para que siga su tendencia "
 "histórica (inercial) en los escenarios tendenciales. El sufijo de archivo"
@@ -945,11 +946,11 @@ msgstr ""
 "vegetativas), el nombre anterior de estos escenarios. Barrera transversal"
 " a escenarios: necesita el `_FLOORED.txt` de BAU, OPT, INV y VGB "
 "**simultáneamente** (elevación de pisos, calibración de la pendiente de "
-"costo, techo de líneas planeadas tomado de OPT). Se ejecuta **una vez** "
-"después de que cada escenario base ha recibido sus pisos, y escribe un "
-"`*_VEGCON.txt` por escenario en `Executables/<S>_0/`, creando las "
-"carpetas de los escenarios derivados BAC y OPC. Ver la tabla de códigos "
-"de escenario en {doc}`pipeline`."
+"costo, techo de líneas planeadas tomado del libro de entrada `OPT`). Se "
+"ejecuta **una vez** después de que cada escenario base ha recibido sus "
+"pisos, y escribe un `*_VEGCON.txt` por escenario en `Executables/<S>_0/`,"
+" creando las carpetas de los escenarios derivados OPT (`BAC`) y PLAN "
+"(`OPC`). Ver la tabla de códigos de escenario en {doc}`pipeline`."
 
 #: ../../solver-patchers.md:71
 msgid "`veg_tx_script`"
@@ -1049,8 +1050,12 @@ msgid "[`cost_sensitivity_v_SR_WF.py`](../scripts/tx_chain/cost_sensitivity_v_SR
 msgstr "[`cost_sensitivity_v_SR_WF.py`](../scripts/tx_chain/cost_sensitivity_v_SR_WF.py)"
 
 #: ../../solver-patchers.md:71
-msgid "BAU → `BSR`, INV → `ISR`, VGB → `VSR`"
-msgstr "BAU → `BSR`, INV → `ISR`, VGB → `VSR`"
+msgid ""
+"`BAU` → OPT without repowering (`BSR`); `INV` → ETT (`ISR`); `VGB` → ETT-"
+"GP (`VSR`)"
+msgstr ""
+"`BAU` → OPT sin repotenciación (`BSR`); `INV` → ETT (`ISR`); `VGB` → ETT-"
+"GP (`VSR`)"
 
 #: ../../solver-patchers.md:71
 msgid ""
@@ -1074,8 +1079,8 @@ msgid "[`nli_sr_recompute.py`](../scripts/tx_chain/nli_sr_recompute.py)"
 msgstr "[`nli_sr_recompute.py`](../scripts/tx_chain/nli_sr_recompute.py)"
 
 #: ../../solver-patchers.md:71
-msgid "`ISR`, `VSR` (in place)"
-msgstr "`ISR`, `VSR` (en el lugar)"
+msgid "ETT (`ISR`) and ETT-GP (`VSR`), in place"
+msgstr "ETT (`ISR`) y ETT-GP (`VSR`), en el lugar"
 
 #: ../../solver-patchers.md:71
 msgid ""
@@ -1099,8 +1104,12 @@ msgid "[`cost_sensitivity_v_FA.py`](../scripts/tx_chain/cost_sensitivity_v_FA.py
 msgstr "[`cost_sensitivity_v_FA.py`](../scripts/tx_chain/cost_sensitivity_v_FA.py)"
 
 #: ../../solver-patchers.md:71
-msgid "BAC → `BFA`, INV → `IFA`"
-msgstr "BAC → `BFA`, INV → `IFA`"
+msgid ""
+"OPT (`BAC`) → OPT higher fuel cost (`BFA`); ETT with repowering (`INV`) →"
+" ETT higher fuel cost (`IFA`)"
+msgstr ""
+"OPT (`BAC`) → OPT mayor costo combustible (`BFA`); ETT con repotenciación"
+" (`INV`) → ETT mayor costo combustible (`IFA`)"
 
 #: ../../solver-patchers.md:71
 msgid ""
@@ -1121,8 +1130,12 @@ msgid "[`cost_sensitivity_v_FB.py`](../scripts/tx_chain/cost_sensitivity_v_FB.py
 msgstr "[`cost_sensitivity_v_FB.py`](../scripts/tx_chain/cost_sensitivity_v_FB.py)"
 
 #: ../../solver-patchers.md:71
-msgid "BAC → `BFB`, INV → `IFB`"
-msgstr "BAC → `BFB`, INV → `IFB`"
+msgid ""
+"OPT (`BAC`) → OPT lower fuel cost (`BFB`); ETT with repowering (`INV`) → "
+"ETT lower fuel cost (`IFB`)"
+msgstr ""
+"OPT (`BAC`) → OPT menor costo combustible (`BFB`); ETT con repotenciación"
+" (`INV`) → ETT menor costo combustible (`IFB`)"
 
 #: ../../solver-patchers.md:71
 msgid ""
@@ -1141,8 +1154,12 @@ msgid "[`cost_sensitivity_v_RB.py`](../scripts/tx_chain/cost_sensitivity_v_RB.py
 msgstr "[`cost_sensitivity_v_RB.py`](../scripts/tx_chain/cost_sensitivity_v_RB.py)"
 
 #: ../../solver-patchers.md:71
-msgid "BAC → `BRB`, INV → `IRB`"
-msgstr "BAC → `BRB`, INV → `IRB`"
+msgid ""
+"OPT (`BAC`) → OPT lower renewables cost (`BRB`); ETT with repowering "
+"(`INV`) → ETT lower renewables cost (`IRB`)"
+msgstr ""
+"OPT (`BAC`) → OPT menor costo renovables (`BRB`); ETT con repotenciación "
+"(`INV`) → ETT menor costo renovables (`IRB`)"
 
 #: ../../solver-patchers.md:71
 msgid ""
@@ -1163,8 +1180,12 @@ msgid "[`cost_sensitivity_v_RA.py`](../scripts/tx_chain/cost_sensitivity_v_RA.py
 msgstr "[`cost_sensitivity_v_RA.py`](../scripts/tx_chain/cost_sensitivity_v_RA.py)"
 
 #: ../../solver-patchers.md:71
-msgid "BAC → `BRA`, INV → `IRA`"
-msgstr "BAC → `BRA`, INV → `IRA`"
+msgid ""
+"OPT (`BAC`) → OPT higher renewables cost (`BRA`); ETT with repowering "
+"(`INV`) → ETT higher renewables cost (`IRA`)"
+msgstr ""
+"OPT (`BAC`) → OPT mayor costo renovables (`BRA`); ETT con repotenciación "
+"(`INV`) → ETT mayor costo renovables (`IRA`)"
 
 #: ../../solver-patchers.md:71
 msgid ""
@@ -1360,4 +1381,19 @@ msgstr ""
 #~ msgstr ""
 #~ "Para cada escenario, B2 ejecuta (en "
 #~ "[`B2_Executing_OG_Model.py`](../scripts/pipeline/B2_Executing_OG_Model.py)):"
+
+#~ msgid "BAU → `BSR`, INV → `ISR`, VGB → `VSR`"
+#~ msgstr "BAU → `BSR`, INV → `ISR`, VGB → `VSR`"
+
+#~ msgid "BAC → `BFA`, INV → `IFA`"
+#~ msgstr "BAC → `BFA`, INV → `IFA`"
+
+#~ msgid "BAC → `BFB`, INV → `IFB`"
+#~ msgstr "BAC → `BFB`, INV → `IFB`"
+
+#~ msgid "BAC → `BRB`, INV → `IRB`"
+#~ msgstr "BAC → `BRB`, INV → `IRB`"
+
+#~ msgid "BAC → `BRA`, INV → `IRA`"
+#~ msgstr "BAC → `BRA`, INV → `IRA`"
 

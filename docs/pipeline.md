@@ -378,21 +378,25 @@ The full sequence, step by step, with the switch and the parameters of each step
 
 ### Scenario codes
 
-Base scenarios are the four `A1_Outputs_<S>/` folders: **BAU, INV, OPT, VGB**. Every other code is derived by steps 8 and 9 of the {doc}`solver-patchers`. Reading a code: first letter `B` = optimal family (built on BAU/BAC), `I` = trend family (built on INV/ISR); suffixes `SR` = no repowering, `FA`/`FB` = fossil fuel cost high/low, `RA`/`RB` = renewables cost high/low. Report names (see {doc}`study/scenarios`): OPT = BAC, ETT = ISR, PLAN = OPC, ETT-GP = VSR.
+The four input workbooks (`A1_Outputs_<S>/` folders) are the base scenarios and keep their codes: `BAU`, `INV`, `OPT` and `VGB`. Every other scenario is derived from them by steps 8 and 9 of the {doc}`solver-patchers`. The table lists each derived scenario by the name used in the results, followed by its code, which is the value used in `Config_MOMF_T1_AB.yaml` and in the `outputs/` folders. What each name means is explained in {doc}`study/scenarios`.
 
-| Derived code | Base (A2 sets reused) | Produced by | Notes |
-|---|---|---|---|
-| BAC | BAU | Inertial Transmission Constraints (`veg_tx_constraints.py`, new-unplanned-line mode `ramp`) | reporting base of the OPT family |
-| OPC | OPT | Inertial Transmission Constraints (`ramp`) | PLAN |
-| BSR | BAU | `cost_sensitivity_v_SR_WF.py` | OPT without repowering |
-| ISR | INV | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | reporting base of the ETT family |
-| VSR | VGB | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | ETT-GP |
-| BFA, IFA | BAU, INV | `cost_sensitivity_v_FA.py` | fossil `VariableCost` ×1.70 (applied on BAC / INV files) |
-| BFB, IFB | BAU, INV | `cost_sensitivity_v_FB.py` | fossil `VariableCost` ×0.52 |
-| BRB, IRB | BAU, INV | `cost_sensitivity_v_RB.py` | `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50 |
-| BRA, IRA | BAU, INV | `cost_sensitivity_v_RA.py` | `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49 |
+| Scenario | Code | Base workbook (A2 sets reused) | Produced by | Notes |
+|---|---|---|---|---|
+| OPT | `BAC` | `BAU` | Inertial Transmission Constraints (`veg_tx_constraints.py`, new-unplanned-line mode `ramp`) | Reporting base of the OPT family |
+| PLAN | `OPC` | `OPT` | Inertial Transmission Constraints (`ramp`) | |
+| OPT without repowering | `BSR` | `BAU` | `cost_sensitivity_v_SR_WF.py` | |
+| ETT | `ISR` | `INV` | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | Reporting base of the ETT family |
+| ETT-GP | `VSR` | `VGB` | `cost_sensitivity_v_SR_WF.py` + `nli_sr_recompute.py` | |
+| OPT higher fuel cost | `BFA` | `BAU` | `cost_sensitivity_v_FA.py` | Fossil `VariableCost` ×1.70, applied on the OPT file |
+| ETT higher fuel cost | `IFA` | `INV` | `cost_sensitivity_v_FA.py` | Fossil `VariableCost` ×1.70, applied on the ETT with repowering file |
+| OPT lower fuel cost | `BFB` | `BAU` | `cost_sensitivity_v_FB.py` | Fossil `VariableCost` ×0.52 |
+| ETT lower fuel cost | `IFB` | `INV` | `cost_sensitivity_v_FB.py` | Fossil `VariableCost` ×0.52 |
+| OPT lower renewables cost | `BRB` | `BAU` | `cost_sensitivity_v_RB.py` | `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50 |
+| ETT lower renewables cost | `IRB` | `INV` | `cost_sensitivity_v_RB.py` | `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50 |
+| OPT higher renewables cost | `BRA` | `BAU` | `cost_sensitivity_v_RA.py` | `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49 |
+| ETT higher renewables cost | `IRA` | `INV` | `cost_sensitivity_v_RA.py` | `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49 |
 
-Shipped `solve_scenarios` (14, solved in this order when `parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IRB, VSR`. INV is solved as-is and reported as "ETT with repowering". Before solving, B2 checks that every scenario in `solve_scenarios` has its final datafile; when the list is absent, only the four base scenarios are solved.
+Shipped `solve_scenarios` (14 scenarios, solved in this order when `parallel: False`): `BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IRB, VSR`. ETT with repowering (`INV`) is the only input workbook that is solved directly, without a derived copy. Before solving, B2 checks that every scenario in `solve_scenarios` has its final datafile; when the list is absent, only the four base scenarios are solved.
 
 ### Solver Configuration
 
