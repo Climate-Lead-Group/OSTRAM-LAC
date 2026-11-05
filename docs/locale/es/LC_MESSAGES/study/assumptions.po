@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 15:39-0600\n"
+"POT-Creation-Date: 2026-11-05 09:01-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -39,17 +39,6 @@ msgid "**Optimisation and costs**"
 msgstr "**Optimización y costos**"
 
 #: ../../study/assumptions.md:7
-msgid ""
-"The model follows a least-cost optimisation approach (OSeMOSYS): it "
-"minimises the discounted capital and operating costs of generation, "
-"transmission and storage, subject to the constraints listed on this page."
-msgstr ""
-"El modelo sigue un enfoque de optimización de mínimo costo (OSeMOSYS): "
-"minimiza los costos descontados de capital y operación de la generación, "
-"la transmisión y el almacenamiento, sujeto a las restricciones listadas "
-"en esta página."
-
-#: ../../study/assumptions.md:8
 #, python-format
 msgid ""
 "Repowering an existing transmission line costs 45% of building a new "
@@ -60,11 +49,11 @@ msgstr ""
 "construir una línea nueva no planificada del mismo país y tipo "
 "(`CapitalCost` de `TRNRPO`/`RNWRPO` = 0,45 × `TRNNLI`/`RNWNLI`)."
 
-#: ../../study/assumptions.md:10
+#: ../../study/assumptions.md:9
 msgid "**Shared history**"
 msgstr "**Historia común**"
 
-#: ../../study/assumptions.md:12
+#: ../../study/assumptions.md:11
 msgid ""
 "All scenarios are identical to the `BAU` input workbook through 2026 and "
 "diverge from 2027 (`TX_DIVERGE_YEAR = 2027` in "
@@ -76,11 +65,11 @@ msgstr ""
 "`sync_historical_from_bau.py`, `EQUAL_THROUGH_YEAR = 2026` en "
 "`D4_load_dsptrn_max_cap_inv.py`)."
 
-#: ../../study/assumptions.md:14
+#: ../../study/assumptions.md:13
 msgid "**Reliability**"
 msgstr "**Confiabilidad**"
 
-#: ../../study/assumptions.md:16
+#: ../../study/assumptions.md:15
 msgid ""
 "A reserve margin of 15% applies in every year "
 "(`reserve_margin_xlsx_global_value: 0.15`). Each technology counts "
@@ -88,10 +77,7 @@ msgid ""
 " thermal plants (fossil, nuclear, biomass, geothermal); 0.7 for storage; "
 "0.5 for cogeneration; 0.3 for hydro and concentrated solar; 0.1 for wind "
 "and wave; solar PV does not count. These credits are OSeMOSYS Global "
-"defaults (`inputs/OG_csvs_inputs/ReserveMarginTagTechnology.csv`). Two "
-"are set by the Stage B2 Reserve-Margin repair instead: 1.0 for the "
-"backstop (`reserve_margin_xlsx_backstop_credit`) and 0.9 for carbon-"
-"capture plants (`reserve_margin_xlsx_ccs_credit`)."
+"defaults (`inputs/OG_csvs_inputs/ReserveMarginTagTechnology.csv`)."
 msgstr ""
 "Se aplica un margen de reserva de 15 % en todos los años "
 "(`reserve_margin_xlsx_global_value: 0.15`). Cada tecnología aporta a él "
@@ -100,16 +86,13 @@ msgstr ""
 "almacenamiento; 0,5 la cogeneración; 0,3 la hidroeléctrica y la solar de "
 "concentración; 0,1 la eólica y la undimotriz; la solar fotovoltaica no "
 "aporta. Estos créditos son valores por defecto de OSeMOSYS Global "
-"(`inputs/OG_csvs_inputs/ReserveMarginTagTechnology.csv`). Dos los fija en"
-" cambio la reparación del margen de reserva de la Etapa B2: 1,0 para el "
-"backstop (`reserve_margin_xlsx_backstop_credit`) y 0,9 para las centrales"
-" con captura de carbono (`reserve_margin_xlsx_ccs_credit`)."
+"(`inputs/OG_csvs_inputs/ReserveMarginTagTechnology.csv`)."
 
-#: ../../study/assumptions.md:18
+#: ../../study/assumptions.md:17
 msgid "**Storage**"
 msgstr "**Almacenamiento**"
 
-#: ../../study/assumptions.md:20
+#: ../../study/assumptions.md:19
 msgid ""
 "No new storage can be built in the first five model years, 2023–2027; "
 "storage investment opens in 2028 (`storage_delay_first_n_years: 5`)."
@@ -118,27 +101,23 @@ msgstr ""
 " modelo, 2023–2027; la inversión en almacenamiento se abre en 2028 "
 "(`storage_delay_first_n_years: 5`)."
 
-#: ../../study/assumptions.md:22
+#: ../../study/assumptions.md:21
 msgid "**Implementation constraints**"
 msgstr "**Restricciones de implementación**"
 
-#: ../../study/assumptions.md:24
+#: ../../study/assumptions.md:23
 msgid ""
 "Repowering of existing lines not included in national plans is allowed "
 "only from 2028, at a maximum rate of 1% per year of each country's "
 "existing 2023 transmission stock (`RPO_FIRST_YEAR = 2028` in "
-"`veg_tx_constraints.py`). Barbados is the only exception: its rate is "
-"multiplied by 3.5 through 2030, because before 2030 repowering is its "
-"only way to add transmission."
+"`veg_tx_constraints.py`)."
 msgstr ""
 "La repotenciación de líneas existentes no incluidas en los planes "
 "nacionales solo se permite a partir de 2028, a un ritmo máximo de 1 % por"
 " año del stock de transmisión existente en 2023 de cada país "
-"(`RPO_FIRST_YEAR = 2028` en `veg_tx_constraints.py`). Barbados es la "
-"única excepción: su ritmo se multiplica por 3,5 hasta 2030, porque antes "
-"de 2030 la repotenciación es su única vía para agregar transmisión."
+"(`RPO_FIRST_YEAR = 2028` en `veg_tx_constraints.py`)."
 
-#: ../../study/assumptions.md:25
+#: ../../study/assumptions.md:24
 msgid ""
 "New transmission lines not planned in official documents are allowed only"
 " from 2030, accounting for typical development timelines and permitting "
@@ -286,4 +265,20 @@ msgstr ""
 #~ "cerca de 3,6 % por año para "
 #~ "la región en conjunto entre 2023 y"
 #~ " 2050."
+
+#~ msgid ""
+#~ "The model follows a least-cost "
+#~ "optimisation approach (OSeMOSYS): it minimises"
+#~ " the discounted capital and operating "
+#~ "costs of generation, transmission and "
+#~ "storage, subject to the constraints "
+#~ "listed on this page."
+#~ msgstr ""
+#~ "El modelo sigue un enfoque de "
+#~ "optimización de mínimo costo (OSeMOSYS): "
+#~ "minimiza los costos descontados de "
+#~ "capital y operación de la generación,"
+#~ " la transmisión y el almacenamiento, "
+#~ "sujeto a las restricciones listadas en"
+#~ " esta página."
 
