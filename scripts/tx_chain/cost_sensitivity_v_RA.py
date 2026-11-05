@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
-"""RA (Renovables Altos) cost-sensitivity transform: renewable CapitalCost only.
+"""RA (Renovables Altos) cost-sensitivity transform: raise renewable CapitalCost only.
 
-PENDING (2026-09-16): the Renovables Altos multipliers still need calibration. Today
-they are copied from RB (Renovables Baratas, cheap renewables), so this scenario does
-NOT yet represent expensive renewables. Structural copy of cost_sensitivity_v_RB.py
-(2026-09-16): same logic, same families, same self-check; only the multipliers in the
-"tunable knobs" section differ, and the self-check derives its expectations from those
-same knobs, so nothing else needs to change when they are recalibrated. Restricted to
-the B* and I* scenarios. Reads a base VEGCON .txt, scales CapitalCost of solar, wind and
-battery storage, writes a new datafile. Only VALUES change; structure/bounds untouched,
-so feasibility is preserved. The backstop is left AS-IS in the solve.
+Structural copy of cost_sensitivity_v_RB.py (2026-09-16): same logic, same families, same
+self-check; only the multipliers in the "tunable knobs" section differ, and the self-check
+derives its expectations from those knobs. Restricted to the B* and I* scenarios. Reads a
+base VEGCON .txt, scales CapitalCost of solar, wind and battery storage up, writes a new
+datafile. Only VALUES change; structure/bounds untouched, so feasibility is preserved. The
+backstop is left AS-IS in the solve.
 
-Multipliers (PLACEHOLDER = RB values; Renovables Altos calibration still pending):
-    - PWRSPV/PWRCSP x1.33 (VRE_MULT, line 70; NREL ATB 2024 PV Moderate; EIA AEO2025 Low
-      Zero-Carbon Tech Cost)
-    - PWRWON/PWRWOF x1.17 (WIND_MULT, line 71; NREL ATB 2024 land-based wind Moderate
-      [EST]; shallower than PV)
-    - PWRSDS x1.49 (STO_MULT, line 72; NREL ATB 2024 utility battery Moderate)
+Multipliers (set on 2026-09-17, commit 8ae5835): ratio of the NREL ATB 2024 Conservative
+(Conservative Technology Innovation) case to the Moderate case, CAPEX in 2022 USD:
+    - PWRSPV/PWRCSP x1.33 (VRE_MULT, line 68): Utility-Scale PV, Class 5, CAPEX (overnight
+      cost plus grid connection) in 2035: 1,148 vs 864 USD/kW_AC -> 1.33
+    - PWRWON/PWRWOF x1.17 (WIND_MULT, line 69): Land-Based Wind, Class 4: mean of the
+      five-year Conservative/Moderate ratios 2030-2050 (1.120, 1.140, 1.163, 1.188, 1.217);
+      e.g. 1,488 vs 1,328 USD/kW in 2030 and 1,280 vs 1,052 USD/kW in 2050 -> 1.17
+    - PWRSDS x1.49 (STO_MULT, line 70): Utility-Scale Battery Storage, 4Hr, CAPEX in
+      2050: 1,492 vs 999 USD/kW -> 1.49
     - PWRLDS EXCLUDED (no literature basis; base trajectory already declines 56%)
     - fossil MIN* VariableCost UNCHANGED (that is the FA/FB scripts)
-Pairs (PAIRS, line 67): BAC -> BRA, INV -> IRA.
+Pairs (PAIRS, line 65): BAC -> BRA, INV -> IRA.
 
 Inputs:
     <S>_0/Pre_processed_<S>_0_..._FLOORED_VEGCON.txt for S in {BAC, INV}: flat in
@@ -32,8 +32,6 @@ Usage:
     Invoked by B2_Executing_OG_Model.py as the "cost_sensitivity_RA" entry of
     scenario_transforms in inputs/config/Config_MOMF_T1_AB.yaml.
 Notes:
-    - Do not read RA output as a calibrated "Renovables Altos" scenario yet: the
-      multipliers are an explicit placeholder equal to RB's.
     - The transform and self-check run as module-level code (no __main__ guard), so
       importing this module has side effects (parses sys.argv, reads/writes datafiles).
     - Exits with sys.exit(1) if the self-check fails: a CapitalCost ratio off by more
@@ -66,10 +64,10 @@ def LOCAL(s):
 # base scenario -> new scenario code (only B* and I*)
 PAIRS={"BAC":"BRA", "INV":"IRA"}
 
-# ----- tunable knobs ----- PENDIENTE: calibrar Renovables Altos (valores actuales = RB)
-VRE_MULT   = 1.33                       # solar CapitalCost x0.6
-WIND_MULT  = 1.17                      # wind CapitalCost x0.75 (shallower decline than PV)
-STO_MULT   = 1.49                       # battery storage CapitalCost x0.5
+# ----- tunable knobs -----
+VRE_MULT   = 1.33                       # solar CapitalCost x1.33
+WIND_MULT  = 1.17                      # wind CapitalCost x1.17
+STO_MULT   = 1.49                       # battery storage CapitalCost x1.49
 VRE_FAMS   = {"PWRSPV","PWRCSP"}       # the genuinely-declining solar
 WIND_FAMS  = {"PWRWON","PWRWOF"}
 STO_FAMS   = {"PWRSDS"}                # batteries only; PWRLDS excluded (no literature basis)

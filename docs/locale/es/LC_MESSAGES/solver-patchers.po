@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 10:38-0600\n"
+"POT-Creation-Date: 2026-11-05 11:02-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -1190,10 +1190,12 @@ msgstr ""
 #: ../../solver-patchers.md:71
 msgid ""
 "Renewables cost high: the same `CapitalCost` families, solar ×1.33, wind "
-"×1.17, batteries ×1.49"
+"×1.17, batteries ×1.49 (NREL ATB 2024 Conservative case relative to "
+"Moderate)"
 msgstr ""
 "Costo de renovables alto: las mismas familias de `CapitalCost`, solar "
-"×1.33, eólica ×1.17, baterías ×1.49"
+"×1.33, eólica ×1.17, baterías ×1.49 (caso Conservative de NREL ATB 2024 "
+"respecto del Moderate)"
 
 #: ../../solver-patchers.md:202
 #, python-brace-format
