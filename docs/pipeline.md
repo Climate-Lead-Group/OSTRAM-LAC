@@ -4,26 +4,20 @@ OSTRAM LAC processes energy system data through a multi-stage pipeline. This pag
 
 ## Pipeline Overview
 
-```
-┌──────────────────────────────────────────────────────────────────────┐
-│          DATA PREPARATION (once, only when building a new model)     │
-│                                                                      │
-│  A0: Generate Tech-Country Matrix                                    │
-│   ↓                                                                  │
-│  A1: Preprocess Raw CSVs → Excel Model Files                         │
-│   ↓                                                                  │
-│  A2: Add Transmission Technologies                                   │
-│   ↓                                                                  │
-│  (Optional) A3_process: lid → lowerlimits → B1b → BAU sync           │
-│   ↓                                                                  │
-│  (Optional) D1 → Manual Editing → D2: Secondary Techs Editing        │
-├──────────────────────────────────────────────────────────────────────┤
-│          MODEL EXECUTION (typical workflow: python run.py)           │
-│                                                                      │
-│  B1: B1b pre-solver validation → Compile Excel → OSeMOSYS CSVs       │
-│   ↓                                                                  │
-│  B2: Modifier chain → Execute Solver → Results                       │
-└──────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph PREP["DATA PREPARATION (once, only when building a new model)"]
+        direction TB
+        A0["A0: Generate Tech-Country Matrix"] --> A1["A1: Preprocess Raw CSVs → Excel Model Files"]
+        A1 --> A2["A2: Add Transmission Technologies"]
+        A2 --> A3["(Optional) A3_process: lid → lowerlimits → B1b → BAU sync"]
+        A3 --> D12["(Optional) D1 → Manual Editing → D2: Secondary Techs Editing"]
+    end
+    subgraph EXEC["MODEL EXECUTION (typical workflow: python run.py)"]
+        direction TB
+        B1["B1: B1b pre-solver validation → Compile Excel → OSeMOSYS CSVs"] --> B2["B2: Modifier chain → Execute Solver → Results"]
+    end
+    PREP --> EXEC
 ```
 
 The **typical workflow** is only the model-execution block: B1 and B2, run together with `python run.py` (the full DVC pipeline) or one at a time. The data-preparation stages (A0, A1, A2, and the optional A3_process and D1/D2) are not run routinely: they are run once, when a new model is built, and produce the workbooks under `inputs/A1_Outputs/` that B1 reads.

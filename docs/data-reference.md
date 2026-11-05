@@ -157,11 +157,12 @@ Used by: `InputActivityRatio`, `OutputActivityRatio`, `EmissionActivityRatio`.
 
 OSTRAM LAC uses a hierarchical temporal structure:
 
-```
-Year (2023-2050)
-  └── Season (4 seasons)
-      └── Day Type (1 type)
-          └── Daily Time Bracket (3 brackets)
+```mermaid
+flowchart TB
+    Y["Year (2023-2050)"] --> S["Season (4)"]
+    S --> D["Day type (1)"]
+    D --> B["Daily time bracket (3)"]
+    B --- N["12 timeslices, S1D1..S4D3"]
 ```
 
 This produces **12 timeslices** (4 seasons x 3 brackets):
