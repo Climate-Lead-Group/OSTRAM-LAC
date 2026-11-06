@@ -2,6 +2,13 @@
 
 OSTRAM LAC uses four YAML configuration files and two Excel-based configuration files. This page documents every option.
 
+```{figure} /_static/reference/config_stage_map.png
+:name: fig-config-stage-map
+:width: 100%
+
+Which configuration file each pipeline stage and tool reads or writes.
+```
+
 :::{warning}
 All data entered in the configuration files (technologies, years, countries, codes) **must match values that exist in the model**. Using technology codes, country codes, year ranges, or any other identifiers that are not present in the model data can cause the pipeline to fail during execution.
 :::
@@ -208,7 +215,7 @@ template_generation:
 enable_dsptrn: True
 ```
 
-When `True`, A2_AddTx adds the `DSPTRN` dispatch technology and uses 4-tier ELC routing (`ELC00/01/02/03`), rewriting TRN interconnection fuels to `ELC03`. When `False`, it keeps 3-tier routing (`ELC00/01/02`) without DSPTRN.
+When `True`, A2_AddTx adds the `DSPTRN` dispatch technology and uses 5-tier ELC routing (`ELC00/01/02/03/04`): final demand moves to `ELC03`, and TRN interconnections take electricity from `ELC03` of one country and deliver it to `ELC04` of the other (see {doc}`data-reference`). When `False`, it keeps 3-tier routing (`ELC00/01/02`) without DSPTRN.
 
 ### `force_empty_max_capacity_investment_pwr`
 

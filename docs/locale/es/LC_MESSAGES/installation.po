@@ -31,6 +31,14 @@ msgstr ""
 "Esta guía cubre el proceso completo de configuración para ejecutar OSTRAM"
 " LAC en una máquina Windows."
 
+#: ../../installation.md:10
+msgid ""
+"Installation steps: clone the repository, create the Conda environment, "
+"set up a solver and verify the installation."
+msgstr ""
+"Pasos de instalación: clonar el repositorio, crear el entorno Conda, "
+"configurar el solver y verificar la instalación."
+
 #: ../../installation.md:5
 msgid "System Requirements"
 msgstr "Requisitos del sistema"

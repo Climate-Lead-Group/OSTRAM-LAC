@@ -31,6 +31,12 @@ msgstr ""
 "OSTRAM LAC usa cuatro archivos de configuración YAML y dos archivos de "
 "configuración basados en Excel. Esta página documenta cada opción."
 
+#: ../../configuration.md:5
+msgid "Which configuration file each pipeline stage and tool reads or writes."
+msgstr ""
+"Qué archivo de configuración lee o escribe cada etapa y herramienta del "
+"pipeline."
+
 #: ../../configuration.md:6
 msgid ""
 "All data entered in the configuration files (technologies, years, "
@@ -416,14 +422,17 @@ msgstr "`enable_dsptrn`"
 #: ../../configuration.md:211
 msgid ""
 "When `True`, A2_AddTx adds the `DSPTRN` dispatch technology and uses "
-"4-tier ELC routing (`ELC00/01/02/03`), rewriting TRN interconnection "
-"fuels to `ELC03`. When `False`, it keeps 3-tier routing (`ELC00/01/02`) "
-"without DSPTRN."
+"5-tier ELC routing (`ELC00/01/02/03/04`): final demand moves to `ELC03`, "
+"and TRN interconnections take electricity from `ELC03` of one country and"
+" deliver it to `ELC04` of the other (see {doc}`data-reference`). When "
+"`False`, it keeps 3-tier routing (`ELC00/01/02`) without DSPTRN."
 msgstr ""
 "Cuando es `True`, A2_AddTx agrega la tecnología de despacho `DSPTRN` y "
-"usa enrutamiento ELC de 4 niveles (`ELC00/01/02/03`), reescribiendo los "
-"energéticos de interconexión TRN a `ELC03`. Cuando es `False`, mantiene "
-"el enrutamiento de 3 niveles (`ELC00/01/02`) sin DSPTRN."
+"usa enrutamiento ELC de 5 niveles (`ELC00/01/02/03/04`): la demanda final"
+" pasa a `ELC03` y las interconexiones TRN toman electricidad del `ELC03` "
+"de un país y la entregan al `ELC04` del otro (ver {doc}`data-reference`)."
+" Cuando es `False`, mantiene el enrutamiento de 3 niveles (`ELC00/01/02`)"
+" sin DSPTRN."
 
 #: ../../configuration.md:213
 msgid "`force_empty_max_capacity_investment_pwr`"

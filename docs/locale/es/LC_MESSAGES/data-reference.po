@@ -1215,6 +1215,16 @@ msgstr ""
 "operan de forma independiente, conectadas solo a través de tecnologías de"
 " transmisión (TRN) explícitas."
 
+#: ../../data-reference.md:311
+msgid ""
+"Energy flow within one country, from supply to final demand and the "
+"interconnections with a neighbour: the code-level view of the structure "
+"in {ref}`Figure 1 <fig-ostram-structure>`."
+msgstr ""
+"Flujo de energía dentro de un país, desde el suministro hasta la demanda "
+"final y las interconexiones con un vecino: la vista por códigos de la "
+"estructura de la {ref}`Figura 1 <fig-ostram-structure>`."
+
 #: ../../data-reference.md:327
 #, python-brace-format
 msgid ""

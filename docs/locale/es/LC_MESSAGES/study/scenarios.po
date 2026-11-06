@@ -395,6 +395,14 @@ msgstr ""
 " escenarios efectivamente resueltos, está en la tabla *Códigos de "
 "escenario* de {doc}`../pipeline`."
 
+#: ../../study/scenarios.md:52
+msgid ""
+"How the 14 solved scenarios are derived from the four input workbooks, by"
+" family."
+msgstr ""
+"Cómo se derivan los 14 escenarios resueltos a partir de los cuatro libros"
+" de entrada, por familia."
+
 #~ msgid ""
 #~ "The multipliers of the renewables-high"
 #~ " variants (`BRA`, `IRA`) are pending "

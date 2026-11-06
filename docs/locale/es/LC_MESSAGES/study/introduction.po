@@ -75,6 +75,16 @@ msgstr ""
 " central de la arquitectura energética regional (Alarcón y Quirós-Tortós,"
 " 2025)."
 
+#: ../../study/introduction.md:14
+msgid ""
+"The four functions of the transmission grid and the economic effects that"
+" follow from them. Diagram prepared for this site from the text of this "
+"section."
+msgstr ""
+"Las cuatro funciones de la red de transmisión y los efectos económicos que"
+" se derivan de ellas. Diagrama preparado para este sitio a partir del "
+"texto de esta sección."
+
 #: ../../study/introduction.md:10
 #, python-format
 msgid ""
@@ -210,6 +220,17 @@ msgstr ""
 "modernizarse a un ritmo acorde con la velocidad de transformación de la "
 "oferta y la demanda, y así sostener la operación segura de un sistema "
 "cada vez más complejo y variable."
+
+#: ../../study/introduction.md:31
+msgid ""
+"From the pressures on the grid to its saturation, the consequences when "
+"transmission capacity is insufficient and the risks for the system. "
+"Diagram prepared for this site from the text of this section."
+msgstr ""
+"De las presiones sobre la red a su saturación, las consecuencias cuando "
+"la capacidad de transmisión es insuficiente y los riesgos para el "
+"sistema. Diagrama preparado para este sitio a partir del texto de esta "
+"sección."
 
 #: ../../study/introduction.md:20
 msgid ""

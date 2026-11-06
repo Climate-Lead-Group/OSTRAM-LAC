@@ -59,9 +59,13 @@ msgstr ""
 msgid "Runs `dvc repro` to execute all pipeline stages."
 msgstr "Ejecuta `dvc repro` para correr todas las etapas del pipeline."
 
-#: ../../quickstart.md:20
-msgid "Restores the original `dvc.yaml` after completion."
-msgstr "Restaura el `dvc.yaml` original al finalizar."
+#: ../../quickstart.md:25
+msgid ""
+"What `python run.py` does: from the Conda environment to the output files"
+" in `outputs/`."
+msgstr ""
+"Qué hace `python run.py`: desde el entorno Conda hasta los archivos de "
+"salida en `outputs/`."
 
 #: ../../quickstart.md:22
 msgid "Command-Line Options"

@@ -304,25 +304,11 @@ Projection activity ratios (same structure as base year, with projection modes).
 
 OSTRAM LAC uses a single-region (`GLOBAL`) architecture where geographic granularity is embedded in the technology and fuel naming conventions. Each country's technologies operate independently, connected only through explicit transmission (TRN) technologies.
 
-```
-  MIN (fossil fuel supply)              RNW (local renewable resource)
-           │                                       │
-           ▼                                       ▼
-  PWR fossil plants                       PWR renewable plants
-           │                                       │
-           ▼                                       ▼
-        ELC*01                                  ELC*00 ◄──► SDS / LDS storage
-           │                                       │
-  PWRTRN / TRNRPO / TRNNLI              RNWTRN / RNWRPO / RNWNLI
-           │                                       │
-           └──────────────► ELC*02 ◄───────────────┘
-                              │   ◄── PWRBCK backstop
-                              │   ◄──► BDS storage
-                       DSPTRN (mode 1)
-                              ▼
-  ELC*04 ──DSPTRN (mode 2)──► ELC*03 = final demand ──TRN──► ELC*04 of the neighbour
-     ▲
-     └──────TRN────── ELC*03 of the neighbour
+```{figure} /_static/reference/data_model_architecture.png
+:name: fig-model-architecture
+:width: 100%
+
+Energy flow within one country, from supply to final demand and the interconnections with a neighbour: the code-level view of the structure in {ref}`Figure 1 <fig-ostram-structure>`.
 ```
 
 `RNW` is **not** a separate node on the network: it plays, for renewables, the role that `MIN` plays for fossil fuels. Each `RNW{SOURCE}{COUNTRY}XX` technology (e.g. `RNWSPVCHLXX`) supplies the renewable resource (`SPVCHLXX`) that the matching renewable power plant (`PWRSPVCHLXX`) converts into electricity. Renewable resources are local: they cannot be traded between countries, unlike the commodities of `MIN`. The same prefix is reused by the renewable transmission technologies (`RNWTRN`, `RNWRPO`, `RNWNLI`), which carry renewable electricity from `ELC*00` to `ELC*02`.

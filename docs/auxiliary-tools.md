@@ -8,6 +8,13 @@ OSTRAM LAC includes several utility scripts (prefixed with `Z_`) for data mainte
 
 A centralized module (not run directly) that provides cached access to `Config_country_codes.yaml`. All other scripts import functions from this module instead of reading the YAML directly.
 
+```{figure} /_static/reference/config_loader_hub.png
+:name: fig-config-loader-hub
+:width: 100%
+
+`Z_AUX_config_loader` between `Config_country_codes.yaml` and the scripts that import it, with the functions each one calls.
+```
+
 ### Available Functions
 
 | Function | Returns | Description |

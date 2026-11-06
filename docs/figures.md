@@ -28,6 +28,13 @@ python scripts/figures/dashboard/build_dashboard.py --png  # also export one PNG
 
 `run_all.py` first builds (or reuses) a Parquet subset of the combined CSV for the OPT and ETT scenarios; report, presentation and dashboard then run in-process, and `tablas` runs in a subprocess because it streams the full CSV in chunks. A failing branch does not stop the others; the exit code is 1 if any branch failed.
 
+```{figure} /_static/pipeline/figures_run_all.png
+:name: fig-run-all
+:width: 100%
+
+What `run_all.py` does: from the combined CSV to the report and presentation figures, the dashboard and the result tables.
+```
+
 `run_all.yaml` switches whole branches (`report`, `presentation`, `dashboard`, `tablas`: `true`/`false`). Each `run_figures.yaml` switches individual figures; the long form passes arguments:
 
 ```yaml

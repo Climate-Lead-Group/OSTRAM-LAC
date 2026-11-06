@@ -57,6 +57,14 @@ msgstr ""
 "**Aplicar cambios** (`D2`) -- Lee la plantilla completada y actualiza los"
 " archivos del modelo."
 
+#: ../../secondary-techs-editor.md:16
+msgid ""
+"Secondary Technologies Editor workflow: D1 generates the template, the "
+"user edits it and D2 applies the changes to the scenario workbooks."
+msgstr ""
+"Flujo del editor de tecnologías secundarias: D1 genera la plantilla, el "
+"usuario la edita y D2 aplica los cambios a los libros de cada escenario."
+
 #: ../../secondary-techs-editor.md:14
 msgid "Step 1: Generate the Editor Template"
 msgstr "Paso 1: Generar la plantilla del editor"

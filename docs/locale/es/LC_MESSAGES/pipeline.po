@@ -611,8 +611,12 @@ msgid "Fuel Routing"
 msgstr "Enrutamiento de energéticos"
 
 #: ../../pipeline.md:171
-msgid "The script assigns fuel codes for the energy flow:"
-msgstr "El script asigna códigos de energético para el flujo de energía:"
+msgid ""
+"The script assigns fuel codes for the energy flow (with `enable_dsptrn: "
+"True`, the shipped setting; see {doc}`data-reference`):"
+msgstr ""
+"El script asigna códigos de energético para el flujo de energía (con "
+"`enable_dsptrn: True`, el valor de fábrica; ver {doc}`data-reference`):"
 
 #: ../../pipeline.md:173
 msgid "`ELC*00` -- Renewable electricity"
@@ -623,12 +627,28 @@ msgid "`ELC*01` -- Non-renewable electricity"
 msgstr "`ELC*01` -- Electricidad no renovable"
 
 #: ../../pipeline.md:175
-msgid "`ELC*02` -- Transmission output / Demand"
-msgstr "`ELC*02` -- Salida de transmisión / Demanda"
+msgid "`ELC*02` -- Transmission output"
+msgstr "`ELC*02` -- Salida de transmisión"
 
 #: ../../pipeline.md:176
-msgid "`ELC*03` -- Dispatch-ready for interconnection"
-msgstr "`ELC*03` -- Listo para despacho de interconexión"
+msgid ""
+"`ELC*03` -- Demand node (final electricity demand) and export point to "
+"interconnections"
+msgstr ""
+"`ELC*03` -- Nodo de demanda (demanda final de electricidad) y punto de "
+"exportación hacia las interconexiones"
+
+#: ../../pipeline.md:177
+msgid "`ELC*04` -- Electricity imported through interconnections"
+msgstr "`ELC*04` -- Electricidad importada por las interconexiones"
+
+#: ../../pipeline.md:179
+msgid ""
+"With `enable_dsptrn: False` there is no `ELC*03`/`ELC*04` and demand "
+"stays on `ELC*02`."
+msgstr ""
+"Con `enable_dsptrn: False` no existen `ELC*03`/`ELC*04` y la demanda "
+"queda en `ELC*02`."
 
 #: ../../pipeline.md:181
 msgid "For each scenario's Excel files:"
@@ -644,11 +664,13 @@ msgstr ""
 
 #: ../../pipeline.md:183
 msgid ""
-"Updates TRN interconnection fuel codes from `ELC*02`/`ELC*01` to `ELC*03`"
-" in **Secondary** sheets."
+"Updates TRN interconnection fuel codes in **Secondary** sheets: input to "
+"`ELC*03` of the exporting country, output to `ELC*04` of the importing "
+"country."
 msgstr ""
-"Actualiza los códigos de energético de interconexión TRN de "
-"`ELC*02`/`ELC*01` a `ELC*03` en las hojas **Secondary**."
+"Actualiza los códigos de energético de interconexión TRN en las hojas "
+"**Secondary**: la entrada pasa a `ELC*03` del país que exporta y la salida "
+"a `ELC*04` del país que importa."
 
 #: ../../pipeline.md:184
 msgid ""
@@ -661,10 +683,14 @@ msgstr ""
 #: ../../pipeline.md:185
 msgid ""
 "Adds DSPTRN dispatch technology (Mode 1: `ELC*02` → `ELC*03`, Mode 2: "
-"`ELC*03` → `ELC*01`) to **Demand Techs** sheets."
+"`ELC*04` → `ELC*03`) to **Demand Techs** sheets."
 msgstr ""
 "Agrega la tecnología de despacho DSPTRN (Modo 1: `ELC*02` → `ELC*03`, "
-"Modo 2: `ELC*03` → `ELC*01`) a las hojas **Demand Techs**."
+"Modo 2: `ELC*04` → `ELC*03`) a las hojas **Demand Techs**."
+
+#: ../../pipeline.md:190
+msgid "Moves final demand from `ELC*02` to `ELC*03` in `A-O_Demand.xlsx`."
+msgstr "Mueve la demanda final de `ELC*02` a `ELC*03` en `A-O_Demand.xlsx`."
 
 #: ../../pipeline.md:186
 msgid ""
@@ -764,16 +790,27 @@ msgid ""
 "**Extend lower limits** "
 "([`extend_lowerlimits_pwr.py`](../scripts/pipeline/A3_process/rules_scripts/extend_lowerlimits_pwr.py))"
 " — extends the 2024 value of `TotalTechnologyAnnualActivityLowerLimit` "
-"for PWR techs flat through 2050 in the **Secondary Techs** sheet, so the "
-"calibration floor does not expire and the optimizer cannot dump thermal "
-"generation in 2025+."
+"flat through 2050 in the **Secondary Techs** sheet, so the calibration "
+"floor does not expire. It runs only for the scenarios listed under "
+"`lowerlimit_scenarios` in "
+"[`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), and each "
+"entry sets which PWR technology types receive the floor: `all`, a group "
+"defined in `lowerlimit_tech_groups`, or a list of type codes (shipped: "
+"`renewable` — BIO, GEO, CSP, SPV, HYD, WAS, WAV, WON, WOF — for BAU, INV,"
+" OPT and VGB, so the floor is imposed on renewable generation only)."
 msgstr ""
 "**Extender límites inferiores** "
 "([`extend_lowerlimits_pwr.py`](../scripts/pipeline/A3_process/rules_scripts/extend_lowerlimits_pwr.py))"
 " — extiende el valor de 2024 de `TotalTechnologyAnnualActivityLowerLimit`"
-" para las tecnologías PWR de forma constante hasta 2050 en la hoja "
-"**Secondary Techs**, para que el piso de calibración no expire y el "
-"optimizador no pueda descartar la generación térmica en 2025 en adelante."
+" de forma constante hasta 2050 en la hoja **Secondary Techs**, para que "
+"el piso de calibración no expire. Solo se ejecuta para los escenarios "
+"listados bajo `lowerlimit_scenarios` en "
+"[`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), y cada "
+"entrada fija a qué tipos de tecnologías PWR se aplica el piso: `all`, un "
+"grupo definido en `lowerlimit_tech_groups` o una lista de códigos de tipo"
+" (de fábrica: `renewable` — BIO, GEO, CSP, SPV, HYD, WAS, WAV, WON, WOF —"
+" para BAU, INV, OPT y VGB, de modo que el piso se impone solo a la "
+"generación renovable)."
 
 #: ../../pipeline.md:251
 msgid ""

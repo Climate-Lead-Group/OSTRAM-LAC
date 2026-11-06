@@ -44,3 +44,10 @@ The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present results;
 ## How the scenarios are built
 
 The four input workbooks `BAU`, `INV`, `OPT` and `VGB` are the **base scenarios**: every scenario listed above, and any scenario added later, is derived from one of them. The derivation happens in the transmission-constraint chain of Stage B2: the Lower Constraints Modifiers, the Inertial Transmission Constraints (which create OPT (`BAC`) and PLAN (`OPC`)), and the scenario transforms of `scripts/tx_chain/`, which create the remaining variants by changing parameter values only (see sections 7 to 9 of {doc}`../solver-patchers`). The full mapping from each code to its base workbook and generating script, together with the list of scenarios actually solved, is in the *Scenario codes* table of {doc}`../pipeline`.
+
+```{figure} /_static/study/scenario_tree.png
+:name: fig-scenario-tree
+:width: 100%
+
+How the 14 solved scenarios are derived from the four input workbooks, by family.
+```

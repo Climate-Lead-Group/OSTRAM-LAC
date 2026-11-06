@@ -9,6 +9,13 @@ The editor workflow has two steps:
 1. **Generate the template** (`D1`) -- Creates `Secondary_Techs_Editor.xlsx`.
 2. **Apply changes** (`D2`) -- Reads the filled template and updates the model files.
 
+```{figure} /_static/reference/editor_d1_d2.png
+:name: fig-editor-d1-d2
+:width: 100%
+
+Secondary Technologies Editor workflow: D1 generates the template, the user edits it and D2 applies the changes to the scenario workbooks.
+```
+
 ---
 
 ## Step 1: Generate the Editor Template

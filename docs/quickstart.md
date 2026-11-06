@@ -17,7 +17,13 @@ The `run.py` launcher automatically:
 2. Installs any missing dependencies.
 3. Injects today's date into the DVC pipeline for date-stamped output files.
 4. Runs `dvc repro` to execute all pipeline stages.
-5. Restores the original `dvc.yaml` after completion.
+
+```{figure} /_static/getting-started/quickstart_run.png
+:name: fig-quickstart-run
+:width: 100%
+
+What `python run.py` does: from the Conda environment to the output files in `outputs/`.
+```
 
 ### Command-Line Options
 

@@ -127,6 +127,16 @@ msgstr "Orden de ejecución"
 msgid "The numbers are the section numbers used on this page."
 msgstr "Los números son los números de sección usados en esta página."
 
+#: ../../solver-patchers.md:31
+msgid ""
+"B2 execution order: the per-base-scenario chain, the cross-scenario steps"
+" 8 and 9, the two CSV syncs and the suffixes that build the datafile "
+"name."
+msgstr ""
+"Orden de ejecución de B2: la cadena por escenario base, los pasos 8 y 9 "
+"transversales a escenarios, las dos sincronizaciones de CSV y los sufijos"
+" que forman el nombre del archivo de datos."
+
 #: ../../solver-patchers.md:53
 msgid ""
 "Steps 2–5 and 7–8 each append a suffix to the datafile name and feed "

@@ -173,6 +173,14 @@ msgstr ""
 "falla no detiene a las demás; el código de salida es 1 si alguna rama "
 "falló."
 
+#: ../../figures.md:35
+msgid ""
+"What `run_all.py` does: from the combined CSV to the report and "
+"presentation figures, the dashboard and the result tables."
+msgstr ""
+"Qué hace `run_all.py`: del CSV combinado a las figuras de reporte y de "
+"presentación, el dashboard y las tablas de resultados."
+
 #: ../../figures.md:31
 msgid ""
 "`run_all.yaml` switches whole branches (`report`, `presentation`, "

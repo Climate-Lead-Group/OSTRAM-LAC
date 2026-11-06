@@ -165,6 +165,13 @@ The generator correctly handles:
 
 After generating the template:
 
+```{figure} /_static/reference/country_add_workflow.png
+:name: fig-country-add-workflow
+:width: 100%
+
+Adding a new country: generate the template, review it, merge it into `OG_csvs_inputs/` and validate it.
+```
+
 ```bash
 # 1. Generate the template
 python scripts/tools/Z_generate_country_template.py

@@ -70,6 +70,17 @@ msgstr ""
 "óptima, y otra que se rezaga por una inversión tendencial se interpreta "
 "como indicador del costo sistémico de no invertir."
 
+#: ../../study/methodology.md:11
+msgid ""
+"Logic of the study: the same demand, two scenarios that differ in how "
+"much the grid can expand, and the indicators obtained by comparing them. "
+"Diagram prepared for this site from the text of this chapter."
+msgstr ""
+"Lógica del estudio: la misma demanda, dos escenarios que difieren en "
+"cuánto puede expandirse la red y los indicadores que se obtienen al "
+"compararlos. Diagrama preparado para este sitio a partir del texto de "
+"este capítulo."
+
 #: ../../study/methodology.md:7
 #, python-brace-format
 msgid ""
@@ -219,6 +230,17 @@ msgid ""
 msgstr ""
 "Figura 1. Estructura del modelo OSTRAM: barras de generación y demanda, "
 "almacenamiento (BESS), líneas por tipo e interconexiones entre países."
+
+#: ../../study/methodology.md:38
+msgid ""
+"What OSTRAM optimises: its inputs, the cost it minimises, the constraints"
+" it respects and the results it produces for each scenario. Diagram "
+"prepared for this site from the text of this chapter."
+msgstr ""
+"Qué optimiza OSTRAM: sus entradas, el costo que minimiza, las "
+"restricciones que respeta y los resultados que produce para cada "
+"escenario. Diagrama preparado para este sitio a partir del texto de este "
+"capítulo."
 
 #: ../../study/methodology.md:27
 msgid ""
@@ -953,6 +975,20 @@ msgstr ""
 " valores parten de la suma total de la capacidad de las interconexiones "
 "entre los países, no solamente de la capacidad añadida que se presenta en"
 " esta tabla."
+
+#: ../../study/methodology.md:114
+msgid ""
+"Cross-border interconnections in the model: existing capacity in 2023 and"
+" the planned additions of Table 3, with their year(s) of entry. Countries"
+" are placed at their capitals and links are drawn as straight lines, not "
+"along their actual routes. Diagram prepared for this site from Table 3 "
+"and the model inputs."
+msgstr ""
+"Interconexiones internacionales en el modelo: capacidad existente en 2023"
+" y las ampliaciones planificadas de la Tabla 3, con su(s) año(s) de "
+"entrada. Los países se ubican en sus capitales y los enlaces se dibujan "
+"como líneas rectas, no según su trazado real. Diagrama preparado para "
+"este sitio a partir de la Tabla 3 y de los insumos del modelo."
 
 #: ../../study/methodology.md:96
 #, python-format

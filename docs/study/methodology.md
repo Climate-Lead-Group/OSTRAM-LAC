@@ -4,6 +4,13 @@ This page reproduces Chapter 2 of the report "The Benefit of Investing in Electr
 
 This chapter describes how the cost of not investing in electricity transmission is estimated. The analysis relies on an optimisation model of the electricity system, OSTRAM (OSeMOSYS for Transmission Modelling)[^ostram-repo], which, for each year between 2023 and 2050 and with a temporal resolution of 12 time slices per year, determines the lowest-cost combination of generation, transmission and storage capable of supplying the demand of each of the 19 countries while respecting the technical constraints of the system. On that basis, the study compares two scenarios that share the objective of supplying the same demand but differ in how supply is allowed to evolve, in particular in how much the transmission grid can expand. The difference in total system costs (generation, transmission, storage, interconnections) between a grid that expands in time, or optimally, and one that lags behind because of trend investment is interpreted as an indicator of the systemic cost of not investing.
 
+```{figure} /_static/study/meth_study_logic.png
+:name: fig-study-logic
+:width: 100%
+
+Logic of the study: the same demand, two scenarios that differ in how much the grid can expand, and the indicators obtained by comparing them. Diagram prepared for this site from the text of this chapter.
+```
+
 The chapter is organised in five blocks. First, the OSTRAM model and its optimisation logic are described ({ref}`meth-model`). Then the data sources, the calibration and the technical and cost assumptions that feed the model are documented ({ref}`meth-data`). Next, the design of the two main scenarios is defined and their assumptions by sector are detailed: demand, generation and transmission ({ref}`meth-scenarios`). After that, the metrics used to evaluate the results are specified: costs, grid capacity, cost of fossil generation, dependence on fuel imports, diversification and composition of the electricity mix ({ref}`meth-indicators`). Finally, a sensitivity analysis is introduced to understand the effect of several uncertain variables (such as the costs of technologies and energy resources) on the cost of not investing ({ref}`meth-sensitivity`).
 
 (meth-model)=
@@ -22,6 +29,13 @@ To ensure technically feasible results, OSTRAM verifies the adequacy of the syst
 :width: 100%
 
 Figure 1. Structure of the OSTRAM model: generation and demand buses, storage (BESS), lines by type and interconnections between countries.
+```
+
+```{figure} /_static/study/meth_ostram_model.png
+:name: fig-ostram-model
+:width: 100%
+
+What OSTRAM optimises: its inputs, the cost it minimises, the constraints it respects and the results it produces for each scenario. Diagram prepared for this site from the text of this chapter.
 ```
 
 The simplifications of the model should be made explicit. OSTRAM is a capacity expansion model, not a model of detailed grid operation. Each country is represented by buses that connect source, generation, transmission, demand and interconnection, and transmission is modelled as aggregate capacity between those buses: the internal topology of each system is not represented, nor are the limits of individual lines, nor is a distinction made between alternating and direct current links. Because power flows are not solved, stability constraints, voltage control and dynamic reserves are outside the scope of the analysis. The temporal resolution of 12 representative time slices per year captures seasonal and daily variability, but not short-duration events.
@@ -92,6 +106,13 @@ The firmly planned interconnections are included according to Table 3. The capac
 | Honduras–Nicaragua | 150 MW | 230 kV AC, 2nd SIEPAC circuit | 2031 (projected) | 1.48 |
 
 Note: the values in the column "Maximum annual generation limit (TWh/year)" are constraint values, not a maximum physical limit. These values start from the total sum of the capacity of the interconnections between the countries, not only from the added capacity presented in this table.
+
+```{figure} /_static/study/meth_interconnections_map.png
+:name: fig-interconnections-map
+:width: 100%
+
+Cross-border interconnections in the model: existing capacity in 2023 and the planned additions of Table 3, with their year(s) of entry. Countries are placed at their capitals and links are drawn as straight lines, not along their actual routes. Diagram prepared for this site from Table 3 and the model inputs.
+```
 
 Finally, the average conductor efficiency of each line is represented by country and line type, as a function of the properties of the conductors and of the average distance between generation and the load centres; a value of 0.960, for example, implies about 4% losses on that stretch. These values were checked against IDB references (Jimenez Mori et al., 2014) and OLADE references, and are reported in the technical annex "Detailed assumptions and model parameters" of the report. The full detail of sources, parameters, thresholds and calibration rules of the model is documented in the technical annexes of the report (section 7.1).
 

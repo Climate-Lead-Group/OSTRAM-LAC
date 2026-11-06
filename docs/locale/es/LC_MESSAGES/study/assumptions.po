@@ -34,6 +34,10 @@ msgstr ""
 "Cada supuesto indica el parámetro o script que lo define, para poder "
 "contrastarlo con la configuración."
 
+#: ../../study/assumptions.md:9
+msgid "Rules of the model that depend on the year, 2023–2050."
+msgstr "Reglas del modelo que dependen del año, 2023–2050."
+
 #: ../../study/assumptions.md:5
 msgid "**Optimisation and costs**"
 msgstr "**Optimización y costos**"

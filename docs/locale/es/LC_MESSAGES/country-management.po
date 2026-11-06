@@ -460,6 +460,14 @@ msgstr "Flujo de integración"
 msgid "After generating the template:"
 msgstr "Después de generar la plantilla:"
 
+#: ../../country-management.md:172
+msgid ""
+"Adding a new country: generate the template, review it, merge it into "
+"`OG_csvs_inputs/` and validate it."
+msgstr ""
+"Agregar un país nuevo: generar la plantilla, revisarla, fusionarla en "
+"`OG_csvs_inputs/` y validarla."
+
 #: ../../country-management.md:185
 msgid "Region Consolidation"
 msgstr "Consolidación regional"

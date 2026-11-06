@@ -2,6 +2,13 @@
 
 What changes from one scenario to another is described in {doc}`scenarios`. Each assumption names the parameter or script that sets it, so it can be checked against the configuration.
 
+```{figure} /_static/study/assumptions_timeline.png
+:name: fig-assumptions-timeline
+:width: 100%
+
+Rules of the model that depend on the year, 2023–2050.
+```
+
 **Optimisation and costs**
 
 - Repowering an existing transmission line costs 45% of building a new unplanned line of the same country and type (`CapitalCost` of `TRNRPO`/`RNWRPO` = 0.45 × `TRNNLI`/`RNWNLI`).

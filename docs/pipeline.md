@@ -162,21 +162,25 @@ python scripts/pipeline/A2_AddTx.py
 
 ### Fuel Routing
 
-The script assigns fuel codes for the energy flow:
+The script assigns fuel codes for the energy flow (with `enable_dsptrn: True`, the shipped setting; see {doc}`data-reference`):
 
 - `ELC*00` -- Renewable electricity
 - `ELC*01` -- Non-renewable electricity
-- `ELC*02` -- Transmission output / Demand
-- `ELC*03` -- Dispatch-ready for interconnection
+- `ELC*02` -- Transmission output
+- `ELC*03` -- Demand node (final electricity demand) and export point to interconnections
+- `ELC*04` -- Electricity imported through interconnections
+
+With `enable_dsptrn: False` there is no `ELC*03`/`ELC*04` and demand stays on `ELC*02`.
 
 ### What It Does
 
 1. Reads the country list from `Config_country_codes.yaml`.
 2. For each scenario's Excel files:
    - Classifies power plant output as renewable (`ELC*00`) or non-renewable (`ELC*01`) in **Secondary** sheets.
-   - Updates TRN interconnection fuel codes from `ELC*02`/`ELC*01` to `ELC*03` in **Secondary** sheets.
+   - Updates TRN interconnection fuel codes in **Secondary** sheets: input to `ELC*03` of the exporting country, output to `ELC*04` of the importing country.
    - Adds transmission technology entries (RNWTRN, PWRTRN, etc.) to **Demand Techs** sheets.
-   - Adds DSPTRN dispatch technology (Mode 1: `ELC*02` → `ELC*03`, Mode 2: `ELC*03` → `ELC*01`) to **Demand Techs** sheets.
+   - Adds DSPTRN dispatch technology (Mode 1: `ELC*02` → `ELC*03`, Mode 2: `ELC*04` → `ELC*03`) to **Demand Techs** sheets.
+   - Moves final demand from `ELC*02` to `ELC*03` in `A-O_Demand.xlsx`.
    - Adds parameter entries to `A-O_Parametrization.xlsx` (sheets: **Fixed Horizon Parameters**, **Demand Techs**).
 
 ### Command-Line Options
@@ -241,7 +245,7 @@ The script assigns fuel codes for the energy flow:
 An orchestrator that applies a set of post-A1/A2 calibration rules to each scenario's `A-O_Parametrization.xlsx`. For every scenario folder under `A1_Outputs/A1_Outputs_<scenario>/` it runs three per-scenario steps in order, followed by one global harmonization pass:
 
 1. **Lid rule** ([`add_max_cap_investment_lid_rule.py`](../scripts/pipeline/A3_process/rules_scripts/add_max_cap_investment_lid_rule.py)) — fills `TotalAnnualMaxCapacityInvestment` placeholders with calibrated lid (top) values, i.e. upper bounds on annual capacity investment, configured in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml).
-2. **Extend lower limits** ([`extend_lowerlimits_pwr.py`](../scripts/pipeline/A3_process/rules_scripts/extend_lowerlimits_pwr.py)) — extends the 2024 value of `TotalTechnologyAnnualActivityLowerLimit` for PWR techs flat through 2050 in the **Secondary Techs** sheet, so the calibration floor does not expire and the optimizer cannot dump thermal generation in 2025+.
+2. **Extend lower limits** ([`extend_lowerlimits_pwr.py`](../scripts/pipeline/A3_process/rules_scripts/extend_lowerlimits_pwr.py)) — extends the 2024 value of `TotalTechnologyAnnualActivityLowerLimit` flat through 2050 in the **Secondary Techs** sheet, so the calibration floor does not expire. It runs only for the scenarios listed under `lowerlimit_scenarios` in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), and each entry sets which PWR technology types receive the floor: `all`, a group defined in `lowerlimit_tech_groups`, or a list of type codes (shipped: `renewable` — BIO, GEO, CSP, SPV, HYD, WAS, WAV, WON, WOF — for BAU, INV, OPT and VGB, so the floor is imposed on renewable generation only).
 3. **Pre-solver validation** — runs `B1b_Pre_solver_validation.py --auto-fix-all` to reconcile any residual inconsistencies. It is the same validator that B1 runs at startup; see [Pre-solver validation (B1b)](#pre-solver-validation-b1b) under Stage B1.
 4. **Historical sync to BAU (global, after all scenarios)** — for every scenario listed under `historical_sync_through` in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), runs [`sync_historical_from_bau.py`](../scripts/pipeline/sync_historical_from_bau.py) `--apply --scenarios <S> --years 2023,…,<through_year>`. It copies the year cells 2023..`<through_year>` from the current BAU workbook into the target scenario so that all scenarios share the same historical/near-term values (shipped: INV 2030, OPT 2026, VGB 2030). Two per-scenario refinements are forwarded from the same YAML: `historical_sync_protect_from_2026` (parameters passed as `--protect-params`, which are *not* snapped back to BAU for years ≥ 2027 — shipped for VGB: `TotalTechnologyAnnualActivityLowerLimit`, `TotalAnnualMinCapacityInvestment`, `TotalAnnualMaxCapacityInvestment`) and `historical_sync_tx_follow_bau` (scenarios passed `--no-protect-tx`, whose transmission `TotalAnnualMaxCapacityInvestment` *is* synced to BAU across the whole window — shipped: OPT). BAU is always the source and never a target. The sync aborts on any structural mismatch between workbooks (row order, sheet names), which stops A3 with a non-zero exit.
 

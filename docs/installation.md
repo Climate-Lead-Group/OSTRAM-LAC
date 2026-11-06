@@ -2,6 +2,13 @@
 
 This guide covers the full setup process for running OSTRAM LAC on a Windows machine.
 
+```{figure} /_static/getting-started/install_flow.png
+:name: fig-install-flow
+:width: 100%
+
+Installation steps: clone the repository, create the Conda environment, set up a solver and verify the installation.
+```
+
 ## System Requirements
 
 - **Operating System:** Windows 10 or higher

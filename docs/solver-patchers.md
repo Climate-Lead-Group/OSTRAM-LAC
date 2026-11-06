@@ -24,6 +24,13 @@ Some adjustments are easier or only possible on the fully-assembled GNU MathProg
 
 The numbers are the section numbers used on this page.
 
+```{figure} /_static/pipeline/solver_b2_order.png
+:name: fig-b2-order
+:width: 100%
+
+B2 execution order: the per-base-scenario chain, the cross-scenario steps 8 and 9, the two CSV syncs and the suffixes that build the datafile name.
+```
+
 ```
 Once, before the scenario loop:
    Preflight separation gate              (preflight_separation_active, only if 7 is on)
