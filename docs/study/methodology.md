@@ -4,7 +4,7 @@ This page reproduces Chapter 2 of the report "The Benefit of Investing in Electr
 
 This chapter describes how the cost of not investing in electricity transmission is estimated. The analysis relies on an optimisation model of the electricity system, OSTRAM (OSeMOSYS for Transmission Modelling)[^ostram-repo], which, for each year between 2023 and 2050 and with a temporal resolution of 12 time slices per year, determines the lowest-cost combination of generation, transmission and storage capable of supplying the demand of each of the 19 countries while respecting the technical constraints of the system. On that basis, the study compares two scenarios that share the objective of supplying the same demand but differ in how supply is allowed to evolve, in particular in how much the transmission grid can expand. The difference in total system costs (generation, transmission, storage, interconnections) between a grid that expands in time, or optimally, and one that lags behind because of trend investment is interpreted as an indicator of the systemic cost of not investing.
 
-```{figure} /_static/study/meth_study_logic.png
+```{figure} /_static/study/meth_study_design.png
 :name: fig-study-logic
 :width: 100%
 

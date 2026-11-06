@@ -37,6 +37,15 @@ msgstr ""
 msgid "Pipeline Overview"
 msgstr "Descripción general del pipeline"
 
+#: ../../pipeline.md:11
+msgid ""
+"Pipeline overview: data preparation (A0 to D1/D2), run once when a new "
+"model is built, and model execution (B1 and B2), the typical workflow."
+msgstr ""
+"Descripción general del pipeline: preparación de datos (de A0 a D1/D2), "
+"que se corre una vez cuando se construye un modelo nuevo, y ejecución del "
+"modelo (B1 y B2), el flujo de trabajo típico."
+
 #: ../../pipeline.md:29
 msgid ""
 "The **typical workflow** is only the model-execution block: B1 and B2, "
