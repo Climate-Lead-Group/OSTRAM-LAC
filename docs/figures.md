@@ -45,14 +45,14 @@ Figures ending in `_tmp` are exploratory (energy-not-served variants) and ship d
 
 ## Report figures
 
-Every figure in the table below has one entry in [`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml), and all of them ship **enabled** (`true`), so a plain `python scripts/figures/report/run_figures.py` (or the `report` branch of `run_all.py`) produces all of them. To control which figures run:
+Every figure in the table below has one entry in [`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml), and all of them ship enabled (`true`), so a plain `python scripts/figures/report/run_figures.py` (or the `report` branch of `run_all.py`) produces all of them. To control which figures run:
 
 - **Enable or disable a figure:** set its entry to `true` or `false`, e.g. `fig_costo_unitario: false`. The key order in the YAML is the execution order.
 - **Pass arguments:** use the long form `fig_almacenamiento_2050: {enabled: true, args: ["--years", "2030", "2050"]}` (`enabled` defaults to `true` when omitted).
 - **Run a single figure regardless of the YAML:** `python scripts/figures/report/run_figures.py --only fig_costo_unitario` (any YAML arguments of that figure are reused).
 - **Check the resolved state without running anything:** `python scripts/figures/report/run_figures.py --list`.
 
-A `fig_*.py` script that has no entry in the YAML is **not** run; the runner prints a warning for it. The presentation figures follow the same rules with `scripts/figures/presentation/run_figures.yaml`.
+The runner skips any `fig_*.py` script that has no entry in the YAML and prints a warning for it. The presentation figures follow the same rules with `scripts/figures/presentation/run_figures.yaml`.
 
 | Script | Figure |
 |---|---|
@@ -89,8 +89,8 @@ A `fig_*.py` script that has no entry in the YAML is **not** run; the runner pri
 | 09 | Average annual capital investment by country [MUSD/yr] (maps) |
 | 10 | Transmission line kilometres [km] |
 | 11 | Annualised cost per unit of energy [MUSD/TWh] |
-| 12 | Energy security — imported vs domestic [%] |
-| 13 | Resilience — effective number of sources (inverse Herfindahl-Hirschman index) |
+| 12 | Energy security: imported vs domestic [%] |
+| 13 | Resilience: effective number of sources (inverse Herfindahl-Hirschman index) |
 | 14 | Total system cost including fuel [MUSD/yr] |
 | 15 | Energy not served [MUSD] (backstop output valued at 1500 USD/MWh) |
 | 16 | Transmission maps (iframe) |

@@ -86,7 +86,7 @@ PWR{SDS|LDS|BDS}{COUNTRY}{REGION}     # technology
 SDS and LDS exist for the 19 modelled countries and sit on the renewable electricity node `ELC*00`.
 
 :::{important}
-**BDS (Backstop Duration Storage) is the storage counterpart of the backstop.** It is a clone of SDS (same costs and technical parameters, no existing stock) connected to `ELC*02`, the post-transmission node that feeds demand, where the `PWRBCK` backstop also injects. Because it sits on the demand side of the transmission links, it can cover a shortfall that would otherwise be met with backstop generation (energy not served) without needing transmission capacity. It currently exists only for Chile and Peru, and is added after A3 with [`add_bds_storage.py`](../scripts/tools/data_patches/add_bds_storage.py) (see `scripts/tools/data_patches/README.md`).
+**BDS (Backstop Duration Storage)** is the storage counterpart of the backstop. It is a clone of SDS (same costs and technical parameters, no existing stock) connected to `ELC*02`, the post-transmission node that feeds demand, where the `PWRBCK` backstop also injects. Because it sits on the demand side of the transmission links, it can cover a shortfall that would otherwise be met with backstop generation (energy not served) without needing transmission capacity. It currently exists only for Chile and Peru, and is added after A3 with [`add_bds_storage.py`](../scripts/tools/data_patches/add_bds_storage.py) (see `scripts/tools/data_patches/README.md`).
 :::
 
 The Stage B2 storage-delay modifier (see {doc}`solver-patchers`) blocks their builds for the first N years using the prefixes in `storage_delay_storage_prefixes`.
@@ -165,7 +165,7 @@ flowchart TB
     B --- N["12 timeslices, S1D1..S4D3"]
 ```
 
-This produces **12 timeslices** (4 seasons x 3 brackets):
+This produces 12 timeslices (4 seasons x 3 brackets):
 
 | Timeslice | Season | Bracket | Description |
 |-----------|--------|---------|-------------|
@@ -311,7 +311,7 @@ OSTRAM LAC uses a single-region (`GLOBAL`) architecture where geographic granula
 Energy flow within one country, from supply to final demand and the interconnections with a neighbour: the code-level view of the structure in {ref}`Figure 1 <fig-ostram-structure>`.
 ```
 
-`RNW` is **not** a separate node on the network: it plays, for renewables, the role that `MIN` plays for fossil fuels. Each `RNW{SOURCE}{COUNTRY}XX` technology (e.g. `RNWSPVCHLXX`) supplies the renewable resource (`SPVCHLXX`) that the matching renewable power plant (`PWRSPVCHLXX`) converts into electricity. Renewable resources are local: they cannot be traded between countries, unlike the commodities of `MIN`. The same prefix is reused by the renewable transmission technologies (`RNWTRN`, `RNWRPO`, `RNWNLI`), which carry renewable electricity from `ELC*00` to `ELC*02`.
+`RNW` is a supply prefix: it plays, for renewables, the role that `MIN` plays for fossil fuels. Each `RNW{SOURCE}{COUNTRY}XX` technology (e.g. `RNWSPVCHLXX`) supplies the renewable resource (`SPVCHLXX`) that the matching renewable power plant (`PWRSPVCHLXX`) converts into electricity. Renewable resources are local: they cannot be traded between countries, unlike the commodities of `MIN`. The same prefix is reused by the renewable transmission technologies (`RNWTRN`, `RNWRPO`, `RNWNLI`), which carry renewable electricity from `ELC*00` to `ELC*02`.
 
 ### Energy Flow
 

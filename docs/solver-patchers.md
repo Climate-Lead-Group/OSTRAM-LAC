@@ -2,21 +2,21 @@
 
 Stage B2 ([`B2_Executing_OG_Model.py`](../scripts/pipeline/B2_Executing_OG_Model.py)) turns each base scenario into a GNU MathProg datafile (`.txt`), modifies it, creates the derived scenarios and solves them. This page is the reference for that sequence: it lists every step in the order the code runs it, with the switch and the parameters that control each one. How to launch B2, the solver settings, the scenarios that are solved and the output files are described in the Stage B2 section of {doc}`pipeline`.
 
-The *modifiers* rewrite parameter blocks directly in the `.txt`, after the OSeMOSYS preprocessor and before the solver. They implement the reserve-margin and storage features, several feasibility safeguards, the transmission constraints, and the creation of the derived scenarios. All their settings live in [`Config_MOMF_T1_AB.yaml`](configuration.md#config_momf_t1_abyaml).
+The modifiers rewrite parameter blocks directly in the `.txt`, after the OSeMOSYS preprocessor and before the solver. They implement the reserve-margin and storage features, several feasibility safeguards, the transmission constraints, and the creation of the derived scenarios. All their settings live in [`Config_MOMF_T1_AB.yaml`](configuration.md#config_momf_t1_abyaml).
 
 :::{important}
-Every modifier is gated by an `*_active` master switch (the scenario transforms, by the `scenario_transforms` list). When a switch is `False` (or absent), that modifier is a **no-op** and the pipeline behaves as if it were not there. Some switches ship **enabled** in the current `Config_MOMF_T1_AB.yaml` — see the "Shipped default" line of each section.
+Every modifier is gated by an `*_active` master switch (the scenario transforms, by the `scenario_transforms` list). When a switch is `False` (or absent), that modifier does nothing and the pipeline behaves as if it were not there. Some switches ship enabled in the current `Config_MOMF_T1_AB.yaml`; the "Shipped default" line of each section gives the value.
 :::
 
 ---
 
-## Why modify the `.txt` instead of the CSVs?
+## Reasons for modifying the `.txt`
 
 Some adjustments are easier or only possible on the fully-assembled GNU MathProg model:
 
 - `DaysInDayType` is never emitted by the `B1 → otoole → preprocess` path, so it must be injected post-preprocess.
 - Reserve-margin tags, firm-capacity caps, and storage-build timing are global, cross-scenario rules best applied as a final reconciliation step.
-- The modified values are then **synced back** into the otoole CSVs (see [Sync modified CSVs](#sync-modified-csvs-back-to-the-otoole-folder)) so the combined input/output files reflect what the solver actually consumed.
+- The modified values are then synced back into the otoole CSVs (see [Sync modified CSVs](#sync-modified-csvs-back-to-the-otoole-folder)) so the combined input/output files reflect what the solver actually consumed.
 
 ---
 
@@ -76,10 +76,10 @@ The storage-delay modifier is special: when `storage_delay_active: True`, B2 red
 The final CSVs (`RELAC_TX_Inputs.csv`, `RELAC_TX_Outputs.csv`, `RELAC_TX_Combined_Inputs_Outputs.csv`) always use `prefix_final_files`. Until 2026-09-11 storage-delay runs used a separate `RELAC_TX_StorageDelay_` prefix; that desynced the `outs` in `dvc.yaml` (so `dvc repro` failed after the solve) and the consumers that read the un-prefixed name (dashboard, D4). B2 now checks at startup that the `dvc.yaml` outs carry `prefix_final_files` and aborts otherwise.
 
 :::{note}
-`storage_delay_active` is **mutually exclusive** with `strip_storage_active`. When storage-delay is on, B2 silently forces `strip_storage_active = False`.
+`storage_delay_active` is mutually exclusive with `strip_storage_active`. When storage-delay is on, B2 silently forces `strip_storage_active = False`.
 :::
 
-[`patch_storage_delay.py`](../scripts/pipeline/patch_storage_delay.py) keeps storage in the model but **blocks storage builds for the first N years** (`storage_delay_first_n_years`), then reopens the linked PWR storage technologies so the optimizer can add storage afterward.
+[`patch_storage_delay.py`](../scripts/pipeline/patch_storage_delay.py) keeps storage in the model but blocks storage builds for the first N years (`storage_delay_first_n_years`), then reopens the linked PWR storage technologies so the optimizer can add storage afterward.
 
 ---
 
@@ -87,9 +87,9 @@ The final CSVs (`RELAC_TX_Inputs.csv`, `RELAC_TX_Outputs.csv`, `RELAC_TX_Combine
 
 ### 1. DaysInDayType injector
 
-**Script:** [`inject_DaysInDayType.py`](../scripts/pipeline/inject_DaysInDayType.py) — runs unconditionally.
+**Script:** [`inject_DaysInDayType.py`](../scripts/pipeline/inject_DaysInDayType.py) · runs unconditionally.
 
-The `B1 → otoole → preprocess` chain never generates the `DaysInDayType` block, so the `.txt` ships with an empty block and OSeMOSYS falls back to `default = 7`. With 4 seasons × 1 daytype that makes storage equations treat the year as 4 × 7 = 28 days while the energy balance uses the real year length — a mismatch. This modifier writes the correct `DaysInDayType` values in place.
+The `B1 → otoole → preprocess` chain never generates the `DaysInDayType` block, so the `.txt` ships with an empty block and OSeMOSYS falls back to `default = 7`. With 4 seasons × 1 daytype, storage equations then treat the year as 4 × 7 = 28 days while the energy balance uses the real year length. This modifier writes the correct `DaysInDayType` values in place.
 
 ### 2. Storage-delay modifier
 
@@ -109,7 +109,7 @@ The `B1 → otoole → preprocess` chain never generates the `DaysInDayType` blo
 
 **Script:** [`strip_storage.py`](../scripts/pipeline/strip_storage.py) · **Switch:** `strip_storage_active` · **Shipped default: True** (forced off when storage-delay is on)
 
-Produces a new `.txt` with selected storage facilities **and their feeding PWR technologies disabled** — used to diagnose whether storage is the source of an infeasibility.
+Produces a new `.txt` with selected storage facilities and their feeding PWR technologies disabled. It is used to diagnose whether storage is the source of an infeasibility.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -151,9 +151,9 @@ Adds reserve-margin tags and repairs firm fossil capacity caps using per-country
 
 **Script:** [`patch_activity_upper_limit.py`](../scripts/pipeline/patch_activity_upper_limit.py) · **Switch:** `activity_upper_limit_active` · **Shipped default: False**
 
-Runs **outside** the canonical chain: B2 applies it to the RMCarefulXLSX file and copies the capped output back onto that same file, so the `ActUpLim` suffix never appears in the datafile the solver reads. When active it is limited to `activity_upper_limit_scenarios` (shipped `["BAU"]`).
+Runs outside the canonical chain: B2 applies it to the RMCarefulXLSX file and copies the capped output back onto that same file, so the `ActUpLim` suffix never appears in the datafile the solver reads. When active it is limited to `activity_upper_limit_scenarios` (shipped `["BAU"]`).
 
-Reads rows from the **Secondary Techs** sheet of `A-O_Parametrization.xlsx` whose `Parameter` equals `activity_upper_limit_parameter_label`. Each year cell holds a **fraction** in `[0, 1]` of that country's electricity demand. The modifier maps each tech to its demand fuel via `OutputActivityRatio`, converts `fraction × demand / OutputActivityRatio` into an absolute cap, and rewrites the `TotalTechnologyAnnualActivityUpperLimit` block.
+Reads rows from the **Secondary Techs** sheet of `A-O_Parametrization.xlsx` whose `Parameter` equals `activity_upper_limit_parameter_label`. Each year cell holds a fraction in `[0, 1]` of that country's electricity demand. The modifier maps each tech to its demand fuel via `OutputActivityRatio`, converts `fraction × demand / OutputActivityRatio` into an absolute cap, and rewrites the `TotalTechnologyAnnualActivityUpperLimit` block.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -162,14 +162,14 @@ Reads rows from the **Secondary Techs** sheet of `A-O_Parametrization.xlsx` whos
 | `activity_upper_limit_demand_fuel_prefixes` | `["ELC"]` | Demand fuel prefixes |
 | `activity_upper_limit_tech_prefixes` | `["PWR"]` | Technology prefixes the cap applies to |
 | `activity_upper_limit_exclude_prefixes` | `[PWRSDS, PWRLDS, PWRBCK, PWRTRN]` | Technology prefixes excluded |
-| `activity_upper_limit_coverage_tolerance` | `0.15` | If summed fractions per region/fuel/year fall below `1 − tolerance`, B1b raises a **V4** warning |
+| `activity_upper_limit_coverage_tolerance` | `0.15` | If summed fractions per region/fuel/year fall below `1 − tolerance`, B1b raises a V4 warning |
 | `activity_upper_limit_suffix` | `"ActUpLim"` | Filename suffix |
 
 ### 7. Lower Constraints Modifiers
 
 **Script:** [`write_floors.py`](../scripts/fix_dispatch/write_floors.py) · **Switch:** `dispatch_floors_active` · **Shipped default: True**
 
-Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the fossil fleet so the optimizer cannot dump thermal dispatch below its calibrated/committed level. Runs once per **base** scenario listed in `dispatch_floors_scenarios`; derived scenarios inherit the floored file. Before writing, B2 runs a read-only gate ([`preflight_separation.py`](../scripts/fix_dispatch/preflight_separation.py)); a non-zero exit aborts the pipeline.
+Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the fossil fleet so the optimizer cannot dump thermal dispatch below its calibrated/committed level. Runs once per base scenario listed in `dispatch_floors_scenarios`; derived scenarios inherit the floored file. Before writing, B2 runs a read-only gate ([`preflight_separation.py`](../scripts/fix_dispatch/preflight_separation.py)); a non-zero exit aborts the pipeline.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -183,7 +183,7 @@ Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the f
 
 **Script:** [`veg_tx_constraints.py`](../scripts/tx_chain/veg_tx_constraints.py) · **Switch:** `veg_tx_active` · **Shipped default: True**
 
-Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB **simultaneously** (floor raise, calibration of the cost slope, planned-lines ceiling taken from the `OPT` input workbook). Runs **once** after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios OPT (`BAC`) and PLAN (`OPC`). See the scenario-code table in {doc}`pipeline`.
+Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB at the same time (floor raise, calibration of the cost slope, planned-lines ceiling taken from the `OPT` input workbook). Runs once after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios OPT (`BAC`) and PLAN (`OPC`). See the scenario-code table in {doc}`pipeline`.
 
 | Param | Default | Description |
 |-------|---------|-------------|
@@ -195,7 +195,7 @@ Constrains transmission expansion so that it follows its historical (inertial) t
 
 **Scripts:** the rest of `scripts/tx_chain/` (documented in its `README.md`) · **Switch:** the `scenario_transforms` list in `Config_MOMF_T1_AB.yaml` · **Shipped: six entries, all active**
 
-Once the Inertial Transmission Constraints have written the `*_VEGCON.txt` files, B2 runs each entry of `scenario_transforms` in list order. Each transform reads the final datafile of one or more scenarios and either writes the datafile of a **new** scenario (`produces: {NEW: SOURCE}`, in `Executables/NEW_0/`) or edits existing datafiles **in place** (`in_place`). Transforms change parameter **values** only, never sets or structure, so every derived scenario reuses the A2 sets of its base scenario. These transforms create most of the scenarios that are actually solved and reported in {doc}`study/scenarios`.
+Once the Inertial Transmission Constraints have written the `*_VEGCON.txt` files, B2 runs each entry of `scenario_transforms` in list order. Each transform reads the final datafile of one or more scenarios and either writes the datafile of a new scenario (`produces: {NEW: SOURCE}`, in `Executables/NEW_0/`) or edits existing datafiles in place (`in_place`). Transforms change parameter values only, so every derived scenario reuses the A2 sets of its base scenario. These transforms create most of the scenarios that are actually solved and reported in {doc}`study/scenarios`.
 
 | Entry (`name`) | Script | Reads → writes | What it changes |
 |---|---|---|---|
@@ -214,7 +214,7 @@ To add a scenario, add an entry to `scenario_transforms`, map the new code to it
 
 **Script:** [`sync_patched_csvs_from_txt.py`](../scripts/pipeline/sync_patched_csvs_from_txt.py) · **Switch:** `sync_patched_csvs_active` · **Shipped default: True**
 
-The sync extracts the listed parameter blocks from a modified `.txt` and overwrites the matching CSVs in `A2_Outputs_Params_otoole/<scenario>/` **in place**, so the combined input/output files (`RELAC_TX_Combined_Inputs_Outputs.csv`) show the values the solver actually consumed. It runs twice (see [Execution order](#execution-order)):
+The sync extracts the listed parameter blocks from a modified `.txt` and overwrites the matching CSVs in `A2_Outputs_Params_otoole/<scenario>/` in place, so the combined input/output files (`RELAC_TX_Combined_Inputs_Outputs.csv`) show the values the solver actually consumed. It runs twice (see [Execution order](#execution-order)):
 
 1. **First sync**, for each base scenario right after step 7. It reads the file produced by steps 2–6 (before `FLOORED`), so it does not yet include the Lower Constraints Modifiers or later steps.
 2. **Final sync**, after step 9, for every scenario in `solve_scenarios`, just before the solver. It reads that scenario's final `.txt` (`..._FLOORED_VEGCON.txt`). A derived scenario first gets a copy of its base scenario's CSV folder, which is then synced from its own final `.txt`; a base scenario is re-synced in place. The scenario's combined input file is then regenerated from the synced CSVs.

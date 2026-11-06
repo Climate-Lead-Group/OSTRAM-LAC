@@ -407,11 +407,11 @@ msgstr "Estructura del código TRN"
 
 #: ../../country-management.md:147
 msgid ""
-"Cross-border **interconnection** technologies encode both endpoints (each"
-" with its own region):"
+"Cross-border interconnection technologies encode both endpoints (each "
+"with its own region):"
 msgstr ""
-"Las tecnologías de **interconexión** transfronteriza codifican ambos "
-"extremos (cada uno con su propia región):"
+"Las tecnologías de interconexión transfronteriza codifican ambos extremos"
+" (cada uno con su propia región):"
 
 #: ../../country-management.md:153
 msgid ""
@@ -425,20 +425,20 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "Per-country transmission and dispatch technologies use a single-country "
-"form `{TYPE}{COUNTRY}{REGION}` instead — e.g. `RNWTRNARGXX`, "
-"`PWRTRNARGXX`, `RNWRPOARGXX`, `RNWNLIARGXX`, `TRNRPOARGXX`, "
-"`TRNNLIARGXX`, `DSPTRNARGXX`. These are added by Stage A2, not by the "
-"template generator."
+"form `{TYPE}{COUNTRY}{REGION}`, for example `RNWTRNARGXX`, `PWRTRNARGXX`,"
+" `RNWRPOARGXX`, `RNWNLIARGXX`, `TRNRPOARGXX`, `TRNNLIARGXX`, "
+"`DSPTRNARGXX`. These are added by Stage A2; the template generator does "
+"not create them."
 msgstr ""
-"Las tecnologías de transmisión y despacho por país usan en cambio una "
-"forma de un solo país `{TYPE}{COUNTRY}{REGION}` — p. ej. `RNWTRNARGXX`, "
+"Las tecnologías de transmisión y despacho por país usan una forma de un "
+"solo país `{TYPE}{COUNTRY}{REGION}`, por ejemplo `RNWTRNARGXX`, "
 "`PWRTRNARGXX`, `RNWRPOARGXX`, `RNWNLIARGXX`, `TRNRPOARGXX`, "
-"`TRNNLIARGXX`, `DSPTRNARGXX`. Estas son agregadas por la Etapa A2, no por"
-" el generador de plantillas."
+"`TRNNLIARGXX`, `DSPTRNARGXX`. Estas son agregadas por la Etapa A2; el "
+"generador de plantillas no las crea."
 
 #: ../../country-management.md:159
-msgid "The generator correctly handles:"
-msgstr "El generador maneja correctamente:"
+msgid "The generator handles:"
+msgstr "El generador maneja:"
 
 #: ../../country-management.md:160
 msgid "Position-aware country code replacement."

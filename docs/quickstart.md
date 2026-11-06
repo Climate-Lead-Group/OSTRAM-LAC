@@ -4,7 +4,7 @@ This page walks you through running OSTRAM LAC for the first time.
 
 ## 1. Run the Full Pipeline
 
-From an **Anaconda Prompt** (or any terminal with conda available):
+From an Anaconda Prompt (or any terminal with conda available):
 
 ```bash
 cd OSTRAM-LAC
@@ -110,7 +110,7 @@ The typical workflow, run every time the model inputs or the configuration chang
 1. **Run B1 and B2**, either together with `python run.py` (the full pipeline) or one by one with `python -u scripts/pipeline/B1_Run_Compiler.py` and `python -u scripts/pipeline/B2_Executing_OG_Model.py`.
 2. **Analyze results** using the output CSVs or the interactive dashboard (see {doc}`figures`).
 
-The data-preparation stages are **not** part of the typical workflow. They are run once, only when a new model is built (new countries, technologies or base data), and their outputs are the workbooks that B1 reads:
+The data-preparation stages are outside the typical workflow. They are run once, only when a new model is built (new countries, technologies or base data), and their outputs are the workbooks that B1 reads:
 
 - **Configure countries and technologies** in `Config_country_codes.yaml`.
 - **Generate the Tech-Country Matrix** (`A0`).

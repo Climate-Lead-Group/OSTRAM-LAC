@@ -307,19 +307,18 @@ msgid ""
 "The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present "
 "results; outside this page the documentation refers to scenarios by them."
 " They describe what each base scenario represents, for ease of reading: "
-"`BAC` is an optimal expansion, so it is shown as **OPT**; `ISR` is a "
-"trend expansion, so it is shown as **ETT**. Note that the display name "
-"OPT is not the `OPT` input workbook described below: that workbook is the"
-" base from which `OPC` (PLAN) is built."
+"`BAC` is an optimal expansion, so it is shown as OPT; `ISR` is a trend "
+"expansion, so it is shown as ETT. The `OPT` input workbook described "
+"below is a different object: it is the base from which `OPC` (PLAN) is "
+"built."
 msgstr ""
 "Los nombres de familia (OPT, ETT, PLAN, ETT-GP) son los que se usan para "
 "presentar los resultados; fuera de esta página, la documentación se "
 "refiere a los escenarios con ellos. Describen lo que representa cada "
 "escenario base, para facilitar la lectura: `BAC` es una expansión óptima,"
-" por eso se muestra como **OPT**; `ISR` es una expansión tendencial, por "
-"eso se muestra como **ETT**. Ojo: el nombre OPT de los resultados no es "
-"el libro de entrada `OPT` descrito más abajo; ese libro es la base a "
-"partir de la cual se construye `OPC` (PLAN)."
+" por eso se muestra como OPT; `ISR` es una expansión tendencial, por eso "
+"se muestra como ETT. El libro de entrada `OPT` descrito más abajo es otra"
+" cosa: es la base a partir de la cual se construye `OPC` (PLAN)."
 
 #: ../../study/scenarios.md:33
 msgid "Reading a scenario code"
@@ -336,24 +335,24 @@ msgid "**Suffixes:**"
 msgstr "**Sufijos:**"
 
 #: ../../study/scenarios.md:37
-msgid "`SR` — without repowering."
-msgstr "`SR` — sin repotenciación."
+msgid "`SR`: without repowering."
+msgstr "`SR`: sin repotenciación."
 
 #: ../../study/scenarios.md:38
-msgid "`FA` — higher fuel cost."
-msgstr "`FA` — mayor costo de combustible."
+msgid "`FA`: higher fuel cost."
+msgstr "`FA`: mayor costo de combustible."
 
 #: ../../study/scenarios.md:39
-msgid "`FB` — lower fuel cost."
-msgstr "`FB` — menor costo de combustible."
+msgid "`FB`: lower fuel cost."
+msgstr "`FB`: menor costo de combustible."
 
 #: ../../study/scenarios.md:40
-msgid "`RA` — higher renewables cost."
-msgstr "`RA` — mayor costo de renovables."
+msgid "`RA`: higher renewables cost."
+msgstr "`RA`: mayor costo de renovables."
 
 #: ../../study/scenarios.md:41
-msgid "`RB` — lower renewables cost."
-msgstr "`RB` — menor costo de renovables."
+msgid "`RB`: lower renewables cost."
+msgstr "`RB`: menor costo de renovables."
 
 #: ../../study/scenarios.md:42
 msgid ""
@@ -364,8 +363,8 @@ msgstr ""
 "repotenciación)."
 
 #: ../../study/scenarios.md:44
-msgid "How the scenarios are built"
-msgstr "Cómo se construyen los escenarios"
+msgid "Scenario derivation"
+msgstr "Derivación de los escenarios"
 
 #: ../../study/scenarios.md:46
 #, python-brace-format

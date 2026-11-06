@@ -43,19 +43,19 @@ msgstr "**Script:** `scripts/common/Z_AUX_config_loader.py`"
 msgid ""
 "A centralized module (not run directly) that provides cached access to "
 "`Config_country_codes.yaml`. All other scripts import functions from this"
-" module instead of reading the YAML directly."
+" module to read the YAML."
 msgstr ""
 "Un módulo centralizado (no se ejecuta directamente) que provee acceso en "
 "caché a `Config_country_codes.yaml`. Todos los demás scripts importan "
-"funciones de este módulo en lugar de leer el YAML directamente."
+"funciones de este módulo para leer el YAML."
 
 #: ../../auxiliary-tools.md:15
 msgid ""
-"`Z_AUX_config_loader` between `Config_country_codes.yaml` and the scripts "
-"that import it, with the functions each one calls."
+"`Z_AUX_config_loader` between `Config_country_codes.yaml` and the scripts"
+" that import it, with the functions each one calls."
 msgstr ""
-"`Z_AUX_config_loader` entre `Config_country_codes.yaml` y los scripts que "
-"lo importan, con las funciones que llama cada uno."
+"`Z_AUX_config_loader` entre `Config_country_codes.yaml` y los scripts que"
+" lo importan, con las funciones que llama cada uno."
 
 #: ../../auxiliary-tools.md:11
 msgid "Available Functions"
@@ -260,10 +260,8 @@ msgstr ""
 "energético/tecnología sume exactamente 1.0 por año."
 
 #: ../../auxiliary-tools.md:57
-msgid "Creates a **timestamped backup** before modifying any file."
-msgstr ""
-"Crea un **respaldo con marca de tiempo** antes de modificar cualquier "
-"archivo."
+msgid "Creates a timestamped backup before modifying any file."
+msgstr "Crea un respaldo con marca de tiempo antes de modificar cualquier archivo."
 
 #: ../../auxiliary-tools.md:59
 msgid "Tolerance"

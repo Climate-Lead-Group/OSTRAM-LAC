@@ -71,19 +71,19 @@ msgstr ""
 
 #: ../../installation.md:11
 msgid ""
-"[GLPK](https://www.gnu.org/software/glpk/) (open source, **installed "
-"automatically** with the Conda environment)"
+"[GLPK](https://www.gnu.org/software/glpk/) (open source, installed "
+"automatically with the Conda environment)"
 msgstr ""
-"[GLPK](https://www.gnu.org/software/glpk/) (código abierto, **se instala "
-"automáticamente** con el entorno Conda)"
+"[GLPK](https://www.gnu.org/software/glpk/) (código abierto, se instala "
+"automáticamente con el entorno Conda)"
 
 #: ../../installation.md:12
 msgid ""
-"[CBC](https://github.com/coin-or/Cbc) (open source, **installed "
-"automatically** with the Conda environment)"
+"[CBC](https://github.com/coin-or/Cbc) (open source, installed "
+"automatically with the Conda environment)"
 msgstr ""
-"[CBC](https://github.com/coin-or/Cbc) (código abierto, **se instala "
-"automáticamente** con el entorno Conda)"
+"[CBC](https://github.com/coin-or/Cbc) (código abierto, se instala "
+"automáticamente con el entorno Conda)"
 
 #: ../../installation.md:13
 msgid ""

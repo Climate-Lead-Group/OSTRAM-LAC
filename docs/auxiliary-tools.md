@@ -6,7 +6,7 @@ OSTRAM LAC includes several utility scripts (prefixed with `Z_`) for data mainte
 
 **Script:** `scripts/common/Z_AUX_config_loader.py`
 
-A centralized module (not run directly) that provides cached access to `Config_country_codes.yaml`. All other scripts import functions from this module instead of reading the YAML directly.
+A centralized module (not run directly) that provides cached access to `Config_country_codes.yaml`. All other scripts import functions from this module to read the YAML.
 
 ```{figure} /_static/reference/config_loader_hub.png
 :name: fig-config-loader-hub
@@ -61,7 +61,7 @@ python scripts/tools/Z_AUX_fix_excel_profiles.py
 1. Iterates over all scenario directories (`A1_Outputs_BAU`, `A1_Outputs_INV`, `A1_Outputs_OPT`).
 2. Opens each `A-O_Demand.xlsx` file.
 3. For each profile sheet, normalizes values so that each fuel/technology column sums to exactly 1.0 per year.
-4. Creates a **timestamped backup** before modifying any file.
+4. Creates a timestamped backup before modifying any file.
 
 ### Tolerance
 

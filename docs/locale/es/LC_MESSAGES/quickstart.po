@@ -34,8 +34,8 @@ msgid "1. Run the Full Pipeline"
 msgstr "1\\. Ejecutar el pipeline completo"
 
 #: ../../quickstart.md:7
-msgid "From an **Anaconda Prompt** (or any terminal with conda available):"
-msgstr "Desde un **Anaconda Prompt** (o cualquier terminal con conda disponible):"
+msgid "From an Anaconda Prompt (or any terminal with conda available):"
+msgstr "Desde un Anaconda Prompt (o cualquier terminal con conda disponible):"
 
 #: ../../quickstart.md:14
 msgid "The `run.py` launcher automatically:"
@@ -274,15 +274,14 @@ msgstr ""
 
 #: ../../quickstart.md:107
 msgid ""
-"The data-preparation stages are **not** part of the typical workflow. "
-"They are run once, only when a new model is built (new countries, "
-"technologies or base data), and their outputs are the workbooks that B1 "
-"reads:"
+"The data-preparation stages are outside the typical workflow. They are "
+"run once, only when a new model is built (new countries, technologies or "
+"base data), and their outputs are the workbooks that B1 reads:"
 msgstr ""
-"Las etapas de preparación de datos **no** forman parte del flujo de "
-"trabajo típico. Se ejecutan una vez, solo cuando se construye un modelo "
-"nuevo (países, tecnologías o datos base nuevos), y sus salidas son los "
-"libros que lee B1:"
+"Las etapas de preparación de datos quedan fuera del flujo de trabajo "
+"típico. Se ejecutan una vez, solo cuando se construye un modelo nuevo "
+"(países, tecnologías o datos base nuevos), y sus salidas son los libros "
+"que lee B1:"
 
 #: ../../quickstart.md:109
 msgid "**Configure countries and technologies** in `Config_country_codes.yaml`."

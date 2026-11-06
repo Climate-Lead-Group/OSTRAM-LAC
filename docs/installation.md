@@ -15,8 +15,8 @@ Installation steps: clone the repository, create the Conda environment, set up a
 - **Git:** [Git for Windows](https://gitforwindows.org/) (version 2.40+)
 - **Python distribution:** [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/download)
 - **Solver:** At least one of the following linear / mixed-integer programming solvers:
-  - [GLPK](https://www.gnu.org/software/glpk/) (open source, **installed automatically** with the Conda environment)
-  - [CBC](https://github.com/coin-or/Cbc) (open source, **installed automatically** with the Conda environment)
+  - [GLPK](https://www.gnu.org/software/glpk/) (open source, installed automatically with the Conda environment)
+  - [CBC](https://github.com/coin-or/Cbc) (open source, installed automatically with the Conda environment)
   - [CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio) (commercial, IBM)
   - [Gurobi](https://www.gurobi.com/) (commercial, free academic license)
 

@@ -208,16 +208,15 @@ msgstr "Figuras del informe"
 msgid ""
 "Every figure in the table below has one entry in "
 "[`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml),"
-" and all of them ship **enabled** (`true`), so a plain `python "
+" and all of them ship enabled (`true`), so a plain `python "
 "scripts/figures/report/run_figures.py` (or the `report` branch of "
 "`run_all.py`) produces all of them. To control which figures run:"
 msgstr ""
 "Cada figura de la tabla siguiente tiene una entrada en "
 "[`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml),"
-" y todas vienen **habilitadas** (`true`) de fábrica, de modo que un "
-"simple `python scripts/figures/report/run_figures.py` (o la rama `report`"
-" de `run_all.py`) las genera todas. Para controlar qué figuras se "
-"ejecutan:"
+" y todas vienen habilitadas (`true`) de fábrica, de modo que un simple "
+"`python scripts/figures/report/run_figures.py` (o la rama `report` de "
+"`run_all.py`) las genera todas. Para controlar qué figuras se ejecutan:"
 
 #: ../../figures.md:43
 msgid ""
@@ -260,13 +259,13 @@ msgstr ""
 
 #: ../../figures.md:48
 msgid ""
-"A `fig_*.py` script that has no entry in the YAML is **not** run; the "
-"runner prints a warning for it. The presentation figures follow the same "
-"rules with `scripts/figures/presentation/run_figures.yaml`."
+"The runner skips any `fig_*.py` script that has no entry in the YAML and "
+"prints a warning for it. The presentation figures follow the same rules "
+"with `scripts/figures/presentation/run_figures.yaml`."
 msgstr ""
-"Un script `fig_*.py` que no tiene entrada en el YAML **no** se ejecuta; "
-"el runner imprime un aviso por él. Las figuras de presentación siguen las"
-" mismas reglas con `scripts/figures/presentation/run_figures.yaml`."
+"El runner omite cualquier script `fig_*.py` que no tenga entrada en el "
+"YAML e imprime un aviso por él. Las figuras de presentación siguen las "
+"mismas reglas con `scripts/figures/presentation/run_figures.yaml`."
 
 #: ../../figures.md
 msgid "Script"
@@ -543,8 +542,8 @@ msgid "12"
 msgstr "12"
 
 #: ../../figures.md
-msgid "Energy security — imported vs domestic [%]"
-msgstr "Seguridad energética — importada vs doméstica [%]"
+msgid "Energy security: imported vs domestic [%]"
+msgstr "Seguridad energética: importada vs doméstica [%]"
 
 #: ../../figures.md
 msgid "13"
@@ -552,10 +551,10 @@ msgstr "13"
 
 #: ../../figures.md
 msgid ""
-"Resilience — effective number of sources (inverse Herfindahl-Hirschman "
+"Resilience: effective number of sources (inverse Herfindahl-Hirschman "
 "index)"
 msgstr ""
-"Resiliencia — número efectivo de fuentes (inverso del índice de "
+"Resiliencia: número efectivo de fuentes (inverso del índice de "
 "Herfindahl-Hirschman)"
 
 #: ../../figures.md

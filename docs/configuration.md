@@ -10,7 +10,7 @@ Which configuration file each pipeline stage and tool reads or writes.
 ```
 
 :::{warning}
-All data entered in the configuration files (technologies, years, countries, codes) **must match values that exist in the model**. Using technology codes, country codes, year ranges, or any other identifiers that are not present in the model data can cause the pipeline to fail during execution.
+All data entered in the configuration files (technologies, years, countries, codes) must match values that exist in the model. Using technology codes, country codes, year ranges, or any other identifiers that are not present in the model data can cause the pipeline to fail during execution.
 :::
 
 ## Config_country_codes.yaml
@@ -122,7 +122,7 @@ olade_tech_mapping:
 ```
 
 :::{note}
-Keys are lookup keys, not display text: `D2_update_secondary_techs.py` matches each row label of the source workbooks against them, character for character (accents included). They must therefore be written in the language of the input data. In this model they are in Spanish because most of its source data is in Spanish, starting with the OLACDE workbooks (`OLADE - Capacidad instalada por fuente - Anual.xlsx`, `OLADE - Generación eléctrica por fuente - Anual.xlsx` in `inputs/data/`); a model built from source data in another language would use that language's labels. A key that does not match its source label makes that technology silently disappear from the editor. BIO (Biomass) is a special case: it is the sum of Biogas + Solid biomass + Liquid biofuels from the source data, matched in `D2_update_secondary_techs.py` by their Spanish labels (`Biogás`, `Biomasa sólida`).
+The keys are lookup keys: `D2_update_secondary_techs.py` matches each row label of the source workbooks against them, character for character (accents included). They must therefore be written in the language of the input data. In this model they are in Spanish because most of its source data is in Spanish, starting with the OLACDE workbooks (`OLADE - Capacidad instalada por fuente - Anual.xlsx`, `OLADE - Generación eléctrica por fuente - Anual.xlsx` in `inputs/data/`); a model built from source data in another language would use that language's labels. A key that does not match its source label makes that technology silently disappear from the editor. BIO (Biomass) is a special case: it is the sum of Biogas + Solid biomass + Liquid biofuels from the source data, matched in `D2_update_secondary_techs.py` by their Spanish labels (`Biogás`, `Biomasa sólida`).
 :::
 
 ### `code_to_energy`
@@ -189,7 +189,7 @@ This section was regenerated for the active Latin-American country set. In the c
 
 Configuration for the country template generator (`Z_generate_country_template.py`):
 
-`template_generation` is a **list** of entries; each entry generates one new country. Leave the fields blank to disable generation:
+`template_generation` is a list of entries; each entry generates one new country. Leave the fields blank to disable generation:
 
 ```yaml
 template_generation:
@@ -408,7 +408,7 @@ All paths are relative to the repository root. Values shown are the shipped ones
 
 ### Solver Modifier Chain
 
-`Config_MOMF_T1_AB.yaml` also contains the settings for the **Stage B2 modifier chain** — the reserve-margin and storage features applied to the GNU MathProg `.txt` before the solver runs. Each modifier has an `*_active` master switch; the shipped configuration enables several of them.
+`Config_MOMF_T1_AB.yaml` also contains the settings for the Stage B2 modifier chain: the reserve-margin and storage features applied to the GNU MathProg `.txt` before the solver runs. Each modifier has an `*_active` master switch; the shipped configuration enables several of them.
 
 | Master switch | Shipped default | Modifier |
 |---------------|-----------------|---------|
@@ -425,7 +425,7 @@ See {doc}`solver-patchers` for the full chain, execution order, and every per-pa
 
 ### Transmission Chain: Derived Scenarios
 
-Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive steps 8 and 9 of the B2 chain, which create the derived scenarios (see sections 8 and 9 of {doc}`solver-patchers` and the scenario-code table of {doc}`pipeline`). Adding a constraint script or a derived scenario is done **only** here; B2 needs no code change.
+Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive steps 8 and 9 of the B2 chain, which create the derived scenarios (see sections 8 and 9 of {doc}`solver-patchers` and the scenario-code table of {doc}`pipeline`). Adding a constraint script or a derived scenario only requires editing these blocks; B2 needs no code change.
 
 ```yaml
 scenario_transforms:
@@ -449,7 +449,7 @@ solve_scenarios: [BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IR
 | Key | Description |
 |-----|-------------|
 | `scenario_transforms` | Ordered list. Each entry runs its `script` once with `--executables-dir Executables`. `produces: {NEW: SOURCE}` creates `Executables/NEW_0/` from `SOURCE`'s final datafile; `in_place: [S, …]` edits existing datafiles. |
-| `derived_scenarios` | Map `derived → base` telling B2 which base scenario's A2 sets/templates to reuse for otoole results (transforms change values, never sets). Every code in `produces` must appear here. |
+| `derived_scenarios` | Map `derived → base` telling B2 which base scenario's A2 sets/templates to reuse for otoole results (transforms change values only). Every code in `produces` must appear here. |
 | `solve_scenarios` | The universe actually sent to the solver (the solver stage). Order = execution order when `parallel: False`. Comment out codes to skip them. Default when absent: the four base scenarios. |
 
 Shipped transforms (2026-09-17): `cost_sensitivity` (OPT without repowering `BSR`, ETT `ISR`, ETT-GP `VSR`), `nli_sr_recompute`, `cost_sensitivity_FA` (fossil `VariableCost` ×1.70), `cost_sensitivity_FB` (×0.52), `cost_sensitivity_RB` (`CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50), `cost_sensitivity_RA` (`CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49). See {doc}`solver-patchers` (section 9) for what each transform does.

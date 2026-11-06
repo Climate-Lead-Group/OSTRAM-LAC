@@ -144,7 +144,7 @@ The generator handles various interconnection scenarios:
 
 ### TRN Code Structure
 
-Cross-border **interconnection** technologies encode both endpoints (each with its own region):
+Cross-border interconnection technologies encode both endpoints (each with its own region):
 
 ```
 TRN{COUNTRY1}{REGION1}{COUNTRY2}{REGION2}
@@ -153,10 +153,10 @@ TRN{COUNTRY1}{REGION1}{COUNTRY2}{REGION2}
 For example: `TRNARGXXBOLXX` = interconnection between Argentina (region XX) and Bolivia (region XX).
 
 :::{note}
-Per-country transmission and dispatch technologies use a single-country form `{TYPE}{COUNTRY}{REGION}` instead — e.g. `RNWTRNARGXX`, `PWRTRNARGXX`, `RNWRPOARGXX`, `RNWNLIARGXX`, `TRNRPOARGXX`, `TRNNLIARGXX`, `DSPTRNARGXX`. These are added by Stage A2, not by the template generator.
+Per-country transmission and dispatch technologies use a single-country form `{TYPE}{COUNTRY}{REGION}`, for example `RNWTRNARGXX`, `PWRTRNARGXX`, `RNWRPOARGXX`, `RNWNLIARGXX`, `TRNRPOARGXX`, `TRNNLIARGXX`, `DSPTRNARGXX`. These are added by Stage A2; the template generator does not create them.
 :::
 
-The generator correctly handles:
+The generator handles:
 - Position-aware country code replacement.
 - Alphabetical ordering of country pairs in interconnection codes.
 - Fuel and mode-of-operation code transformations.

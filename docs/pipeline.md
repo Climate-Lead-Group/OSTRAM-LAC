@@ -11,7 +11,7 @@ OSTRAM LAC processes energy system data through a multi-stage pipeline. This pag
 Pipeline overview: data preparation (A0 to D1/D2), run once when a new model is built, and model execution (B1 and B2), the typical workflow.
 ```
 
-The **typical workflow** is only the model-execution block: B1 and B2, run together with `python run.py` (the full DVC pipeline) or one at a time. The data-preparation stages (A0, A1, A2, and the optional A3_process and D1/D2) are not run routinely: they are run once, when a new model is built, and produce the workbooks under `inputs/A1_Outputs/` that B1 reads.
+The **typical workflow** is only the model-execution block: B1 and B2, run together with `python run.py` (the full DVC pipeline) or one at a time. The data-preparation stages (A0, A1, A2, and the optional A3_process and D1/D2) are run once, when a new model is built, and produce the workbooks under `inputs/A1_Outputs/` that B1 reads.
 
 ---
 
@@ -63,7 +63,7 @@ python scripts/pipeline/A0_generate_tech_country_matrix.py
 | WON | Onshore Wind |
 
 :::{note}
-Structural prefixes (`ELC`, `MIN`, `PWR`, `RNW`, `TRN`) are **not** included in the matrix. They combine with the codes above to form full technology names (e.g., `PWRBIOARGXX`, `MINCOAARG`).
+The matrix leaves out the structural prefixes (`ELC`, `MIN`, `PWR`, `RNW`, `TRN`). They combine with the codes above to form full technology names (e.g., `PWRBIOARGXX`, `MINCOAARG`).
 :::
 
 ### After Generation
@@ -88,10 +88,10 @@ python scripts/pipeline/A1_Pre_processing_OG_csvs.py
 
 ### Input Files
 
-- `OG_csvs_inputs/*.csv` -- All standard OSeMOSYS parameter and set CSV files.
-- `Tech_Country_Matrix.xlsx` -- Technology filtering configuration.
-- `Config_country_codes.yaml` -- Country definitions and settings.
-- `Config_region_consolidation.yaml` -- Region consolidation rules.
+- `OG_csvs_inputs/*.csv`: All standard OSeMOSYS parameter and set CSV files.
+- `Tech_Country_Matrix.xlsx`: Technology filtering configuration.
+- `Config_country_codes.yaml`: Country definitions and settings.
+- `Config_region_consolidation.yaml`: Region consolidation rules.
 
 ### Output Files (per scenario)
 
@@ -105,7 +105,7 @@ Written to `A1_Outputs/A1_Outputs_{scenario}/`:
 | `A-O_AR_Projections.xlsx` | Projection activity ratios |
 
 :::{warning}
-Running A1 again **overwrites** the four `A-O_*.xlsx` workbooks of every `A1_Outputs_<scenario>/` folder, rebuilding them from the templates in `inputs/Miscellaneous/`. Any parametrization work built on top of them since the last A1 run -- transmission entries from A2, calibration rules from `A3_process`, Secondary Techs edits from D1/D2, B1b fixes and manual edits -- is lost. Run A1 only when the raw CSVs or the templates change, and recover previous workbooks from git if needed.
+Running A1 again overwrites the four `A-O_*.xlsx` workbooks of every `A1_Outputs_<scenario>/` folder, rebuilding them from the templates in `inputs/Miscellaneous/`. Any parametrization work built on top of them since the last A1 run is lost: transmission entries from A2, calibration rules from `A3_process`, Secondary Techs edits from D1/D2, B1b fixes and manual edits. Run A1 only when the raw CSVs or the templates change, and recover previous workbooks from git if needed.
 :::
 
 ### Processing Steps
@@ -114,13 +114,13 @@ The script performs these operations in order:
 
 1. **Read all CSV files** into memory as DataFrames.
 2. **Replace country codes** according to the configuration.
-3. **Filter by first year** -- removes data before `first_year`.
-4. **Normalize temporal profiles** -- ensures SpecifiedDemandProfile sums to 1.0 per fuel/tech/year.
-5. **Consolidate regions** (if enabled) -- merges sub-regional data using avg/sum rules.
+3. **Filter by first year**: removes data before `first_year`.
+4. **Normalize temporal profiles**: ensures SpecifiedDemandProfile sums to 1.0 per fuel/tech/year.
+5. **Consolidate regions** (if enabled): merges sub-regional data using avg/sum rules.
 6. **Remove internal interconnections** after consolidation.
-7. **Clean PWR technologies** -- handles PWR00/PWR01 duplicates based on `pwr_cleanup_mode`.
-8. **Apply Tech-Country Matrix filtering** -- removes technology-country pairs marked NO.
-9. **Unify natural gas technologies** -- merges combined-cycle and open-cycle gas (CCG + OCG) into a single natural gas technology (NGS) where enabled.
+7. **Clean PWR technologies**: handles PWR00/PWR01 duplicates based on `pwr_cleanup_mode`.
+8. **Apply Tech-Country Matrix filtering**: removes technology-country pairs marked NO.
+9. **Unify natural gas technologies**: merges combined-cycle and open-cycle gas (CCG + OCG) into a single natural gas technology (NGS) where enabled.
 10. **Write Excel output files** with formatted sheets and human-readable names.
 11. **Update demand profiles and projections**.
 12. **Update parametrization capacities and temporal splits**.
@@ -155,11 +155,11 @@ python scripts/pipeline/A2_AddTx.py
 
 The script assigns fuel codes for the energy flow (with `enable_dsptrn: True`, the shipped setting; see {doc}`data-reference`):
 
-- `ELC*00` -- Renewable electricity
-- `ELC*01` -- Non-renewable electricity
-- `ELC*02` -- Transmission output
-- `ELC*03` -- Demand node (final electricity demand) and export point to interconnections
-- `ELC*04` -- Electricity imported through interconnections
+- `ELC*00`: Renewable electricity
+- `ELC*01`: Non-renewable electricity
+- `ELC*02`: Transmission output
+- `ELC*03`: Demand node (final electricity demand) and export point to interconnections
+- `ELC*04`: Electricity imported through interconnections
 
 With `enable_dsptrn: False` there is no `ELC*03`/`ELC*04` and demand stays on `ELC*02`.
 
@@ -235,10 +235,10 @@ With `enable_dsptrn: False` there is no `ELC*03`/`ELC*04` and demand stays on `E
 
 An orchestrator that applies a set of post-A1/A2 calibration rules to each scenario's `A-O_Parametrization.xlsx`. For every scenario folder under `A1_Outputs/A1_Outputs_<scenario>/` it runs three per-scenario steps in order, followed by one global harmonization pass:
 
-1. **Lid rule** ([`add_max_cap_investment_lid_rule.py`](../scripts/pipeline/A3_process/rules_scripts/add_max_cap_investment_lid_rule.py)) — fills `TotalAnnualMaxCapacityInvestment` placeholders with calibrated lid (top) values, i.e. upper bounds on annual capacity investment, configured in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml).
-2. **Extend lower limits** ([`extend_lowerlimits_pwr.py`](../scripts/pipeline/A3_process/rules_scripts/extend_lowerlimits_pwr.py)) — extends the 2024 value of `TotalTechnologyAnnualActivityLowerLimit` flat through 2050 in the **Secondary Techs** sheet, so the calibration floor does not expire. It runs only for the scenarios listed under `lowerlimit_scenarios` in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), and each entry sets which PWR technology types receive the floor: `all`, a group defined in `lowerlimit_tech_groups`, or a list of type codes (shipped: `renewable` — BIO, GEO, CSP, SPV, HYD, WAS, WAV, WON, WOF — for BAU, INV, OPT and VGB, so the floor is imposed on renewable generation only).
-3. **Pre-solver validation** — runs `B1b_Pre_solver_validation.py --auto-fix-all` to reconcile any residual inconsistencies. It is the same validator that B1 runs at startup; see [Pre-solver validation (B1b)](#pre-solver-validation-b1b) under Stage B1.
-4. **Historical sync to BAU (global, after all scenarios)** — for every scenario listed under `historical_sync_through` in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), runs [`sync_historical_from_bau.py`](../scripts/pipeline/sync_historical_from_bau.py) `--apply --scenarios <S> --years 2023,…,<through_year>`. It copies the year cells 2023..`<through_year>` from the current BAU workbook into the target scenario so that all scenarios share the same historical/near-term values (shipped: INV 2030, OPT 2026, VGB 2030). Two per-scenario refinements are forwarded from the same YAML: `historical_sync_protect_from_2026` (parameters passed as `--protect-params`, which are *not* snapped back to BAU for years ≥ 2027 — shipped for VGB: `TotalTechnologyAnnualActivityLowerLimit`, `TotalAnnualMinCapacityInvestment`, `TotalAnnualMaxCapacityInvestment`) and `historical_sync_tx_follow_bau` (scenarios passed `--no-protect-tx`, whose transmission `TotalAnnualMaxCapacityInvestment` *is* synced to BAU across the whole window — shipped: OPT). BAU is always the source and never a target. The sync aborts on any structural mismatch between workbooks (row order, sheet names), which stops A3 with a non-zero exit.
+1. **Lid rule** ([`add_max_cap_investment_lid_rule.py`](../scripts/pipeline/A3_process/rules_scripts/add_max_cap_investment_lid_rule.py)): fills `TotalAnnualMaxCapacityInvestment` placeholders with calibrated lid (top) values, i.e. upper bounds on annual capacity investment, configured in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml).
+2. **Extend lower limits** ([`extend_lowerlimits_pwr.py`](../scripts/pipeline/A3_process/rules_scripts/extend_lowerlimits_pwr.py)): extends the 2024 value of `TotalTechnologyAnnualActivityLowerLimit` flat through 2050 in the **Secondary Techs** sheet, so the calibration floor does not expire. It runs only for the scenarios listed under `lowerlimit_scenarios` in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), and each entry sets which PWR technology types receive the floor: `all`, a group defined in `lowerlimit_tech_groups`, or a list of type codes. The shipped entry is `renewable` for BAU, INV, OPT and VGB, so the floor is imposed on renewable generation only (BIO, GEO, CSP, SPV, HYD, WAS, WAV, WON, WOF).
+3. **Pre-solver validation**: runs `B1b_Pre_solver_validation.py --auto-fix-all` to reconcile any residual inconsistencies. It is the same validator that B1 runs at startup; see [Pre-solver validation (B1b)](#pre-solver-validation-b1b) under Stage B1.
+4. **Historical sync to BAU (global, after all scenarios)**: for every scenario listed under `historical_sync_through` in [`lid_rule.yaml`](../inputs/config/A3_process/lid_rule.yaml), runs [`sync_historical_from_bau.py`](../scripts/pipeline/sync_historical_from_bau.py) `--apply --scenarios <S> --years 2023,…,<through_year>`. It copies the year cells 2023..`<through_year>` from the current BAU workbook into the target scenario so that all scenarios share the same historical/near-term values (shipped: INV 2030, OPT 2026, VGB 2030). Two per-scenario refinements are forwarded from the same YAML: `historical_sync_protect_from_2026` (parameters passed as `--protect-params`, which keep the scenario's own values for years ≥ 2027; shipped for VGB: `TotalTechnologyAnnualActivityLowerLimit`, `TotalAnnualMinCapacityInvestment`, `TotalAnnualMaxCapacityInvestment`) and `historical_sync_tx_follow_bau` (scenarios passed `--no-protect-tx`, whose transmission `TotalAnnualMaxCapacityInvestment` is synced to BAU across the whole window; shipped: OPT). BAU is always the source and never a target. The sync aborts on any structural mismatch between workbooks (row order, sheet names), which stops A3 with a non-zero exit.
 
 ### Usage
 
@@ -264,7 +264,7 @@ python scripts/pipeline/A3_process.py --scenario INV --force-overwrite  # re-run
 | `--skip-historical-sync` | Skip the final BAU harmonization pass (step 4) |
 
 :::{note}
-The lid-rule script writes a JSON change log (`lid_rule_changes_<timestamp>.json`) inside each scenario directory but does **not** make a folder-level backup — recovery is via git. B1b makes its own timestamped backup of the xlsx before writing.
+The lid-rule script writes a JSON change log (`lid_rule_changes_<timestamp>.json`) inside each scenario directory and makes no folder-level backup; previous workbooks are recovered from git. B1b makes its own timestamped backup of the xlsx before writing.
 :::
 
 ---
@@ -285,14 +285,14 @@ python -u scripts/pipeline/B1_Run_Compiler.py
 
 ### Input Files
 
-- `A1_Outputs/A1_Outputs_{scenario}/A-O_*.xlsx` -- All Excel model files.
-- `A2_Extra_Inputs/A-Xtra_*.xlsx` -- Extra inputs (storage, emissions, projections).
-- `Config_MOMF_T1_A.yaml` -- Compiler configuration.
+- `A1_Outputs/A1_Outputs_{scenario}/A-O_*.xlsx`: All Excel model files.
+- `A2_Extra_Inputs/A-Xtra_*.xlsx`: Extra inputs (storage, emissions, projections).
+- `Config_MOMF_T1_A.yaml`: Compiler configuration.
 
 ### Output Files
 
-- `A2_Output_Params/{scenario}/*.csv` -- One CSV per OSeMOSYS parameter.
-- `A2_Structure_Lists.xlsx` -- Generated structure/set listings.
+- `A2_Output_Params/{scenario}/*.csv`: One CSV per OSeMOSYS parameter.
+- `A2_Structure_Lists.xlsx`: Generated structure/set listings.
 
 ### Compilation Logic
 
@@ -308,7 +308,7 @@ The compiler handles:
 
 **Script:** [`B1b_Pre_solver_validation.py`](../scripts/pipeline/B1b_Pre_solver_validation.py)
 
-B1 starts by running this validator: `B1_Compiler.py` imports it and calls it on the active scenario's `A-O_Parametrization.xlsx` **before** reading the workbook, so the CSVs it compiles (and the `.txt` that B2 emits for the solver) already reflect the fixes. It detects infeasibility-prone data, shows the auto-fix formula for each issue and, by default, asks before writing. Two keys in `Config_MOMF_T1_A.yaml` control it (both absent from the shipped file, so the defaults apply): `pre_solver_validation` (`true`; set to `false` to skip the step) and `pre_solver_validation_interactive` (`true`; set to `false` to apply every fix without prompting). If the validator raises an exception, B1 logs a warning and continues. The same script can also run standalone (see below) or as step 3 of `A3_process.py`.
+B1 starts by running this validator: `B1_Compiler.py` imports it and calls it on the active scenario's `A-O_Parametrization.xlsx` before reading the workbook, so the CSVs it compiles (and the `.txt` that B2 emits for the solver) already reflect the fixes. It detects infeasibility-prone data, shows the auto-fix formula for each issue and, by default, asks before writing. Two keys in `Config_MOMF_T1_A.yaml` control it (both absent from the shipped file, so the defaults apply): `pre_solver_validation` (`true`; set to `false` to skip the step) and `pre_solver_validation_interactive` (`true`; set to `false` to apply every fix without prompting). If the validator raises an exception, B1 logs a warning and continues. The same script can also run standalone (see below) or as step 3 of `A3_process.py`.
 
 #### Validations
 
@@ -411,7 +411,7 @@ max_x_per_iter: 4  # Max scenarios per batch
 | Directory/File | Content |
 |----------------|---------|
 | `A2_Outputs_Params_otoole/{scenario}/` | otoole-format CSVs (one per parameter); for derived scenarios (see the scenario-code table above) this is a copy of the base scenario's folder, re-synced from that derived scenario's own final `.txt` |
-| `Executables/{scenario}_0/` | Compiled solver data files -- one folder per scenario, base or derived; derived scenarios' folders are created by steps 8 and 9 of the solver modifier chain, not by A1/A2 |
+| `Executables/{scenario}_0/` | Compiled solver data files, one folder per scenario, base or derived; the folders of derived scenarios are created by steps 8 and 9 of the solver modifier chain |
 | `RELAC_TX_Inputs.csv` | Combined inputs (all scenarios) |
 | `RELAC_TX_Outputs.csv` | Combined outputs (all scenarios) |
 | `RELAC_TX_Combined_Inputs_Outputs.csv` | Merged inputs and outputs |

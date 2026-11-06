@@ -6,8 +6,8 @@ The Secondary Technologies Editor provides a user-friendly Excel interface for m
 
 The editor workflow has two steps:
 
-1. **Generate the template** (`D1`) -- Creates `Secondary_Techs_Editor.xlsx`.
-2. **Apply changes** (`D2`) -- Reads the filled template and updates the model files.
+1. **Generate the template** (`D1`): Creates `Secondary_Techs_Editor.xlsx`.
+2. **Apply changes** (`D2`): Reads the filled template and updates the model files.
 
 ```{figure} /_static/reference/editor_d1_d2.png
 :name: fig-editor-d1-d2
@@ -135,7 +135,7 @@ python scripts/pipeline/D2_update_secondary_techs.py
 1. Reads the filled `Secondary_Techs_Editor.xlsx`.
 2. Reads OLADE configuration toggles.
 3. For each scenario:
-   - Creates a **backup** of the parametrization file.
+   - Creates a backup of the parametrization file.
    - Applies manual edits from the Editor sheet.
    - If OLADE integration is enabled:
      - Reads capacity data (MW to GW conversion).
@@ -145,7 +145,7 @@ python scripts/pipeline/D2_update_secondary_techs.py
      - Validates limits against available capacities.
    - Updates `A-O_Parametrization.xlsx`.
    - Updates `A-O_Demand.xlsx` (if demand integration is enabled).
-4. Sets **Projection.Mode** to "User defined" for modified parameters.
+4. Sets `Projection.Mode` to "User defined" for modified parameters.
 
 ### Unit Conversions
 
