@@ -4,5 +4,5 @@
 report: true
 presentation: true
 dashboard: true
-# Tablas_Completas_Resultados.xlsx (14 escenarios, nivel regional) via Z_AUX_make_tablas_xlsx.py.
+# Full_Results_Tables.xlsx (en inglés; 14 escenarios, nivel regional) via Z_AUX_make_tablas_xlsx.py.
 tablas: true

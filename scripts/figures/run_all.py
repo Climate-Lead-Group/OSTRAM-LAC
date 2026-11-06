@@ -6,7 +6,7 @@ Step 0 builds/reuses the BAC+ISR Parquet subset. Then, in this fixed order, each
   dashboard     -> figures.dashboard.build_dashboard.main([..])
                     (outputs/Figures/Dashboard/dashboard.html)
   tablas        -> scripts/figures/Z_AUX_make_tablas_xlsx.py
-                    (outputs/Figures/Tablas_Completas_Resultados.xlsx)
+                    (outputs/Figures/Full_Results_Tables.xlsx)
 The first three branches run in this same process; `tablas` runs in a subprocess (PYTHONUTF8=1)
 because that script does work at import time and reduces the full CSV in chunks, so isolating it
 frees that memory once it finishes and it never overlaps in memory with the fig_*.py processes (the

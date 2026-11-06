@@ -10,7 +10,7 @@ All result graphics are produced from the final combined CSV (`outputs/RELAC_TX_
 | `scripts/figures/presentation/` | Same figures in presentation style + `run_figures.py` + `run_figures.yaml` | `Presentation/fig_*_presentation.png` |
 | `scripts/figures/dashboard/` | `build_dashboard.py` (interactive Plotly dashboard), `Z_AUX_generate_transmission_maps.py`, `Z_AUX_generate_RES_diagram.py` | `Dashboard/dashboard.html` |
 | `scripts/figures/common/` | `dashboard_config.py` (scenario aliases, colours, families), `fig_runner.py`, `report_style.py` | — |
-| `scripts/figures/Z_AUX_make_tablas_xlsx.py` | Regional result tables for the 14 solved scenarios | `Tablas_Completas_Resultados.xlsx` |
+| `scripts/figures/Z_AUX_make_tablas_xlsx.py` | Regional result tables for the 14 solved scenarios | `Full_Results_Tables.xlsx` |
 | `scripts/figures/run_all.py` + `run_all.yaml` | Master runner: report → presentation → dashboard → result tables (`tablas`) | all of the above |
 
 Paths are centralised in `scripts/common/relac_paths.py` (`FIGURES`, `FIGURES_REPORT`, `FIGURES_PRESENTATION`, `FIGURES_DASHBOARD`, `FIGURES_SCRIPTS`). Everything under `outputs/Figures/Dashboard/`, `Report/` and `Presentation/` is regenerable and git-ignored.

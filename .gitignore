@@ -107,6 +107,7 @@ outputs/Figures/Report_EN/
 outputs/Figures/Presentation_EN/
 outputs/Figures/_subset_*
 outputs/Figures/.scenarios_cache.json
+outputs/Figures/Full_Results_Tables*.xlsx
 outputs/Figures/Tablas_Completas_Resultados*.xlsx
 outputs/Figures/.tablas_xlsx_reduced.pkl
 

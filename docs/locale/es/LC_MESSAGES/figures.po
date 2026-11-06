@@ -122,8 +122,8 @@ msgid "Regional result tables for the 14 solved scenarios"
 msgstr "Tablas de resultados regionales para los 14 escenarios resueltos"
 
 #: ../../figures.md
-msgid "`Tablas_Completas_Resultados.xlsx`"
-msgstr "`Tablas_Completas_Resultados.xlsx`"
+msgid "`Full_Results_Tables.xlsx`"
+msgstr "`Full_Results_Tables.xlsx`"
 
 #: ../../figures.md
 msgid "`scripts/figures/run_all.py` + `run_all.yaml`"

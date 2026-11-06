@@ -7,7 +7,7 @@ author's disk only; not in git).
 ```
 scripts/figures/
 ├─ run_all.py / run_all.yaml        overall master: report -> presentation -> dashboard -> tablas
-├─ Z_AUX_make_tablas_xlsx.py        Tablas_Completas_Resultados.xlsx (T1-T9 + Resumen, 14 scenarios,
+├─ Z_AUX_make_tablas_xlsx.py        Full_Results_Tables.xlsx (T1-T9 + Summary, 14 scenarios,
 │                                   regional level); `tablas` branch of run_all, runs in a subprocess
 ├─ common/
 │   ├─ dashboard_config.py          data (combined CSV), paths, scenario aliases and colours,
@@ -22,7 +22,7 @@ outputs/Figures/
 ├─ Dashboard/                       dashboard.html (+ chart*.png with --png)
 ├─ Report/                          fig_*.png (+ fig_km_lineas_existentes_tmp_*.csv)
 ├─ Presentation/                    fig_*.png
-├─ Tablas_Completas_Resultados.xlsx regional report tables (`tablas` branch)
+├─ Full_Results_Tables.xlsx regional report tables (`tablas` branch)
 ├─ .tablas_xlsx_reduced.pkl         cache of the CSV reduction for the tables (keyed by CSV mtime)
 ├─ _subset_BAC-ISR.parquet/.json    CSV subset for the static figures (regenerates itself)
 └─ .scenarios_cache.json            scenarios auto-detected from the CSV
@@ -33,7 +33,7 @@ outputs/Figures/
 | Script | What it does | Reads | Writes | Run |
 |---|---|---|---|---|
 | `run_all.py` | Overall master: runs `report` -> `presentation` -> `dashboard` -> `tablas` per `run_all.yaml`, building/reusing the BAC+ISR Parquet subset first (step 0) | `run_all.yaml`, `outputs/RELAC_TX_Combined_Inputs_Outputs.csv` | `outputs/Figures/**` | `python scripts/figures/run_all.py` |
-| `Z_AUX_make_tablas_xlsx.py` | Builds `Tablas_Completas_Resultados.xlsx` with region-level results (no country split) for the 9 report indicators (T1-T9); reduces the full CSV by chunks and caches the reduction in a pickle | `outputs/RELAC_TX_Combined_Inputs_Outputs.csv`, `inputs/**/CapacityAndDistances.xlsx` | `outputs/Figures/Tablas_Completas_Resultados.xlsx`, `outputs/Figures/.tablas_xlsx_reduced.pkl` | `PYTHONUTF8=1 python scripts/figures/Z_AUX_make_tablas_xlsx.py` |
+| `Z_AUX_make_tablas_xlsx.py` | Builds `Full_Results_Tables.xlsx` with region-level results (no country split) for the 9 report indicators (T1-T9); reduces the full CSV by chunks and caches the reduction in a pickle | `outputs/RELAC_TX_Combined_Inputs_Outputs.csv`, `inputs/**/CapacityAndDistances.xlsx` | `outputs/Figures/Full_Results_Tables.xlsx`, `outputs/Figures/.tablas_xlsx_reduced.pkl` | `PYTHONUTF8=1 python scripts/figures/Z_AUX_make_tablas_xlsx.py` |
 | `common/` | Shared library (paths, colours, scenario aliases, Parquet subset, matplotlib style) — see [`common/README.md`](common/README.md) | — | — | library only, imported by every fig script |
 | `dashboard/` | Plotly dashboard (charts + map/dispatch/RES iframes) — see [`dashboard/README.md`](dashboard/README.md) | — | — | `python scripts/figures/dashboard/build_dashboard.py` |
 | `report/` | 21 report figures + master — see [`report/README.md`](report/README.md) | — | — | `python scripts/figures/report/run_figures.py` |

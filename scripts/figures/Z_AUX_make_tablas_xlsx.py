@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Build Tablas_Completas_Resultados.xlsx: REGIONAL-level results (no per-country split),
+"""Build Full_Results_Tables.xlsx: REGIONAL-level results (no per-country split),
 broken down by scenario and time horizon, for the report's 9 indicators:
 
   T1 Installed generation capacity by source [GW]       (years 2030/2040/2050)
@@ -14,11 +14,15 @@ broken down by scenario and time horizon, for the report's 9 indicators:
 
 This is the REGIONAL, Excel version of the old Z_AUX_make_tablas_docx.py (Deliverable 2's
 per-country tables), updated to the project's CURRENT formulas:
+  - Language: the whole workbook (file name, sheet names, titles, labels, notes) is in
+    English. Data keys from dashboard_config stay in Spanish internally and are translated
+    with LABEL_EN only when written; a key without a translation raises KeyError.
   - Scenarios: the 14 of the 2026-09-16 run (solve_scenarios in Config_MOMF_T1_AB.yaml), in
-    the SAME order and with the SAME names as the dashboard (dashboard_config.SCENARIO_ALIAS):
-    OPT family (BAC base, BSR without repowering, BFA/BFB/BRA/BRB cost sensitivities), ETT
-    family (ISR base, INV with repowering, IFA/IFB/IRA/IRB), OPC (PLAN) and VSR (ETT-GP). The
-    raw (uncapped) BAU/OPT/VGB scenarios are ignored even if present in the CSV.
+    the SAME order as the dashboard, with the English display names of
+    docs/study/scenarios.md (SCENARIO_NAME_EN): OPT family (BAC base, BSR without
+    repowering, BFA/BFB/BRA/BRB cost sensitivities), ETT family (ISR base, INV with
+    repowering, IFA/IFB/IRA/IRB), OPC (PLAN) and VSR (ETT-GP). The raw (uncapped)
+    BAU/OPT/VGB scenarios are ignored even if present in the CSV.
   - Transmission (T3): the same nominal formula as chart_04 / fig_capacidad_transmision:
     Existing = TCA-ANC (PLAN); Unplanned repowered = TCA-AMCI (RPO);
     Total = sum of TCA over the 3 groups (WITHOUT the old /0.8 and /1.8 factors).
@@ -45,7 +49,7 @@ Inputs:
     outputs/RELAC_TX_Combined_Inputs_Outputs.csv   # CSV_PATH, reduced by load_reduced()
     inputs/**/CapacityAndDistances.xlsx            # via dashboard_config's loader
 Outputs:
-    outputs/Figures/Tablas_Completas_Resultados.xlsx   # OUT_XLSX
+    outputs/Figures/Full_Results_Tables.xlsx           # OUT_XLSX
     outputs/Figures/.tablas_xlsx_reduced.pkl           # CACHE_PKL, the chunked-reduction cache
 Usage (from any cwd):
     PYTHONUTF8=1 python scripts/figures/Z_AUX_make_tablas_xlsx.py
@@ -53,6 +57,8 @@ Notes:
     - This module has top-level executable code (no main()); it runs its full pipeline at
       import time, which is why run_all.py isolates it in a subprocess.
     - The reduction cache is invalidated by the CSV's mtime and by the SCENARIOS list.
+    - Until 2026-11-06 the workbook was Spanish and named Tablas_Completas_Resultados.xlsx;
+      an old copy with that name in outputs/Figures/ is stale and can be deleted.
 """
 
 from __future__ import annotations
@@ -85,7 +91,7 @@ from pipeline.Z_AUX_capital_annualization_script import (  # noqa: E402
 )
 
 # Salidas bajo outputs/Figures/ (relac_paths.FIGURES), como el resto de figuras.
-OUT_XLSX = str(P.FIGURES / "Tablas_Completas_Resultados.xlsx")
+OUT_XLSX = str(P.FIGURES / "Full_Results_Tables.xlsx")
 CACHE_PKL = str(P.FIGURES / ".tablas_xlsx_reduced.pkl")
 
 # Los 14 escenarios de la corrida 2026-09-16, en el orden del dashboard
@@ -95,9 +101,89 @@ SCENARIOS = [
     "ISR", "IFA", "IFB", "INV", "IRA", "IRB",
     "OPC", "VSR",
 ]
-# Nombres de display idénticos a los del dashboard (build_dashboard.py usa
-# SCENARIO_ALIAS.get(sc, sc)); sin etiquetas cortas propias.
-ALIAS = {sc: SCENARIO_ALIAS.get(sc, sc) for sc in SCENARIOS}
+# Nombres de display en inglés, idénticos a la tabla de docs/study/scenarios.md
+# (los alias de dashboard_config.SCENARIO_ALIAS están en español).
+SCENARIO_NAME_EN = {
+    "BAC": "OPT",
+    "BFA": "OPT higher fuel cost",
+    "BFB": "OPT lower fuel cost",
+    "BRA": "OPT higher renewables cost",
+    "BRB": "OPT lower renewables cost",
+    "BSR": "OPT without repowering",
+    "ISR": "ETT",
+    "IFA": "ETT higher fuel cost",
+    "IFB": "ETT lower fuel cost",
+    "INV": "ETT with repowering",
+    "IRA": "ETT higher renewables cost",
+    "IRB": "ETT lower renewables cost",
+    "OPC": "PLAN",
+    "VSR": "ETT-GP",
+}
+# Las familias base (OPT, ETT, PLAN, ETT-GP) coinciden con el dashboard.
+assert all(SCENARIO_NAME_EN[sc] == SCENARIO_ALIAS[sc] for sc in ("BAC", "ISR", "OPC", "VSR"))
+ALIAS = {sc: SCENARIO_NAME_EN[sc] for sc in SCENARIOS}
+
+# Claves internas (en español, vienen de dashboard_config y de las constantes de
+# abajo) -> etiqueta en inglés del xlsx. Terminología alineada con docs/
+# (repowering, MBOE, ETT/OPT/PLAN).
+LABEL_EN = {
+    # familias de fuente (SOURCE_FAMILY_NAMES)
+    "Biomasa": "Biomass",
+    "Solar CSP": "Solar CSP",
+    "Geotérmica": "Geothermal",
+    "Hidroeléctrica": "Hydropower",
+    "Solar Fotovoltaica": "Solar PV",
+    "Residuos": "Waste",
+    "Eólica Marina": "Offshore wind",
+    "Eólica Terrestre": "Onshore wind",
+    "Carbón con CCS": "Coal with CCS",
+    "Carbón": "Coal",
+    "Cogeneración": "Cogeneration",
+    "Gas Natural": "Natural gas",
+    "Petróleo/Diésel": "Oil/Diesel",
+    "Otros": "Other",
+    "Petcoke": "Petcoke",
+    "Nuclear": "Nuclear",
+    # grupos de generación (subtotales T1/T2)
+    "Renovable": "Renewable",
+    "No Renovable": "Non-renewable",
+    # tipos de línea (T3/T4)
+    "Líneas Existentes": "Existing lines",
+    "Líneas Planificadas": "Planned lines",
+    "Líneas Nuevas Planificadas": "Planned new lines",
+    "Líneas Repotenciadas Planificadas": "Planned repowered lines",
+    "Líneas Nuevas No Planificadas": "Unplanned new lines",
+    "Líneas Repotenciadas No Planificadas": "Unplanned repowered lines",
+    # almacenamiento (T5)
+    "Baterías corta duración": "Short-duration batteries",
+    "Baterías larga duración": "Long-duration storage",
+    "Baterías (BDS)": "Batteries (BDS)",
+    # tipos de tecnología (T6)
+    "Generación": "Generation",
+    "Transmisión": "Transmission",
+    "Almacenamiento": "Storage",
+    # componentes de costo (T7)
+    "CAPEX": "CAPEX",
+    "O&M": "O&M",
+    "Combustible": "Fuel",
+    "Energía no Suministrada": "Unserved energy",
+    # combustibles fósiles (T9)
+    "Gas natural": "Natural gas",
+    "Petróleo/derivados": "Oil/products",
+}
+
+
+def en(label: str) -> str:
+    """Translate an internal (Spanish) data label to its English workbook label.
+
+    Raises:
+        KeyError: if `label` has no LABEL_EN entry, so no Spanish text reaches the workbook.
+    """
+    if label.startswith("Subtotal "):
+        return "Subtotal " + LABEL_EN[label[len("Subtotal "):]]
+    if label == "Total":
+        return label
+    return LABEL_EN[label]
 
 YEARS = [2030, 2040, 2050]
 YEAR_COLS = [str(y) for y in YEARS]
@@ -430,6 +516,7 @@ FILL_BAND = PatternFill("solid", fgColor=BAND)
 AL_C = Alignment(horizontal="center", vertical="center", wrap_text=True)
 AL_L = Alignment(horizontal="left", vertical="center")
 AL_R = Alignment(horizontal="right", vertical="center")
+SOURCE_NOTE = "Source: prepared by the authors."
 
 
 def numfmt(dec: int) -> str:
@@ -479,7 +566,7 @@ def write_banded(wb, sheet, title, label_hdr, cols, data, labels, dec,
     ws.cell(row=1, column=1, value=title).font = F_TITLE
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=ncols)
     r = 3
-    _hdr(ws, r, 1, "Escenario")
+    _hdr(ws, r, 1, "Scenario")
     _hdr(ws, r, 2, label_hdr)
     for j, cname in enumerate(cols):
         _hdr(ws, r, 3 + j, cname)
@@ -502,14 +589,14 @@ def write_banded(wb, sheet, title, label_hdr, cols, data, labels, dec,
                           for c in cols], True))
         r0 = r
         for lab, vals, is_tot in band:
-            _lab(ws, r, 2, lab, bold=is_tot)
+            _lab(ws, r, 2, en(lab), bold=is_tot)
             for j, v in enumerate(vals):
                 _val(ws, r, 3 + j, v, dec, bold=is_tot)
             r += 1
         ws.merge_cells(start_row=r0, start_column=1, end_row=r - 1, end_column=1)
         for rr in range(r0, r):
             _lab(ws, rr, 1, ALIAS[sc] if rr == r0 else None, bold=True, band=True)
-    ws.cell(row=r + 1, column=1, value="Fuente: Elaboración propia").font = F_NOTE
+    ws.cell(row=r + 1, column=1, value=SOURCE_NOTE).font = F_NOTE
     if note:
         ws.cell(row=r + 2, column=1, value=note).font = F_NOTE
     ws.column_dimensions["A"].width = 16
@@ -528,7 +615,7 @@ def write_scenario_rows(wb, sheet, title, cols, data, rowkey, dec, note=None):
     ws.cell(row=1, column=1, value=title).font = F_TITLE
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=ncols)
     r = 3
-    _hdr(ws, r, 1, "Escenario")
+    _hdr(ws, r, 1, "Scenario")
     for j, cname in enumerate(cols):
         _hdr(ws, r, 2 + j, cname)
     r += 1
@@ -537,7 +624,7 @@ def write_scenario_rows(wb, sheet, title, cols, data, rowkey, dec, note=None):
         for j, cname in enumerate(cols):
             _val(ws, r, 2 + j, data[sc].get(rowkey, {}).get(cname, 0.0), dec)
         r += 1
-    ws.cell(row=r + 1, column=1, value="Fuente: Elaboración propia").font = F_NOTE
+    ws.cell(row=r + 1, column=1, value=SOURCE_NOTE).font = F_NOTE
     if note:
         ws.cell(row=r + 2, column=1, value=note).font = F_NOTE
     ws.column_dimensions["A"].width = 28
@@ -556,38 +643,39 @@ wb = Workbook()
 
 # --- Índice ---
 ws = wb.active
-ws.title = "Índice"
+ws.title = "Index"
 ws.sheet_view.showGridLines = False
-ws.cell(row=1, column=1, value="Tablas completas de resultados — nivel regional "
-        "(todos los países agregados)").font = F_TITLE
-ws.cell(row=3, column=1, value="Escenarios").font = F_BOLD
-# Descripciones alineadas con scenario_transforms de Config_MOMF_T1_AB.yaml.
-_FA = "mayor costo de combustible fósil (VariableCost MIN* ×1,70)"
-_FB = "menor costo de combustible fósil (VariableCost MIN* ×0,52)"
-_RB = "menor costo de inversión en renovables (solar ×0,60, eólica ×0,75, baterías ×0,50)"
-_RA = "mayor costo de inversión en renovables (multiplicadores pendientes de calibrar)"
+ws.cell(row=1, column=1, value="Full results tables — regional level "
+        "(all countries aggregated)").font = F_TITLE
+ws.cell(row=3, column=1, value="Scenarios").font = F_BOLD
+# Descripciones alineadas con scenario_transforms de Config_MOMF_T1_AB.yaml y con
+# docs/study/scenarios.md.
+_FA = "higher fossil fuel cost (MIN* VariableCost ×1.70)"
+_FB = "lower fossil fuel cost (MIN* VariableCost ×0.52)"
+_RB = "lower renewables investment cost (solar ×0.60, wind ×0.75, batteries ×0.50)"
+_RA = "higher renewables investment cost (solar ×1.33, wind ×1.17, batteries ×1.49)"
 _scen_desc = {
     # --- familia OPT ---
-    "BAC": "OPT — Referencia: expansión óptima de mínimo costo (con tope en la "
-           "rampa de inversión de transmisión).",
-    "BFA": f"Sensibilidad de OPT con {_FA}.",
-    "BFB": f"Sensibilidad de OPT con {_FB}.",
-    "BRA": f"Sensibilidad de OPT con {_RA}.",
-    "BRB": f"Sensibilidad de OPT con {_RB}.",
-    "BSR": "OPT sin repotenciación de líneas.",
+    "BAC": "OPT — Reference: least-cost optimal expansion (with a cap on the "
+           "transmission investment ramp).",
+    "BFA": f"OPT sensitivity with {_FA}.",
+    "BFB": f"OPT sensitivity with {_FB}.",
+    "BRA": f"OPT sensitivity with {_RA}.",
+    "BRB": f"OPT sensitivity with {_RB}.",
+    "BSR": "OPT without line repowering.",
     # --- familia ETT ---
-    "ISR": "ETT — Transmisión restringida (tendencia histórica), generación de "
-           "menor costo, sin repotenciación.",
-    "IFA": f"Sensibilidad de ETT con {_FA}.",
-    "IFB": f"Sensibilidad de ETT con {_FB}.",
-    "INV": "ETT con repotenciación de líneas.",
-    "IRA": f"Sensibilidad de ETT con {_RA}.",
-    "IRB": f"Sensibilidad de ETT con {_RB}.",
+    "ISR": "ETT — Constrained transmission (historical trend), least-cost "
+           "generation, without repowering.",
+    "IFA": f"ETT sensitivity with {_FA}.",
+    "IFB": f"ETT sensitivity with {_FB}.",
+    "INV": "ETT with line repowering.",
+    "IRA": f"ETT sensitivity with {_RA}.",
+    "IRB": f"ETT sensitivity with {_RB}.",
     # --- otros ---
-    "OPC": "PLAN — Expansión planificada (con tope en la rampa de inversión de "
-           "transmisión).",
-    "VSR": "ETT-GP — Transmisión restringida, generación planificada (PEGs), sin "
-           "repotenciación.",
+    "OPC": "PLAN — Planned expansion (with a cap on the transmission investment "
+           "ramp).",
+    "VSR": "ETT-GP — Constrained transmission, planned generation (PEGs), without "
+           "repowering.",
 }
 r = 4
 for sc in SCENARIOS:
@@ -595,18 +683,18 @@ for sc in SCENARIOS:
     ws.cell(row=r, column=2, value=_scen_desc[sc]).font = F_BASE
     r += 1
 r += 1
-ws.cell(row=r, column=1, value="Tablas").font = F_BOLD
+ws.cell(row=r, column=1, value="Tables").font = F_BOLD
 _INDEX = [
-    ("T1", "Capacidad instalada de generación por fuente [GW] — 2030/2040/2050"),
-    ("T2", "Generación anual por fuente [TWh] — 2030/2040/2050"),
-    ("T3", "Capacidad instalada de transmisión por tipo de línea [GW] — 2030/2040/2050"),
-    ("T4", "Kilómetros de línea instalados por tipo [km] — por periodo 2026-2050"),
-    ("T5", "Capacidad instalada de almacenamiento [GW] — 2030/2040/2050"),
-    ("T6", "Inversión anual promedio por tipo [MUSD/año] — por periodo 2026-2050"),
-    ("T7", "Costo total del sistema, promedio anual [MUSD/año] — por periodo 2026-2050"),
-    ("T8", "Costo unitario del sistema [USD/MWh] — por periodo 2026-2050"),
-    ("T9", "Consumo de combustibles fósiles [MBEP] — 2030/2040/2050"),
-    ("Resumen", "Comparativa entre escenarios (2050 y acumulados 2026-2050)"),
+    ("T1", "Installed generation capacity by source [GW] — 2030/2040/2050"),
+    ("T2", "Annual generation by source [TWh] — 2030/2040/2050"),
+    ("T3", "Installed transmission capacity by line type [GW] — 2030/2040/2050"),
+    ("T4", "Line kilometres installed by type [km] — per period 2026-2050"),
+    ("T5", "Installed storage capacity [GW] — 2030/2040/2050"),
+    ("T6", "Average annual investment by type [USD million/year] — per period 2026-2050"),
+    ("T7", "Total system cost, annual average [USD million/year] — per period 2026-2050"),
+    ("T8", "System unit cost [USD/MWh] — per period 2026-2050"),
+    ("T9", "Fossil fuel consumption [MBOE] — 2030/2040/2050"),
+    ("Summary", "Comparison across scenarios (2050 and cumulative 2026-2050)"),
 ]
 for tag, desc in _INDEX:
     r += 1
@@ -618,51 +706,51 @@ ws.column_dimensions["B"].width = 95
 # --- Tablas ---
 fam_sub = [("Renovable", [f for f in FAMILY_ORDER if f in RENEWABLE_FAMS]),
            ("No Renovable", [f for f in FAMILY_ORDER if f not in RENEWABLE_FAMS])]
-write_banded(wb, "T1 Capacidad Generación",
-             "Tabla 1. Capacidad instalada de generación por fuente (GW).",
-             "Fuente", YEAR_COLS, cap_tbl, fams_present(cap_tbl), 2,
+write_banded(wb, "T1 Generation Capacity",
+             "Table 1. Installed generation capacity by source (GW).",
+             "Source", YEAR_COLS, cap_tbl, fams_present(cap_tbl), 2,
              subtotal_groups=fam_sub)
-write_banded(wb, "T2 Generación Anual",
-             "Tabla 2. Generación anual por fuente (TWh).",
-             "Fuente", YEAR_COLS, gen_tbl, fams_present(gen_tbl), 2,
+write_banded(wb, "T2 Annual Generation",
+             "Table 2. Annual generation by source (TWh).",
+             "Source", YEAR_COLS, gen_tbl, fams_present(gen_tbl), 2,
              subtotal_groups=fam_sub)
-write_banded(wb, "T3 Capacidad Transmisión",
-             "Tabla 3. Capacidad instalada de transmisión por tipo de línea (GW).",
-             "Tipo de línea", YEAR_COLS, tr_tbl, TRANS_CATS, 2,
+write_banded(wb, "T3 Transmission Capacity",
+             "Table 3. Installed transmission capacity by line type (GW).",
+             "Line type", YEAR_COLS, tr_tbl, TRANS_CATS, 2,
              totals="sum_first",
-             note="Nota: no incluye interconectores internacionales puros (TRN*).")
-write_banded(wb, "T4 Km de Línea",
-             "Tabla 4. Kilómetros de línea instalados por tipo (km).",
-             "Tipo de línea", PERIOD_COLS, km_tbl, KM_CATS, 0,
-             note="Nota: km instalados dentro de cada periodo; repotenciadas ×1,25.")
-write_banded(wb, "T5 Almacenamiento",
-             "Tabla 5. Capacidad instalada de almacenamiento (GW).",
-             "Tipo", YEAR_COLS, st_tbl, list(STO_TYPES.values()), 2)
-write_banded(wb, "T6 Inversión",
-             "Tabla 6. Inversión anual promedio por tipo (MUSD/año).",
-             "Tipo", PERIOD_COLS, inv_tbl, INV_CATS, 1,
-             note="Nota: promedio anual del periodo; CAPEX de líneas planificadas "
-                  "(PWRTRN/RNWTRN) ajustado ÷1,2.")
-write_banded(wb, "T7 Costos Sistema",
-             "Tabla 7. Costo total del sistema, promedio anual (MUSD/año).",
-             "Componente", PERIOD_COLS, cost_tbl, COST_CATS, 1,
-             note="Nota: Energía no Suministrada valorada al VOLL de 1.500 USD/MWh; "
-                  "backstop excluido de CAPEX/O&M/Combustible.")
-write_scenario_rows(wb, "T8 Costo Unitario",
-                    "Tabla 8. Costo unitario del sistema (USD/MWh).",
+             note="Note: excludes pure international interconnectors (TRN*).")
+write_banded(wb, "T4 Line Kilometres",
+             "Table 4. Line kilometres installed by type (km).",
+             "Line type", PERIOD_COLS, km_tbl, KM_CATS, 0,
+             note="Note: km installed within each period; repowered lines ×1.25.")
+write_banded(wb, "T5 Storage",
+             "Table 5. Installed storage capacity (GW).",
+             "Type", YEAR_COLS, st_tbl, list(STO_TYPES.values()), 2)
+write_banded(wb, "T6 Investment",
+             "Table 6. Average annual investment by type (USD million/year).",
+             "Type", PERIOD_COLS, inv_tbl, INV_CATS, 1,
+             note="Note: annual average over the period; CAPEX of planned lines "
+                  "(PWRTRN/RNWTRN) adjusted ÷1.2.")
+write_banded(wb, "T7 System Costs",
+             "Table 7. Total system cost, annual average (USD million/year).",
+             "Component", PERIOD_COLS, cost_tbl, COST_CATS, 1,
+             note="Note: unserved energy valued at a VOLL of USD 1,500/MWh; "
+                  "backstop excluded from CAPEX/O&M/Fuel.")
+write_scenario_rows(wb, "T8 Unit Cost",
+                    "Table 8. System unit cost (USD/MWh).",
                     PERIOD_COLS, uc_tbl, "Costo unitario", 2,
-                    note="Nota: (CAPEX anualizado con CRF al "
-                         f"{DISCOUNT_RATE * 100:.2f}% y vida útil {ASSET_LIFETIME} años "
-                         "+ O&M + Combustible) / demanda eléctrica; promedio de los "
-                         "ratios anuales del periodo; backstop excluido.")
-write_banded(wb, "T9 Combustibles Fósiles",
-             "Tabla 9. Consumo anual de combustibles fósiles "
-             "(millones de bep, MBEP).",
-             "Combustible", YEAR_COLS, fo_tbl, FOSSIL_CATS, 1,
-             note="Nota: actividad anual de las tecnologías de extracción/importación "
-                  "MIN* fósiles (incluye importadas MIN*INT; excluye uranio), "
-                  "convertida de PJ a millones de barriles equivalentes de petróleo "
-                  "(IEA: 1 tep = 41,868 GJ; 1 tep ≈ 7,33 bep -> 1 bep ≈ 5,7119 GJ).")
+                    note="Note: (CAPEX annualized with a CRF at "
+                         f"{DISCOUNT_RATE * 100:.2f}% and a {ASSET_LIFETIME}-year lifetime "
+                         "+ O&M + Fuel) / electricity demand; average of the period's "
+                         "annual ratios; backstop excluded.")
+write_banded(wb, "T9 Fossil Fuels",
+             "Table 9. Annual fossil fuel consumption "
+             "(million barrels of oil equivalent, MBOE).",
+             "Fuel", YEAR_COLS, fo_tbl, FOSSIL_CATS, 1,
+             note="Note: annual activity of the fossil MIN* extraction/import "
+                  "technologies (includes imported MIN*INT; excludes uranium), "
+                  "converted from PJ to million barrels of oil equivalent "
+                  "(IEA: 1 toe = 41.868 GJ; 1 toe ≈ 7.33 boe -> 1 boe ≈ 5.7119 GJ).")
 
 # --- Resumen comparativo entre escenarios ---
 def tot_col(tbl, labels, col):
@@ -671,26 +759,26 @@ def tot_col(tbl, labels, col):
 
 
 _SUMMARY = [
-    ("Capacidad instalada de generación 2050 [GW]",
+    ("Installed generation capacity 2050 [GW]",
      tot_col(cap_tbl, fams_present(cap_tbl), "2050"), 1),
-    ("Generación anual 2050 [TWh]",
+    ("Annual generation 2050 [TWh]",
      tot_col(gen_tbl, fams_present(gen_tbl), "2050"), 1),
-    ("Capacidad de transmisión 2050 [GW]",
+    ("Transmission capacity 2050 [GW]",
      tot_col(tr_tbl, TRANS_CATS, "2050"), 1),
-    ("Kilómetros de línea instalados 2026-2050 [km]", km_acc, 0),
-    ("Capacidad de almacenamiento 2050 [GW]",
+    ("Line kilometres installed 2026-2050 [km]", km_acc, 0),
+    ("Storage capacity 2050 [GW]",
      tot_col(st_tbl, list(STO_TYPES.values()), "2050"), 1),
-    ("Inversión de capital acumulada 2026-2050 [MUSD]", inv_acc, 0),
-    ("Costo total del sistema acumulado 2026-2050 [MUSD]", cost_acc, 0),
-    ("Costo unitario promedio 2026-2050 [USD/MWh]", uc_avg, 2),
-    ("Consumo de combustibles fósiles acumulado 2026-2050 [MBEP]", fo_acc, 0),
+    ("Cumulative capital investment 2026-2050 [USD million]", inv_acc, 0),
+    ("Cumulative total system cost 2026-2050 [USD million]", cost_acc, 0),
+    ("Average unit cost 2026-2050 [USD/MWh]", uc_avg, 2),
+    ("Cumulative fossil fuel consumption 2026-2050 [MBOE]", fo_acc, 0),
 ]
-ws = wb.create_sheet("Resumen")
+ws = wb.create_sheet("Summary")
 ws.sheet_view.showGridLines = False
 ws.cell(row=1, column=1,
-        value="Resumen comparativo entre escenarios (nivel regional).").font = F_TITLE
+        value="Comparison across scenarios (regional level).").font = F_TITLE
 ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=2 + len(SCENARIOS))
-_hdr(ws, 3, 1, "Indicador")
+_hdr(ws, 3, 1, "Indicator")
 for j, sc in enumerate(SCENARIOS):
     _hdr(ws, 3, 2 + j, ALIAS[sc])
 for i, (name, vals, dec) in enumerate(_SUMMARY):
@@ -698,14 +786,13 @@ for i, (name, vals, dec) in enumerate(_SUMMARY):
     ws.cell(row=4 + i, column=1).alignment = AL_L
     for j, sc in enumerate(SCENARIOS):
         _val(ws, 4 + i, 2 + j, vals.get(sc, 0.0), dec)
-ws.cell(row=5 + len(_SUMMARY), column=1,
-        value="Fuente: Elaboración propia").font = F_NOTE
+ws.cell(row=5 + len(_SUMMARY), column=1, value=SOURCE_NOTE).font = F_NOTE
 ws.column_dimensions["A"].width = 52
 ws.row_dimensions[3].height = 32
 for j in range(len(SCENARIOS)):
     ws.column_dimensions[get_column_letter(2 + j)].width = 14
 
-_targets = [OUT_XLSX] + [OUT_XLSX.replace(".xlsx", f"_nuevo{'' if i == 1 else i}.xlsx")
+_targets = [OUT_XLSX] + [OUT_XLSX.replace(".xlsx", f"_new{'' if i == 1 else i}.xlsx")
                          for i in (1, 2, 3)]
 out_written = None
 for _target in _targets:
@@ -714,20 +801,20 @@ for _target in _targets:
         out_written = _target
         break
     except PermissionError:
-        print(f"AVISO: {os.path.basename(_target)} bloqueado (¿abierto en Excel?)")
+        print(f"WARNING: {os.path.basename(_target)} is locked (open in Excel?)")
 if out_written is None:
-    raise SystemExit("ERROR: todos los destinos están bloqueados; cierra Excel y re-corre.")
+    raise SystemExit("ERROR: every target is locked; close Excel and run again.")
 if out_written == OUT_XLSX:
-    # se pudo escribir el canónico: las copias *_nuevo* de corridas anteriores
+    # se pudo escribir el canónico: las copias *_new* de corridas anteriores
     # quedan obsoletas; se eliminan (o se avisa si Excel las tiene bloqueadas).
     for _stale in _targets[1:]:
         if os.path.exists(_stale):
             try:
                 os.remove(_stale)
-                print("eliminada copia obsoleta:", os.path.basename(_stale))
+                print("removed stale copy:", os.path.basename(_stale))
             except PermissionError:
-                print(f"AVISO: {os.path.basename(_stale)} quedó OBSOLETA pero está "
-                      f"bloqueada; usa {os.path.basename(OUT_XLSX)}")
+                print(f"WARNING: {os.path.basename(_stale)} is STALE but locked; "
+                      f"use {os.path.basename(OUT_XLSX)}")
 print("OK ->", out_written, flush=True)
 
 # --- resumen de control por consola ---
