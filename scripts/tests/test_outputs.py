@@ -43,7 +43,7 @@ Scenarios: the checks cover every scenario of `solve_scenarios` in
 Config_MOMF_T1_AB.yaml that has outputs. candidate_floors.csv holds the floors
 of the four input workbooks (BAU, INV, OPT, VGB); each solved scenario takes the
 floors of the workbook it is derived from (`derived_scenarios`), because the
-dispatch floors are written before the derived scenarios are created. The
+lower limit constraints are written before the derived scenarios are created. The
 diagnostic check 3 (no --gate) prints the differences between OPT (`BAC`, from
 BAU) and PLAN (`OPC`, from OPT), or BAU and OPT in older combined CSVs; it has no
 pass/fail verdict.

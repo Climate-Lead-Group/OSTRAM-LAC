@@ -90,7 +90,7 @@ Date-stamped files preserve a complete execution history so you can compare runs
 - Extra workbooks that B1 reads (storage, emissions): `inputs/A2_Extra_Inputs/`
 - Workbook templates: `inputs/Miscellaneous/`
 - The OSeMOSYS model file: `inputs/model/`
-- Fixed inputs of the transmission chain and the dispatch floors: `inputs/tx_chain/`
+- Fixed inputs of the transmission chain and the lower limit constraints: `inputs/tx_chain/`
 - Background material that the pipeline does not read: `inputs/reference/`
 - Code: `scripts/` (`pipeline/`, `figures/`, `tools/`, `fix_dispatch/`, `tx_chain/`, `common/`, `tests/`, `experimental/`)
 - Everything the pipeline regenerates: `outputs/` (`A2_Output_Params/`, `A2_Outputs_Params_otoole/`, `Executables/`, `Figures/`, `logs/`, `model/` and the `RELAC_TX_*.csv` files)

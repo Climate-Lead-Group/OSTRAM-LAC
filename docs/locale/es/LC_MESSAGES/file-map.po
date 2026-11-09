@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 09:24-0600\n"
+"POT-Creation-Date: 2026-11-09 13:32-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -247,11 +247,12 @@ msgstr "`inputs/tx_chain/`"
 
 #: ../../file-map.md
 msgid ""
-"Fixed inputs of the transmission chain and of the dispatch floors, "
-"produced once and kept under version control."
+"Fixed inputs of the transmission chain and of the lower limit "
+"constraints, produced once and kept under version control."
 msgstr ""
-"Entradas fijas de la cadena de transmisión y de los pisos de despacho, "
-"generadas una vez y guardadas en el control de versiones."
+"Entradas fijas de la cadena de transmisión y de las restricciones de "
+"límite inferior, generadas una vez y guardadas en el control de "
+"versiones."
 
 #: ../../file-map.md
 msgid "`inputs/reference/`"
@@ -305,10 +306,10 @@ msgid "`scripts/fix_dispatch/`"
 msgstr "`scripts/fix_dispatch/`"
 
 #: ../../file-map.md
-msgid "The dispatch floors used by step 7 of the solver modifier chain."
+msgid "The lower limit constraints used by step 7 of the solver modifier chain."
 msgstr ""
-"Los pisos de despacho que usa el paso 7 de la cadena de modificadores del"
-" solver."
+"Las restricciones de límite inferior que usa el paso 7 de la cadena de "
+"modificadores del solver."
 
 #: ../../file-map.md
 msgid "`scripts/tx_chain/`"
@@ -658,11 +659,11 @@ msgstr "`outputs/fix_dispatch/`"
 
 #: ../../file-map.md
 msgid ""
-"The floor rows that step 7 wrote and the reports of "
+"The lower limit constraint rows that step 7 wrote and the reports of "
 "`scripts/fix_dispatch/`."
 msgstr ""
-"Las filas de pisos que escribió el paso 7 y los informes de "
-"`scripts/fix_dispatch/`."
+"Las filas de restricciones de límite inferior que escribió el paso 7 y "
+"los informes de `scripts/fix_dispatch/`."
 
 #: ../../file-map.md
 msgid "Step 7 and `scripts/fix_dispatch/`"

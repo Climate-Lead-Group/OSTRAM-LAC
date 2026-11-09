@@ -79,7 +79,7 @@ A0 → A1 → A2 → A3_process (`add_max_cap_investment_lid_rule` → `extend_l
 6. `open_pwrbck_caps.py` — if `open_pwrbck_active`
 7. `patch_reserve_margin_repair_careful_xlsx.py` — if `reserve_margin_xlsx_active`
 8. `patch_activity_upper_limit.py` (imported, not a subprocess) — if `activity_upper_limit_active`
-9. dispatch floors, `scripts/fix_dispatch/write_floors.py` (outside this folder) — if `dispatch_floors_active`
+9. lower limit constraints, `scripts/fix_dispatch/write_floors.py` (outside this folder) — if `dispatch_floors_active`
 10. `sync_patched_csvs_from_txt.py` — if `sync_patched_csvs_active` (default False; True in
     `Config_MOMF_T1_AB.yaml`); overwrites the A2 otoole CSVs from the final patched `.txt`
     (runs BEFORE the solve, between the patcher chain and `generate_combined_input_file`)

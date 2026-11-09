@@ -30,7 +30,7 @@ This page lists what each folder and key file of the repository holds. Paths are
 | `inputs/data/` | `Tech_Country_Matrix.xlsx`, `Secondary_Techs_Editor.xlsx`, and the source workbooks read by A1, D1, D2 and B2: capacities and distances, OLADE series, fuel-split shares, firm-capacity fallbacks. |
 | `inputs/Miscellaneous/` | The workbook templates and the otoole conversion files. |
 | `inputs/model/` | `osemosys_fast_preprocessed.txt`, the OSeMOSYS model file that B2 solves. |
-| `inputs/tx_chain/` | Fixed inputs of the transmission chain and of the dispatch floors, produced once and kept under version control. |
+| `inputs/tx_chain/` | Fixed inputs of the transmission chain and of the lower limit constraints, produced once and kept under version control. |
 | `inputs/reference/` | Background material that the pipeline does not read. |
 
 `inputs/README.md` states, folder by folder, what can be edited by hand.
@@ -43,7 +43,7 @@ Each folder has a `README.md` that lists its scripts, what they read and write, 
 |---|---|
 | `scripts/pipeline/` | The pipeline stages A0 to B2, the B1b validator, the modifiers of the solver modifier chain, and the editor tools D1 to D5. |
 | `scripts/pipeline/A3_process/` | The rule scripts that `A3_process.py` runs. |
-| `scripts/fix_dispatch/` | The dispatch floors used by step 7 of the solver modifier chain. |
+| `scripts/fix_dispatch/` | The lower limit constraints used by step 7 of the solver modifier chain. |
 | `scripts/tx_chain/` | The Inertial Transmission Constraints and the scenario transforms, steps 8 and 9 of the solver modifier chain. |
 | `scripts/figures/` | The report and presentation figures, the dashboard and the results tables (see {doc}`figures`). |
 | `scripts/tools/` | Auxiliary tools (see {doc}`auxiliary-tools` and {doc}`country-management`) and `data_patches/`, the record of patches already applied to `inputs/`. |
@@ -84,7 +84,7 @@ Each folder has a `README.md` that lists its scripts, what they read and write, 
 | `outputs/RELAC_TX_data.txt`, `outputs/RELAC_TX_data_storage_delay.txt` | The root datafile of the run. | B2 |
 | `outputs/RELAC_TX_Inputs.csv`, `outputs/RELAC_TX_Outputs.csv`, `outputs/RELAC_TX_Combined_Inputs_Outputs.csv` | The inputs and results of every solved scenario, plus copies with the date of the run. | B2 |
 | `outputs/logs/` | The solver logs. | B2 |
-| `outputs/fix_dispatch/` | The floor rows that step 7 wrote and the reports of `scripts/fix_dispatch/`. | Step 7 and `scripts/fix_dispatch/` |
+| `outputs/fix_dispatch/` | The lower limit constraint rows that step 7 wrote and the reports of `scripts/fix_dispatch/`. | Step 7 and `scripts/fix_dispatch/` |
 | `outputs/Figures/` | The report and presentation figures, the dashboard and the results tables. | `scripts/figures/run_all.py` |
 
 ## Abbreviations

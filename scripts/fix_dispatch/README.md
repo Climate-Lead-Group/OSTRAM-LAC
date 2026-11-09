@@ -1,4 +1,4 @@
-# scripts/fix_dispatch — fossil dispatch-floor fix (candidates, feasibility, writer, QA)
+# scripts/fix_dispatch — fossil lower limit constraints (candidates, feasibility, writer, QA)
 
 Fixes a gap in the pre-2026 activity floors: `TotalTechnologyAnnualActivityLowerLimit` stops at
 2026 for most fossil fleets, so large fleets with a forced build (e.g. BRA/MEX/ARG gas) go

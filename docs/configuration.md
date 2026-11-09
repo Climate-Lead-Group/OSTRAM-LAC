@@ -413,7 +413,7 @@ All paths are relative to the repository root. Values shown are the shipped ones
 | `open_pwrbck_active` | `True` | Reopen PWRBCK* backstop capacity caps |
 | `reserve_margin_xlsx_active` | `True` | Reserve-Margin repair from `firm_capacity_fallbacks_by_cr.xlsx` |
 | `activity_upper_limit_active` | `False` | Cap `TotalTechnologyAnnualActivityUpperLimit` from demand fractions |
-| `dispatch_floors_active` | `True` | Lower Constraints Modifiers: write fossil dispatch floors (`FLOORED`) per base scenario, gated by `preflight_separation_active` |
+| `dispatch_floors_active` | `True` | Lower Constraints Modifiers: write the lower limit constraints of fossil plants (`FLOORED`) per base scenario, gated by `preflight_separation_active` |
 | `veg_tx_active` | `True` | Inertial Transmission Constraints, cross-scenario (`VEGCON`); creates OPT (`BAC`) and PLAN (`OPC`) |
 | `sync_patched_csvs_active` | `True` | Sync modified values back into the otoole CSVs (`sync_patched_csvs_params` lists the parameter blocks copied) |
 

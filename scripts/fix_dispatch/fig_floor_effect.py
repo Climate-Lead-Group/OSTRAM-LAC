@@ -1,4 +1,4 @@
-"""Render the before/after effect of the dispatch-floor fix as a 3-panel figure.
+"""Render the before/after effect of the lower limit constraint fix as a 3-panel figure.
 
 Read-only; standalone analysis, not called by B2.
 

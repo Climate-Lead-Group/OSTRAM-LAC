@@ -1,4 +1,4 @@
-"""Generate candidate dispatch floors 2027-2050 (read-only; manual step, not called by B2).
+"""Generate candidate lower limit constraints 2027-2050 (read-only; manual step, not called by B2).
 
 Floors the FULL fossil fleet (relac_io.nonren_floor_techs), not the old
 11-tech WORKING_SET. WORKING_SET excluded any tech that already had a

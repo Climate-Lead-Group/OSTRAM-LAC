@@ -1,4 +1,4 @@
-"""Shared feasibility model for dispatch floors: FloorVerdict, Feasibility.
+"""Shared feasibility model for lower limit constraints: FloorVerdict, Feasibility.
 
 feasible_floor(tech, year, floor_PJ) answers: can this technology physically
 deliver at least `floor_PJ` of annual generation in `year`, given the capacity
@@ -181,7 +181,7 @@ class Feasibility:
 
     def total_available_capacity(self, tech: str, year: int, apply_life: bool = True) -> float:
         """Residual + cumulative forced capacity, in GW: the whole fleet a
-        fleet-basis dispatch floor multiplies against, as opposed to the
+        fleet-basis lower limit constraint multiplies against, as opposed to the
         forced-only tranche."""
         return self.residual(tech, year) + self.cumulative_forced_capacity(tech, year, apply_life)
 

@@ -212,7 +212,7 @@ its paths from there. YAML config paths are always relative to the repo root.
 | `scripts/common` | Path resolution, YAML config loader, xlsx validation core | `scripts/common/README.md` |
 | `scripts/pipeline` | A0–A3 input preparation, B1 compiler, B1b validator, B2 solver orchestration + patchers, D1–D5 editor tools | `scripts/pipeline/README.md` |
 | `scripts/pipeline/A3_process` | A3 rule scripts (LID rule, LowerLimit extension/reset) | `scripts/pipeline/A3_process/README.md` |
-| `scripts/fix_dispatch` | Dispatch-floor chain used by B2 (candidates, feasibility, floors) | `scripts/fix_dispatch/README.md` |
+| `scripts/fix_dispatch` | Lower limit constraints of fossil plants used by B2 (candidates, feasibility, writer) | `scripts/fix_dispatch/README.md` |
 | `scripts/tx_chain` | Transmission-chain constraints and cost-sensitivity variants run by B2 | `scripts/tx_chain/README.md` |
 | `scripts/tools` | Auxiliary one-shot and maintenance tools (`Z_AUX_*`, country template, validation) | `scripts/tools/README.md` |
 | `scripts/tools/data_patches` | Versioned history of data patches already applied to `inputs/` | `scripts/tools/data_patches/README.md` |

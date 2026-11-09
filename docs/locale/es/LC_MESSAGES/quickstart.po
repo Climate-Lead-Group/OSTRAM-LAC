@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 08:55-0600\n"
+"POT-Creation-Date: 2026-11-09 13:32-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -301,11 +301,11 @@ msgstr "El archivo del modelo OSeMOSYS: `inputs/model/`"
 
 #: ../../quickstart.md:93
 msgid ""
-"Fixed inputs of the transmission chain and the dispatch floors: "
+"Fixed inputs of the transmission chain and the lower limit constraints: "
 "`inputs/tx_chain/`"
 msgstr ""
-"Entradas fijas de la cadena de transmisión y de los pisos de despacho: "
-"`inputs/tx_chain/`"
+"Entradas fijas de la cadena de transmisión y de las restricciones de "
+"límite inferior: `inputs/tx_chain/`"
 
 #: ../../quickstart.md:94
 msgid "Background material that the pipeline does not read: `inputs/reference/`"

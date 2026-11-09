@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 08:35-0600\n"
+"POT-Creation-Date: 2026-11-09 13:32-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -71,11 +71,11 @@ msgstr "Piso de actividad"
 msgid ""
 "A lower limit on the annual generation of a technology, model parameter "
 "`TotalTechnologyAnnualActivityLowerLimit`. The model has two kinds: the "
-"calibration floor and the dispatch floor."
+"calibration floor and the lower limit constraint."
 msgstr ""
 "Límite inferior de la generación anual de una tecnología, parámetro del "
 "modelo `TotalTechnologyAnnualActivityLowerLimit`. El modelo tiene dos "
-"tipos: el piso de calibración y el piso de despacho."
+"tipos: el piso de calibración y la restricción de límite inferior."
 
 #: ../../glossary.md
 msgid "Backstop"
@@ -100,12 +100,10 @@ msgstr "Almacenamiento de respaldo (BDS)"
 #: ../../glossary.md
 msgid ""
 "A storage technology, code BDS, cloned from short-duration storage and "
-"connected to `ELC*02`, where the backstop also injects. It exists only "
-"for Chile and Peru."
+"connected to `ELC*02`, where the backstop also injects."
 msgstr ""
 "Tecnología de almacenamiento, código BDS, clonada del almacenamiento de "
 "corta duración y conectada a `ELC*02`, donde también inyecta el backstop."
-" Solo existe para Chile y Perú."
 
 #: ../../glossary.md
 msgid "Base scenario"
@@ -222,20 +220,6 @@ msgstr ""
 "escenarios derivados."
 
 #: ../../glossary.md
-msgid "Dispatch floor"
-msgstr "Piso de despacho"
-
-#: ../../glossary.md
-msgid ""
-"The activity floor of fossil plants that the Lower Constraints Modifiers "
-"write, so that thermal generation stays at its calibrated or committed "
-"level."
-msgstr ""
-"El piso de actividad de las plantas fósiles que escriben los "
-"modificadores de restricciones inferiores, para que la generación térmica"
-" se mantenga en su nivel calibrado o comprometido."
-
-#: ../../glossary.md
 msgid "Dispatch technology"
 msgstr "Tecnología de despacho"
 
@@ -300,20 +284,6 @@ msgid ""
 msgstr ""
 "Grupo de escenarios que comparten una base de reporte: OPT, ETT, PLAN y "
 "ETT-GP. Las familias OPT y ETT incluyen además variantes de sensibilidad."
-
-#: ../../glossary.md
-msgid "Fuentes sheet"
-msgstr "Hoja Fuentes"
-
-#: ../../glossary.md
-msgid ""
-"The last sheet of `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` and "
-"`A-Xtra_Storage.xlsx`. It records the source of each data block. It is "
-"generated from `inputs/config/data_sources.csv`, and B1 ignores it."
-msgstr ""
-"La última hoja de `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` y "
-"`A-Xtra_Storage.xlsx`. Registra la fuente de cada bloque de datos. Se "
-"genera a partir de `inputs/config/data_sources.csv` y B1 la ignora."
 
 #: ../../glossary.md
 msgid "Historical sync"
@@ -411,11 +381,26 @@ msgstr "Modificadores de restricciones inferiores"
 
 #: ../../glossary.md
 msgid ""
-"Step 7 of the solver modifier chain. It writes the dispatch floors of "
-"each base scenario. Datafile suffix `FLOORED`."
+"Step 7 of the solver modifier chain. It writes the lower limit "
+"constraints of each base scenario. Datafile suffix `FLOORED`."
 msgstr ""
-"Paso 7 de la cadena de modificadores del solver. Escribe los pisos de "
-"despacho de cada escenario base. Sufijo del archivo de datos: `FLOORED`."
+"Paso 7 de la cadena de modificadores del solver. Escribe las "
+"restricciones de límite inferior de cada escenario base. Sufijo del "
+"archivo de datos: `FLOORED`."
+
+#: ../../glossary.md
+msgid "Lower limit constraint"
+msgstr "Restricción de límite inferior"
+
+#: ../../glossary.md
+msgid ""
+"The activity floor of fossil plants that the Lower Constraints Modifiers "
+"write, so that thermal generation stays at its calibrated or committed "
+"level."
+msgstr ""
+"El piso de actividad de las plantas fósiles que escriben los "
+"modificadores de restricciones inferiores, para que la generación térmica"
+" se mantenga en su nivel calibrado o comprometido."
 
 #: ../../glossary.md
 msgid "Model horizon"
@@ -565,6 +550,20 @@ msgstr ""
 "renovables."
 
 #: ../../glossary.md
+msgid "Sources sheet"
+msgstr "Hoja Sources"
+
+#: ../../glossary.md
+msgid ""
+"The last sheet of `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` and "
+"`A-Xtra_Storage.xlsx`. It records the source of each data block. It is "
+"generated from `inputs/config/data_sources.csv`, and B1 ignores it."
+msgstr ""
+"La última hoja de `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` y "
+"`A-Xtra_Storage.xlsx`. Registra la fuente de cada bloque de datos. Se "
+"genera a partir de `inputs/config/data_sources.csv` y B1 la ignora."
+
+#: ../../glossary.md
 msgid "Solver modifier chain"
 msgstr "Cadena de modificadores del solver"
 
@@ -651,10 +650,6 @@ msgid "`lowerlimit_scenarios`, `extend_lowerlimits_pwr.py`"
 msgstr "`lowerlimit_scenarios`, `extend_lowerlimits_pwr.py`"
 
 #: ../../glossary.md
-msgid "`dispatch_floors_active`, `write_floors.py`"
-msgstr "`dispatch_floors_active`, `write_floors.py`"
-
-#: ../../glossary.md
 msgid "`DSPTRN*`"
 msgstr "`DSPTRN*`"
 
@@ -687,6 +682,10 @@ msgid "`write_floors.py`, suffix `FLOORED`"
 msgstr "`write_floors.py`, sufijo `FLOORED`"
 
 #: ../../glossary.md
+msgid "`dispatch_floors_active`, `write_floors.py`"
+msgstr "`dispatch_floors_active`, `write_floors.py`"
+
+#: ../../glossary.md
 msgid "`TRNNLI*`, `RNWNLI*`"
 msgstr "`TRNNLI*`, `RNWNLI*`"
 
@@ -705,6 +704,10 @@ msgstr "`ReserveMargin`, `reserve_margin_xlsx_global_value`"
 #: ../../glossary.md
 msgid "`scenario_transforms`"
 msgstr "`scenario_transforms`"
+
+#: ../../glossary.md
+msgid "`Sources`, `add_sources_sheet.py`"
+msgstr "`Sources`, `add_sources_sheet.py`"
 
 #: ../../glossary.md
 msgid "`storage_delay_active`, suffix `StorageDelayN5`"
@@ -741,4 +744,7 @@ msgstr "Mayor y menor costo de renovables"
 #: ../../glossary.md
 msgid "suffixes `RA` and `RB`: `BRA`, `BRB`, `IRA`, `IRB`"
 msgstr "sufijos `RA` y `RB`: `BRA`, `BRB`, `IRA`, `IRB`"
+
+#~ msgid "Dispatch floor"
+#~ msgstr "Piso de despacho"
 

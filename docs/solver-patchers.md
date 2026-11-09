@@ -161,21 +161,21 @@ Reads rows from the `Secondary Techs` sheet of `A-O_Parametrization.xlsx` whose 
 
 **Script:** [`write_floors.py`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/fix_dispatch/write_floors.py) · **Switch:** `dispatch_floors_active` · **Shipped default: True**
 
-Writes per-technology `TotalTechnologyAnnualActivityLowerLimit` floors for the fossil fleet so the optimiser cannot dump thermal dispatch below its calibrated/committed level. Runs once per base scenario listed in `dispatch_floors_scenarios`; derived scenarios inherit the floored file. Before writing, B2 runs a read-only gate ([`preflight_separation.py`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/fix_dispatch/preflight_separation.py)); a non-zero exit aborts the pipeline.
+Writes the lower limit constraints of the fossil fleet, per-technology `TotalTechnologyAnnualActivityLowerLimit` values, so the optimiser cannot dump thermal dispatch below its calibrated/committed level. Runs once per base scenario listed in `dispatch_floors_scenarios`; derived scenarios inherit the `FLOORED` file. Before writing, B2 runs a read-only gate ([`preflight_separation.py`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/fix_dispatch/preflight_separation.py)); a non-zero exit aborts the pipeline.
 
 | Param | Default | Description |
 |-------|---------|-------------|
-| `dispatch_floors_script` | `scripts/fix_dispatch/write_floors.py` | Floor writer, path relative to the repo root |
-| `dispatch_floors_scenarios` | `["BAU", "OPT", "INV", "VGB"]` | Base scenarios to floor |
+| `dispatch_floors_script` | `scripts/fix_dispatch/write_floors.py` | Writer of the lower limit constraints, path relative to the repo root |
+| `dispatch_floors_scenarios` | `["BAU", "OPT", "INV", "VGB"]` | Base scenarios that receive lower limit constraints |
 | `dispatch_floors_suffix` | `"FLOORED"` | Filename suffix |
-| `preflight_separation_active` | `True` | Run the separation gate before writing floors |
+| `preflight_separation_active` | `True` | Run the separation gate before writing the lower limit constraints |
 | `preflight_separation_script` | `scripts/fix_dispatch/preflight_separation.py` | Gate script |
 
 ### 8. Inertial Transmission Constraints
 
 **Script:** [`veg_tx_constraints.py`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/tx_chain/veg_tx_constraints.py) · **Switch:** `veg_tx_active` · **Shipped default: True**
 
-Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB at the same time (floor raise, calibration of the cost slope, planned-lines ceiling taken from the `OPT` input workbook). Runs once after every base scenario has been floored and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios OPT (`BAC`) and PLAN (`OPC`). See the scenario-code table in {doc}`pipeline`.
+Constrains transmission expansion so that it follows its historical (inertial) trend in the trend scenarios. The file suffix `VEGCON` is historical: it comes from *vegetative constraints*, the former name of these scenarios. Cross-scenario barrier: needs the `_FLOORED.txt` of BAU, OPT, INV and VGB at the same time (floor raise, calibration of the cost slope, planned-lines ceiling taken from the `OPT` input workbook). Runs once after every base scenario has received its lower limit constraints and writes one `*_VEGCON.txt` per scenario into `Executables/<S>_0/`, creating the folders of the derived scenarios OPT (`BAC`) and PLAN (`OPC`). See the scenario-code table in {doc}`pipeline`.
 
 | Param | Default | Description |
 |-------|---------|-------------|

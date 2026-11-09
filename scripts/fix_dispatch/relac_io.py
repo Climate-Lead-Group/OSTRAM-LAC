@@ -1,4 +1,4 @@
-"""Shared read-only IO/parsing library for the dispatch-floor fix (fix_dispatch chain).
+"""Shared read-only IO/parsing library for the lower limit constraint fix (fix_dispatch chain).
 
 Library module imported by six scripts in this folder: feasibility.py,
 make_candidates.py, write_floors.py, validate_constraints.py, floor_effect.py,
@@ -59,7 +59,7 @@ NUCLEAR_CODES = {"URN"}
 RENEWABLE_CODES = {"SPV", "WON", "WOF", "HYD", "BIO", "GEO", "CSP", "WAV"}
 STORAGE_CODES = {"LDS", "SDS"}
 
-# Fuels that receive a dispatch floor: fossil combustion techs only. Nuclear
+# Fuels that receive a lower limit constraint: fossil combustion techs only. Nuclear
 # (URN) is deliberately excluded -- it is dispatched freely on economics
 # (PI decision, 2026-07-03). GAS/COG are listed for completeness; the current
 # model has zero techs on those two fuel codes.
@@ -297,7 +297,7 @@ def load_otoole(scenario: str, param: str) -> pd.DataFrame:
 def nonren_floor_techs(scenario: str) -> list[str]:
     """List all fossil techs (fuel in FLOOR_FUELS) that carry any residual
     capacity, any forced build (TotalAnnualMinCapacityInvestment), or any
-    existing dispatch floor (TotalTechnologyAnnualActivityLowerLimit) in this
+    existing lower limit constraint (TotalTechnologyAnnualActivityLowerLimit) in this
     scenario. This is the full flooring universe, replacing WORKING_SET.
 
     Args:

@@ -26,7 +26,7 @@ B2 stops with an error, before any scenario is solved, when:
 
 - the CSV outputs of stage `executing` in `dvc.yaml` do not carry `prefix_final_files`;
 - steps 8 or 9 of the solver modifier chain are active and the active switches would produce a datafile chain other than `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED`;
-- the read-only preflight of the dispatch floors fails (`preflight_separation_active`);
+- the read-only preflight of the lower limit constraints fails (`preflight_separation_active`);
 - the `FLOORED` datafile of a base scenario is missing, or the internal preflight of the Inertial Transmission Constraints fails;
 - a scenario transform fails its own check or does not write the datafile it should;
 - a scenario of `solve_scenarios` has no final datafile.
@@ -69,13 +69,13 @@ The script reads `outputs/logs/solve_status.csv` and the combined CSV and change
 
 It also reports, for information, how many transmission technologies reach their `TotalAnnualMaxCapacityInvestment` from 2027, by scenario and family (new unplanned lines, repowering, existing lines, interconnectors). The exit code is 0 when the three checks pass and 1 otherwise. Reading the combined CSV takes a few minutes. `--csv`, `--status` and `--tolerance` point it to other files or change the backstop tolerance.
 
-### The dispatch floors
+### The lower limit constraints
 
 ```bash
 python scripts/tests/test_outputs.py --gate
 ```
 
-The gate checks the dispatch floors of every scenario of `solve_scenarios` against `inputs/tx_chain/fix_dispatch/candidate_floors.csv`, each scenario with the floors of its input workbook. Its five checks are complete outputs, floors respected, capacity factors at 90% or more of their target, zero backstop, and no floored plant below a capacity factor of 5%. The exit code is 0 when the five pass. The gate keeps a cache of the combined CSV under `outputs/fix_dispatch/cache/`. Without `--gate`, the script writes four tracked CSVs under `outputs/fix_dispatch/`, so run it with `--gate`.
+The gate checks the lower limit constraints of every scenario of `solve_scenarios` against `inputs/tx_chain/fix_dispatch/candidate_floors.csv`, each scenario with the lower limit constraints of its input workbook. Its five checks are complete outputs, lower limit constraints respected, capacity factors at 90% or more of their target, zero backstop, and no constrained plant below a capacity factor of 5%. The exit code is 0 when the five pass. The gate keeps a cache of the combined CSV under `outputs/fix_dispatch/cache/`. Without `--gate`, the script writes four tracked CSVs under `outputs/fix_dispatch/`, so run it with `--gate`.
 
 ## A checklist
 
@@ -83,5 +83,5 @@ The gate checks the dispatch floors of every scenario of `solve_scenarios` again
 2. B2 did not stop before the solve.
 3. Every scenario is `optimal` in `outputs/logs/solve_status.csv`.
 4. `python scripts/tests/check_run.py` ends with `RUN CHECK: PASS`.
-5. `python scripts/tests/test_outputs.py --gate` shows which dispatch-floor checks pass.
+5. `python scripts/tests/test_outputs.py --gate` shows which checks of the lower limit constraints pass.
 6. The figures and the dashboard are rebuilt from the new combined CSV (see {doc}`figures`).

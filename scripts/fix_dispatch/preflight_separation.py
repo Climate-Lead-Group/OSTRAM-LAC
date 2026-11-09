@@ -4,7 +4,7 @@ Called once by scripts/pipeline/B2_Executing_OG_Model.py, before the
 per-scenario loop, when dispatch_floors_active (preflight_separation_active)
 is set; a non-zero exit aborts B2 before any floor is written.
 
-Fossil dispatch floor (candidate_floors.csv) as a SHARE of electricity
+Fossil lower limit constraint (candidate_floors.csv) as a SHARE of electricity
 demand (SpecifiedAnnualDemand), per scenario. Demand is IDENTICAL across all
 four scenarios (a model constraint), so any BAU-vs-OPT or INV-vs-VGB
 difference in this share is pure floor effect, not a demand artifact. This

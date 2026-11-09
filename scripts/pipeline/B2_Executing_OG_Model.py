@@ -12,7 +12,7 @@ DVC `executing` stage. Its `__main__` block runs, per scenario, in this order:
 7. `patch_reserve_margin_repair_careful_xlsx.py` -- if `reserve_margin_xlsx_active`.
 8. `patch_activity_upper_limit.py` (imported, not a subprocess) -- if
    `activity_upper_limit_active`.
-9. dispatch floors, `scripts/fix_dispatch/write_floors.py` -- if `dispatch_floors_active`
+9. lower limit constraints, `scripts/fix_dispatch/write_floors.py` -- if `dispatch_floors_active`
    (optionally scoped to `dispatch_floors_scenarios`). When `dispatch_floors_active` is
    True, `run_preflight_separation_gate` is invoked once before the scenario loop, but it
    returns immediately unless `preflight_separation_active` is also True; only then does it
@@ -675,7 +675,7 @@ def run_preflight_separation_gate(params, HERE):
                          "antes de continuar (ver reporte arriba).")
 
 def run_dispatch_floors_patcher(params, scenario_name, HERE):
-    """Stage B: fossil dispatch floors. Calls write_floors.py with NO internal changes;
+    """Stage B: fossil lower limit constraints. Calls write_floors.py with NO internal changes;
     produces the sibling _FLOORED.txt in Executables/<S>_0/."""
     if not params.get('dispatch_floors_active', False):
         return
