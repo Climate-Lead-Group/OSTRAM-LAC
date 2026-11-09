@@ -10,7 +10,7 @@ floors in candidate_floors.csv. Four checks, run in this order:
                          contracted_CF * 0.9 (10% solver tolerance). CF basis
                          is controlled by --cf-basis (see below).
   3. SCENARIO SEPARATION fossil generation, renewable share, system cost, CO2,
-                         count of active (CF>5%) dispatchable techs -- BAU vs OPT
+                         count of active (CF>5%) dispatchable techs -- BAC vs OPC
   4. IDLE CAPACITY       CF<5% after 2026, basis controlled by --cf-basis.
 
 --cf-basis {fleet,total}  (default fleet)
@@ -34,15 +34,25 @@ exists to fix. Pointed at a new solve of the FLOORED.txt copies, those rows
 should PASS.
 
 --gate  run the FLOOR-FIX GATE instead of the four diagnostic checks above:
-  a pass/fail acceptance gate (6 checks, fleet-capacity basis, scoped to
+  a pass/fail acceptance gate (5 checks, fleet-capacity basis, scoped to
   scenarios actually present in the outputs) plus a Tier-2 informational
   residual diagnostic that does not affect the gate verdict. Exit code 0 if
   the gate passes, 1 otherwise.
+
+Scenarios: the checks cover every scenario of `solve_scenarios` in
+Config_MOMF_T1_AB.yaml that has outputs. candidate_floors.csv holds the floors
+of the four input workbooks (BAU, INV, OPT, VGB); each solved scenario takes the
+floors of the workbook it is derived from (`derived_scenarios`), because the
+dispatch floors are written before the derived scenarios are created. The
+diagnostic check 3 (no --gate) prints the differences between OPT (`BAC`, from
+BAU) and PLAN (`OPC`, from OPT), or BAU and OPT in older combined CSVs; it has no
+pass/fail verdict.
 
 Inputs:
     outputs/RELAC_TX*Combined_Inputs_Outputs*.csv (largest match under outputs/, via --csv
         or relac_io.find_combined_csv())
     inputs/tx_chain/fix_dispatch/candidate_floors.csv
+    inputs/config/Config_MOMF_T1_AB.yaml (`solve_scenarios`, `derived_scenarios`)
 Outputs:
     outputs/fix_dispatch/test_floor_compliance.csv, test_cf_targets.csv,
         test_scenario_separation.csv, test_idle_capacity.csv (non-gate mode only)
@@ -64,6 +74,7 @@ import sys
 from pathlib import Path
 
 import pandas as pd
+import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # -> scripts/
 from common import relac_paths as P
@@ -77,7 +88,60 @@ AFTER = 2026
 C2A = io.C2A_DEFAULT
 CF_TOLERANCE = 0.9   # realized CF must be >= contracted_CF * this, else flag
 IDLE_CF = 0.05
-ALL_SCENARIOS = io.SCENARIOS  # ["BAU", "INV", "OPT", "VGB"]
+ALL_SCENARIOS = io.SCENARIOS  # ["BAU", "INV", "OPT", "VGB"], the input workbooks
+# Diagnostic check 3 pairs: (scenario with the BAU floors, scenario with the OPT floors), first match wins.
+SEPARATION_PAIRS = [("BAC", "OPC"), ("BAU", "OPT")]
+
+
+def load_scenario_bases(config_path: Path = P.CONFIG_AB) -> dict[str, str]:
+    """Map every scenario that B2 solves to the input workbook whose floors it carries.
+
+    Args:
+        config_path: Config_MOMF_T1_AB.yaml.
+
+    Returns:
+        {scenario: workbook} for each entry of `solve_scenarios`, with the workbook taken
+        from `derived_scenarios` (a workbook maps to itself). When `solve_scenarios` is
+        absent, B2 solves the four workbooks, so they map to themselves.
+    """
+    with open(config_path, encoding="utf-8") as fh:
+        cfg = yaml.safe_load(fh) or {}
+    solve = cfg.get("solve_scenarios") or list(ALL_SCENARIOS)
+    derived = cfg.get("derived_scenarios") or {}
+    return {s: derived.get(s, s) for s in solve}
+
+
+def expand_candidates(cand_all: pd.DataFrame, bases: dict[str, str],
+                      scenarios: list[str]) -> pd.DataFrame:
+    """Give each scenario the candidate_floors.csv rows of its input workbook.
+
+    Args:
+        cand_all: candidate_floors.csv, keyed by workbook in its Scenario column.
+        bases: the map returned by load_scenario_bases().
+        scenarios: the scenarios to keep, in order.
+
+    Returns:
+        One copy of the workbook's rows per scenario, with Scenario set to the scenario
+        code. Scenarios without a workbook in `bases` get no rows.
+    """
+    parts = []
+    for s in scenarios:
+        if s not in bases:
+            continue
+        sub = cand_all[cand_all.Scenario == bases[s]].copy()
+        sub["Scenario"] = s
+        parts.append(sub)
+    if not parts:
+        return cand_all.iloc[0:0].copy()
+    return pd.concat(parts, ignore_index=True)
+
+
+def separation_pair(present: list[str]) -> tuple[str, str] | None:
+    """Return the first pair of SEPARATION_PAIRS whose two scenarios are both present."""
+    for low, high in SEPARATION_PAIRS:
+        if low in present and high in present:
+            return low, high
+    return None
 
 OUTPUT_PARAMS = [
     "TotalCapacityAnnual",
@@ -256,14 +320,19 @@ def check_no_backstop(out: dict, present: list[str]) -> dict:
     return nonzero
 
 
-def residual_idle_gw_years(out: dict, cand_all: pd.DataFrame, present: list[str]) -> float:
+def residual_idle_gw_years(out: dict, cand_all: pd.DataFrame, present: list[str],
+                           bases: dict[str, str] | None = None) -> float:
     """Sum of residual (non-forced) capacity, in GW-years, that sits at an
     implied CF < 5% across floor-universe node-years after AFTER. Mirrors the
     Step-3 residual quantification from the artifact-verification session:
-    the floor (if any) is assumed served first, residual takes the rest."""
+    the floor (if any) is assumed served first, residual takes the rest.
+    `cand_all` is keyed by scenario (see expand_candidates); `bases` maps each
+    scenario to the input workbook whose floored techs it uses."""
+    bases = bases or {s: s for s in present}
     floor_lookup = {(r.Scenario, r.TECHNOLOGY, int(r.YEAR)): float(r.floor_PJ)
                     for r in cand_all.itertuples(index=False)}
-    floor_techs = {s: set(io.nonren_floor_techs(s)) for s in present}
+    techs_by_base = {b: set(io.nonren_floor_techs(b)) for b in {bases[s] for s in present}}
+    floor_techs = {s: techs_by_base[bases[s]] for s in present}
     total = 0.0
     for (s, t, y), total_gw in out["cap"].items():
         if s not in present or t not in floor_techs.get(s, set()) or y <= AFTER:
@@ -280,26 +349,30 @@ def residual_idle_gw_years(out: dict, cand_all: pd.DataFrame, present: list[str]
     return total
 
 
-def run_gate(cand_all: pd.DataFrame, out: dict) -> bool:
-    """Run the FLOOR-FIX GATE: 6 pass/fail checks plus one informational diagnostic.
+def run_gate(cand_all: pd.DataFrame, out: dict, bases: dict[str, str] | None = None) -> bool:
+    """Run the FLOOR-FIX GATE: 5 pass/fail checks plus one informational diagnostic.
 
     Args:
-        cand_all: full candidate_floors.csv, one row per (scenario, tech, year) floor.
+        cand_all: full candidate_floors.csv, one row per (workbook, tech, year) floor.
         out: the dict returned by load_outputs().
+        bases: {scenario: input workbook} from load_scenario_bases(); defaults to the
+            four workbooks mapped to themselves.
 
     Returns:
-        True if all 6 checks pass (feasibility, floors respected, CF target on fleet
-        basis, no backstop dispatch, BAU-vs-OPT scenario separation, no floored plant
-        idle), False otherwise. Also prints each check's verdict and the Tier-2
-        residual-idle GW-years diagnostic, which does not affect the return value.
+        True if all 5 checks pass (feasibility, floors respected, CF target on fleet
+        basis, no backstop dispatch, no floored plant idle), False otherwise. Also prints each check's verdict and
+        the Tier-2 residual-idle GW-years diagnostic, which does not affect the return
+        value.
     """
-    present = sorted({s for (s, _t, _y) in out["cap"]} & set(ALL_SCENARIOS))
-    not_solved = [s for s in ALL_SCENARIOS if s not in present]
+    bases = bases or {s: s for s in ALL_SCENARIOS}
+    present = [s for s in bases if s in {k[0] for k in out["cap"]}]
+    not_solved = [s for s in bases if s not in present]
     print(f"Scenarios present in outputs: {present}")
     if not_solved:
-        print(f"NOT SOLVED (excluded from the gate, not a fail): {not_solved}")
+        print(f"NOT IN OUTPUTS (excluded from the gate, not a fail): {not_solved}")
 
-    cand = cand_all[cand_all.Scenario.isin(present) & (cand_all.fleet_GW > 0)].copy()
+    cand_scen = expand_candidates(cand_all, bases, present)
+    cand = cand_scen[cand_scen.fleet_GW > 0].copy()
     results = {}
 
     print()
@@ -337,37 +410,20 @@ def run_gate(cand_all: pd.DataFrame, out: dict) -> bool:
     for k, v in list(backstop.items())[:10]:
         print(f"    {k}: {v:.4f} PJ")
 
-    # 5. Scenario separation, BAU vs OPT, expected direction.
-    if {"BAU", "OPT"}.issubset(set(present)):
-        sep = scenario_separation(out)
-        b = sep[sep.scenario == "BAU"].iloc[0]
-        o = sep[sep.scenario == "OPT"].iloc[0]
-        cond_fossil = o.total_fossil_PJ > b.total_fossil_PJ
-        cond_renew = o.renewable_share_pct is not None and b.renewable_share_pct is not None \
-            and o.renewable_share_pct <= b.renewable_share_pct
-        cond_cost = (o.total_system_cost or 0) > (b.total_system_cost or 0)
-        results["5"] = bool(cond_fossil and cond_renew and cond_cost)
-        print(f"5. Scenario separation (OPT forces more fossil): {'PASS' if results['5'] else 'FAIL'}"
-              f"  (fossil OPT>BAU={cond_fossil}, renew_share OPT<=BAU={cond_renew}, "
-              f"cost OPT>BAU={cond_cost})")
-    else:
-        results["5"] = False
-        print("5. Scenario separation: FAIL (need both BAU and OPT solved to compare)")
-
-    # 6. No floored plant idle, fleet-capacity basis.
+    # 5. No floored plant idle, fleet-capacity basis.
     idle = check_idle_capacity(cand, out, basis="fleet")
-    results["6"] = len(idle) == 0
-    print(f"6. No floored plant idle (fleet CF >= {IDLE_CF:.0%}): {'PASS' if results['6'] else 'FAIL'}"
+    results["5"] = len(idle) == 0
+    print(f"5. No floored plant idle (fleet CF >= {IDLE_CF:.0%}): {'PASS' if results['5'] else 'FAIL'}"
           f"  ({len(idle)} idle rows)")
 
     n_pass = sum(results.values())
-    verdict = n_pass == 6
+    verdict = n_pass == 5
     print("\n" + "=" * 78)
-    print(f"FLOOR-FIX GATE: {'PASS' if verdict else 'FAIL'} ({n_pass}/6)")
+    print(f"FLOOR-FIX GATE: {'PASS' if verdict else 'FAIL'} ({n_pass}/5)")
     print("=" * 78)
 
     print("\n--- SEPARATE ISSUE (informational, does not affect the gate) ---")
-    gw_years_idle = residual_idle_gw_years(out, cand_all, present)
+    gw_years_idle = residual_idle_gw_years(out, cand_scen, present, bases)
     print(f"Residual GW-years at CF < 5% behind the working-set nodes: {gw_years_idle:.1f}")
     print("Retirement-profile issue, not addressed by floors. Pending separate workstream.")
 
@@ -389,7 +445,7 @@ def main():
                     help="CF denominator for checks 2 and 4: 'fleet' (floor performance, "
                          "default) or 'total' (node-level, model's own reported capacity)")
     ap.add_argument("--gate", action="store_true",
-                    help="Run the FLOOR-FIX GATE (6 pass/fail checks) instead of the four "
+                    help="Run the FLOOR-FIX GATE (5 pass/fail checks) instead of the four "
                          "diagnostic checks. Exit code 0 on PASS, 1 on FAIL.")
     args = ap.parse_args()
 
@@ -397,12 +453,16 @@ def main():
     tag = "test_outputs_" + csv_path.stem
     print(f"Combined CSV: {csv_path.name}")
 
-    cand = pd.read_csv(CANDIDATES_CSV, comment="#")
+    cand_all = pd.read_csv(CANDIDATES_CSV, comment="#")
     out = load_outputs(csv_path, tag)
+    bases = load_scenario_bases()
 
     if args.gate:
-        passed = run_gate(cand, out)
+        passed = run_gate(cand_all, out, bases)
         sys.exit(0 if passed else 1)
+
+    solved = [s for s in bases if s in {k[0] for k in out["cap"]}]
+    cand = expand_candidates(cand_all, bases, solved)
 
     print(f"CF basis: {args.cf_basis}")
 
@@ -437,24 +497,26 @@ def main():
                   f"(threshold {r.threshold})")
 
     print("\n" + "=" * 78)
-    print("CHECK 3: SCENARIO SEPARATION (BAU vs OPT at minimum)")
+    print("CHECK 3: SCENARIO SEPARATION (BAC vs OPC, or BAU vs OPT in older CSVs)")
     print("=" * 78)
     sep = scenario_separation(out)
     sep.to_csv(P.FIX_DISPATCH_OUT / "test_scenario_separation.csv", index=False)
     with pd.option_context("display.width", 200):
         print(sep.to_string(index=False))
-    if {"BAU", "OPT"}.issubset(set(sep["scenario"])):
-        b = sep[sep.scenario == "BAU"].iloc[0]
-        o = sep[sep.scenario == "OPT"].iloc[0]
-        print("\n  BAU vs OPT deltas:")
+    pair = separation_pair(list(sep["scenario"]))
+    if pair:
+        low, high = pair
+        b = sep[sep.scenario == low].iloc[0]
+        o = sep[sep.scenario == high].iloc[0]
+        print(f"\n  {low} vs {high} deltas:")
         for col in ["total_fossil_PJ", "renewable_share_pct", "total_system_cost", "total_CO2",
                     "n_active_dispatchable_techs"]:
             bv, ov = b[col], o[col]
             if bv is None or ov is None or pd.isna(bv) or pd.isna(ov):
-                print(f"    {col}: BAU={_fmt(bv)}  OPT={_fmt(ov)}  (cannot compute delta)")
+                print(f"    {col}: {low}={_fmt(bv)}  {high}={_fmt(ov)}  (cannot compute delta)")
                 continue
             pct = 100 * (ov - bv) / bv if bv else float("inf")
-            print(f"    {col}: BAU={_fmt(bv)}  OPT={_fmt(ov)}  delta={_fmt(ov-bv)} ({pct:+.1f}%)")
+            print(f"    {col}: {low}={_fmt(bv)}  {high}={_fmt(ov)}  delta={_fmt(ov-bv)} ({pct:+.1f}%)")
 
     print("\n" + "=" * 78)
     if args.cf_basis == "fleet":

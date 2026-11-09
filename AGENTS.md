@@ -242,6 +242,10 @@ python scripts/tests/test_b2_chain_helper.py
 python scripts/tests/test_scenario_subset.py
 python scripts/tests/test_report_style_lang.py
 python scripts/tests/test_costo_unitario_demand.py
+python scripts/tests/test_solve_status.py
+python scripts/tests/test_run_checks.py
+# after a B2 run with the solver (read-only, a few minutes):
+python scripts/tests/check_run.py                       # solver status, scenarios present, zero backstop
 ```
 
 ## Actions that require explicit approval

@@ -27,8 +27,12 @@ DVC `executing` stage. Its `__main__` block runs, per scenario, in this order:
     under `scripts/tx_chain/`, `run_scenario_transforms`) -- if `veg_tx_active` /
     `scenario_transforms` is configured.
 12. Solve (`main_executer`: builds the solver command for glpk/cbc/cplex/gurobi, runs it,
-    converts `.sol` results to CSV via otoole, then concatenates per scenario).
-13. `concatenate_all_scenarios` -- combines all scenarios into `outputs/RELAC_TX_*.csv`.
+    reads the solver status from the `.sol` file (`solve_status.py`), converts `.sol`
+    results to CSV via otoole, then concatenates per scenario). A scenario that fails does
+    not stop the run; `report_solve_status` writes `outputs/logs/solve_status.csv` and
+    lists the failed ones.
+13. `concatenate_all_scenarios` -- combines all scenarios into `outputs/RELAC_TX_*.csv`,
+    leaving out the scenarios that failed in this run.
 14. `Z_AUX_capital_annualization_script.py` -- if `annualize_capital: true`.
 
 Inputs:
@@ -41,6 +45,7 @@ Outputs:
     outputs/Executables/<scenario>_0/* (datafile, solver output, otoole result CSVs)
     outputs/RELAC_TX_*.csv (combined inputs/outputs/combined, via `prefix_final_files`)
     outputs/logs/ (solver logs; also the working directory while this script runs)
+    outputs/logs/solve_status.csv (solver status of every scenario of the run)
 Usage:
     python -u scripts/pipeline/B2_Executing_OG_Model.py
 Notes:
@@ -63,6 +68,7 @@ from datetime import date, datetime
 import multiprocessing as mp
 import math
 import re
+import traceback
 from typing import List, Any
 from pathlib import Path
 import numpy as np
@@ -70,10 +76,17 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # -> scripts/
 from common import relac_paths as P
 SCRIPT_DIR = Path(__file__).resolve().parent   # scripts/pipeline (patchers hermanos)
+sys.path.insert(0, str(SCRIPT_DIR))
+import solve_status as ss
 ROOT = str(P.REPO_ROOT)                        # ancla de TODAS las rutas del YAML
 
 ########################################################################################
 def sort_csv_files_in_folder(folder_path):
+    """Sort every CSV of a folder by all its columns, in place.
+
+    Side effects:
+        Overwrites each CSV; a file that cannot be read is reported and left as is.
+    """
     if not os.path.isdir(folder_path):
         print(f"The path is invalid: {folder_path}")
         return
@@ -121,6 +134,7 @@ def chain_suffixes(params, scenario_name, upto=None):
     return out
 
 def chained_base(params, scenario_name, upto=None):
+    """Return the datafile base name of a scenario: `<preprocess_data_name><scenario>_0` plus the active chain suffixes (see chain_suffixes)."""
     base = f"{params['preprocess_data_name']}{scenario_name}_0"
     parts = chain_suffixes(params, scenario_name, upto=upto)
     return f"{base}_{'_'.join(parts)}" if parts else base
@@ -868,6 +882,11 @@ def run_preprocessing_script(params, scenario_name):
         print('#------------------------------------------------------------------------------#')
 
 def check_enviro_variables(solver_command):
+    """Add the first path that `where`/`which` returns for a solver command to PATH when it is not there.
+
+    Side effects:
+        Mutates os.environ["PATH"]; prints a message when the command is not found.
+    """
     # Determine the command based on the operating system
     command = 'where' if platform.system() == 'Windows' else 'which'
     
@@ -888,7 +907,26 @@ def check_enviro_variables(solver_command):
     #
 
 def get_config_main_path(here, base_folder):
+    """Return `base_folder` resolved against the repository root; `here` is not used."""
     return os.path.join(ROOT, base_folder)
+
+class ScenarioFailed(RuntimeError):
+    """Raised by main_executer when a scenario ends without a usable solution."""
+
+
+def run_scenario_process(params, scenario_name, HERE):
+    """Run main_executer as the target of a parallel solver process.
+
+    Side effects:
+        Exits the process with code 1 when the scenario fails, so the parent run can list
+        it; any other exception also ends the process with a non-zero exit code.
+    """
+    try:
+        main_executer(params, scenario_name, HERE)
+    except ScenarioFailed as exc:
+        print(f'❌ {exc}')
+        sys.exit(1)
+
 
 def main_executer(params, scenario_name, HERE):
     """Solve one scenario's datafile and convert/concatenate its results.
@@ -900,6 +938,15 @@ def main_executer(params, scenario_name, HERE):
     runs `concat_csvs` to produce `<scenario>_0_Output.csv`. Skips the solve/convert
     steps when `execute_model` and `create_matrix` are both false. Runs in a separate
     `multiprocessing.Process` per scenario when `params['parallel']` is set.
+
+    After the solve it reads the solver status from the `.sol` file (solve_status.py) and
+    writes it to `Executables/<scenario>_0/_solve_status.csv`. A scenario without an
+    optimal solution is not converted to CSV.
+
+    Raises:
+        ScenarioFailed: if the solver command fails, the solution is not optimal, or the
+            otoole conversion or the per-scenario concatenation fails. The status file
+            records which.
 
     Args:
         params: parsed Config_MOMF_T1_AB.yaml mapping (solver settings, thread/seed
@@ -920,6 +967,7 @@ def main_executer(params, scenario_name, HERE):
     output_file = data_file + params['output_files']
     this_case = scenario_name + '_0.txt'
     print(f"[chain] solver data file: {data_file}.txt")
+    ss.clear_scenario_status(folder_scenario)
 
     # Determining the solver based on parameters
     solver = params['solver']
@@ -994,10 +1042,37 @@ def main_executer(params, scenario_name, HERE):
 
     if params['execute_model'] or params['create_matrix']:
         for cmd in commands:
-            subprocess.run(cmd, shell=True, check=True)
-        
-    print(f'✅ Scenario {scenario_name}_0 solve successfully.')
+            try:
+                subprocess.run(cmd, shell=True, check=True)
+            except subprocess.CalledProcessError as exc:
+                ss.write_scenario_status(folder_scenario, scenario_name, solver, 'solver_error',
+                                         detail=f'exit code {exc.returncode}: {cmd[:120]}')
+                raise ScenarioFailed(f'{scenario_name}_0: solver command failed '
+                                     f'(exit code {exc.returncode})') from exc
+
+    objective = None
+    if params['execute_model']:
+        status, objective, detail = ss.parse_solution_status(output_file + '.sol', solver)
+        ss.write_scenario_status(folder_scenario, scenario_name, solver, status, objective, detail)
+        if not ss.is_solved(status):
+            print(f'❌ Scenario {scenario_name}_0: solver status {status} ({detail}). '
+                  f'Its results are not converted and it is left out of the combined CSVs.')
+            raise ScenarioFailed(f'{scenario_name}_0: solver status {status}')
+        print(f'✅ Scenario {scenario_name}_0 solve successfully ({status}, objective {objective}).')
+    else:
+        ss.write_scenario_status(folder_scenario, scenario_name, solver, 'not_solved',
+                                 detail='execute_model is False')
+        print(f'Scenario {scenario_name}_0: execute_model is False, the solver was not run.')
     print('\n#------------------------------------------------------------------------------#')
+
+    def _run_conversion(cmd):
+        try:
+            subprocess.run(cmd, shell=True, check=True)
+        except subprocess.CalledProcessError as exc:
+            ss.write_scenario_status(folder_scenario, scenario_name, solver, 'conversion_error',
+                                     objective, detail=f'exit code {exc.returncode}: {cmd[:120]}')
+            raise ScenarioFailed(f'{scenario_name}_0: result conversion failed '
+                                 f'(exit code {exc.returncode})') from exc
 
     # Paths for converting outputs
     file_path_conv_format = os.path.join(ROOT, params['Miscellaneous'], params['conv_format'])
@@ -1010,13 +1085,13 @@ def main_executer(params, scenario_name, HERE):
     if solver == 'glpk' and params['glpk_option'] == 'new':
         str_outputs = f'otoole results {solver} csv {output_file}.sol {file_path_outputs} datafile {data_file}.txt {file_path_conv_format} --glpk_model {output_file}.glp'
         if params['execute_model']:
-            subprocess.run(str_outputs, shell=True, check=True)
+            _run_conversion(str_outputs)
 
     elif solver in ['cbc', 'cplex', 'gurobi']:
 
         str_outputs = f'otoole results {solver} csv {output_file}.sol {file_path_outputs} csv {file_path_template} {file_path_conv_format} 2> {output_file}.log'
         if params['execute_model']:
-            subprocess.run(str_outputs, shell=True, check=True)
+            _run_conversion(str_outputs)
 
     # Module to concatenate csvs otoole outputs
     if solver in ['glpk', 'cbc', 'cplex', 'gurobi']:
@@ -1024,11 +1099,22 @@ def main_executer(params, scenario_name, HERE):
         script_concate_csv = os.path.join(file_conca_csvs, params['concat_csvs'])
         str_otoole_concate_csv = f'python -u {script_concate_csv} {file_path_outputs} {output_file}'  # last int is the ID tier
         if params['concat_otoole_csv']:
-            subprocess.run(str_otoole_concate_csv, shell=True, check=True)
+            _run_conversion(str_otoole_concate_csv)
         print(f'✅ Concatenated outputs to {scenario_name}_0_Output.csv successfully.')
         print('\n#------------------------------------------------------------------------------#')
 
 def delete_files(file, data_file, solver):
+    """Delete a scenario's solution, datafile and solver intermediate files (`del_files`).
+
+    Args:
+        file: the `.sol` file; its `.log` (when empty) and `.glp`/`.lp` siblings go too.
+        data_file: the datafile `.txt`.
+        solver: the solver of the run; CPLEX and Gurobi logs in the working directory
+            (outputs/logs/) are deleted as well.
+
+    Side effects:
+        Removes files from disk.
+    """
     # Delete files
     if file:
         shutil.os.remove(file)
@@ -1218,7 +1304,36 @@ def active_output_csv_candidates(params, scenario_future_name):
     return candidates
 
 
-def concatenate_all_scenarios(HERE, params):
+def report_solve_status(params, solve_list, exitcodes):
+    """Write outputs/logs/solve_status.csv and print which scenarios failed.
+
+    Args:
+        params: parsed Config_MOMF_T1_AB.yaml mapping (`executables`, `solver`).
+        solve_list: the scenarios sent to the solver in this run.
+        exitcodes: scenario -> exit code of its solver process (0 or 1 in linear runs).
+
+    Returns:
+        The codes of the failed scenarios, in solve order.
+
+    Side effects:
+        Overwrites outputs/logs/solve_status.csv.
+    """
+    folders = {s: os.path.join(ROOT, params['executables'], s + '_0') for s in solve_list}
+    rows = ss.collect_run_status(folders, params['solver'], exitcodes)
+    path = ss.write_run_status(rows, P.LOGS / 'solve_status.csv')
+    failed = ss.failed_scenarios(rows)
+    print('\n#------------------------------------------------------------------------------#')
+    print(f'Solver status of {len(rows)} scenarios written to {path}')
+    for r in rows:
+        print(f"  {r['scenario']:<8} {r['status']:<18} {r['objective']}")
+    if failed:
+        print(f'❌ {len(failed)} of {len(rows)} scenarios failed: {failed}. '
+              f'They are left out of the combined CSVs; the others are concatenated.')
+    print('#------------------------------------------------------------------------------#')
+    return failed
+
+
+def concatenate_all_scenarios(HERE, params, exclude=None):
     """
     Iterates over all scenario folders in `base_input_path` (excluding 'Default'),
     reads *_Input.csv and *_Output.csv files, adds scenario metadata columns, concatenates
@@ -1231,9 +1346,13 @@ def concatenate_all_scenarios(HERE, params):
           - inputs_file (str): Base name for the inputs CSV.
           - outputs_file (str): Base name for the outputs CSV.
           - combined_file (str, optional): Base name for the combined inputs+outputs CSV.
+        exclude: scenario codes left out entirely (inputs and outputs), normally the
+            scenarios that failed in this run, whose folders may still hold the CSVs of an
+            earlier run.
     Returns:
         tuple: (input_csv_path, output_csv_path, combined_csv_path)
     """
+    exclude = set(exclude or [])
     # Columnas de metadatos que movemos al frente
     keys_sets_delete = [
         'REGION','YEAR','TECHNOLOGY','FUEL','EMISSION','MODE_OF_OPERATION',
@@ -1253,6 +1372,9 @@ def concatenate_all_scenarios(HERE, params):
         parts = scenario_future_name.rsplit("_", 1)
         scenario = parts[0]
         future = parts[1]
+        if scenario in exclude:
+            print(f'  [concat] {scenario_future_name}: left out (failed in this run)')
+            continue
 
         input_file = os.path.join(scenario_path, f"{scenario_future_name}_Input.csv")
         output_file = None
@@ -1561,7 +1683,11 @@ if __name__ == "__main__":
     # Execute txt model
     solve_list = solve_universe(params, HERE, scenarios)
     sync_inputs_for_solve(params, HERE, solve_list)
+    failed_scenarios = []
     if params['execute_model'] or params['create_matrix']:
+        # A scenario that fails does not stop the run: the others are still solved and
+        # concatenated, and the failed ones are listed in outputs/logs/solve_status.csv.
+        exitcodes = {}
         if params['parallel']:
             print('Entered Parallelization of model execution')
             max_x_per_iter = params['max_x_per_iter'] # FLAG: This is an input
@@ -1570,19 +1696,30 @@ if __name__ == "__main__":
             for scens_list in scenarios_list_max_per_iter:
                 processes = []
                 for scenario_name in scens_list:
-                    p = mp.Process(target=main_executer, args=(params, scenario_name, HERE) )
-                    processes.append(p)
+                    p = mp.Process(target=run_scenario_process, args=(params, scenario_name, HERE) )
+                    processes.append((scenario_name, p))
                     p.start()
                 #
-                for process in processes:
+                for scenario_name, process in processes:
                     process.join()
-            
+                    exitcodes[scenario_name] = process.exitcode
+
         # This is for the linear version
         else:
             print('Started Linear Runs')
             for scenario_num in solve_list:
-                main_executer(params, scenario_num, HERE)
-    
+                try:
+                    main_executer(params, scenario_num, HERE)
+                    exitcodes[scenario_num] = 0
+                except ScenarioFailed as exc:
+                    print(f'❌ {exc}')
+                    exitcodes[scenario_num] = 1
+                except Exception:
+                    traceback.print_exc()
+                    print(f'❌ {scenario_num}_0: unexpected error; continuing with the next scenario.')
+                    exitcodes[scenario_num] = 1
+        failed_scenarios = report_solve_status(params, solve_list, exitcodes)
+
     ###############################################################################################
     # Delete files
     for scenario_name in solve_list:        
@@ -1614,7 +1751,8 @@ if __name__ == "__main__":
     ###############################################################################################
     # Concatenate inputs and outputs
     if params['concat_scenarios_csv']:
-        input_output_path, output_output_path, combined_output_path = concatenate_all_scenarios(HERE,params)
+        input_output_path, output_output_path, combined_output_path = concatenate_all_scenarios(
+            HERE, params, exclude=failed_scenarios)
         print(f'✅ Concatenate inputs and outputs for all scenarios successfully.')
         print(f'The name files are: ({input_output_path}), ({output_output_path}) and ({combined_output_path})')
     ###############################################################################################
