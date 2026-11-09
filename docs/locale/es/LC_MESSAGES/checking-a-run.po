@@ -1,0 +1,412 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025-2026, Climate Lead Group
+# This file is distributed under the same license as the OSTRAM LAC package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: OSTRAM LAC 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 11:01-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../checking-a-run.md:1
+msgid "Checking a run"
+msgstr "Verificar una corrida"
+
+#: ../../checking-a-run.md:3
+#, python-brace-format
+msgid ""
+"This page lists what to check before and after the solver runs in Stage "
+"B2, which files hold the answer, and the commands that read them. Terms "
+"follow the {doc}`glossary`; the stages are described in {doc}`pipeline`."
+msgstr ""
+"Esta página indica qué revisar antes y después de que el solver corra en "
+"la etapa B2, qué archivos tienen la respuesta y qué comandos los leen. "
+"Los términos siguen el {doc}`glossary`; las etapas se describen en "
+"{doc}`pipeline`."
+
+#: ../../checking-a-run.md:5
+msgid "Before the solve"
+msgstr "Antes de resolver"
+
+#: ../../checking-a-run.md:7
+msgid "The B1b validation report"
+msgstr "El reporte de validación de B1b"
+
+#: ../../checking-a-run.md:9
+msgid ""
+"B1 runs the pre-solver validation B1b on each scenario before it compiles"
+" the workbook (see [Pre-solver validation (B1b)](pipeline.md#pre-solver-"
+"validation-b1b)). When B1b finds issues, it writes them, with the fixes "
+"it applies, to `outputs/Executables/<scenario>_0/_validation_report.csv` "
+"and prints `[VALIDATE] Report:` with the path. When it finds none, it "
+"prints `[VALIDATE] No issues found.` and writes no report, so a report "
+"already in the folder comes from an earlier run; check its date. If B1b "
+"itself fails, B1 prints `[WARN] Pre-solver validation failed: ... "
+"Continuing.` and compiles the workbook without the fixes, so look for "
+"that line in the B1 output."
+msgstr ""
+"B1 ejecuta la validación previa al solver B1b en cada escenario antes de "
+"compilar el libro (ver [Validación previa al solver (B1b)](pipeline.md"
+"#pre-solver-validation-b1b)). Cuando B1b encuentra problemas, los "
+"escribe, junto con las correcciones que aplica, en "
+"`outputs/Executables/<scenario>_0/_validation_report.csv` e imprime "
+"`[VALIDATE] Report:` con la ruta. Cuando no encuentra ninguno, imprime "
+"`[VALIDATE] No issues found.` y no escribe reporte, así que un reporte "
+"que ya esté en la carpeta proviene de una corrida anterior; revise su "
+"fecha. Si el propio B1b falla, B1 imprime `[WARN] Pre-solver validation "
+"failed: ... Continuing.` y compila el libro sin las correcciones, así que"
+" busque esa línea en la salida de B1."
+
+#: ../../checking-a-run.md:11
+msgid "Datafiles without the solver"
+msgstr "Archivos de datos sin el solver"
+
+#: ../../checking-a-run.md:13
+msgid ""
+"B2 can build every datafile of the solver modifier chain without solving."
+" Set these keys in `Config_MOMF_T1_AB.yaml` and run B2:"
+msgstr ""
+"B2 puede generar todos los archivos de datos de la cadena de "
+"modificadores del solver sin resolver. Fije estas claves en "
+"`Config_MOMF_T1_AB.yaml` y ejecute B2:"
+
+#: ../../checking-a-run.md:21
+msgid ""
+"B2 then runs the whole chain, creates the derived scenarios and checks "
+"that every scenario of `solve_scenarios` has its final datafile, and "
+"stops before the solver. `concat_scenarios_csv: False` keeps the combined"
+" CSVs of the last run, which would otherwise be rebuilt from the result "
+"folders of that earlier run. The datafiles and the otoole CSVs under "
+"`outputs/` are rewritten. Set the three keys back to `True` for a full "
+"run."
+msgstr ""
+"B2 ejecuta entonces toda la cadena, crea los escenarios derivados, "
+"comprueba que cada escenario de `solve_scenarios` tenga su archivo de "
+"datos final y se detiene antes del solver. `concat_scenarios_csv: False` "
+"conserva los CSV combinados de la última corrida, que de otro modo se "
+"reconstruirían a partir de las carpetas de resultados de esa corrida "
+"anterior. Los archivos de datos y los CSV de otoole bajo `outputs/` se "
+"reescriben. Vuelva a poner las tres claves en `True` para una corrida "
+"completa."
+
+#: ../../checking-a-run.md:23
+msgid "Conditions that stop B2"
+msgstr "Condiciones que detienen B2"
+
+#: ../../checking-a-run.md:25
+msgid "B2 stops with an error, before any scenario is solved, when:"
+msgstr "B2 se detiene con un error, antes de resolver cualquier escenario, cuando:"
+
+#: ../../checking-a-run.md:27
+msgid ""
+"the CSV outputs of stage `executing` in `dvc.yaml` do not carry "
+"`prefix_final_files`;"
+msgstr ""
+"las salidas CSV de la etapa `executing` en `dvc.yaml` no llevan "
+"`prefix_final_files`;"
+
+#: ../../checking-a-run.md:28
+msgid ""
+"steps 8 or 9 of the solver modifier chain are active and the active "
+"switches would produce a datafile chain other than "
+"`StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED`;"
+msgstr ""
+"los pasos 8 o 9 de la cadena de modificadores del solver están activos y "
+"los interruptores activos producirían una cadena de archivos de datos "
+"distinta de `StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED`;"
+
+#: ../../checking-a-run.md:29
+msgid ""
+"the read-only preflight of the dispatch floors fails "
+"(`preflight_separation_active`);"
+msgstr ""
+"falla la comprobación previa, de solo lectura, de los pisos de despacho "
+"(`preflight_separation_active`);"
+
+#: ../../checking-a-run.md:30
+msgid ""
+"the `FLOORED` datafile of a base scenario is missing, or the internal "
+"preflight of the Inertial Transmission Constraints fails;"
+msgstr ""
+"falta el archivo de datos `FLOORED` de un escenario base, o falla la "
+"comprobación previa interna de las restricciones inerciales de "
+"transmisión;"
+
+#: ../../checking-a-run.md:31
+msgid ""
+"a scenario transform fails its own check or does not write the datafile "
+"it should;"
+msgstr ""
+"una transformación de escenario falla su propia comprobación o no escribe"
+" el archivo de datos que le corresponde;"
+
+#: ../../checking-a-run.md:32
+msgid "a scenario of `solve_scenarios` has no final datafile."
+msgstr "un escenario de `solve_scenarios` no tiene archivo de datos final."
+
+#: ../../checking-a-run.md:34
+msgid "The message names the step and the file."
+msgstr "El mensaje indica el paso y el archivo."
+
+#: ../../checking-a-run.md:36
+msgid "The datafile that reaches the solver"
+msgstr "El archivo de datos que llega al solver"
+
+#: ../../checking-a-run.md:38
+#, python-brace-format
+msgid ""
+"The file that the solver reads is "
+"`outputs/Executables/<scenario>_0/Pre_processed_<scenario>_0_StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON.txt`"
+" with the shipped configuration. The reserve-margin repair (step 5) "
+"writes its warnings next to its datafile, in a file ending in "
+"`.warnings.txt`. {doc}`solver-patchers` describes every step."
+msgstr ""
+"Con la configuración de fábrica, el archivo que lee el solver es "
+"`outputs/Executables/<scenario>_0/Pre_processed_<scenario>_0_StorageDelayN5_OpenBCK_RMCarefulXLSX_FLOORED_VEGCON.txt`."
+" La reparación del margen de reserva (paso 5) escribe sus advertencias "
+"junto a su archivo de datos, en un archivo que termina en "
+"`.warnings.txt`. {doc}`solver-patchers` describe cada paso."
+
+#: ../../checking-a-run.md:40
+msgid "After the solve"
+msgstr "Después de resolver"
+
+#: ../../checking-a-run.md:42
+msgid "The solver status"
+msgstr "El estado del solver"
+
+#: ../../checking-a-run.md:44
+msgid ""
+"After each solve, B2 reads the status from the solution file of the "
+"solver and writes it next to the datafile, in `_solve_status.csv`. At the"
+" end of the run it prints one line per scenario and writes all of them to"
+" `outputs/logs/solve_status.csv`, with the columns `scenario`, `solver`, "
+"`status`, `objective` and `detail`."
+msgstr ""
+"Después de cada resolución, B2 lee el estado en el archivo de solución "
+"del solver y lo escribe junto al archivo de datos, en "
+"`_solve_status.csv`. Al final de la corrida imprime una línea por "
+"escenario y los escribe todos en `outputs/logs/solve_status.csv`, con las"
+" columnas `scenario`, `solver`, `status`, `objective` y `detail`."
+
+#: ../../checking-a-run.md
+msgid "Status"
+msgstr "Estado"
+
+#: ../../checking-a-run.md
+msgid "Meaning"
+msgstr "Significado"
+
+#: ../../checking-a-run.md
+msgid "`optimal`"
+msgstr "`optimal`"
+
+#: ../../checking-a-run.md
+msgid "The solver found the optimal solution."
+msgstr "El solver encontró la solución óptima."
+
+#: ../../checking-a-run.md
+msgid "`solution_written`"
+msgstr "`solution_written`"
+
+#: ../../checking-a-run.md
+msgid "Gurobi wrote a solution; its file records no status."
+msgstr "Gurobi escribió una solución; su archivo no registra el estado."
+
+#: ../../checking-a-run.md
+msgid "`infeasible`, `unbounded`, `time_limit`, `not_optimal`"
+msgstr "`infeasible`, `unbounded`, `time_limit`, `not_optimal`"
+
+#: ../../checking-a-run.md
+msgid "The solver ended without an optimal solution."
+msgstr "El solver terminó sin una solución óptima."
+
+#: ../../checking-a-run.md
+msgid "`no_solution`"
+msgstr "`no_solution`"
+
+#: ../../checking-a-run.md
+msgid "The solver wrote no solution file."
+msgstr "El solver no escribió archivo de solución."
+
+#: ../../checking-a-run.md
+msgid "`solver_error`, `conversion_error`"
+msgstr "`solver_error`, `conversion_error`"
+
+#: ../../checking-a-run.md
+msgid ""
+"The solver command, or the conversion of the results with otoole, ended "
+"with an error."
+msgstr ""
+"El comando del solver, o la conversión de los resultados con otoole, "
+"terminó con un error."
+
+#: ../../checking-a-run.md
+msgid "`process_failed`, `missing`"
+msgstr "`process_failed`, `missing`"
+
+#: ../../checking-a-run.md
+msgid "The scenario's process ended without writing a status."
+msgstr "El proceso del escenario terminó sin escribir un estado."
+
+#: ../../checking-a-run.md
+msgid "`not_solved`"
+msgstr "`not_solved`"
+
+#: ../../checking-a-run.md
+msgid "B2 ran with `execute_model: False`."
+msgstr "B2 se ejecutó con `execute_model: False`."
+
+#: ../../checking-a-run.md:56
+msgid ""
+"A scenario that fails does not stop the run. B2 solves the other "
+"scenarios, lists the failed ones at the end, and leaves them out of the "
+"combined CSVs, so that the results of an earlier run in their folders are"
+" not mixed in. B2 still ends without an error, so read the status table "
+"or run the check below. The solver logs, such as `cplex.log`, are in "
+"`outputs/logs/`."
+msgstr ""
+"Un escenario que falla no detiene la corrida. B2 resuelve los demás "
+"escenarios, lista los fallidos al final y los deja fuera de los CSV "
+"combinados, para que no se mezclen los resultados de una corrida anterior"
+" que estén en sus carpetas. B2 termina igualmente sin error, así que "
+"revise la tabla de estados o ejecute la verificación de abajo. Los "
+"registros del solver, como `cplex.log`, están en `outputs/logs/`."
+
+#: ../../checking-a-run.md:58
+msgid "The run check"
+msgstr "La verificación de la corrida"
+
+#: ../../checking-a-run.md:64
+msgid ""
+"The script reads `outputs/logs/solve_status.csv` and the combined CSV and"
+" changes nothing. It runs three checks:"
+msgstr ""
+"El script lee `outputs/logs/solve_status.csv` y el CSV combinado y no "
+"modifica nada. Ejecuta tres verificaciones:"
+
+#: ../../checking-a-run.md:66
+msgid ""
+"Every scenario of `solve_scenarios` has the status `optimal` (or "
+"`solution_written`)."
+msgstr ""
+"Todos los escenarios de `solve_scenarios` tienen el estado `optimal` (o "
+"`solution_written`)."
+
+#: ../../checking-a-run.md:67
+msgid "Every scenario of `solve_scenarios` has results in the combined CSV."
+msgstr ""
+"Todos los escenarios de `solve_scenarios` tienen resultados en el CSV "
+"combinado."
+
+#: ../../checking-a-run.md:68
+msgid ""
+"No backstop technology `PWRBCK*` has activity above 1e-6 PJ. The check "
+"lists the scenario, technology and year of each row above that value."
+msgstr ""
+"Ninguna tecnología backstop `PWRBCK*` tiene actividad mayor que 1e-6 PJ. "
+"La verificación lista el escenario, la tecnología y el año de cada fila "
+"que supera ese valor."
+
+#: ../../checking-a-run.md:70
+msgid ""
+"It also reports, for information, how many transmission technologies "
+"reach their `TotalAnnualMaxCapacityInvestment` from 2027, by scenario and"
+" family (new unplanned lines, repowering, existing lines, "
+"interconnectors). The exit code is 0 when the three checks pass and 1 "
+"otherwise. Reading the combined CSV takes a few minutes. `--csv`, "
+"`--status` and `--tolerance` point it to other files or change the "
+"backstop tolerance."
+msgstr ""
+"También informa, a modo de referencia, cuántas tecnologías de transmisión"
+" alcanzan su `TotalAnnualMaxCapacityInvestment` desde 2027, por escenario"
+" y familia (líneas nuevas no planificadas, repotenciación, líneas "
+"existentes, interconexiones). El código de salida es 0 cuando las tres "
+"verificaciones pasan y 1 en caso contrario. Leer el CSV combinado toma "
+"unos minutos. `--csv`, `--status` y `--tolerance` indican otros archivos "
+"o cambian la tolerancia del backstop."
+
+#: ../../checking-a-run.md:72
+msgid "The dispatch floors"
+msgstr "Los pisos de despacho"
+
+#: ../../checking-a-run.md:78
+#, python-format
+msgid ""
+"The gate checks the dispatch floors of every scenario of "
+"`solve_scenarios` against "
+"`inputs/tx_chain/fix_dispatch/candidate_floors.csv`, each scenario with "
+"the floors of its input workbook. Its five checks are complete outputs, "
+"floors respected, capacity factors at 90% or more of their target, zero "
+"backstop, and no floored plant below a capacity factor of 5%. The exit "
+"code is 0 when the five pass. The gate keeps a cache of the combined CSV "
+"under `outputs/fix_dispatch/cache/`. Without `--gate`, the script writes "
+"four tracked CSVs under `outputs/fix_dispatch/`, so run it with `--gate`."
+msgstr ""
+"La compuerta revisa los pisos de despacho de cada escenario de "
+"`solve_scenarios` contra "
+"`inputs/tx_chain/fix_dispatch/candidate_floors.csv`, cada escenario con "
+"los pisos de su libro de entrada. Sus cinco verificaciones son: "
+"resultados completos, pisos respetados, factores de planta de al menos el"
+" 90 % de su meta, backstop nulo y ninguna planta con piso por debajo de "
+"un factor de planta de 5 %. El código de salida es 0 cuando las cinco "
+"pasan. La compuerta guarda una caché del CSV combinado en "
+"`outputs/fix_dispatch/cache/`. Sin `--gate`, el script escribe cuatro CSV"
+" versionados en `outputs/fix_dispatch/`, así que ejecútelo con `--gate`."
+
+#: ../../checking-a-run.md:80
+msgid "A checklist"
+msgstr "Lista de verificación"
+
+#: ../../checking-a-run.md:82
+msgid ""
+"B1 printed no `[WARN] Pre-solver validation failed` line, and each "
+"scenario either printed `[VALIDATE] No issues found.` or has a "
+"`_validation_report.csv` of this run with the fixes you expect."
+msgstr ""
+"B1 no imprimió ninguna línea `[WARN] Pre-solver validation failed`, y "
+"cada escenario imprimió `[VALIDATE] No issues found.` o tiene un "
+"`_validation_report.csv` de esta corrida con las correcciones esperadas."
+
+#: ../../checking-a-run.md:83
+msgid "B2 did not stop before the solve."
+msgstr "B2 no se detuvo antes de resolver."
+
+#: ../../checking-a-run.md:84
+msgid "Every scenario is `optimal` in `outputs/logs/solve_status.csv`."
+msgstr ""
+"Todos los escenarios están en `optimal` en "
+"`outputs/logs/solve_status.csv`."
+
+#: ../../checking-a-run.md:85
+msgid "`python scripts/tests/check_run.py` ends with `RUN CHECK: PASS`."
+msgstr "`python scripts/tests/check_run.py` termina con `RUN CHECK: PASS`."
+
+#: ../../checking-a-run.md:86
+msgid ""
+"`python scripts/tests/test_outputs.py --gate` shows which dispatch-floor "
+"checks pass."
+msgstr ""
+"`python scripts/tests/test_outputs.py --gate` muestra qué verificaciones "
+"de los pisos de despacho pasan."
+
+#: ../../checking-a-run.md:87
+#, python-brace-format
+msgid ""
+"The figures and the dashboard are rebuilt from the new combined CSV (see "
+"{doc}`figures`)."
+msgstr ""
+"Las figuras y el dashboard se regeneran a partir del nuevo CSV combinado "
+"(ver {doc}`figures`)."
+

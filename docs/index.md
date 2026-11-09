@@ -32,6 +32,7 @@ quickstart
 
 pipeline
 solver-patchers
+checking-a-run
 figures
 ```
 
