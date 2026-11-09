@@ -11,6 +11,7 @@ Source code: <https://github.com/Climate-Lead-Group/OSTRAM-LAC>
 study/introduction
 study/methodology
 study/assumptions
+study/known-limitations
 study/scenarios
 study/results
 study/authors
@@ -39,6 +40,7 @@ figures
 :caption: Reference
 
 glossary
+file-map
 configuration
 data-reference
 sources

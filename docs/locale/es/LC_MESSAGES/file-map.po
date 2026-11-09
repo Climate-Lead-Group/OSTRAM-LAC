@@ -1,0 +1,870 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025-2026, Climate Lead Group
+# This file is distributed under the same license as the OSTRAM LAC package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: OSTRAM LAC 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 09:24-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../file-map.md:1
+msgid "File map"
+msgstr "Mapa de archivos"
+
+#: ../../file-map.md:3
+#, python-brace-format
+msgid ""
+"This page lists what each folder and key file of the repository holds. "
+"Paths are relative to the repository root. Terms follow the "
+"{doc}`glossary`."
+msgstr ""
+"Esta página indica qué contiene cada carpeta y cada archivo clave del "
+"repositorio. Las rutas son relativas a la raíz del repositorio. Los "
+"términos siguen el {doc}`glossary`."
+
+#: ../../file-map.md:5
+msgid "Top level"
+msgstr "Raíz del repositorio"
+
+#: ../../file-map.md
+msgid "Path"
+msgstr "Ruta"
+
+#: ../../file-map.md
+msgid "What it holds"
+msgstr "Qué contiene"
+
+#: ../../file-map.md
+msgid "`run.py`"
+msgstr "`run.py`"
+
+#: ../../file-map.md
+#, python-brace-format
+msgid ""
+"The launcher. It creates the `OSTRAM-env` environment when it is missing "
+"and runs `dvc repro` (see {doc}`quickstart`)."
+msgstr ""
+"El lanzador. Crea el entorno `OSTRAM-env` si no existe y ejecuta `dvc "
+"repro` (ver {doc}`quickstart`)."
+
+#: ../../file-map.md
+msgid "`dvc.yaml`"
+msgstr "`dvc.yaml`"
+
+#: ../../file-map.md
+msgid ""
+"The DVC pipeline: stage `preprocess` runs B1 and stage `executing` runs "
+"B2."
+msgstr ""
+"El pipeline de DVC: la etapa `preprocess` ejecuta B1 y la etapa "
+"`executing` ejecuta B2."
+
+#: ../../file-map.md
+msgid "`dvc.lock`"
+msgstr "`dvc.lock`"
+
+#: ../../file-map.md
+msgid ""
+"The state of the inputs and outputs of each DVC stage after the last `dvc"
+" repro`."
+msgstr ""
+"El estado de las entradas y salidas de cada etapa de DVC después del "
+"último `dvc repro`."
+
+#: ../../file-map.md
+msgid "`environment.yaml`"
+msgstr "`environment.yaml`"
+
+#: ../../file-map.md
+msgid "The conda environment `OSTRAM-env`."
+msgstr "El entorno conda `OSTRAM-env`."
+
+#: ../../file-map.md
+msgid "`README.md`"
+msgstr "`README.md`"
+
+#: ../../file-map.md
+msgid "The entry page of the repository."
+msgstr "La página de entrada del repositorio."
+
+#: ../../file-map.md
+msgid "`AGENTS.md`"
+msgstr "`AGENTS.md`"
+
+#: ../../file-map.md
+msgid ""
+"Working conventions for contributors and coding agents: docstrings, "
+"folder READMEs, writing rules, actions that need approval. `CLAUDE.md` "
+"only points to it."
+msgstr ""
+"Convenciones de trabajo para colaboradores y agentes de programación: "
+"docstrings, README de carpeta, reglas de redacción y acciones que "
+"requieren aprobación. `CLAUDE.md` solo remite a este archivo."
+
+#: ../../file-map.md
+msgid "`LICENSE`"
+msgstr "`LICENSE`"
+
+#: ../../file-map.md
+msgid "The Apache License, Version 2.0."
+msgstr "La licencia Apache, versión 2.0."
+
+#: ../../file-map.md
+msgid "`.readthedocs.yaml`"
+msgstr "`.readthedocs.yaml`"
+
+#: ../../file-map.md
+msgid "The ReadTheDocs build of this site."
+msgstr "La compilación de este sitio en ReadTheDocs."
+
+#: ../../file-map.md
+msgid "`inputs/`"
+msgstr "`inputs/`"
+
+#: ../../file-map.md
+msgid "Data and configuration maintained by hand."
+msgstr "Datos y configuración que se mantienen a mano."
+
+#: ../../file-map.md
+msgid "`scripts/`"
+msgstr "`scripts/`"
+
+#: ../../file-map.md
+msgid "All the code."
+msgstr "Todo el código."
+
+#: ../../file-map.md
+msgid "`outputs/`"
+msgstr "`outputs/`"
+
+#: ../../file-map.md
+msgid "Everything the pipeline regenerates."
+msgstr "Todo lo que el pipeline regenera."
+
+#: ../../file-map.md
+msgid "`docs/`"
+msgstr "`docs/`"
+
+#: ../../file-map.md
+msgid "This documentation."
+msgstr "Esta documentación."
+
+#: ../../file-map.md:22
+msgid "inputs"
+msgstr "inputs"
+
+#: ../../file-map.md
+msgid "`inputs/config/`"
+msgstr "`inputs/config/`"
+
+#: ../../file-map.md
+#, python-brace-format
+msgid ""
+"The YAML configuration (`Config_MOMF_T1_A.yaml`, "
+"`Config_MOMF_T1_AB.yaml`, `Config_country_codes.yaml`, "
+"`Config_region_consolidation.yaml`, `Config_tech_equivalences.yaml`), the"
+" source table `data_sources.csv`, and `A3_process/` with `lid_rule.yaml` "
+"and `TECH_TYPES.csv`. {doc}`configuration` documents each file."
+msgstr ""
+"La configuración YAML (`Config_MOMF_T1_A.yaml`, `Config_MOMF_T1_AB.yaml`,"
+" `Config_country_codes.yaml`, `Config_region_consolidation.yaml`, "
+"`Config_tech_equivalences.yaml`), la tabla de fuentes `data_sources.csv` "
+"y `A3_process/`, con `lid_rule.yaml` y `TECH_TYPES.csv`. "
+"{doc}`configuration` documenta cada archivo."
+
+#: ../../file-map.md
+msgid "`inputs/A1_Outputs/A1_Outputs_<scenario>/`"
+msgstr "`inputs/A1_Outputs/A1_Outputs_<scenario>/`"
+
+#: ../../file-map.md
+msgid "The A-O workbooks of each input workbook: `BAU`, `INV`, `OPT` and `VGB`."
+msgstr "Los libros A-O de cada libro de entrada: `BAU`, `INV`, `OPT` y `VGB`."
+
+#: ../../file-map.md
+msgid "`inputs/A2_Extra_Inputs/`"
+msgstr "`inputs/A2_Extra_Inputs/`"
+
+#: ../../file-map.md
+msgid "`A-Xtra_Storage.xlsx` and the other extra workbooks that B1 reads."
+msgstr "`A-Xtra_Storage.xlsx` y los demás libros adicionales que lee B1."
+
+#: ../../file-map.md
+msgid "`inputs/OG_csvs_inputs/`"
+msgstr "`inputs/OG_csvs_inputs/`"
+
+#: ../../file-map.md
+msgid "The OSeMOSYS Global CSVs that A1 reads."
+msgstr "Los CSV de OSeMOSYS Global que lee A1."
+
+#: ../../file-map.md
+msgid "`inputs/data/`"
+msgstr "`inputs/data/`"
+
+#: ../../file-map.md
+msgid ""
+"`Tech_Country_Matrix.xlsx`, `Secondary_Techs_Editor.xlsx`, and the source"
+" workbooks read by A1, D1, D2 and B2: capacities and distances, OLADE "
+"series, fuel-split shares, firm-capacity fallbacks."
+msgstr ""
+"`Tech_Country_Matrix.xlsx`, `Secondary_Techs_Editor.xlsx` y los libros de"
+" origen que leen A1, D1, D2 y B2: capacidades y distancias, series de "
+"OLADE, participaciones por combustible y valores de respaldo de capacidad"
+" firme."
+
+#: ../../file-map.md
+msgid "`inputs/Miscellaneous/`"
+msgstr "`inputs/Miscellaneous/`"
+
+#: ../../file-map.md
+msgid "The workbook templates and the otoole conversion files."
+msgstr "Las plantillas de los libros y los archivos de conversión de otoole."
+
+#: ../../file-map.md
+msgid "`inputs/model/`"
+msgstr "`inputs/model/`"
+
+#: ../../file-map.md
+msgid "`osemosys_fast_preprocessed.txt`, the OSeMOSYS model file that B2 solves."
+msgstr ""
+"`osemosys_fast_preprocessed.txt`, el archivo del modelo OSeMOSYS que "
+"resuelve B2."
+
+#: ../../file-map.md
+msgid "`inputs/tx_chain/`"
+msgstr "`inputs/tx_chain/`"
+
+#: ../../file-map.md
+msgid ""
+"Fixed inputs of the transmission chain and of the dispatch floors, "
+"produced once and kept under version control."
+msgstr ""
+"Entradas fijas de la cadena de transmisión y de los pisos de despacho, "
+"generadas una vez y guardadas en el control de versiones."
+
+#: ../../file-map.md
+msgid "`inputs/reference/`"
+msgstr "`inputs/reference/`"
+
+#: ../../file-map.md
+msgid "Background material that the pipeline does not read."
+msgstr "Material de referencia que el pipeline no lee."
+
+#: ../../file-map.md:36
+msgid "`inputs/README.md` states, folder by folder, what can be edited by hand."
+msgstr ""
+"`inputs/README.md` indica, carpeta por carpeta, qué se puede editar a "
+"mano."
+
+#: ../../file-map.md:38
+msgid "scripts"
+msgstr "scripts"
+
+#: ../../file-map.md:40
+msgid ""
+"Each folder has a `README.md` that lists its scripts, what they read and "
+"write, and how to run them."
+msgstr ""
+"Cada carpeta tiene un `README.md` que lista sus scripts, qué leen y "
+"escriben y cómo se ejecutan."
+
+#: ../../file-map.md
+msgid "`scripts/pipeline/`"
+msgstr "`scripts/pipeline/`"
+
+#: ../../file-map.md
+msgid ""
+"The pipeline stages A0 to B2, the B1b validator, the modifiers of the "
+"solver modifier chain, and the editor tools D1 to D5."
+msgstr ""
+"Las etapas del pipeline de A0 a B2, el validador B1b, los modificadores "
+"de la cadena de modificadores del solver y las herramientas de edición D1"
+" a D5."
+
+#: ../../file-map.md
+msgid "`scripts/pipeline/A3_process/`"
+msgstr "`scripts/pipeline/A3_process/`"
+
+#: ../../file-map.md
+msgid "The rule scripts that `A3_process.py` runs."
+msgstr "Los scripts de reglas que ejecuta `A3_process.py`."
+
+#: ../../file-map.md
+msgid "`scripts/fix_dispatch/`"
+msgstr "`scripts/fix_dispatch/`"
+
+#: ../../file-map.md
+msgid "The dispatch floors used by step 7 of the solver modifier chain."
+msgstr ""
+"Los pisos de despacho que usa el paso 7 de la cadena de modificadores del"
+" solver."
+
+#: ../../file-map.md
+msgid "`scripts/tx_chain/`"
+msgstr "`scripts/tx_chain/`"
+
+#: ../../file-map.md
+msgid ""
+"The Inertial Transmission Constraints and the scenario transforms, steps "
+"8 and 9 of the solver modifier chain."
+msgstr ""
+"Las restricciones inerciales de transmisión y las transformaciones de "
+"escenario, pasos 8 y 9 de la cadena de modificadores del solver."
+
+#: ../../file-map.md
+msgid "`scripts/figures/`"
+msgstr "`scripts/figures/`"
+
+#: ../../file-map.md
+#, python-brace-format
+msgid ""
+"The report and presentation figures, the dashboard and the results tables"
+" (see {doc}`figures`)."
+msgstr ""
+"Las figuras del informe y de la presentación, el dashboard y las tablas "
+"de resultados (ver {doc}`figures`)."
+
+#: ../../file-map.md
+msgid "`scripts/tools/`"
+msgstr "`scripts/tools/`"
+
+#: ../../file-map.md
+#, python-brace-format
+msgid ""
+"Auxiliary tools (see {doc}`auxiliary-tools` and {doc}`country-"
+"management`) and `data_patches/`, the record of patches already applied "
+"to `inputs/`."
+msgstr ""
+"Herramientas auxiliares (ver {doc}`auxiliary-tools` y {doc}`country-"
+"management`) y `data_patches/`, el registro de los parches ya aplicados a"
+" `inputs/`."
+
+#: ../../file-map.md
+msgid "`scripts/common/`"
+msgstr "`scripts/common/`"
+
+#: ../../file-map.md
+msgid ""
+"Shared helpers: `relac_paths.py`, the single source of every path, the "
+"configuration loader and the workbook validation core."
+msgstr ""
+"Utilidades compartidas: `relac_paths.py`, la única fuente de todas las "
+"rutas, el cargador de configuración y el núcleo de validación de libros."
+
+#: ../../file-map.md
+msgid "`scripts/tests/`"
+msgstr "`scripts/tests/`"
+
+#: ../../file-map.md
+msgid "The tests that run without the solver and the documentation checker."
+msgstr ""
+"Las pruebas que se ejecutan sin el solver y el verificador de la "
+"documentación."
+
+#: ../../file-map.md
+msgid "`scripts/experimental/`"
+msgstr "`scripts/experimental/`"
+
+#: ../../file-map.md
+msgid "Exploratory scripts outside the pipeline."
+msgstr "Scripts exploratorios fuera del pipeline."
+
+#: ../../file-map.md:54
+msgid "docs"
+msgstr "docs"
+
+#: ../../file-map.md
+msgid "`docs/*.md`"
+msgstr "`docs/*.md`"
+
+#: ../../file-map.md
+msgid ""
+"The pages of the tool: installation, pipeline, configuration and "
+"reference."
+msgstr ""
+"Las páginas de la herramienta: instalación, pipeline, configuración y "
+"referencia."
+
+#: ../../file-map.md
+msgid "`docs/study/`"
+msgstr "`docs/study/`"
+
+#: ../../file-map.md
+msgid ""
+"The pages of the study: introduction, methodology, assumptions, scenarios"
+" and results."
+msgstr ""
+"Las páginas del estudio: introducción, metodología, supuestos, escenarios"
+" y resultados."
+
+#: ../../file-map.md
+msgid "`docs/_static/`"
+msgstr "`docs/_static/`"
+
+#: ../../file-map.md
+msgid ""
+"The figures of the site, each with an English `<name>.png` and a Spanish "
+"`<name>.es.png`."
+msgstr ""
+"Las figuras del sitio, cada una con un `<name>.png` en inglés y un "
+"`<name>.es.png` en español."
+
+#: ../../file-map.md
+msgid "`docs/locale/es/LC_MESSAGES/`"
+msgstr "`docs/locale/es/LC_MESSAGES/`"
+
+#: ../../file-map.md
+msgid "The Spanish translation, one `.po` catalogue per page."
+msgstr "La traducción al español, un catálogo `.po` por página."
+
+#: ../../file-map.md
+msgid "`docs/conf.py`, `docs/requirements.txt`"
+msgstr "`docs/conf.py`, `docs/requirements.txt`"
+
+#: ../../file-map.md
+msgid "The Sphinx configuration and the packages the build needs."
+msgstr "La configuración de Sphinx y los paquetes que necesita la compilación."
+
+#: ../../file-map.md
+msgid "`docs/dev/`"
+msgstr "`docs/dev/`"
+
+#: ../../file-map.md
+msgid "Internal working notes. They are not part of the site."
+msgstr "Notas internas de trabajo. No forman parte del sitio."
+
+#: ../../file-map.md:65
+msgid "Generated files"
+msgstr "Archivos generados"
+
+#: ../../file-map.md
+msgid "Written by"
+msgstr "Escrito por"
+
+#: ../../file-map.md
+msgid "`inputs/data/Tech_Country_Matrix.xlsx`"
+msgstr "`inputs/data/Tech_Country_Matrix.xlsx`"
+
+#: ../../file-map.md
+msgid "The technology-country matrix."
+msgstr "La matriz tecnología-país."
+
+#: ../../file-map.md
+msgid "A0"
+msgstr "A0"
+
+#: ../../file-map.md
+msgid "`inputs/A1_Outputs/A1_Outputs_<scenario>/A-O_*.xlsx`"
+msgstr "`inputs/A1_Outputs/A1_Outputs_<scenario>/A-O_*.xlsx`"
+
+#: ../../file-map.md
+msgid "The A-O workbooks, rebuilt from the templates."
+msgstr "Los libros A-O, reconstruidos a partir de las plantillas."
+
+#: ../../file-map.md
+msgid "A1; then edited by A2, A3_process, D2 and B1b"
+msgstr "A1; después los editan A2, A3_process, D2 y B1b"
+
+#: ../../file-map.md
+msgid "`inputs/A1_Outputs/A1_Outputs_<scenario>/lid_rule_changes_<stamp>.json`"
+msgstr "`inputs/A1_Outputs/A1_Outputs_<scenario>/lid_rule_changes_<stamp>.json`"
+
+#: ../../file-map.md
+msgid "The cells changed by the lid rule."
+msgstr "Las celdas que cambió la regla de tope."
+
+#: ../../file-map.md
+msgid "A3_process"
+msgstr "A3_process"
+
+#: ../../file-map.md
+msgid "`inputs/A1_Outputs/A1_Outputs_<scenario>/A-O_Parametrization.backup_pre_validate_<stamp>.xlsx`"
+msgstr "`inputs/A1_Outputs/A1_Outputs_<scenario>/A-O_Parametrization.backup_pre_validate_<stamp>.xlsx`"
+
+#: ../../file-map.md
+msgid "The workbook as it was before the B1b fixes."
+msgstr "El libro tal como estaba antes de las correcciones de B1b."
+
+#: ../../file-map.md
+msgid "B1b"
+msgstr "B1b"
+
+#: ../../file-map.md
+msgid "`inputs/A1_Outputs/A1_Outputs_<scenario>/A-O_*_Completed.xlsx`"
+msgstr "`inputs/A1_Outputs/A1_Outputs_<scenario>/A-O_*_Completed.xlsx`"
+
+#: ../../file-map.md
+msgid "Rounded copies of the A-O workbooks, for review."
+msgstr "Copias redondeadas de los libros A-O, para revisión."
+
+#: ../../file-map.md
+msgid "B1"
+msgstr "B1"
+
+#: ../../file-map.md
+msgid "`inputs/data/Secondary_Techs_Editor.xlsx`"
+msgstr "`inputs/data/Secondary_Techs_Editor.xlsx`"
+
+#: ../../file-map.md
+msgid "The editor template, filled in by hand afterwards."
+msgstr "La plantilla del editor, que después se completa a mano."
+
+#: ../../file-map.md
+msgid "D1"
+msgstr "D1"
+
+#: ../../file-map.md
+msgid "`outputs/A2_Output_Params/<scenario>/`"
+msgstr "`outputs/A2_Output_Params/<scenario>/`"
+
+#: ../../file-map.md
+msgid "One CSV per OSeMOSYS parameter."
+msgstr "Un CSV por parámetro de OSeMOSYS."
+
+#: ../../file-map.md
+msgid "`outputs/A2_Structure_Lists.xlsx`"
+msgstr "`outputs/A2_Structure_Lists.xlsx`"
+
+#: ../../file-map.md
+msgid "The sets and structure lists."
+msgstr "Los conjuntos y las listas de estructura."
+
+#: ../../file-map.md
+msgid "`outputs/A2_Outputs_Params_otoole/<scenario>/`"
+msgstr "`outputs/A2_Outputs_Params_otoole/<scenario>/`"
+
+#: ../../file-map.md
+msgid "The CSVs in otoole format, synced with the values the solver receives."
+msgstr ""
+"Los CSV en formato otoole, sincronizados con los valores que recibe el "
+"solver."
+
+#: ../../file-map.md
+msgid "B2"
+msgstr "B2"
+
+#: ../../file-map.md
+msgid "`outputs/Executables/<scenario>_0/Pre_processed_<scenario>_0_<suffixes>.txt`"
+msgstr "`outputs/Executables/<scenario>_0/Pre_processed_<scenario>_0_<suffixes>.txt`"
+
+#: ../../file-map.md
+msgid ""
+"The datafiles of the solver modifier chain; the one with every suffix "
+"goes to the solver."
+msgstr ""
+"Los archivos de datos de la cadena de modificadores del solver; el que "
+"lleva todos los sufijos es el que va al solver."
+
+#: ../../file-map.md
+msgid "`outputs/Executables/<scenario>_0/_validation_report.csv`"
+msgstr "`outputs/Executables/<scenario>_0/_validation_report.csv`"
+
+#: ../../file-map.md
+msgid "The issues found by B1b and the fixes applied."
+msgstr "Los problemas que encontró B1b y las correcciones aplicadas."
+
+#: ../../file-map.md
+msgid "`outputs/Executables/<scenario>_0/<datafile>.warnings.txt`"
+msgstr "`outputs/Executables/<scenario>_0/<datafile>.warnings.txt`"
+
+#: ../../file-map.md
+msgid "The warnings of the reserve-margin repair."
+msgstr "Las advertencias de la reparación del margen de reserva."
+
+#: ../../file-map.md
+msgid "B2, step 5"
+msgstr "B2, paso 5"
+
+#: ../../file-map.md
+msgid "`outputs/Executables/<scenario>_0/<datafile>_output.*`"
+msgstr "`outputs/Executables/<scenario>_0/<datafile>_output.*`"
+
+#: ../../file-map.md
+msgid "The solver files: the LP matrix, the solution and the otoole messages."
+msgstr ""
+"Los archivos del solver: la matriz LP, la solución y los mensajes de "
+"otoole."
+
+#: ../../file-map.md
+msgid "`outputs/Executables/<scenario>_0/Outputs/`"
+msgstr "`outputs/Executables/<scenario>_0/Outputs/`"
+
+#: ../../file-map.md
+msgid "The results of the scenario, one CSV per variable."
+msgstr "Los resultados del escenario, un CSV por variable."
+
+#: ../../file-map.md
+msgid "B2 (otoole)"
+msgstr "B2 (otoole)"
+
+#: ../../file-map.md
+msgid "`outputs/model/osemosys_fast_preprocessed_storage_delay.txt`"
+msgstr "`outputs/model/osemosys_fast_preprocessed_storage_delay.txt`"
+
+#: ../../file-map.md
+msgid "The model file with the storage delay."
+msgstr "El archivo del modelo con el retraso de almacenamiento."
+
+#: ../../file-map.md
+msgid "B2, step 2"
+msgstr "B2, paso 2"
+
+#: ../../file-map.md
+msgid "`outputs/RELAC_TX_data.txt`, `outputs/RELAC_TX_data_storage_delay.txt`"
+msgstr "`outputs/RELAC_TX_data.txt`, `outputs/RELAC_TX_data_storage_delay.txt`"
+
+#: ../../file-map.md
+msgid "The root datafile of the run."
+msgstr "El archivo de datos raíz de la corrida."
+
+#: ../../file-map.md
+msgid ""
+"`outputs/RELAC_TX_Inputs.csv`, `outputs/RELAC_TX_Outputs.csv`, "
+"`outputs/RELAC_TX_Combined_Inputs_Outputs.csv`"
+msgstr ""
+"`outputs/RELAC_TX_Inputs.csv`, `outputs/RELAC_TX_Outputs.csv`, "
+"`outputs/RELAC_TX_Combined_Inputs_Outputs.csv`"
+
+#: ../../file-map.md
+msgid ""
+"The inputs and results of every solved scenario, plus copies with the "
+"date of the run."
+msgstr ""
+"Las entradas y los resultados de todos los escenarios resueltos, más "
+"copias con la fecha de la corrida."
+
+#: ../../file-map.md
+msgid "`outputs/logs/`"
+msgstr "`outputs/logs/`"
+
+#: ../../file-map.md
+msgid "The solver logs."
+msgstr "Los registros del solver."
+
+#: ../../file-map.md
+msgid "`outputs/fix_dispatch/`"
+msgstr "`outputs/fix_dispatch/`"
+
+#: ../../file-map.md
+msgid ""
+"The floor rows that step 7 wrote and the reports of "
+"`scripts/fix_dispatch/`."
+msgstr ""
+"Las filas de pisos que escribió el paso 7 y los informes de "
+"`scripts/fix_dispatch/`."
+
+#: ../../file-map.md
+msgid "Step 7 and `scripts/fix_dispatch/`"
+msgstr "Paso 7 y `scripts/fix_dispatch/`"
+
+#: ../../file-map.md
+msgid "`outputs/Figures/`"
+msgstr "`outputs/Figures/`"
+
+#: ../../file-map.md
+msgid "The report and presentation figures, the dashboard and the results tables."
+msgstr ""
+"Las figuras del informe y de la presentación, el dashboard y las tablas "
+"de resultados."
+
+#: ../../file-map.md
+msgid "`scripts/figures/run_all.py`"
+msgstr "`scripts/figures/run_all.py`"
+
+#: ../../file-map.md:90
+msgid "Abbreviations"
+msgstr "Abreviaturas"
+
+#: ../../file-map.md
+msgid "Abbreviation"
+msgstr "Abreviatura"
+
+#: ../../file-map.md
+msgid "Meaning"
+msgstr "Significado"
+
+#: ../../file-map.md
+msgid "BDS, LDS, SDS"
+msgstr "BDS, LDS, SDS"
+
+#: ../../file-map.md
+msgid "Backstop, long and short duration storage."
+msgstr "Almacenamiento de respaldo, de larga duración y de corta duración."
+
+#: ../../file-map.md
+msgid "cr"
+msgstr "cr"
+
+#: ../../file-map.md
+msgid "Country-region, in file and column names."
+msgstr "País-región, en nombres de archivo y de columna."
+
+#: ../../file-map.md
+msgid "DSPTRN"
+msgstr "DSPTRN"
+
+#: ../../file-map.md
+msgid "Dispatch technology."
+msgstr "Tecnología de despacho."
+
+#: ../../file-map.md
+msgid "ELC"
+msgstr "ELC"
+
+#: ../../file-map.md
+msgid "Electricity fuel; `ELC*00` to `ELC*04` are the electricity nodes."
+msgstr "Energético eléctrico; de `ELC*00` a `ELC*04` son los nodos eléctricos."
+
+#: ../../file-map.md
+msgid "ENS"
+msgstr "ENS"
+
+#: ../../file-map.md
+msgid "Energy not served."
+msgstr "Energía no suministrada."
+
+#: ../../file-map.md
+msgid "GLOBAL"
+msgstr "GLOBAL"
+
+#: ../../file-map.md
+msgid ""
+"The single region of the model; every country is a set of technologies "
+"and fuels inside it."
+msgstr ""
+"La única región del modelo; cada país es un conjunto de tecnologías y "
+"energéticos dentro de ella."
+
+#: ../../file-map.md
+msgid "MIN"
+msgstr "MIN"
+
+#: ../../file-map.md
+msgid "Supply technology of a fossil commodity."
+msgstr "Tecnología de suministro de un combustible fósil."
+
+#: ../../file-map.md
+msgid "MOMF"
+msgstr "MOMF"
+
+#: ../../file-map.md
+msgid "Multipurpose OSeMOSYS-based Framework."
+msgstr ""
+"Multipurpose OSeMOSYS-based Framework (marco multipropósito basado en "
+"OSeMOSYS)."
+
+#: ../../file-map.md
+msgid "NLI"
+msgstr "NLI"
+
+#: ../../file-map.md
+msgid "New unplanned line."
+msgstr "Línea nueva no planificada."
+
+#: ../../file-map.md
+msgid "OG"
+msgstr "OG"
+
+#: ../../file-map.md
+msgid "OSeMOSYS Global."
+msgstr "OSeMOSYS Global."
+
+#: ../../file-map.md
+msgid "OLADE, OLACDE"
+msgstr "OLADE, OLACDE"
+
+#: ../../file-map.md
+msgid ""
+"Latin American and Caribbean Energy Organization. File names and keys "
+"keep OLADE."
+msgstr ""
+"Organización Latinoamericana y Caribeña de Energía. Los nombres de "
+"archivo y las claves conservan OLADE."
+
+#: ../../file-map.md
+msgid "PEG, PET"
+msgstr "PEG, PET"
+
+#: ../../file-map.md
+msgid ""
+"Public planned generation portfolio, public planned transmission "
+"portfolio."
+msgstr ""
+"Portafolio público planificado de generación y portafolio público "
+"planificado de transmisión."
+
+#: ../../file-map.md
+msgid "PWR"
+msgstr "PWR"
+
+#: ../../file-map.md
+msgid "Power generation technology."
+msgstr "Tecnología de generación eléctrica."
+
+#: ../../file-map.md
+msgid "RNW"
+msgstr "RNW"
+
+#: ../../file-map.md
+msgid "Renewable resource supply."
+msgstr "Suministro de recurso renovable."
+
+#: ../../file-map.md
+msgid "RPO"
+msgstr "RPO"
+
+#: ../../file-map.md
+msgid "Repowering."
+msgstr "Repotenciación."
+
+#: ../../file-map.md
+msgid "TRN"
+msgstr "TRN"
+
+#: ../../file-map.md
+msgid ""
+"Transmission: interconnectors, and the internal grid technologies "
+"`PWRTRN`, `TRNRPO` and `TRNNLI`."
+msgstr ""
+"Transmisión: las interconexiones y las tecnologías de red interna "
+"`PWRTRN`, `TRNRPO` y `TRNNLI`."
+
+#~ msgid "A-O"
+#~ msgstr "A-O"
+
+#~ msgid "Prefix of the four workbooks that hold the model inputs of a scenario."
+#~ msgstr ""
+#~ "Prefijo de los cuatro libros que "
+#~ "contienen los datos de entrada del "
+#~ "modelo de un escenario."
+
+#~ msgid "XX"
+#~ msgstr "XX"
+
+#~ msgid "The default region code of every country."
+#~ msgstr "El código de región por defecto de todos los países."
+
+#~ msgid "`StorageDelayN5`, `OpenBCK`, `RMCarefulXLSX`, `FLOORED`, `VEGCON`"
+#~ msgstr "`StorageDelayN5`, `OpenBCK`, `RMCarefulXLSX`, `FLOORED`, `VEGCON`"
+
+#~ msgid ""
+#~ "Datafile suffixes added by steps 2, "
+#~ "4, 5, 7 and 8 of the solver"
+#~ " modifier chain ({doc}`solver-patchers`)."
+#~ msgstr ""
+#~ "Sufijos del archivo de datos que "
+#~ "agregan los pasos 2, 4, 5, 7 "
+#~ "y 8 de la cadena de modificadores"
+#~ " del solver ({doc}`solver-patchers`)."
+
