@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Add (or replace) the `Fuentes` documentation sheet in the model's input workbooks.
 
-Already applied to inputs/ on 2026-09-14 (78/23/5 rows per workbook type, see
+Already applied to inputs/ on 2026-09-14 (78/23/5 rows per workbook type) and re-applied
+on 2026-11-09 with --no-templates (80/23/5; see
 `scripts/tools/data_patches/README.md`). The sheet documents where each data block comes from
 (source, origin file/sheet, and transformation). Its content lives in a single master table,
 `inputs/config/data_sources.csv`, so that the 8 A-O_* workbooks of the 4 scenarios and
