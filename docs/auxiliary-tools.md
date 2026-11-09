@@ -1,12 +1,12 @@
-# Auxiliary Tools
+# Auxiliary tools
 
-OSTRAM LAC includes several utility scripts (prefixed with `Z_`) for data maintenance, visualization, and support tasks.
+OSTRAM LAC includes several utility scripts (prefixed with `Z_`) for data maintenance, visualisation, and support tasks.
 
-## Configuration Loader
+## Configuration loader
 
 **Script:** `scripts/common/Z_AUX_config_loader.py`
 
-A centralized module (not run directly) that provides cached access to `Config_country_codes.yaml`. All other scripts import functions from this module to read the YAML.
+A centralised module (not run directly) that provides cached access to `Config_country_codes.yaml`. All other scripts import functions from this module to read the YAML.
 
 ```{figure} /_static/reference/config_loader_hub.png
 :name: fig-config-loader-hub
@@ -15,7 +15,7 @@ A centralized module (not run directly) that provides cached access to `Config_c
 `Z_AUX_config_loader` between `Config_country_codes.yaml` and the scripts that import it, with the functions each one calls.
 ```
 
-### Available Functions
+### Available functions
 
 | Function | Returns | Description |
 |----------|---------|-------------|
@@ -33,7 +33,7 @@ A centralized module (not run directly) that provides cached access to `Config_c
 | `get_shares_tech_mapping()` | `dict[str, str]` | Shares file name to model code mapping |
 | `get_raw_config()` | `dict` | The full raw YAML dictionary |
 
-### Usage in Scripts
+### Usage in scripts
 
 ```python
 from common.Z_AUX_config_loader import get_countries, get_first_year
@@ -42,9 +42,7 @@ countries = get_countries()  # ['ARG', 'BOL', 'BRA', ...]
 year = get_first_year()      # 2023
 ```
 
----
-
-## Demand Profile Normalizer
+## Demand profile normaliser
 
 **Script:** `scripts/tools/Z_AUX_fix_excel_profiles.py`
 
@@ -56,20 +54,18 @@ Fixes rounding drift in SpecifiedDemandProfile sheets that can cause OSeMOSYS mo
 python scripts/tools/Z_AUX_fix_excel_profiles.py
 ```
 
-### What It Does
+### What it does
 
 1. Iterates over all scenario directories (`A1_Outputs_BAU`, `A1_Outputs_INV`, `A1_Outputs_OPT`).
 2. Opens each `A-O_Demand.xlsx` file.
-3. For each profile sheet, normalizes values so that each fuel/technology column sums to exactly 1.0 per year.
+3. For each profile sheet, normalises values so that each fuel/technology column sums to exactly 1.0 per year.
 4. Creates a timestamped backup before modifying any file.
 
 ### Tolerance
 
 Values within `0.0001` of 1.0 are considered acceptable. Values outside this range are corrected by proportional scaling.
 
----
-
-## Region Consolidation (Brazil as example)
+## Region consolidation (Brazil as example)
 
 **Script:** `scripts/tools/Z_AUX_united_regions.py`
 
@@ -89,20 +85,18 @@ demand = True            # Process A-O_Demand.xlsx
 storage = False          # Process A-Xtra_Storage.xlsx
 ```
 
-### Processing Rules
+### Processing rules
 
 - **Cost parameters** (CapitalCost, FixedCost, VariableCost): Averaged across regions.
 - **Capacity parameters** (ResidualCapacity, TotalAnnualMaxCapacity): Summed across regions.
-- **Interconnections**: TRN codes are normalized to alphabetical country-pair ordering.
+- **Interconnections**: TRN codes are normalised to alphabetical country-pair ordering.
 
----
-
-## Capital Annualization
+## Capital annualisation
 
 **Script:** `scripts/pipeline/Z_AUX_capital_annualization_script.py`
 
-Post-processing script that annualizes capital costs in the model results. Runs automatically as part of the B2 execution stage when `annualize_capital: True` in `Config_MOMF_T1_AB.yaml`.
+Post-processing script that annualises capital costs in the model results. Runs automatically as part of the B2 execution stage when `annualize_capital: True` in `Config_MOMF_T1_AB.yaml`.
 
-### What It Does
+### What it does
 
-Calculates `AccumulatedTotalAnnualMinCapacityInvestment` via cumulative sum of annual capacity investments, converting lump-sum capital costs into annualized values.
+Calculates `AccumulatedTotalAnnualMinCapacityInvestment` via cumulative sum of annual capacity investments, converting lump-sum capital costs into annualised values.

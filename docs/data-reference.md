@@ -1,10 +1,10 @@
-# Data Reference
+# Data reference
 
 This page documents the data file formats, naming conventions, and OSeMOSYS parameter structure used by OSTRAM LAC.
 
-## Naming Conventions
+## Naming conventions
 
-### Technology Codes
+### Technology codes
 
 Technology names in OSTRAM LAC follow a structured format that encodes the technology type, energy source, country, and region:
 
@@ -28,7 +28,7 @@ Technology names in OSTRAM LAC follow a structured format that encodes the techn
 | `RNWSPVCHLXX` | Renewable + Solar PV + Chile + Default region |
 | `TRNARGXXBOLXX` | Interconnection between Argentina (XX) and Bolivia (XX) |
 
-### Technology Prefixes
+### Technology prefixes
 
 | Prefix | Description |
 |--------|-------------|
@@ -39,7 +39,7 @@ Technology names in OSTRAM LAC follow a structured format that encodes the techn
 | `TRN` | Transmission (cross-border) |
 | `DSPTRN` | Dispatch (interconnection routing) |
 
-### Fuel Codes
+### Fuel codes
 
 Fuel names follow two patterns:
 
@@ -60,7 +60,7 @@ ELC{COUNTRY}{REGION}{NN}      # electricity fuels (2-digit suffix NN encodes the
 | `ELCARGXX03` | Demand node (final electricity demand) and export point to interconnections, Argentina |
 | `ELCARGXX04` | Electricity imported through interconnections, Argentina |
 
-### Emission Codes
+### Emission codes
 
 ```
 CO2{COUNTRY}
@@ -68,7 +68,7 @@ CO2{COUNTRY}
 
 Example: `CO2ARG` = CO2 emissions for Argentina.
 
-### Storage Codes
+### Storage codes
 
 Each storage type is modelled as a power technology with the `PWR` prefix (the charge/discharge side) linked to a storage facility of the same family (the energy side):
 
@@ -86,16 +86,14 @@ PWR{SDS|LDS|BDS}{COUNTRY}{REGION}     # technology
 SDS and LDS exist for the 19 modelled countries and sit on the renewable electricity node `ELC*00`.
 
 :::{important}
-**BDS (Backstop Duration Storage)** is the storage counterpart of the backstop. It is a clone of SDS (same costs and technical parameters, no existing stock) connected to `ELC*02`, the post-transmission node that feeds demand, where the `PWRBCK` backstop also injects. Because it sits on the demand side of the transmission links, it can cover a shortfall that would otherwise be met with backstop generation (energy not served) without needing transmission capacity. It currently exists only for Chile and Peru, and is added after A3 with [`add_bds_storage.py`](../scripts/tools/data_patches/add_bds_storage.py) (see `scripts/tools/data_patches/README.md`).
+**BDS (Backstop Duration Storage)** is the storage counterpart of the backstop. It is a clone of SDS (same costs and technical parameters, no existing stock) connected to `ELC*02`, the post-transmission node that feeds demand, where the `PWRBCK` backstop also injects. Because it sits on the demand side of the transmission links, it can cover a shortfall that would otherwise be met with backstop generation (energy not served) without needing transmission capacity. It currently exists only for Chile and Peru, and is added after A3 with [`add_bds_storage.py`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/tools/data_patches/add_bds_storage.py) (see `scripts/tools/data_patches/README.md`).
 :::
 
 The Stage B2 storage-delay modifier (see {doc}`solver-patchers`) blocks their builds for the first N years using the prefixes in `storage_delay_storage_prefixes`.
 
----
+## CSV file structure
 
-## CSV File Structure
-
-### SET Files
+### SET files
 
 SET files define the elements of each OSeMOSYS set. They have a single column:
 
@@ -122,7 +120,7 @@ SET files in `OG_csvs_inputs/`:
 | `DAILYTIMEBRACKET.csv` | Daily time bracket codes (1, 2, 3) |
 | `MODE_OF_OPERATION.csv` | Mode codes (1, 2) |
 
-### Parameter Files
+### Parameter files
 
 Parameter files contain data values indexed by OSeMOSYS dimensions. The column structure varies by parameter:
 
@@ -151,9 +149,7 @@ Used by: `InputActivityRatio`, `OutputActivityRatio`, `EmissionActivityRatio`.
 - `SpecifiedDemandProfile`: REGION, FUEL, TIMESLICE, YEAR, VALUE
 - `TradeRoute`: REGION, FUEL, REGION, YEAR, VALUE
 
----
-
-## Temporal Structure
+## Temporal structure
 
 OSTRAM LAC uses a hierarchical temporal structure:
 
@@ -176,7 +172,7 @@ This produces 12 timeslices (4 seasons x 3 brackets):
 | ... | ... | ... | ... |
 | S4D3 | 4 | 3 | Season 4, Bracket 3 |
 
-### Conversion Matrices
+### Conversion matrices
 
 Three matrices map timeslices to temporal dimensions:
 
@@ -184,9 +180,7 @@ Three matrices map timeslices to temporal dimensions:
 - **Conversionld** (12x1): Maps timeslices to day types (all 1).
 - **Conversionlh** (12x3): Maps timeslices to daily time brackets.
 
----
-
-## Excel Model Files
+## Excel model files
 
 ### A-O_Parametrization.xlsx
 
@@ -232,11 +226,9 @@ Base year activity ratios:
 
 Projection activity ratios (same structure as base year, with projection modes).
 
----
+## OSeMOSYS parameters reference
 
-## OSeMOSYS Parameters Reference
-
-### Cost Parameters
+### Cost parameters
 
 | Parameter | Unit | Description |
 |-----------|------|-------------|
@@ -245,7 +237,7 @@ Projection activity ratios (same structure as base year, with projection modes).
 | `VariableCost` | M$/PJ | Variable operation and maintenance cost |
 | `CapitalCostStorage` | M$/GW | Storage capital cost |
 
-### Capacity Parameters
+### Capacity parameters
 
 | Parameter | Unit | Description |
 |-----------|------|-------------|
@@ -255,7 +247,7 @@ Projection activity ratios (same structure as base year, with projection modes).
 | `TotalAnnualMinCapacity` | GW | Minimum required capacity |
 | `TotalAnnualMinCapacityInvestment` | GW | Minimum new capacity per year |
 
-### Performance Parameters
+### Performance parameters
 
 | Parameter | Unit | Description |
 |-----------|------|-------------|
@@ -266,14 +258,14 @@ Projection activity ratios (same structure as base year, with projection modes).
 | `InputActivityRatio` | - | Fuel input per unit activity |
 | `OutputActivityRatio` | - | Fuel output per unit activity |
 
-### Demand Parameters
+### Demand parameters
 
 | Parameter | Unit | Description |
 |-----------|------|-------------|
 | `SpecifiedAnnualDemand` | PJ | Annual energy demand |
 | `SpecifiedDemandProfile` | fraction | Timeslice distribution (must sum to 1.0) |
 
-### Emission Parameters
+### Emission parameters
 
 | Parameter | Unit | Description |
 |-----------|------|-------------|
@@ -281,14 +273,14 @@ Projection activity ratios (same structure as base year, with projection modes).
 | `AnnualEmissionLimit` | Mt | Maximum annual emissions |
 | `ModelPeriodEmissionLimit` | Mt | Maximum total emissions |
 
-### Activity Limits
+### Activity limits
 
 | Parameter | Unit | Description |
 |-----------|------|-------------|
 | `TotalTechnologyAnnualActivityLowerLimit` | PJ | Minimum annual generation |
 | `TotalTechnologyAnnualActivityUpperLimit` | PJ | Maximum annual generation |
 
-### Storage Parameters
+### Storage parameters
 
 | Parameter | Unit | Description |
 |-----------|------|-------------|
@@ -298,9 +290,7 @@ Projection activity ratios (same structure as base year, with projection modes).
 | `OperationalLifeStorage` | years | Storage technology lifetime |
 | `ResidualStorageCapacity` | GW | Existing storage capacity |
 
----
-
-## Model Architecture
+## Model architecture
 
 OSTRAM LAC uses a single-region (`GLOBAL`) architecture where geographic granularity is embedded in the technology and fuel naming conventions. Each country's technologies operate independently, connected only through explicit transmission (TRN) technologies.
 
@@ -313,7 +303,7 @@ Energy flow within one country, from supply to final demand and the interconnect
 
 `RNW` is a supply prefix: it plays, for renewables, the role that `MIN` plays for fossil fuels. Each `RNW{SOURCE}{COUNTRY}XX` technology (e.g. `RNWSPVCHLXX`) supplies the renewable resource (`SPVCHLXX`) that the matching renewable power plant (`PWRSPVCHLXX`) converts into electricity. Renewable resources are local: they cannot be traded between countries, unlike the commodities of `MIN`. The same prefix is reused by the renewable transmission technologies (`RNWTRN`, `RNWRPO`, `RNWNLI`), which carry renewable electricity from `ELC*00` to `ELC*02`.
 
-### Energy Flow
+### Energy flow
 
 1. **Supply technologies** provide primary energy: `MIN` for fossil commodities (coal, gas, oil, etc.) and `RNW` for local renewable resources (solar, wind, hydro, biomass, etc.).
 2. **Power technologies** convert them into electricity: renewable plants deliver to `ELC*00`, non-renewable plants to `ELC*01`.

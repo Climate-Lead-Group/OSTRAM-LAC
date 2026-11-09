@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 14:17-0600\n"
+"POT-Creation-Date: 2026-11-09 08:29-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../figures.md:1
-msgid "Figures and Dashboard"
-msgstr "Figuras y Dashboard"
+msgid "Figures and dashboard"
+msgstr "Figuras y dashboard"
 
 #: ../../figures.md:3
 msgid ""
@@ -110,8 +110,8 @@ msgstr ""
 "`fig_runner.py`, `report_style.py`"
 
 #: ../../figures.md
-msgid "—"
-msgstr "—"
+msgid "None"
+msgstr "Ninguna"
 
 #: ../../figures.md
 msgid "`scripts/figures/Z_AUX_make_tablas_xlsx.py`"
@@ -181,7 +181,7 @@ msgstr ""
 "Qué hace `run_all.py`: del CSV combinado a las figuras de reporte y de "
 "presentación, el dashboard y las tablas de resultados."
 
-#: ../../figures.md:31
+#: ../../figures.md:38
 msgid ""
 "`run_all.yaml` switches whole branches (`report`, `presentation`, "
 "`dashboard`, `tablas`: `true`/`false`). Each `run_figures.yaml` switches "
@@ -192,7 +192,7 @@ msgstr ""
 "`run_figures.yaml` activa o desactiva figuras individuales; la forma "
 "larga pasa argumentos:"
 
-#: ../../figures.md:37
+#: ../../figures.md:44
 msgid ""
 "Figures ending in `_tmp` are exploratory (energy-not-served variants) and"
 " ship disabled."
@@ -200,25 +200,27 @@ msgstr ""
 "Las figuras que terminan en `_tmp` son exploratorias (variantes de "
 "energía no suministrada) y vienen deshabilitadas de fábrica."
 
-#: ../../figures.md:39
+#: ../../figures.md:46
 msgid "Report figures"
 msgstr "Figuras del informe"
 
-#: ../../figures.md:41
+#: ../../figures.md:48
 msgid ""
 "Every figure in the table below has one entry in "
-"[`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml),"
+"[`scripts/figures/report/run_figures.yaml`](https://github.com/Climate-"
+"Lead-Group/OSTRAM-LAC/blob/main/scripts/figures/report/run_figures.yaml),"
 " and all of them ship enabled (`true`), so a plain `python "
 "scripts/figures/report/run_figures.py` (or the `report` branch of "
 "`run_all.py`) produces all of them. To control which figures run:"
 msgstr ""
 "Cada figura de la tabla siguiente tiene una entrada en "
-"[`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml),"
+"[`scripts/figures/report/run_figures.yaml`](https://github.com/Climate-"
+"Lead-Group/OSTRAM-LAC/blob/main/scripts/figures/report/run_figures.yaml),"
 " y todas vienen habilitadas (`true`) de fábrica, de modo que un simple "
 "`python scripts/figures/report/run_figures.py` (o la rama `report` de "
 "`run_all.py`) las genera todas. Para controlar qué figuras se ejecutan:"
 
-#: ../../figures.md:43
+#: ../../figures.md:50
 msgid ""
 "**Enable or disable a figure:** set its entry to `true` or `false`, e.g. "
 "`fig_costo_unitario: false`. The key order in the YAML is the execution "
@@ -228,7 +230,7 @@ msgstr ""
 "`false`, p. ej. `fig_costo_unitario: false`. El orden de las claves en el"
 " YAML es el orden de ejecución."
 
-#: ../../figures.md:44
+#: ../../figures.md:51
 #, python-brace-format
 msgid ""
 "**Pass arguments:** use the long form `fig_almacenamiento_2050: {enabled:"
@@ -239,7 +241,7 @@ msgstr ""
 "{enabled: true, args: [\"--years\", \"2030\", \"2050\"]}` (`enabled` vale"
 " `true` si se omite)."
 
-#: ../../figures.md:45
+#: ../../figures.md:52
 msgid ""
 "**Run a single figure regardless of the YAML:** `python "
 "scripts/figures/report/run_figures.py --only fig_costo_unitario` (any "
@@ -249,7 +251,7 @@ msgstr ""
 "scripts/figures/report/run_figures.py --only fig_costo_unitario` (se "
 "reutilizan los argumentos que esa figura tenga en el YAML)."
 
-#: ../../figures.md:46
+#: ../../figures.md:53
 msgid ""
 "**Check the resolved state without running anything:** `python "
 "scripts/figures/report/run_figures.py --list`."
@@ -257,7 +259,7 @@ msgstr ""
 "**Revisar el estado resuelto sin ejecutar nada:** `python "
 "scripts/figures/report/run_figures.py --list`."
 
-#: ../../figures.md:48
+#: ../../figures.md:55
 msgid ""
 "The runner skips any `fig_*.py` script that has no entry in the YAML and "
 "prints a warning for it. The presentation figures follow the same rules "
@@ -267,19 +269,19 @@ msgstr ""
 "YAML e imprime un aviso por él. Las figuras de presentación siguen las "
 "mismas reglas con `scripts/figures/presentation/run_figures.yaml`."
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Script"
 msgstr "Script"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Figure"
 msgstr "Figura"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_capacidad_generacion_2050`"
 msgstr "`fig_capacidad_generacion_2050`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid ""
 "Installed generation capacity by scenario in 2030/2040/2050 [GW], "
 "renewable vs non-renewable"
@@ -287,29 +289,29 @@ msgstr ""
 "Capacidad instalada de generación por escenario en 2030/2040/2050 [GW], "
 "renovable vs no renovable"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_generacion_anual_2050`"
 msgstr "`fig_generacion_anual_2050`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Annual generation by scenario in 2030/2040/2050 [TWh] and renewable share"
 msgstr ""
 "Generación anual por escenario en 2030/2040/2050 [TWh] y participación "
 "renovable"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_participacion_renovable`"
 msgstr "`fig_participacion_renovable`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Renewable share of generation [%], 2025–2050"
 msgstr "Participación renovable en la generación [%], 2025–2050"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_capacidad_transmision_2050`"
 msgstr "`fig_capacidad_transmision_2050`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid ""
 "Installed transmission capacity in 2030/2040/2050 [GW], stacked by line "
 "group"
@@ -317,37 +319,37 @@ msgstr ""
 "Capacidad instalada de transmisión en 2030/2040/2050 [GW], apilada por "
 "grupo de líneas"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_km_lineas_acumulados`"
 msgstr "`fig_km_lineas_acumulados`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Cumulative transmission kilometres to 2030/2040/2050 [km], by line group"
 msgstr ""
 "Kilómetros de transmisión acumulados a 2030/2040/2050 [km], por grupo de "
 "líneas"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_inversion_transmision_acumulada`"
 msgstr "`fig_inversion_transmision_acumulada`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Cumulative transmission investment per period [million USD]"
 msgstr "Inversión en transmisión acumulada por periodo [millones de USD]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_almacenamiento_2050`"
 msgstr "`fig_almacenamiento_2050`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Installed storage capacity in 2030/2040/2050 [GW]"
 msgstr "Capacidad instalada de almacenamiento en 2030/2040/2050 [GW]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_combustibles_fosiles_2050`"
 msgstr "`fig_combustibles_fosiles_2050`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid ""
 "Fossil fuel consumption, cumulative per period [million barrels of oil "
 "equivalent]"
@@ -355,11 +357,11 @@ msgstr ""
 "Consumo de combustibles fósiles, acumulado por periodo [millones de "
 "barriles equivalentes de petróleo]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_costo_no_inversion`"
 msgstr "`fig_costo_no_inversion`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid ""
 "Total system cost and \"cost of non-investment\", cumulative per period "
 "[trillion USD]"
@@ -367,21 +369,21 @@ msgstr ""
 "Costo total del sistema y \"costo de la no inversión\", acumulado por "
 "periodo [billones de USD]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_costo_unitario`"
 msgstr "`fig_costo_unitario`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Unit system cost [USD/MWh] (static version of dashboard chart 11)"
 msgstr ""
 "Costo unitario del sistema [USD/MWh] (versión estática del gráfico 11 del"
 " dashboard)"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_diversidad_fuentes`"
 msgstr "`fig_diversidad_fuentes`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid ""
 "Effective number of generation sources (inverse Herfindahl-Hirschman "
 "index) in 2030/2040/2050"
@@ -389,29 +391,29 @@ msgstr ""
 "Número efectivo de fuentes de generación (inverso del índice de "
 "Herfindahl-Hirschman) en 2030/2040/2050"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_seguridad_energetica_2050`"
 msgstr "`fig_seguridad_energetica_2050`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Energy security in 2030/2040/2050: domestic vs imported primary energy [%]"
 msgstr ""
 "Seguridad energética en 2030/2040/2050: energía primaria doméstica vs "
 "importada [%]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "`fig_seguridad_energetica_trayectoria`"
 msgstr "`fig_seguridad_energetica_trayectoria`"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Domestic energy share [%], trajectory 2025–2050"
 msgstr "Participación de energía doméstica [%], trayectoria 2025–2050"
 
-#: ../../figures.md:66
+#: ../../figures.md:73
 msgid "Dashboard charts"
 msgstr "Gráficos del Dashboard"
 
-#: ../../figures.md:68
+#: ../../figures.md:75
 #, python-brace-format
 msgid ""
 "`dashboard.html` is a single self-contained Plotly page with scenario, "
@@ -425,131 +427,131 @@ msgstr ""
 "mostrados provienen de `SCENARIO_ALIAS` en `dashboard_config.py` (ver "
 "{doc}`study/scenarios`)."
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Tab"
 msgstr "Pestaña"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Title"
 msgstr "Título"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "01"
 msgstr "01"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Installed generation capacity [GW]"
 msgstr "Capacidad instalada de generación [GW]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "02"
 msgstr "02"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Annual generation [TWh]"
 msgstr "Generación anual [TWh]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "03"
 msgstr "03"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Installed storage capacity [GW]"
 msgstr "Capacidad instalada de almacenamiento [GW]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "04"
 msgstr "04"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Installed transmission capacity [GW]"
 msgstr "Capacidad instalada de transmisión [GW]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "05"
 msgstr "05"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Total investment [MUSD]"
 msgstr "Inversión total [MUSD]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "06"
 msgstr "06"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Investment in lines [MUSD]"
 msgstr "Inversión en líneas [MUSD]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "07"
 msgstr "07"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Average annual cost, capital + operating [MUSD/yr]"
 msgstr "Costo anual promedio, de capital + de operación [MUSD/año]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "08"
 msgstr "08"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "CO₂ emissions [Mt]"
 msgstr "Emisiones de CO₂ [Mt]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "08A"
 msgstr "08A"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Fossil fuel consumption [PJ]"
 msgstr "Consumo de combustibles fósiles [PJ]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "08B"
 msgstr "08B"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Fossil fuel consumption by fuel type [PJ]"
 msgstr "Consumo de combustibles fósiles por tipo de energético [PJ]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "09"
 msgstr "09"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Average annual capital investment by country [MUSD/yr] (maps)"
 msgstr "Inversión de capital anual promedio por país [MUSD/año] (mapas)"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "10"
 msgstr "10"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Transmission line kilometres [km]"
 msgstr "Kilómetros de líneas de transmisión [km]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "11"
 msgstr "11"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Annualised cost per unit of energy [MUSD/TWh]"
 msgstr "Costo anualizado por unidad de energía [MUSD/TWh]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "12"
 msgstr "12"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Energy security: imported vs domestic [%]"
 msgstr "Seguridad energética: importada vs doméstica [%]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "13"
 msgstr "13"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid ""
 "Resilience: effective number of sources (inverse Herfindahl-Hirschman "
 "index)"
@@ -557,49 +559,49 @@ msgstr ""
 "Resiliencia: número efectivo de fuentes (inverso del índice de "
 "Herfindahl-Hirschman)"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "14"
 msgstr "14"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Total system cost including fuel [MUSD/yr]"
 msgstr "Costo total del sistema incluyendo combustible [MUSD/año]"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "15"
 msgstr "15"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Energy not served [MUSD] (backstop output valued at 1500 USD/MWh)"
 msgstr ""
 "Energía no suministrada [MUSD] (salida de backstop valorada a 1500 "
 "USD/MWh)"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "16"
 msgstr "16"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Transmission maps (iframe)"
 msgstr "Mapas de transmisión (iframe)"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "17"
 msgstr "17"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Dispatch (iframe)"
 msgstr "Despacho (iframe)"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "18"
 msgstr "18"
 
-#: ../../figures.md
+#: ../../figures.md:31
 msgid "Reference energy system diagram (iframe)"
 msgstr "Diagrama del sistema energético de referencia (iframe)"
 
-#: ../../figures.md:93
+#: ../../figures.md:100
 msgid ""
 "Colours are fixed per technology type across the whole dashboard: "
 "generation blue `#4e79a7`, transmission `#e15759`, storage `#76b7b2`."
@@ -616,4 +618,7 @@ msgstr ""
 
 #~ msgid "Same, including the transmission-capped case"
 #~ msgstr "Igual, incluyendo el caso con tope de transmisión"
+
+#~ msgid "—"
+#~ msgstr "—"
 

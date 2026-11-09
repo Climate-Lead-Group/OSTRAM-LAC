@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """Configure the Sphinx build of the OSTRAM LAC documentation.
 
-Same stack as the OSTRAM documentation (Furo theme, MyST Markdown, Mermaid
-diagrams). Source language is English; Spanish lives in
-locale/es/LC_MESSAGES/*.po and is built by a second ReadTheDocs project.
+Same stack as the OSTRAM documentation (Furo theme, MyST Markdown). Diagrams
+are PNG figures under _static/, each with an English file and a Spanish
+<name>.es.png that Sphinx picks for the es build; sphinxcontrib-mermaid stays
+loaded for the one Mermaid block left in data-reference.md. Source language
+is English; Spanish lives in locale/es/LC_MESSAGES/*.po and is built by a
+second ReadTheDocs project.
 
 Authors:
     2026 Climate Lead Group

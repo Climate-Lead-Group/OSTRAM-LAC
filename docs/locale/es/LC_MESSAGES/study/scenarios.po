@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 11:35-0600\n"
+"POT-Creation-Date: 2026-11-09 08:35-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -26,13 +26,12 @@ msgstr "Escenarios"
 #: ../../study/scenarios.md:3
 msgid ""
 "The analysis is organised in four **scenario families**. Each family has "
-"a base scenario and, for the two main families, a set of sensitivity "
+"a reporting base and, for the two main families, a set of sensitivity "
 "variants on repowering and on cost assumptions. Scenarios are named as in"
 " the results; their model codes (the identifiers used in configuration "
 "files and result CSVs) are shown in monospace."
 msgstr ""
-"El análisis se organiza en cuatro **familias de escenarios**. Cada "
-"familia tiene un escenario base y, en las dos familias principales, un "
+"El análisis se organiza en cuatro **familias de escenarios**. Cada familia tiene una base de reporte y, en las dos familias principales, un "
 "conjunto de variantes de sensibilidad sobre la repotenciación y sobre los"
 " supuestos de costo. Los escenarios se nombran como en los resultados; "
 "sus códigos de modelo (los identificadores usados en los archivos de "
@@ -47,8 +46,8 @@ msgid "Meaning"
 msgstr "Significado"
 
 #: ../../study/scenarios.md
-msgid "Base scenario"
-msgstr "Escenario base"
+msgid "Reporting base"
+msgstr "Base de reporte"
 
 #: ../../study/scenarios.md
 msgid "**OPT**"
@@ -123,8 +122,8 @@ msgid "`BAC`"
 msgstr "`BAC`"
 
 #: ../../study/scenarios.md
-msgid "Base scenario of the OPT family"
-msgstr "Escenario base de la familia OPT"
+msgid "Reporting base of the OPT family"
+msgstr "Base de reporte de la familia OPT"
 
 #: ../../study/scenarios.md
 msgid "OPT without repowering"
@@ -200,10 +199,10 @@ msgstr "`ISR`"
 
 #: ../../study/scenarios.md
 msgid ""
-"Base scenario of the ETT family: only the committed repowering can be "
+"Reporting base of the ETT family: only the committed repowering can be "
 "built"
 msgstr ""
-"Escenario base de la familia ETT: solo se puede construir la "
+"Base de reporte de la familia ETT: solo se puede construir la "
 "repotenciación comprometida"
 
 #: ../../study/scenarios.md
@@ -287,8 +286,8 @@ msgid "`OPC`"
 msgstr "`OPC`"
 
 #: ../../study/scenarios.md
-msgid "Base scenario of the PLAN family"
-msgstr "Escenario base de la familia PLAN"
+msgid "Reporting base of the PLAN family"
+msgstr "Base de reporte de la familia PLAN"
 
 #: ../../study/scenarios.md
 msgid "ETT-GP"
@@ -299,14 +298,14 @@ msgid "`VSR`"
 msgstr "`VSR`"
 
 #: ../../study/scenarios.md
-msgid "Base scenario of the ETT-GP family"
-msgstr "Escenario base de la familia ETT-GP"
+msgid "Reporting base of the ETT-GP family"
+msgstr "Base de reporte de la familia ETT-GP"
 
 #: ../../study/scenarios.md:31
 msgid ""
 "The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present "
 "results; outside this page the documentation refers to scenarios by them."
-" They describe what each base scenario represents, for ease of reading: "
+" They describe what each reporting base represents, for ease of reading: "
 "`BAC` is an optimal expansion, so it is shown as OPT; `ISR` is a trend "
 "expansion, so it is shown as ETT. The `OPT` input workbook described "
 "below is a different object: it is the base from which `OPC` (PLAN) is "
@@ -314,8 +313,7 @@ msgid ""
 msgstr ""
 "Los nombres de familia (OPT, ETT, PLAN, ETT-GP) son los que se usan para "
 "presentar los resultados; fuera de esta página, la documentación se "
-"refiere a los escenarios con ellos. Describen lo que representa cada "
-"escenario base, para facilitar la lectura: `BAC` es una expansión óptima,"
+"refiere a los escenarios con ellos. Describen lo que representa cada base de reporte, para facilitar la lectura: `BAC` es una expansión óptima,"
 " por eso se muestra como OPT; `ISR` es una expansión tendencial, por eso "
 "se muestra como ETT. El libro de entrada `OPT` descrito más abajo es otra"
 " cosa: es la base a partir de la cual se construye `OPC` (PLAN)."
@@ -447,4 +445,7 @@ msgstr ""
 
 #~ msgid "—"
 #~ msgstr "—"
+
+#~ msgid "Base scenario"
+#~ msgstr "Escenario base"
 

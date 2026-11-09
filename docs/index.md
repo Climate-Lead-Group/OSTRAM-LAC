@@ -38,6 +38,7 @@ figures
 :maxdepth: 2
 :caption: Reference
 
+glossary
 configuration
 data-reference
 sources

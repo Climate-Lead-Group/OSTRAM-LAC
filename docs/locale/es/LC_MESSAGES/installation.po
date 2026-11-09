@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-09 08:29-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Esta guía cubre el proceso completo de configuración para ejecutar OSTRAM"
 " LAC en una máquina Windows."
 
-#: ../../installation.md:10
+#: ../../installation.md:9
 msgid ""
 "Installation steps: clone the repository, create the Conda environment, "
 "set up a solver and verify the installation."
@@ -39,19 +39,19 @@ msgstr ""
 "Pasos de instalación: clonar el repositorio, crear el entorno Conda, "
 "configurar el solver y verificar la instalación."
 
-#: ../../installation.md:5
-msgid "System Requirements"
+#: ../../installation.md:12
+msgid "System requirements"
 msgstr "Requisitos del sistema"
 
-#: ../../installation.md:7
+#: ../../installation.md:14
 msgid "**Operating System:** Windows 10 or higher"
 msgstr "**Sistema operativo:** Windows 10 o superior"
 
-#: ../../installation.md:8
+#: ../../installation.md:15
 msgid "**Git:** [Git for Windows](https://gitforwindows.org/) (version 2.40+)"
 msgstr "**Git:** [Git for Windows](https://gitforwindows.org/) (versión 2.40+)"
 
-#: ../../installation.md:9
+#: ../../installation.md:16
 msgid ""
 "**Python distribution:** "
 "[Miniconda](https://docs.conda.io/en/latest/miniconda.html) or "
@@ -61,7 +61,7 @@ msgstr ""
 "[Miniconda](https://docs.conda.io/en/latest/miniconda.html) o "
 "[Anaconda](https://www.anaconda.com/download)"
 
-#: ../../installation.md:10
+#: ../../installation.md:17
 msgid ""
 "**Solver:** At least one of the following linear / mixed-integer "
 "programming solvers:"
@@ -69,7 +69,7 @@ msgstr ""
 "**Solver:** Al menos uno de los siguientes solvers de programación lineal"
 " / entera mixta:"
 
-#: ../../installation.md:11
+#: ../../installation.md:18
 msgid ""
 "[GLPK](https://www.gnu.org/software/glpk/) (open source, installed "
 "automatically with the Conda environment)"
@@ -77,7 +77,7 @@ msgstr ""
 "[GLPK](https://www.gnu.org/software/glpk/) (código abierto, se instala "
 "automáticamente con el entorno Conda)"
 
-#: ../../installation.md:12
+#: ../../installation.md:19
 msgid ""
 "[CBC](https://github.com/coin-or/Cbc) (open source, installed "
 "automatically with the Conda environment)"
@@ -85,7 +85,7 @@ msgstr ""
 "[CBC](https://github.com/coin-or/Cbc) (código abierto, se instala "
 "automáticamente con el entorno Conda)"
 
-#: ../../installation.md:13
+#: ../../installation.md:20
 msgid ""
 "[CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio) "
 "(commercial, IBM)"
@@ -93,19 +93,19 @@ msgstr ""
 "[CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio) "
 "(comercial, IBM)"
 
-#: ../../installation.md:14
-msgid "[Gurobi](https://www.gurobi.com/) (commercial, free academic license)"
+#: ../../installation.md:21
+msgid "[Gurobi](https://www.gurobi.com/) (commercial, free academic licence)"
 msgstr "[Gurobi](https://www.gurobi.com/) (comercial, licencia académica gratuita)"
 
-#: ../../installation.md:16
-msgid "Clone the Repository"
+#: ../../installation.md:23
+msgid "Clone the repository"
 msgstr "Clonar el repositorio"
 
-#: ../../installation.md:23
-msgid "Conda Environment"
+#: ../../installation.md:30
+msgid "Conda environment"
 msgstr "Entorno Conda"
 
-#: ../../installation.md:25
+#: ../../installation.md:32
 msgid ""
 "OSTRAM LAC uses a Conda environment defined in `environment.yaml`. The "
 "`run.py` launcher automatically creates it if it does not exist, but you "
@@ -115,107 +115,107 @@ msgstr ""
 "lanzador `run.py` lo crea automáticamente si no existe, pero también "
 "puede crearlo manualmente:"
 
-#: ../../installation.md:32
-msgid "Environment Dependencies"
+#: ../../installation.md:39
+msgid "Environment dependencies"
 msgstr "Dependencias del entorno"
 
-#: ../../installation.md:34
+#: ../../installation.md:41
 msgid "The environment installs the following packages:"
 msgstr "El entorno instala los siguientes paquetes:"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Package"
 msgstr "Paquete"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Version"
 msgstr "Versión"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Purpose"
 msgstr "Propósito"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Python"
 msgstr "Python"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "3.10"
 msgstr "3.10"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Runtime"
 msgstr "Tiempo de ejecución"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "pandas"
 msgstr "pandas"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 2.1"
 msgstr ">= 2.1"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Data manipulation"
 msgstr "Manipulación de datos"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "numpy"
 msgstr "numpy"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 1.26"
 msgstr ">= 1.26"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Numerical computation"
 msgstr "Cálculo numérico"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "openpyxl"
 msgstr "openpyxl"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 3.1"
 msgstr ">= 3.1"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Excel file reading"
 msgstr "Lectura de archivos Excel"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "xlsxwriter"
 msgstr "xlsxwriter"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 3.2.4"
 msgstr ">= 3.2.4"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Excel file writing"
 msgstr "Escritura de archivos Excel"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "pyyaml"
 msgstr "pyyaml"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 6.0"
 msgstr ">= 6.0"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "YAML configuration parsing"
 msgstr "Análisis de configuración YAML"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "matplotlib"
 msgstr "matplotlib"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 3.8"
 msgstr ">= 3.8"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ""
 "Figures (`scripts/figures/report`, `scripts/figures/presentation`, "
 "`scripts/fix_dispatch`, `scripts/tx_chain`)"
@@ -223,27 +223,27 @@ msgstr ""
 "Figuras (`scripts/figures/report`, `scripts/figures/presentation`, "
 "`scripts/fix_dispatch`, `scripts/tx_chain`)"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "plotly"
 msgstr "plotly"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 5.18, < 7"
 msgstr ">= 5.18, < 7"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Interactive dashboard (`scripts/figures/dashboard/build_dashboard.py`)"
 msgstr "Panel interactivo (`scripts/figures/dashboard/build_dashboard.py`)"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "pyarrow"
 msgstr "pyarrow"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 14"
 msgstr ">= 14"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ""
 "Parquet subset of the combined CSV for the static figures "
 "(`scripts/figures/common/dashboard_config.py`)"
@@ -251,15 +251,15 @@ msgstr ""
 "Subconjunto Parquet del CSV combinado para las figuras estáticas "
 "(`scripts/figures/common/dashboard_config.py`)"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "ruamel.yaml"
 msgstr "ruamel.yaml"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 0.17"
 msgstr ">= 0.17"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ""
 "Comment-preserving YAML edits in `B1_Run_Compiler.py` (PyYAML fallback if"
 " absent)"
@@ -267,83 +267,83 @@ msgstr ""
 "Ediciones YAML que preservan comentarios en `B1_Run_Compiler.py` (usa "
 "PyYAML como respaldo si no está presente)"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "scipy"
 msgstr "scipy"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 1.11"
 msgstr ">= 1.11"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Least-squares fit in `scripts/experimental/matriz_balance`"
 msgstr "Ajuste de mínimos cuadrados en `scripts/experimental/matriz_balance`"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "glpk"
 msgstr "glpk"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "latest (conda-forge)"
 msgstr "última versión (conda-forge)"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "GLPK solver, provides the `glpsol` CLI"
 msgstr "Solver GLPK, provee la CLI `glpsol`"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "coincbc"
 msgstr "coincbc"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "CBC solver, provides the `cbc` CLI (metapackage for `coin-or-cbc`)"
 msgstr "Solver CBC, provee la CLI `cbc` (metapaquete de `coin-or-cbc`)"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "git"
 msgstr "git"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 2.40"
 msgstr ">= 2.40"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Version control"
 msgstr "Control de versiones"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "dvc"
 msgstr "dvc"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "latest"
 msgstr "última versión"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "Data Version Control pipeline"
 msgstr "Pipeline de Data Version Control"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "otoole"
 msgstr "otoole"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid ">= 1.1.1"
 msgstr ">= 1.1.1"
 
-#: ../../installation.md
+#: ../../installation.md:5
 msgid "OSeMOSYS data format conversion"
 msgstr "Conversión de formato de datos de OSeMOSYS"
 
-#: ../../installation.md:55
-msgid "Solver Setup"
+#: ../../installation.md:62
+msgid "Solver setup"
 msgstr "Configuración del solver"
 
-#: ../../installation.md:57
+#: ../../installation.md:64
 msgid "GLPK and CBC (included in the environment)"
 msgstr "GLPK y CBC (incluidos en el entorno)"
 
-#: ../../installation.md:59
+#: ../../installation.md:66
 msgid ""
 "Both open-source solvers are declared in `environment.yaml` (`glpk` and "
 "`coincbc`), so they are installed together with the Conda environment. No"
@@ -353,7 +353,7 @@ msgstr ""
 "(`glpk` y `coincbc`), por lo que se instalan junto con el entorno Conda. "
 "No se necesita ningún paso adicional para un entorno nuevo."
 
-#: ../../installation.md:61
+#: ../../installation.md:68
 msgid ""
 "If your `OSTRAM-env` was created before the solvers were added, `run.py` "
 "detects the missing `glpsol`/`cbc` binaries and installs them on its next"
@@ -363,7 +363,7 @@ msgstr ""
 "`run.py` detecta los binarios `glpsol`/`cbc` faltantes y los instala en "
 "su siguiente ejecución. También puede hacerlo manualmente:"
 
-#: ../../installation.md:67
+#: ../../installation.md:74
 msgid ""
 "Note: the binaries live inside the environment (`...\\envs\\OSTRAM-"
 "env\\Library\\bin`), so they are only on `PATH` when the environment is "
@@ -373,11 +373,11 @@ msgstr ""
 "env\\Library\\bin`), por lo que solo están en `PATH` cuando el entorno "
 "está activo (o al ejecutarse mediante `conda run`, como hace `run.py`)."
 
-#: ../../installation.md:69
+#: ../../installation.md:76
 msgid "CPLEX"
 msgstr "CPLEX"
 
-#: ../../installation.md:71
+#: ../../installation.md:78
 msgid ""
 "Install IBM ILOG CPLEX Optimization Studio from the [IBM "
 "website](https://www.ibm.com/products/ilog-cplex-optimization-studio)."
@@ -385,21 +385,21 @@ msgstr ""
 "Instale IBM ILOG CPLEX Optimization Studio desde el [sitio web de "
 "IBM](https://www.ibm.com/products/ilog-cplex-optimization-studio)."
 
-#: ../../installation.md:72
+#: ../../installation.md:79
 msgid "Ensure the `cplex` binary is available on your system `PATH`."
 msgstr ""
 "Asegúrese de que el binario `cplex` esté disponible en el `PATH` de su "
 "sistema."
 
-#: ../../installation.md:73
+#: ../../installation.md:80
 msgid "Set `solver: 'cplex'` in `inputs/config/Config_MOMF_T1_AB.yaml`."
 msgstr "Configure `solver: 'cplex'` en `inputs/config/Config_MOMF_T1_AB.yaml`."
 
-#: ../../installation.md:75
+#: ../../installation.md:82
 msgid "Gurobi"
 msgstr "Gurobi"
 
-#: ../../installation.md:77
+#: ../../installation.md:84
 msgid ""
 "Install Gurobi from the [Gurobi "
 "website](https://www.gurobi.com/downloads/)."
@@ -407,37 +407,37 @@ msgstr ""
 "Instale Gurobi desde el [sitio web de "
 "Gurobi](https://www.gurobi.com/downloads/)."
 
-#: ../../installation.md:78
-msgid "Activate your license (`grbgetkey <license-key>`)."
+#: ../../installation.md:85
+msgid "Activate your licence (`grbgetkey <license-key>`)."
 msgstr "Active su licencia (`grbgetkey <license-key>`)."
 
-#: ../../installation.md:79
+#: ../../installation.md:86
 msgid "Ensure the `gurobi` binary is available on your system `PATH`."
 msgstr ""
 "Asegúrese de que el binario `gurobi` esté disponible en el `PATH` de su "
 "sistema."
 
-#: ../../installation.md:80
+#: ../../installation.md:87
 msgid "Set `solver: 'gurobi'` in `inputs/config/Config_MOMF_T1_AB.yaml`."
 msgstr "Configure `solver: 'gurobi'` en `inputs/config/Config_MOMF_T1_AB.yaml`."
 
-#: ../../installation.md:82
-msgid "Verify Installation"
+#: ../../installation.md:89
+msgid "Verify installation"
 msgstr "Verificar la instalación"
 
-#: ../../installation.md:84
+#: ../../installation.md:91
 msgid "After setup, verify that the environment works:"
 msgstr "Después de la configuración, verifique que el entorno funcione:"
 
-#: ../../installation.md:91
+#: ../../installation.md:98
 msgid "To verify your solver:"
 msgstr "Para verificar su solver:"
 
-#: ../../installation.md:107
-msgid "DVC Setup (Optional)"
+#: ../../installation.md:114
+msgid "DVC setup (optional)"
 msgstr "Configuración de DVC (opcional)"
 
-#: ../../installation.md:109
+#: ../../installation.md:116
 msgid ""
 "OSTRAM LAC uses [DVC](https://dvc.org/) (Data Version Control) to manage "
 "the pipeline. The `run.py` script handles DVC commands automatically, but"
@@ -447,7 +447,7 @@ msgstr ""
 "gestionar el pipeline. El script `run.py` maneja los comandos de DVC "
 "automáticamente, pero si desea ejecutar las etapas manualmente:"
 
-#: ../../installation.md:116
+#: ../../installation.md:123
 msgid ""
 "This will execute all pipeline stages that have outdated outputs based on"
 " dependency tracking."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 14:26-0600\n"
+"POT-Creation-Date: 2026-11-09 08:29-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../country-management.md:1
-msgid "Country Management"
+msgid "Country management"
 msgstr "Gestión de países"
 
 #: ../../country-management.md:3
@@ -32,7 +32,7 @@ msgstr ""
 "plantillas para países nuevos y consolidar datos subregionales."
 
 #: ../../country-management.md:5
-msgid "Technology-Country Matrix"
+msgid "Technology-country matrix"
 msgstr "Matriz de tecnología-país"
 
 #: ../../country-management.md:7
@@ -47,7 +47,7 @@ msgstr ""
 "instrucciones de generación."
 
 #: ../../country-management.md:9
-msgid "Editing the Matrix"
+msgid "Editing the matrix"
 msgstr "Editar la matriz"
 
 #: ../../country-management.md:11
@@ -55,8 +55,8 @@ msgid "After generating `Tech_Country_Matrix.xlsx`:"
 msgstr "Después de generar `Tech_Country_Matrix.xlsx`:"
 
 #: ../../country-management.md:13
-msgid "Open the **Matrix** sheet."
-msgstr "Abra la hoja **Matrix**."
+msgid "Open the `Matrix` sheet."
+msgstr "Abra la hoja `Matrix`."
 
 #: ../../country-management.md:14
 msgid "Change any cell from `YES` to `NO` to disable a technology for a country."
@@ -77,12 +77,12 @@ msgstr ""
 " si se desea."
 
 #: ../../country-management.md:18
-msgid "NGS Unification"
+msgid "NGS unification"
 msgstr "Unificación de NGS"
 
 #: ../../country-management.md:20
-msgid "In the **NGS_Unification** sheet:"
-msgstr "En la hoja **NGS_Unification**:"
+msgid "In the `NGS_Unification` sheet:"
+msgstr "En la hoja `NGS_Unification`:"
 
 #: ../../country-management.md:22
 msgid ""
@@ -97,18 +97,18 @@ msgid "Set to `NO` to keep them separate."
 msgstr "Establezca en `NO` para mantenerlas separadas."
 
 #: ../../country-management.md:24
-msgid "Aggregation follows the rules defined in the **Aggregation_Rules** sheet."
-msgstr "La agregación sigue las reglas definidas en la hoja **Aggregation_Rules**."
+msgid "Aggregation follows the rules defined in the `Aggregation_Rules` sheet."
+msgstr "La agregación sigue las reglas definidas en la hoja `Aggregation_Rules`."
 
-#: ../../country-management.md:28
-msgid "Country Data Validator"
+#: ../../country-management.md:26
+msgid "Country data validator"
 msgstr "Validador de datos de país"
 
-#: ../../country-management.md:30
+#: ../../country-management.md:28
 msgid "**Script:** `scripts/tools/Z_validate_country_data.py`"
 msgstr "**Script:** `scripts/tools/Z_validate_country_data.py`"
 
-#: ../../country-management.md:32
+#: ../../country-management.md:30
 msgid ""
 "Verifies that a country has complete and consistent data in the OSeMOSYS "
 "input CSV files."
@@ -116,12 +116,12 @@ msgstr ""
 "Verifica que un país tenga datos completos y consistentes en los archivos"
 " CSV de entrada de OSeMOSYS."
 
-#: ../../country-management.md:34 ../../country-management.md:89
+#: ../../country-management.md:32 ../../country-management.md:85
 msgid "Usage"
 msgstr "Uso"
 
-#: ../../country-management.md:50 ../../country-management.md:102
-msgid "Command-Line Options"
+#: ../../country-management.md:48 ../../country-management.md:98
+msgid "Command-line options"
 msgstr "Opciones de línea de comandos"
 
 #: ../../country-management.md
@@ -156,15 +156,15 @@ msgstr "`--quiet`, `-q`"
 msgid "Suppress verbose output"
 msgstr "Suprime la salida detallada"
 
-#: ../../country-management.md:58
-msgid "Validations Performed"
+#: ../../country-management.md:56
+msgid "Validations performed"
 msgstr "Validaciones realizadas"
 
-#: ../../country-management.md:60
+#: ../../country-management.md:58
 msgid "The validator checks:"
 msgstr "El validador verifica:"
 
-#: ../../country-management.md:62
+#: ../../country-management.md:60
 msgid ""
 "**SET membership**: Country appears in TECHNOLOGY, FUEL, EMISSION, and "
 "STORAGE sets."
@@ -172,25 +172,25 @@ msgstr ""
 "**Pertenencia a conjuntos (SET)**: El país aparece en los conjuntos "
 "TECHNOLOGY, FUEL, EMISSION y STORAGE."
 
-#: ../../country-management.md:63
+#: ../../country-management.md:61
 msgid "**Technology type counts**: Minimum number of technologies per prefix:"
 msgstr ""
 "**Conteo por tipo de tecnología**: Número mínimo de tecnologías por "
 "prefijo:"
 
-#: ../../country-management.md:64
+#: ../../country-management.md:62
 msgid "PWR (Power): minimum expected"
 msgstr "PWR (Generación): mínimo esperado"
 
-#: ../../country-management.md:65
+#: ../../country-management.md:63
 msgid "MIN (Mining): minimum expected"
 msgstr "MIN (Minería): mínimo esperado"
 
-#: ../../country-management.md:66
+#: ../../country-management.md:64
 msgid "RNW (Renewable): minimum expected"
 msgstr "RNW (Renovable): mínimo esperado"
 
-#: ../../country-management.md:67
+#: ../../country-management.md:65
 msgid ""
 "**Required parameters**: Data exists for all required OSeMOSYS parameters"
 " (CapitalCost, FixedCost, VariableCost, ResidualCapacity, "
@@ -200,7 +200,7 @@ msgstr ""
 "OSeMOSYS requeridos (CapitalCost, FixedCost, VariableCost, "
 "ResidualCapacity, OperationalLife, CapacityToActivityUnit, etc.)."
 
-#: ../../country-management.md:68
+#: ../../country-management.md:66
 msgid ""
 "**Value ranges**: Parameter values fall within physically reasonable "
 "ranges."
@@ -208,7 +208,7 @@ msgstr ""
 "**Rangos de valores**: Los valores de los parámetros caen dentro de "
 "rangos físicamente razonables."
 
-#: ../../country-management.md:69
+#: ../../country-management.md:67
 msgid ""
 "**Demand profiles**: SpecifiedDemandProfile sums to approximately 1.0 per"
 " fuel/tech per year."
@@ -216,7 +216,7 @@ msgstr ""
 "**Perfiles de demanda**: SpecifiedDemandProfile suma aproximadamente 1.0 "
 "por energético/tecnología por año."
 
-#: ../../country-management.md:70
+#: ../../country-management.md:68
 msgid ""
 "**Storage**: Storage technologies have matching parameters "
 "(CapitalCostStorage, OperationalLifeStorage, etc.)."
@@ -225,7 +225,7 @@ msgstr ""
 "parámetros correspondientes (CapitalCostStorage, OperationalLifeStorage, "
 "etc.)."
 
-#: ../../country-management.md:71
+#: ../../country-management.md:69
 msgid ""
 "**Referential integrity**: Technologies referenced in parameter files "
 "exist in the TECHNOLOGY set, and fuels exist in the FUEL set."
@@ -234,35 +234,35 @@ msgstr ""
 " de parámetros existen en el conjunto TECHNOLOGY, y los energéticos "
 "existen en el conjunto FUEL."
 
-#: ../../country-management.md:73
-msgid "Output Format"
+#: ../../country-management.md:71
+msgid "Output format"
 msgstr "Formato de salida"
 
-#: ../../country-management.md:75
+#: ../../country-management.md:73
 msgid "Results are displayed as:"
 msgstr "Los resultados se muestran como:"
 
-#: ../../country-management.md:77
+#: ../../country-management.md:75
 msgid "**PASS**: Check succeeded."
 msgstr "**PASS**: La verificación fue exitosa."
 
-#: ../../country-management.md:78
+#: ../../country-management.md:76
 msgid "**FAIL**: Critical issue that will cause model errors."
 msgstr "**FAIL**: Problema crítico que causará errores en el modelo."
 
-#: ../../country-management.md:79
+#: ../../country-management.md:77
 msgid "**WARN**: Potential issue that should be reviewed."
 msgstr "**WARN**: Problema potencial que debe revisarse."
 
-#: ../../country-management.md:83
-msgid "New Country Template Generator"
+#: ../../country-management.md:79
+msgid "New country template generator"
 msgstr "Generador de plantilla de país nuevo"
 
-#: ../../country-management.md:85
+#: ../../country-management.md:81
 msgid "**Script:** `scripts/tools/Z_generate_country_template.py`"
 msgstr "**Script:** `scripts/tools/Z_generate_country_template.py`"
 
-#: ../../country-management.md:87
+#: ../../country-management.md:83
 msgid ""
 "Creates a complete set of CSV files with the minimum structure needed to "
 "add a new country to the model, using an existing country as a reference."
@@ -311,24 +311,24 @@ msgstr "`--region`"
 msgid "Region suffix (default: `XX`)"
 msgstr "Sufijo de región (por defecto: `XX`)"
 
-#: ../../country-management.md:112
-msgid "YAML Configuration"
+#: ../../country-management.md:108
+msgid "YAML configuration"
 msgstr "Configuración YAML"
 
-#: ../../country-management.md:114
+#: ../../country-management.md:110
 msgid "Alternatively, configure in `Config_country_codes.yaml`:"
 msgstr "Alternativamente, configure en `Config_country_codes.yaml`:"
 
-#: ../../country-management.md:126
-msgid "What It Generates"
+#: ../../country-management.md:122
+msgid "What it generates"
 msgstr "Qué genera"
 
-#: ../../country-management.md:128
+#: ../../country-management.md:124
 #, python-brace-format
 msgid "The script creates a `templates/{CODE}/` directory containing:"
 msgstr "El script crea un directorio `templates/{CODE}/` que contiene:"
 
-#: ../../country-management.md:130
+#: ../../country-management.md:126
 msgid ""
 "**SET CSVs**: TECHNOLOGY, FUEL, EMISSION, STORAGE entries for the new "
 "country."
@@ -336,7 +336,7 @@ msgstr ""
 "**CSV de conjuntos (SET)**: Entradas de TECHNOLOGY, FUEL, EMISSION, "
 "STORAGE para el país nuevo."
 
-#: ../../country-management.md:131
+#: ../../country-management.md:127
 msgid ""
 "**Parameter CSVs**: All OSeMOSYS parameter files with the new country's "
 "data (cloned and adapted from the reference)."
@@ -345,7 +345,7 @@ msgstr ""
 "los datos del país nuevo (clonados y adaptados a partir de la "
 "referencia)."
 
-#: ../../country-management.md:132
+#: ../../country-management.md:128
 msgid ""
 "**`merge_into_inputs.py`**: A helper script to merge the new country's "
 "files into the main `OG_csvs_inputs/` directory."
@@ -353,11 +353,11 @@ msgstr ""
 "**`merge_into_inputs.py`**: Un script auxiliar para fusionar los archivos"
 " del país nuevo en el directorio principal `OG_csvs_inputs/`."
 
-#: ../../country-management.md:134
-msgid "Interconnection Handling"
+#: ../../country-management.md:130
+msgid "Interconnection handling"
 msgstr "Manejo de interconexiones"
 
-#: ../../country-management.md:136
+#: ../../country-management.md:132
 msgid "The generator handles various interconnection scenarios:"
 msgstr "El generador maneja varios escenarios de interconexión:"
 
@@ -366,7 +366,7 @@ msgid "Scenario"
 msgstr "Escenario"
 
 #: ../../country-management.md
-msgid "Behavior"
+msgid "Behaviour"
 msgstr "Comportamiento"
 
 #: ../../country-management.md
@@ -401,11 +401,11 @@ msgstr "Menos/más vecinos que la referencia"
 msgid "Dynamically adjusts TRN entries"
 msgstr "Ajusta dinámicamente las entradas TRN"
 
-#: ../../country-management.md:145
-msgid "TRN Code Structure"
+#: ../../country-management.md:141
+msgid "TRN code structure"
 msgstr "Estructura del código TRN"
 
-#: ../../country-management.md:147
+#: ../../country-management.md:143
 msgid ""
 "Cross-border interconnection technologies encode both endpoints (each "
 "with its own region):"
@@ -413,7 +413,7 @@ msgstr ""
 "Las tecnologías de interconexión transfronteriza codifican ambos extremos"
 " (cada uno con su propia región):"
 
-#: ../../country-management.md:153
+#: ../../country-management.md:149
 msgid ""
 "For example: `TRNARGXXBOLXX` = interconnection between Argentina (region "
 "XX) and Bolivia (region XX)."
@@ -421,7 +421,7 @@ msgstr ""
 "Por ejemplo: `TRNARGXXBOLXX` = interconexión entre Argentina (región XX) "
 "y Bolivia (región XX)."
 
-#: ../../country-management.md:156
+#: ../../country-management.md:152
 #, python-brace-format
 msgid ""
 "Per-country transmission and dispatch technologies use a single-country "
@@ -436,31 +436,31 @@ msgstr ""
 "`TRNNLIARGXX`, `DSPTRNARGXX`. Estas son agregadas por la Etapa A2; el "
 "generador de plantillas no las crea."
 
-#: ../../country-management.md:159
+#: ../../country-management.md:155
 msgid "The generator handles:"
 msgstr "El generador maneja:"
 
-#: ../../country-management.md:160
+#: ../../country-management.md:156
 msgid "Position-aware country code replacement."
 msgstr "Reemplazo de código de país consciente de la posición."
 
-#: ../../country-management.md:161
+#: ../../country-management.md:157
 msgid "Alphabetical ordering of country pairs in interconnection codes."
 msgstr "Orden alfabético de los pares de países en los códigos de interconexión."
 
-#: ../../country-management.md:162
+#: ../../country-management.md:158
 msgid "Fuel and mode-of-operation code transformations."
 msgstr "Transformaciones de código de energético y modo de operación."
 
-#: ../../country-management.md:164
-msgid "Integration Workflow"
+#: ../../country-management.md:160
+msgid "Integration workflow"
 msgstr "Flujo de integración"
 
-#: ../../country-management.md:166
+#: ../../country-management.md:162
 msgid "After generating the template:"
 msgstr "Después de generar la plantilla:"
 
-#: ../../country-management.md:172
+#: ../../country-management.md:168
 msgid ""
 "Adding a new country: generate the template, review it, merge it into "
 "`OG_csvs_inputs/` and validate it."
@@ -468,87 +468,87 @@ msgstr ""
 "Agregar un país nuevo: generar la plantilla, revisarla, fusionarla en "
 "`OG_csvs_inputs/` y validarla."
 
-#: ../../country-management.md:185
-msgid "Region Consolidation"
+#: ../../country-management.md:186
+msgid "Region consolidation"
 msgstr "Consolidación regional"
 
-#: ../../country-management.md:187
+#: ../../country-management.md:188
 msgid ""
 "Region consolidation merges multiple sub-regional datasets into a single "
-"unified region. This is useful when a country is modeled with geographic "
-"granularity but you want aggregated results."
+"unified region. This is useful when a country is modelled with geographic"
+" granularity but you want aggregated results."
 msgstr ""
 "La consolidación regional fusiona varios conjuntos de datos subregionales"
 " en una sola región unificada. Esto es útil cuando un país se modela con "
 "granularidad geográfica pero se desean resultados agregados."
 
-#: ../../country-management.md:189
+#: ../../country-management.md:190
 msgid "Configuration"
 msgstr "Configuración"
 
-#: ../../country-management.md:191
+#: ../../country-management.md:192
 msgid "Edit `Config_region_consolidation.yaml`:"
 msgstr "Edite `Config_region_consolidation.yaml`:"
 
-#: ../../country-management.md:202
-msgid "Aggregation Rules"
+#: ../../country-management.md:203
+msgid "Aggregation rules"
 msgstr "Reglas de agregación"
 
-#: ../../country-management.md:204
+#: ../../country-management.md:205
 msgid ""
 "When consolidating regions, parameters are combined according to these "
 "rules:"
 msgstr "Al consolidar regiones, los parámetros se combinan según estas reglas:"
 
-#: ../../country-management.md:206
+#: ../../country-management.md:207
 msgid "**Averaged** (cost-like parameters):"
 msgstr "**Promediados** (parámetros de tipo costo):"
 
-#: ../../country-management.md:207
+#: ../../country-management.md:208
 msgid "AvailabilityFactor, CapacityFactor, CapitalCost, FixedCost, VariableCost"
 msgstr "AvailabilityFactor, CapacityFactor, CapitalCost, FixedCost, VariableCost"
 
-#: ../../country-management.md:208
+#: ../../country-management.md:209
 msgid "InputActivityRatio, OutputActivityRatio"
 msgstr "InputActivityRatio, OutputActivityRatio"
 
-#: ../../country-management.md:209
+#: ../../country-management.md:210
 msgid "CapacityToActivityUnit, OperationalLife"
 msgstr "CapacityToActivityUnit, OperationalLife"
 
-#: ../../country-management.md:211
+#: ../../country-management.md:212
 msgid "**Summed** (quantity-like parameters):"
 msgstr "**Sumados** (parámetros de tipo cantidad):"
 
-#: ../../country-management.md:212
+#: ../../country-management.md:213
 msgid "ResidualCapacity, SpecifiedAnnualDemand"
 msgstr "ResidualCapacity, SpecifiedAnnualDemand"
 
-#: ../../country-management.md:213
+#: ../../country-management.md:214
 msgid "TotalAnnualMaxCapacity, TotalAnnualMaxCapacityInvestment"
 msgstr "TotalAnnualMaxCapacity, TotalAnnualMaxCapacityInvestment"
 
-#: ../../country-management.md:214
+#: ../../country-management.md:215
 msgid "StorageLevelStart, ResidualStorageCapacity"
 msgstr "StorageLevelStart, ResidualStorageCapacity"
 
-#: ../../country-management.md:216
+#: ../../country-management.md:217
 msgid "**Disabled** (skipped):"
 msgstr "**Deshabilitados** (omitidos):"
 
-#: ../../country-management.md:217
+#: ../../country-management.md:218
 msgid "CapacityOfOneTechnologyUnit, RETagTechnology"
 msgstr "CapacityOfOneTechnologyUnit, RETagTechnology"
 
-#: ../../country-management.md:218
+#: ../../country-management.md:219
 msgid "TotalAnnualMinCapacity"
 msgstr "TotalAnnualMinCapacity"
 
-#: ../../country-management.md:220
+#: ../../country-management.md:221
 msgid "Processing"
 msgstr "Procesamiento"
 
-#: ../../country-management.md:222
+#: ../../country-management.md:223
 msgid ""
 "When enabled, region consolidation runs as part of Stage A1 "
 "preprocessing. It:"
@@ -556,19 +556,19 @@ msgstr ""
 "Cuando está habilitada, la consolidación regional se ejecuta como parte "
 "del preprocesamiento de la Etapa A1. Esta:"
 
-#: ../../country-management.md:224
+#: ../../country-management.md:225
 msgid "Groups data by country (across sub-regions)."
 msgstr "Agrupa los datos por país (a través de las subregiones)."
 
-#: ../../country-management.md:225
+#: ../../country-management.md:226
 msgid "Applies averaging or summing per the rules."
 msgstr "Aplica el promedio o la suma según las reglas."
 
-#: ../../country-management.md:226
+#: ../../country-management.md:227
 msgid "Replaces region codes with the unified region code."
 msgstr "Reemplaza los códigos de región con el código de región unificado."
 
-#: ../../country-management.md:227
+#: ../../country-management.md:228
 msgid "Removes internal interconnections that become self-loops after merging."
 msgstr ""
 "Elimina las interconexiones internas que se convierten en auto-bucles "

@@ -1,31 +1,29 @@
-# Country Management
+# Country management
 
 OSTRAM LAC includes tools for validating country data, generating templates for new countries, and consolidating sub-regional data.
 
-## Technology-Country Matrix
+## Technology-country matrix
 
 The Technology-Country Matrix controls which technology-country combinations are active in the model. See {doc}`pipeline` (Stage A0) for generation instructions.
 
-### Editing the Matrix
+### Editing the matrix
 
 After generating `Tech_Country_Matrix.xlsx`:
 
-1. Open the **Matrix** sheet.
+1. Open the `Matrix` sheet.
 2. Change any cell from `YES` to `NO` to disable a technology for a country.
 3. Change from `NO` to `YES` to enable it.
 4. Implausible combinations (highlighted in red) can be overridden if desired.
 
-### NGS Unification
+### NGS unification
 
-In the **NGS_Unification** sheet:
+In the `NGS_Unification` sheet:
 
 - Set a country to `YES` to merge CCG (Combined Cycle Gas) and OCG (Open Cycle Gas) into a single NGS (Natural Gas) technology.
 - Set to `NO` to keep them separate.
-- Aggregation follows the rules defined in the **Aggregation_Rules** sheet.
+- Aggregation follows the rules defined in the `Aggregation_Rules` sheet.
 
----
-
-## Country Data Validator
+## Country data validator
 
 **Script:** `scripts/tools/Z_validate_country_data.py`
 
@@ -47,7 +45,7 @@ python scripts/tools/Z_validate_country_data.py --country ARG --report
 python scripts/tools/Z_validate_country_data.py --quiet
 ```
 
-### Command-Line Options
+### Command-line options
 
 | Flag | Description |
 |------|-------------|
@@ -55,7 +53,7 @@ python scripts/tools/Z_validate_country_data.py --quiet
 | `--report`, `-r` | Generate a detailed validation report |
 | `--quiet`, `-q` | Suppress verbose output |
 
-### Validations Performed
+### Validations performed
 
 The validator checks:
 
@@ -70,7 +68,7 @@ The validator checks:
 6. **Storage**: Storage technologies have matching parameters (CapitalCostStorage, OperationalLifeStorage, etc.).
 7. **Referential integrity**: Technologies referenced in parameter files exist in the TECHNOLOGY set, and fuels exist in the FUEL set.
 
-### Output Format
+### Output format
 
 Results are displayed as:
 
@@ -78,9 +76,7 @@ Results are displayed as:
 - **FAIL**: Critical issue that will cause model errors.
 - **WARN**: Potential issue that should be reviewed.
 
----
-
-## New Country Template Generator
+## New country template generator
 
 **Script:** `scripts/tools/Z_generate_country_template.py`
 
@@ -99,7 +95,7 @@ python scripts/tools/Z_generate_country_template.py --new BLZ --ref GTM --region
 python scripts/tools/Z_generate_country_template.py --new BLZ --ref GTM -i GTM MEX
 ```
 
-### Command-Line Options
+### Command-line options
 
 | Flag | Description |
 |------|-------------|
@@ -109,7 +105,7 @@ python scripts/tools/Z_generate_country_template.py --new BLZ --ref GTM -i GTM M
 | `--interconnections`, `-i` | List of neighbor country codes for TRN links |
 | `--region` | Region suffix (default: `XX`) |
 
-### YAML Configuration
+### YAML configuration
 
 Alternatively, configure in `Config_country_codes.yaml`:
 
@@ -123,7 +119,7 @@ template_generation:
     interconnections: []    # Empty = no interconnections
 ```
 
-### What It Generates
+### What it generates
 
 The script creates a `templates/{CODE}/` directory containing:
 
@@ -131,18 +127,18 @@ The script creates a `templates/{CODE}/` directory containing:
 2. **Parameter CSVs**: All OSeMOSYS parameter files with the new country's data (cloned and adapted from the reference).
 3. **`merge_into_inputs.py`**: A helper script to merge the new country's files into the main `OG_csvs_inputs/` directory.
 
-### Interconnection Handling
+### Interconnection handling
 
 The generator handles various interconnection scenarios:
 
-| Scenario | Behavior |
+| Scenario | Behaviour |
 |----------|----------|
 | No `interconnections` key | Copies the reference country's interconnection topology |
 | `interconnections: []` (empty list) | No interconnections for the new country |
 | `interconnections: [BOL, PRY]` | Creates TRN links to the specified neighbors |
 | Fewer/more neighbors than reference | Dynamically adjusts TRN entries |
 
-### TRN Code Structure
+### TRN code structure
 
 Cross-border interconnection technologies encode both endpoints (each with its own region):
 
@@ -161,7 +157,7 @@ The generator handles:
 - Alphabetical ordering of country pairs in interconnection codes.
 - Fuel and mode-of-operation code transformations.
 
-### Integration Workflow
+### Integration workflow
 
 After generating the template:
 
@@ -187,11 +183,9 @@ python merge_into_inputs.py
 python scripts/tools/Z_validate_country_data.py --country BLZ --report
 ```
 
----
+## Region consolidation
 
-## Region Consolidation
-
-Region consolidation merges multiple sub-regional datasets into a single unified region. This is useful when a country is modeled with geographic granularity but you want aggregated results.
+Region consolidation merges multiple sub-regional datasets into a single unified region. This is useful when a country is modelled with geographic granularity but you want aggregated results.
 
 ### Configuration
 
@@ -206,7 +200,7 @@ countries:
     unified_region: "XX"
 ```
 
-### Aggregation Rules
+### Aggregation rules
 
 When consolidating regions, parameters are combined according to these rules:
 

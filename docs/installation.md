@@ -9,7 +9,7 @@ This guide covers the full setup process for running OSTRAM LAC on a Windows mac
 Installation steps: clone the repository, create the Conda environment, set up a solver and verify the installation.
 ```
 
-## System Requirements
+## System requirements
 
 - **Operating System:** Windows 10 or higher
 - **Git:** [Git for Windows](https://gitforwindows.org/) (version 2.40+)
@@ -18,16 +18,16 @@ Installation steps: clone the repository, create the Conda environment, set up a
   - [GLPK](https://www.gnu.org/software/glpk/) (open source, installed automatically with the Conda environment)
   - [CBC](https://github.com/coin-or/Cbc) (open source, installed automatically with the Conda environment)
   - [CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio) (commercial, IBM)
-  - [Gurobi](https://www.gurobi.com/) (commercial, free academic license)
+  - [Gurobi](https://www.gurobi.com/) (commercial, free academic licence)
 
-## Clone the Repository
+## Clone the repository
 
 ```bash
 git clone https://github.com/Climate-Lead-Group/OSTRAM-LAC.git
 cd OSTRAM-LAC
 ```
 
-## Conda Environment
+## Conda environment
 
 OSTRAM LAC uses a Conda environment defined in `environment.yaml`. The `run.py` launcher automatically creates it if it does not exist, but you can also create it manually:
 
@@ -36,7 +36,7 @@ conda env create -f environment.yaml
 conda activate OSTRAM-env
 ```
 
-### Environment Dependencies
+### Environment dependencies
 
 The environment installs the following packages:
 
@@ -59,7 +59,7 @@ The environment installs the following packages:
 | dvc | latest | Data Version Control pipeline |
 | otoole | >= 1.1.1 | OSeMOSYS data format conversion |
 
-## Solver Setup
+## Solver setup
 
 ### GLPK and CBC (included in the environment)
 
@@ -82,11 +82,11 @@ Note: the binaries live inside the environment (`...\envs\OSTRAM-env\Library\bin
 ### Gurobi
 
 1. Install Gurobi from the [Gurobi website](https://www.gurobi.com/downloads/).
-2. Activate your license (`grbgetkey <license-key>`).
+2. Activate your licence (`grbgetkey <license-key>`).
 3. Ensure the `gurobi` binary is available on your system `PATH`.
 4. Set `solver: 'gurobi'` in `inputs/config/Config_MOMF_T1_AB.yaml`.
 
-## Verify Installation
+## Verify installation
 
 After setup, verify that the environment works:
 
@@ -111,7 +111,7 @@ cplex -c "quit"
 gurobi_cl --version
 ```
 
-## DVC Setup (Optional)
+## DVC setup (optional)
 
 OSTRAM LAC uses [DVC](https://dvc.org/) (Data Version Control) to manage the pipeline. The `run.py` script handles DVC commands automatically, but if you want to run stages manually:
 

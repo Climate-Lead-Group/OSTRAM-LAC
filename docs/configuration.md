@@ -1,4 +1,4 @@
-# Configuration Reference
+# Configuration reference
 
 OSTRAM LAC uses four YAML configuration files and two Excel-based configuration files. This page documents every option.
 
@@ -72,7 +72,7 @@ countries:
   - "ARG"
 ```
 
-Countries modeled with sub-regions use extended codes (e.g., `BRACN` for Brazil-Center). In the current model, sub-regions are consolidated into the default region `XX` (see `Config_region_consolidation.yaml`), so countries appear with their 3-letter code.
+Countries modelled with sub-regions use extended codes (e.g., `BRACN` for Brazil-Center). In the current model, sub-regions are consolidated into the default region `XX` (see `Config_region_consolidation.yaml`), so countries appear with their 3-letter code.
 
 ### `first_year`
 
@@ -92,7 +92,7 @@ The base data come from OSeMOSYS Global, which can carry each power technology t
 pwr_cleanup_mode: "merge"
 ```
 
-| Value | Behavior |
+| Value | Behaviour |
 |-------|----------|
 | `"drop"` | Drop PWR00 when PWR01 exists, rename PWR01 to PWR |
 | `"merge"` | Sum PWR00 values into PWR01, drop PWR00, rename PWR01 to PWR |
@@ -225,7 +225,7 @@ force_empty_max_capacity_investment_pwr: true
 
 When `true`, forces `Projection.Mode = "EMPTY"` for `TotalAnnualMaxCapacityInvestment` on every PWR technology (the lid rule of A3_process fills those cells later). When `false`, the auto-detected `Projection.Mode` is kept.
 
-### Transmission Technology Parameters
+### Transmission technology parameters
 
 Seven sections define default parameters for transmission and dispatch technologies:
 
@@ -263,15 +263,13 @@ DSPTRN:
   TotalAnnualMaxCapacityInvestment: 9999
 ```
 
----
-
 ## Config_MOMF_T1_A.yaml
 
 **Location:** `inputs/config/Config_MOMF_T1_A.yaml`
 
 The primary compiler configuration. Defines the data model for the Excel-to-OSeMOSYS compilation step.
 
-### Key Settings
+### Key settings
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -283,7 +281,7 @@ The primary compiler configuration. Defines the data model for the Excel-to-OSeM
 | `pre_solver_validation` | `true` (default; key absent) | Run the B1b pre-solver validation at the start of B1 on the active scenario's `A-O_Parametrization.xlsx` (see {doc}`pipeline`) |
 | `pre_solver_validation_interactive` | `true` (default; key absent) | Ask before applying each B1b fix; `false` applies every fix without prompting |
 
-### Temporal Structure (`xtra_scen`)
+### Temporal structure (`xtra_scen`)
 
 ```yaml
 xtra_scen:
@@ -301,7 +299,7 @@ xtra_scen:
 
 The model uses 12 timeslices (4 seasons x 3 daily brackets), a single region (`GLOBAL`), and 2 modes of operation.
 
-### Directory and File Paths
+### Directory and file paths
 
 The configuration defines all input/output paths and Excel file names used by the compiler. These are relative to the repo root (e.g. `inputs/A1_Outputs`, `outputs/A2_Output_Params/`):
 
@@ -309,16 +307,14 @@ The configuration defines all input/output paths and Excel file names used by th
 - `A2_extra_inputs` / `A2_output`: Stage A2 directories
 - `Print_*`: Output Excel file name templates (e.g., `Print_Paramet: "/A-O_Parametrization.xlsx"`)
 
-### OSeMOSYS Parameters
+### OSeMOSYS parameters
 
-The file lists all OSeMOSYS parameters organized by technology category:
+The file lists all OSeMOSYS parameters organised by technology category:
 
 - `tech_param_list_primary`: Parameters for primary supply technologies
 - `tech_param_list_secondary`: Parameters for secondary (power) technologies
 - `tech_param_list_demands`: Parameters for demand technologies
 - `tech_param_list_disttrn` / `_trn` / `_trngroups`: Transport parameters
-
----
 
 ## Config_MOMF_T1_AB.yaml
 
@@ -326,7 +322,7 @@ The file lists all OSeMOSYS parameters organized by technology category:
 
 The execution/runtime configuration for the model solver.
 
-### Solver Configuration
+### Solver configuration
 
 ```yaml
 solver: 'cplex'
@@ -348,7 +344,7 @@ gurobi_seed: 12345
 | `gurobi_threads` | Number of threads for Gurobi |
 | `gurobi_seed` | Random seed for Gurobi |
 
-### Pipeline Control Flags
+### Pipeline control flags
 
 ```yaml
 del_files: True
@@ -372,13 +368,13 @@ annualize_capital: True
 | `max_x_per_iter` | Maximum scenarios per parallel batch |
 | `A2_otoole_outputs` | Write otoole-format output CSVs |
 | `write_txt_model` | Generate the `.txt` model file for the solver |
-| `create_matrix` | Create the optimization matrix |
+| `create_matrix` | Create the optimisation matrix |
 | `execute_model` | Run the solver |
 | `concat_otoole_csv` | Concatenate otoole CSVs across scenarios |
 | `concat_scenarios_csv` | Concatenate scenario result CSVs |
-| `annualize_capital` | Run capital cost annualization post-processing |
+| `annualize_capital` | Run capital cost annualisation post-processing |
 
-### Other Settings
+### Other settings
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -386,7 +382,7 @@ annualize_capital: True
 | `prefix_final_files` | `"RELAC_TX_"` | Prefix for final output file names |
 | `osemosys_model` | `"osemosys_fast_preprocessed.txt"` | OSeMOSYS model file (GNU MathProg) |
 
-### Paths and File-Name Plumbing
+### Paths and file-name plumbing
 
 All paths are relative to the repository root. Values shown are the shipped ones (`inputs/config/Config_MOMF_T1_AB.yaml` lines 4–24).
 
@@ -406,7 +402,7 @@ All paths are relative to the repository root. Values shown are the shipped ones
 | `output_files` | `_output` | Suffix of solver output files |
 | `inputs_file` / `outputs_file` | `Inputs.csv` / `Outputs.csv` | Base names of the combined CSVs (prefixed by `prefix_final_files`); the merged file is `<prefix>Combined_Inputs_Outputs.csv` |
 
-### Solver Modifier Chain
+### Solver modifier chain
 
 `Config_MOMF_T1_AB.yaml` also contains the settings for the Stage B2 modifier chain: the reserve-margin and storage features applied to the GNU MathProg `.txt` before the solver runs. Each modifier has an `*_active` master switch; the shipped configuration enables several of them.
 
@@ -423,7 +419,7 @@ All paths are relative to the repository root. Values shown are the shipped ones
 
 See {doc}`solver-patchers` for the full chain, execution order, and every per-patcher parameter.
 
-### Transmission Chain: Derived Scenarios
+### Transmission chain: derived scenarios
 
 Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive steps 8 and 9 of the B2 chain, which create the derived scenarios (see sections 8 and 9 of {doc}`solver-patchers` and the scenario-code table of {doc}`pipeline`). Adding a constraint script or a derived scenario only requires editing these blocks; B2 needs no code change.
 
@@ -438,10 +434,30 @@ scenario_transforms:
   - name: cost_sensitivity_FA
     script: "scripts/tx_chain/cost_sensitivity_v_FA.py"
     produces: {BFA: BAC, IFA: INV}
+  - name: cost_sensitivity_FB
+    script: "scripts/tx_chain/cost_sensitivity_v_FB.py"
+    produces: {BFB: BAC, IFB: INV}
+  - name: cost_sensitivity_RB
+    script: "scripts/tx_chain/cost_sensitivity_v_RB.py"
+    produces: {BRB: BAC, IRB: INV}
+  - name: cost_sensitivity_RA
+    script: "scripts/tx_chain/cost_sensitivity_v_RA.py"
+    produces: {BRA: BAC, IRA: INV}
 
 derived_scenarios:
   BAC: BAU
+  OPC: OPT
+  BSR: BAU
   ISR: INV
+  VSR: VGB
+  BFA: BAU
+  IFA: INV
+  BFB: BAU
+  IFB: INV
+  BRB: BAU
+  IRB: INV
+  BRA: BAU
+  IRA: INV
 
 solve_scenarios: [BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IRB, VSR]
 ```
@@ -454,18 +470,16 @@ solve_scenarios: [BAC, OPC, BSR, BFA, BFB, BRA, BRB, ISR, IFA, IFB, INV, IRA, IR
 
 Shipped transforms (2026-09-17): `cost_sensitivity` (OPT without repowering `BSR`, ETT `ISR`, ETT-GP `VSR`), `nli_sr_recompute`, `cost_sensitivity_FA` (fossil `VariableCost` ×1.70), `cost_sensitivity_FB` (×0.52), `cost_sensitivity_RB` (`CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50), `cost_sensitivity_RA` (`CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49). See {doc}`solver-patchers` (section 9) for what each transform does.
 
----
-
 ## Config_region_consolidation.yaml
 
 **Location:** `inputs/config/Config_region_consolidation.yaml`
 
-Controls optional consolidation of sub-regional data into unified country-level data. This is relevant when a country is modeled with multiple sub-regions (e.g., India with 5 regions).
+Controls optional consolidation of sub-regional data into unified country-level data. This is relevant when a country is modelled with multiple sub-regions, as Brazil is with seven.
 
 ### Enable/Disable
 
 ```yaml
-enabled: false
+enabled: true
 ```
 
 ### `pwrbck_output_to_elc02`
@@ -476,7 +490,7 @@ pwrbck_output_to_elc02: true
 
 When `true`, remaps the `OutputActivityRatio` fuel of every `PWRBCK*` (backstop) technology from `ELC{ISO3}XX01` to `ELC{ISO3}XX02`. Applied at CSV-load time, so it propagates to all downstream sheets (Secondary Techs, Model Base Year Secondary, Projection Secondary). Independent of `enabled`.
 
-### Country Definitions
+### Country definitions
 
 ```yaml
 countries:
@@ -489,7 +503,7 @@ Each entry specifies:
 - `regions`: List of sub-region codes to merge.
 - `unified_region`: Target code for the merged region.
 
-### Aggregation Rules
+### Aggregation rules
 
 Defines how parameters are combined when merging sub-regions:
 
@@ -505,9 +519,7 @@ Parameters where values are summed: `ResidualCapacity`, `ResidualStorageCapacity
 
 Parameters skipped during consolidation: `CapacityOfOneTechnologyUnit`, `RETagTechnology`, `TotalAnnualMinCapacity`, and model-period activity limits.
 
----
-
-## Excel-Based Configuration
+## Excel-based configuration
 
 ### Tech_Country_Matrix.xlsx
 
@@ -515,11 +527,11 @@ Generated by `A0_generate_tech_country_matrix.py`. Contains 5 sheets:
 
 | Sheet | Purpose |
 |-------|---------|
-| **Matrix** | YES/NO grid for each technology-country combination |
-| **NGS_Unification** | ON/OFF toggle per country for merging CCG+OCG into NGS |
-| **Aggregation_Rules** | Rules for averaging, summing, or disabling parameters |
-| **Tech_Reference** | Technology code to description mapping |
-| **Country_Reference** | Country code to name mapping |
+| `Matrix` | YES/NO grid for each technology-country combination |
+| `NGS_Unification` | ON/OFF toggle per country for merging CCG+OCG into NGS |
+| `Aggregation_Rules` | Rules for averaging, summing, or disabling parameters |
+| `Tech_Reference` | Technology code to description mapping |
+| `Country_Reference` | Country code to name mapping |
 
 ### Secondary_Techs_Editor.xlsx
 

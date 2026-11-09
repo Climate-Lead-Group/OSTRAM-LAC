@@ -1,4 +1,4 @@
-# Data Sources
+# Data sources
 
 This page catalogues where the data behind OSTRAM LAC comes from: the external datasets and
 national planning documents used to calibrate the model, and how internal assumptions and
@@ -9,7 +9,7 @@ sheet, which technology, which years, which exact source and how it was transfor
 in a `Fuentes` sheet added to the end of `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` and
 `A-Xtra_Storage.xlsx` for every scenario (see {doc}`data-reference`). That sheet is generated
 from the master table `inputs/config/data_sources.csv` by
-[`add_fuentes_sheet.py`](../scripts/tools/data_patches/add_fuentes_sheet.py). To change a
+[`add_fuentes_sheet.py`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/tools/data_patches/add_fuentes_sheet.py). To change a
 source, edit the CSV and re-run that script, which regenerates the sheet.
 
 ## Primary external sources

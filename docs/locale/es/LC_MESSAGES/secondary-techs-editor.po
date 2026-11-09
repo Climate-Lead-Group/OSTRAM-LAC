@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 15:39-0600\n"
+"POT-Creation-Date: 2026-11-09 08:29-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../secondary-techs-editor.md:1
-msgid "Secondary Technologies Editor"
+msgid "Secondary technologies editor"
 msgstr "Editor de tecnologías secundarias"
 
 #: ../../secondary-techs-editor.md:3
@@ -65,135 +65,135 @@ msgstr ""
 "Flujo del editor de tecnologías secundarias: D1 genera la plantilla, el "
 "usuario la edita y D2 aplica los cambios a los libros de cada escenario."
 
-#: ../../secondary-techs-editor.md:14
-msgid "Step 1: Generate the Editor Template"
+#: ../../secondary-techs-editor.md:19
+msgid "Step 1: Generate the editor template"
 msgstr "Paso 1: Generar la plantilla del editor"
 
-#: ../../secondary-techs-editor.md:16
+#: ../../secondary-techs-editor.md:21
 msgid "**Script:** `scripts/pipeline/D1_generate_editor_template.py`"
 msgstr "**Script:** `scripts/pipeline/D1_generate_editor_template.py`"
 
-#: ../../secondary-techs-editor.md:22
-msgid "What It Creates"
+#: ../../secondary-techs-editor.md:27
+msgid "What it creates"
 msgstr "Qué crea"
 
-#: ../../secondary-techs-editor.md:24
+#: ../../secondary-techs-editor.md:29
 msgid "The script generates `Secondary_Techs_Editor.xlsx` with these sheets:"
 msgstr "El script genera `Secondary_Techs_Editor.xlsx` con estas hojas:"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Sheet"
 msgstr "Hoja"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Purpose"
 msgstr "Propósito"
 
-#: ../../secondary-techs-editor.md
-msgid "**Instructions**"
-msgstr "**Instructions**"
+#: ../../secondary-techs-editor.md:12
+msgid "`Instructions`"
+msgstr "`Instructions`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "User guide with editing instructions"
 msgstr "Guía de usuario con instrucciones de edición"
 
-#: ../../secondary-techs-editor.md
-msgid "**Documentation**"
-msgstr "**Documentation**"
+#: ../../secondary-techs-editor.md:12
+msgid "`Documentation`"
+msgstr "`Documentation`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Full technical documentation on calculations"
 msgstr "Documentación técnica completa sobre los cálculos"
 
-#: ../../secondary-techs-editor.md
-msgid "**OLADE_Config**"
-msgstr "**OLADE_Config**"
+#: ../../secondary-techs-editor.md:12
+msgid "`OLADE_Config`"
+msgstr "`OLADE_Config`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Toggle switches for automatic OLADE data integration"
 msgstr "Interruptores para la integración automática de datos de OLADE"
 
-#: ../../secondary-techs-editor.md
-msgid "**Demand_Growth**"
-msgstr "**Demand_Growth**"
+#: ../../secondary-techs-editor.md:12
+msgid "`Demand_Growth`"
+msgstr "`Demand_Growth`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Demand growth rate configuration per country"
 msgstr "Configuración de la tasa de crecimiento de demanda por país"
 
-#: ../../secondary-techs-editor.md
-msgid "**Scenarios_Demand_Growth**"
-msgstr "**Scenarios_Demand_Growth**"
+#: ../../secondary-techs-editor.md:12
+msgid "`Scenarios_Demand_Growth`"
+msgstr "`Scenarios_Demand_Growth`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Scenario-specific demand growth rates"
 msgstr "Tasas de crecimiento de demanda específicas por escenario"
 
-#: ../../secondary-techs-editor.md
-msgid "**Renewability_Targets**"
-msgstr "**Renewability_Targets**"
+#: ../../secondary-techs-editor.md:12
+msgid "`Renewability_Targets`"
+msgstr "`Renewability_Targets`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Renewable percentage targets per year/country"
 msgstr "Metas de porcentaje renovable por año/país"
 
-#: ../../secondary-techs-editor.md
-msgid "**Technology_Weights**"
-msgstr "**Technology_Weights**"
+#: ../../secondary-techs-editor.md:12
+msgid "`Technology_Weights`"
+msgstr "`Technology_Weights`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Custom distribution of renewable/non-renewable technologies"
 msgstr "Distribución personalizada de tecnologías renovables/no renovables"
 
-#: ../../secondary-techs-editor.md
-msgid "**Editor**"
-msgstr "**Editor**"
+#: ../../secondary-techs-editor.md:12
+msgid "`Editor`"
+msgstr "`Editor`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Main editing area with dropdown lists"
 msgstr "Área principal de edición con listas desplegables"
 
-#: ../../secondary-techs-editor.md
-msgid "**Interconnections**"
-msgstr "**Interconnections**"
+#: ../../secondary-techs-editor.md:12
+msgid "`Interconnections`"
+msgstr "`Interconnections`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Transmission interconnection technologies (only if TRN technologies exist)"
 msgstr ""
 "Tecnologías de interconexión de transmisión (solo si existen tecnologías "
 "TRN)"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "*(Hidden sheets)*"
 msgstr "*(Hojas ocultas)*"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Validation data for dropdown lists"
 msgstr "Datos de validación para las listas desplegables"
 
-#: ../../secondary-techs-editor.md:39
-msgid "How It Works"
+#: ../../secondary-techs-editor.md:44
+msgid "How it works"
 msgstr "Cómo funciona"
 
-#: ../../secondary-techs-editor.md:41
+#: ../../secondary-techs-editor.md:46
 msgid "The script:"
 msgstr "El script:"
 
-#: ../../secondary-techs-editor.md:42
+#: ../../secondary-techs-editor.md:47
 msgid "Reads all `A-O_Parametrization.xlsx` files across scenarios."
 msgstr "Lee todos los archivos `A-O_Parametrization.xlsx` en todos los escenarios."
 
-#: ../../secondary-techs-editor.md:43
+#: ../../secondary-techs-editor.md:48
 msgid "Collects existing parameter data and transmission interconnections."
 msgstr ""
 "Recopila los datos de parámetros existentes y las interconexiones de "
 "transmisión."
 
-#: ../../secondary-techs-editor.md:44
+#: ../../secondary-techs-editor.md:49
 msgid "Builds the Excel template with:"
 msgstr "Construye la plantilla Excel con:"
 
-#: ../../secondary-techs-editor.md:45
+#: ../../secondary-techs-editor.md:50
 msgid ""
 "**Dropdown lists** for Scenario, Country, Technology, and Parameter "
 "selection."
@@ -201,31 +201,31 @@ msgstr ""
 "**Listas desplegables** para la selección de escenario, país, tecnología "
 "y parámetro."
 
-#: ../../secondary-techs-editor.md:46
+#: ../../secondary-techs-editor.md:51
 msgid "**Auto-fill formulas** (VLOOKUP) for the Tech column."
 msgstr "**Fórmulas de autocompletado** (VLOOKUP) para la columna Tech."
 
-#: ../../secondary-techs-editor.md:47
+#: ../../secondary-techs-editor.md:52
 msgid "**Year columns** (2021--2050) for entering values."
 msgstr "**Columnas de año** (2021--2050) para ingresar valores."
 
-#: ../../secondary-techs-editor.md:51
-msgid "Step 2: Edit the Template"
+#: ../../secondary-techs-editor.md:54
+msgid "Step 2: Edit the template"
 msgstr "Paso 2: Editar la plantilla"
 
-#: ../../secondary-techs-editor.md:53
-msgid "Manual Editing (Editor Sheet)"
-msgstr "Edición manual (hoja Editor)"
+#: ../../secondary-techs-editor.md:56
+msgid "Manual editing (`Editor` sheet)"
+msgstr "Edición manual (hoja `Editor`)"
 
-#: ../../secondary-techs-editor.md:55
+#: ../../secondary-techs-editor.md:58
 msgid ""
-"In the **Editor** sheet (and similarly in the **Interconnections** sheet "
-"for transmission technologies):"
+"In the `Editor` sheet (and similarly in the `Interconnections` sheet for "
+"transmission technologies):"
 msgstr ""
-"En la hoja **Editor** (y de manera similar en la hoja "
-"**Interconnections** para las tecnologías de transmisión):"
+"En la hoja `Editor` (y de manera similar en la hoja "
+"`Interconnections` para las tecnologías de transmisión):"
 
-#: ../../secondary-techs-editor.md:57
+#: ../../secondary-techs-editor.md:60
 msgid ""
 "**Select a Scenario**: Choose from the auto-discovered scenarios (based "
 "on existing `A1_Outputs_*` folders), or ALL (applies to every scenario)."
@@ -234,11 +234,11 @@ msgstr ""
 "automáticamente (según las carpetas `A1_Outputs_*` existentes), o ALL (se"
 " aplica a todos los escenarios)."
 
-#: ../../secondary-techs-editor.md:58
+#: ../../secondary-techs-editor.md:61
 msgid "**Select a Country**: Pick a country from the dropdown."
 msgstr "**Seleccione un país**: elija un país de la lista desplegable."
 
-#: ../../secondary-techs-editor.md:59
+#: ../../secondary-techs-editor.md:62
 msgid ""
 "**Select a Technology**: Choose by Tech.Name (descriptive name). The Tech"
 " code auto-populates."
@@ -246,7 +246,7 @@ msgstr ""
 "**Seleccione una tecnología**: elija por Tech.Name (nombre descriptivo). "
 "El código Tech se completa automáticamente."
 
-#: ../../secondary-techs-editor.md:60
+#: ../../secondary-techs-editor.md:63
 msgid ""
 "**Select a Parameter**: Choose which parameter to modify (e.g., "
 "CapitalCost, ResidualCapacity)."
@@ -254,7 +254,7 @@ msgstr ""
 "**Seleccione un parámetro**: elija qué parámetro modificar (p. ej., "
 "CapitalCost, ResidualCapacity)."
 
-#: ../../secondary-techs-editor.md:61
+#: ../../secondary-techs-editor.md:64
 msgid ""
 "**Enter values**: Fill in the year columns (2021--2050) with your desired"
 " values."
@@ -262,131 +262,131 @@ msgstr ""
 "**Ingrese valores**: complete las columnas de año (2021--2050) con los "
 "valores deseados."
 
-#: ../../secondary-techs-editor.md:63
-msgid "OLADE Configuration (OLADE_Config Sheet)"
-msgstr "Configuración de OLADE (hoja OLADE_Config)"
+#: ../../secondary-techs-editor.md:66
+msgid "OLADE configuration (`OLADE_Config` sheet)"
+msgstr "Configuración de OLADE (hoja `OLADE_Config`)"
 
-#: ../../secondary-techs-editor.md:65
+#: ../../secondary-techs-editor.md:68
 msgid ""
-"The **OLADE_Config** sheet provides toggle switches for automatic data "
+"The `OLADE_Config` sheet provides toggle switches for automatic data "
 "population:"
 msgstr ""
-"La hoja **OLADE_Config** ofrece interruptores para el llenado automático "
+"La hoja `OLADE_Config` ofrece interruptores para el llenado automático "
 "de datos:"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Parameter"
 msgstr "Parámetro"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Values"
 msgstr "Valores"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Description"
 msgstr "Descripción"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`ResidualCapacitiesFromOLADE`"
 msgstr "`ResidualCapacitiesFromOLADE`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "YES / NO"
 msgstr "YES / NO"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Auto-populate ResidualCapacity from installed capacity data"
 msgstr ""
 "Completa automáticamente ResidualCapacity a partir de los datos de "
 "capacidad instalada"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`PetroleumSplitMode`"
 msgstr "`PetroleumSplitMode`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`OIL_only` / `Split_PET_OIL`"
 msgstr "`OIL_only` / `Split_PET_OIL`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "How to handle petroleum capacity allocation"
 msgstr "Cómo manejar la asignación de capacidad de petróleo"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`DemandFromOLADE`"
 msgstr "`DemandFromOLADE`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Auto-populate electricity demand from generation data"
 msgstr ""
 "Completa automáticamente la demanda eléctrica a partir de los datos de "
 "generación"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`ActivityLowerLimitFromOLADE`"
 msgstr "`ActivityLowerLimitFromOLADE`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Auto-populate TotalTechnologyAnnualActivityLowerLimit"
 msgstr "Completa automáticamente TotalTechnologyAnnualActivityLowerLimit"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`ActivityUpperLimitFromOLADE`"
 msgstr "`ActivityUpperLimitFromOLADE`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "NO / YES_ALL / EXISTING_ONLY"
 msgstr "NO / YES_ALL / EXISTING_ONLY"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Auto-populate TotalTechnologyAnnualActivityUpperLimit"
 msgstr "Completa automáticamente TotalTechnologyAnnualActivityUpperLimit"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`TradeBalanceDemandAdjustment`"
 msgstr "`TradeBalanceDemandAdjustment`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Adjust demand based on trade balance data"
 msgstr "Ajusta la demanda con base en los datos de balance comercial"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`InterconnectionsControl`"
 msgstr "`InterconnectionsControl`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "ON / OFF"
 msgstr "ON / OFF"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Enable/disable interconnection technologies"
 msgstr "Habilita/deshabilita las tecnologías de interconexión"
 
-#: ../../secondary-techs-editor.md:77
-msgid "Petroleum Split Modes"
+#: ../../secondary-techs-editor.md:80
+msgid "Petroleum split modes"
 msgstr "Modos de división del petróleo"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Mode"
 msgstr "Modo"
 
-#: ../../secondary-techs-editor.md
-msgid "Behavior"
+#: ../../secondary-techs-editor.md:12
+msgid "Behaviour"
 msgstr "Comportamiento"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`OIL_only`"
 msgstr "`OIL_only`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "All petroleum capacity is assigned to OIL (Fuel oil)"
 msgstr "Toda la capacidad de petróleo se asigna a OIL (Fuel oil)"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`Split_PET_OIL`"
 msgstr "`Split_PET_OIL`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid ""
 "Capacity is split between PET (Diesel) and OIL (Fuel oil + Bunker) using "
 "proportions from `Shares_PET_OIL_Split.xlsx`"
@@ -394,21 +394,21 @@ msgstr ""
 "La capacidad se divide entre PET (Diesel) y OIL (Fuel oil + Bunker) "
 "usando las proporciones de `Shares_PET_OIL_Split.xlsx`"
 
-#: ../../secondary-techs-editor.md:84
-msgid "Demand Configuration (Demand_Growth Sheet)"
-msgstr "Configuración de demanda (hoja Demand_Growth)"
+#: ../../secondary-techs-editor.md:87
+msgid "Demand configuration (`Demand_Growth` sheet)"
+msgstr "Configuración de demanda (hoja `Demand_Growth`)"
 
-#: ../../secondary-techs-editor.md:86
+#: ../../secondary-techs-editor.md:89
 msgid "When `DemandFromOLADE` is YES, configure growth rates per country:"
 msgstr ""
 "Cuando `DemandFromOLADE` es YES, configure las tasas de crecimiento por "
 "país:"
 
-#: ../../secondary-techs-editor.md:88
+#: ../../secondary-techs-editor.md:91
 msgid "Uses OLADE generation data as the base."
 msgstr "Usa los datos de generación de OLADE como base."
 
-#: ../../secondary-techs-editor.md:89
+#: ../../secondary-techs-editor.md:92
 msgid ""
 "Applies linear growth: `Demand(year) = Demand(2023) * (1 + rate * (year -"
 " 2023))`."
@@ -416,35 +416,35 @@ msgstr ""
 "Aplica crecimiento lineal: `Demand(year) = Demand(2023) * (1 + rate * "
 "(year - 2023))`."
 
-#: ../../secondary-techs-editor.md:90
-msgid "Growth rates are specified per country in the **Demand_Growth** sheet."
+#: ../../secondary-techs-editor.md:93
+msgid "Growth rates are specified per country in the `Demand_Growth` sheet."
 msgstr ""
 "Las tasas de crecimiento se especifican por país en la hoja "
-"**Demand_Growth**."
+"`Demand_Growth`."
 
-#: ../../secondary-techs-editor.md:91
-msgid "Scenario-specific overrides are available in **Scenarios_Demand_Growth**."
+#: ../../secondary-techs-editor.md:94
+msgid "Scenario-specific overrides are available in `Scenarios_Demand_Growth`."
 msgstr ""
 "Hay sobrescrituras específicas por escenario disponibles en "
-"**Scenarios_Demand_Growth**."
+"`Scenarios_Demand_Growth`."
 
-#: ../../secondary-techs-editor.md:93
-msgid "ActivityUpperLimit Modes"
+#: ../../secondary-techs-editor.md:96
+msgid "ActivityUpperLimit modes"
 msgstr "Modos de ActivityUpperLimit"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`NO`"
 msgstr "`NO`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "No UpperLimit updates"
 msgstr "Sin actualizaciones de UpperLimit"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`YES_ALL`"
 msgstr "`YES_ALL`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid ""
 "Update UpperLimit for all technologies. Formula: `UpperLimit = LowerLimit"
 " × 1.05`"
@@ -452,11 +452,11 @@ msgstr ""
 "Actualiza UpperLimit para todas las tecnologías. Fórmula: `UpperLimit = "
 "LowerLimit × 1.05`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`EXISTING_ONLY`"
 msgstr "`EXISTING_ONLY`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid ""
 "Only update technologies that already have UpperLimit values defined and "
 "`Projection.Mode = \"User defined\"`"
@@ -464,171 +464,171 @@ msgstr ""
 "Solo actualiza las tecnologías que ya tienen valores de UpperLimit "
 "definidos y `Projection.Mode = \"User defined\"`"
 
-#: ../../secondary-techs-editor.md:101
-msgid "Renewability Targets (Renewability_Targets Sheet)"
-msgstr "Metas de renovabilidad (hoja Renewability_Targets)"
+#: ../../secondary-techs-editor.md:104
+msgid "Renewability targets (`Renewability_Targets` sheet)"
+msgstr "Metas de renovabilidad (hoja `Renewability_Targets`)"
 
-#: ../../secondary-techs-editor.md:103
+#: ../../secondary-techs-editor.md:106
 msgid "When Activity Limits from OLADE are enabled:"
 msgstr "Cuando los límites de actividad desde OLADE están habilitados:"
 
-#: ../../secondary-techs-editor.md:105
+#: ../../secondary-techs-editor.md:108
 msgid "Define target renewable percentages per year and country."
 msgstr "Defina los porcentajes renovables meta por año y país."
 
-#: ../../secondary-techs-editor.md:106
+#: ../../secondary-techs-editor.md:109
 msgid "The system interpolates between specified target years."
 msgstr "El sistema interpola entre los años meta especificados."
 
-#: ../../secondary-techs-editor.md:107
+#: ../../secondary-techs-editor.md:110
 msgid "Targets affect the distribution of activity limits across technologies."
 msgstr ""
 "Las metas afectan la distribución de los límites de actividad entre "
 "tecnologías."
 
-#: ../../secondary-techs-editor.md:109
-msgid "Technology Weights (Technology_Weights Sheet)"
-msgstr "Pesos de tecnología (hoja Technology_Weights)"
+#: ../../secondary-techs-editor.md:112
+msgid "Technology weights (`Technology_Weights` sheet)"
+msgstr "Pesos de tecnología (hoja `Technology_Weights`)"
 
-#: ../../secondary-techs-editor.md:111
-msgid "Customize how activity limits are distributed among technologies:"
+#: ../../secondary-techs-editor.md:114
+msgid "Customise how activity limits are distributed among technologies:"
 msgstr ""
 "Personalice cómo se distribuyen los límites de actividad entre las "
 "tecnologías:"
 
-#: ../../secondary-techs-editor.md:113
+#: ../../secondary-techs-editor.md:116
 msgid "Define weights for individual renewable and non-renewable technologies."
 msgstr "Defina pesos para tecnologías renovables y no renovables individuales."
 
-#: ../../secondary-techs-editor.md:114
+#: ../../secondary-techs-editor.md:117
 msgid "Weights determine each technology's share of the total activity limit."
 msgstr ""
 "Los pesos determinan la participación de cada tecnología en el límite de "
 "actividad total."
 
-#: ../../secondary-techs-editor.md:118
-msgid "Step 3: Apply Changes"
+#: ../../secondary-techs-editor.md:119
+msgid "Step 3: Apply changes"
 msgstr "Paso 3: Aplicar cambios"
 
-#: ../../secondary-techs-editor.md:120
+#: ../../secondary-techs-editor.md:121
 msgid "**Script:** `scripts/pipeline/D2_update_secondary_techs.py`"
 msgstr "**Script:** `scripts/pipeline/D2_update_secondary_techs.py`"
 
-#: ../../secondary-techs-editor.md:126
-msgid "What It Does"
+#: ../../secondary-techs-editor.md:127
+msgid "What it does"
 msgstr "Qué hace"
 
-#: ../../secondary-techs-editor.md:128
+#: ../../secondary-techs-editor.md:129
 msgid "Reads the filled `Secondary_Techs_Editor.xlsx`."
 msgstr "Lee el `Secondary_Techs_Editor.xlsx` completado."
 
-#: ../../secondary-techs-editor.md:129
+#: ../../secondary-techs-editor.md:130
 msgid "Reads OLADE configuration toggles."
 msgstr "Lee los interruptores de configuración de OLADE."
 
-#: ../../secondary-techs-editor.md:130
+#: ../../secondary-techs-editor.md:131
 msgid "For each scenario:"
 msgstr "Para cada escenario:"
 
-#: ../../secondary-techs-editor.md:131
+#: ../../secondary-techs-editor.md:132
 msgid "Creates a backup of the parametrization file."
 msgstr "Crea un respaldo del archivo de parametrización."
 
-#: ../../secondary-techs-editor.md:132
+#: ../../secondary-techs-editor.md:133
 msgid "Applies manual edits from the Editor sheet."
 msgstr "Aplica las ediciones manuales de la hoja Editor."
 
-#: ../../secondary-techs-editor.md:133
+#: ../../secondary-techs-editor.md:134
 msgid "If OLADE integration is enabled:"
 msgstr "Si la integración con OLADE está habilitada:"
 
-#: ../../secondary-techs-editor.md:134
+#: ../../secondary-techs-editor.md:135
 msgid "Reads capacity data (MW to GW conversion)."
 msgstr "Lee los datos de capacidad (conversión de MW a GW)."
 
-#: ../../secondary-techs-editor.md:135
+#: ../../secondary-techs-editor.md:136
 msgid "Reads generation data (GWh to PJ conversion)."
 msgstr "Lee los datos de generación (conversión de GWh a PJ)."
 
-#: ../../secondary-techs-editor.md:136
+#: ../../secondary-techs-editor.md:137
 msgid "Applies petroleum split logic."
 msgstr "Aplica la lógica de división del petróleo."
 
-#: ../../secondary-techs-editor.md:137
+#: ../../secondary-techs-editor.md:138
 msgid "Calculates activity limits with renewability targets."
 msgstr "Calcula los límites de actividad con las metas de renovabilidad."
 
-#: ../../secondary-techs-editor.md:138
+#: ../../secondary-techs-editor.md:139
 msgid "Validates limits against available capacities."
 msgstr "Valida los límites contra las capacidades disponibles."
 
-#: ../../secondary-techs-editor.md:139
+#: ../../secondary-techs-editor.md:140
 msgid "Updates `A-O_Parametrization.xlsx`."
 msgstr "Actualiza `A-O_Parametrization.xlsx`."
 
-#: ../../secondary-techs-editor.md:140
+#: ../../secondary-techs-editor.md:141
 msgid "Updates `A-O_Demand.xlsx` (if demand integration is enabled)."
 msgstr ""
 "Actualiza `A-O_Demand.xlsx` (si la integración de demanda está "
 "habilitada)."
 
-#: ../../secondary-techs-editor.md:141
+#: ../../secondary-techs-editor.md:142
 msgid "Sets `Projection.Mode` to \"User defined\" for modified parameters."
 msgstr ""
 "Establece `Projection.Mode` en \"User defined\" para los parámetros "
 "modificados."
 
-#: ../../secondary-techs-editor.md:143
-msgid "Unit Conversions"
+#: ../../secondary-techs-editor.md:144
+msgid "Unit conversions"
 msgstr "Conversiones de unidades"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Source"
 msgstr "Origen"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Target"
 msgstr "Destino"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Conversion"
 msgstr "Conversión"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "MW (source capacity)"
 msgstr "MW (capacidad de origen)"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "GW (model)"
 msgstr "GW (modelo)"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "/ 1000"
 msgstr "/ 1000"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "GWh (source generation)"
 msgstr "GWh (generación de origen)"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "PJ (model)"
 msgstr "PJ (modelo)"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "* 0.0036"
 msgstr "* 0.0036"
 
-#: ../../secondary-techs-editor.md:150
-msgid "Safety Features"
+#: ../../secondary-techs-editor.md:151
+msgid "Safety features"
 msgstr "Funciones de seguridad"
 
-#: ../../secondary-techs-editor.md:152
+#: ../../secondary-techs-editor.md:153
 msgid "**Automatic backups**: One backup per scenario before applying changes."
 msgstr ""
 "**Respaldos automáticos**: Un respaldo por escenario antes de aplicar los"
 " cambios."
 
-#: ../../secondary-techs-editor.md:153
+#: ../../secondary-techs-editor.md:154
 msgid ""
 "**Activity limit validation**: Verifies that limits do not exceed "
 "available capacity."
@@ -636,7 +636,7 @@ msgstr ""
 "**Validación de límites de actividad**: Verifica que los límites no "
 "excedan la capacidad disponible."
 
-#: ../../secondary-techs-editor.md:154
+#: ../../secondary-techs-editor.md:155
 msgid ""
 "**Detailed logging**: Full log output with country identification for "
 "each operation."
@@ -644,67 +644,67 @@ msgstr ""
 "**Registro detallado**: Salida de registro completa con identificación de"
 " país para cada operación."
 
-#: ../../secondary-techs-editor.md:158
-msgid "Related Files"
+#: ../../secondary-techs-editor.md:157
+msgid "Related files"
 msgstr "Archivos relacionados"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "File"
 msgstr "Archivo"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`D1_generate_editor_template.py`"
 msgstr "`D1_generate_editor_template.py`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Generates the Excel template"
 msgstr "Genera la plantilla Excel"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`D2_update_secondary_techs.py`"
 msgstr "`D2_update_secondary_techs.py`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Applies changes to scenario files"
 msgstr "Aplica los cambios a los archivos de escenario"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`Secondary_Techs_Editor.xlsx`"
 msgstr "`Secondary_Techs_Editor.xlsx`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "The editor template (generated)"
 msgstr "La plantilla del editor (generada)"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`OLADE - Capacidad instalada por fuente - Anual.xlsx`"
 msgstr "`OLADE - Capacidad instalada por fuente - Anual.xlsx`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "OLADE installed capacity source data"
 msgstr "Datos fuente de capacidad instalada de OLADE"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`OLADE - Generación eléctrica por fuente - Anual.xlsx`"
 msgstr "`OLADE - Generación eléctrica por fuente - Anual.xlsx`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "OLADE electricity generation source data"
 msgstr "Datos fuente de generación eléctrica de OLADE"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`Shares_PET_OIL_Split.xlsx`"
 msgstr "`Shares_PET_OIL_Split.xlsx`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Petroleum/oil split proportions per scenario"
 msgstr "Proporciones de división petróleo/oil por escenario"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "`Shares_Power_Generation_Technologies.xlsx`"
 msgstr "`Shares_Power_Generation_Technologies.xlsx`"
 
-#: ../../secondary-techs-editor.md
+#: ../../secondary-techs-editor.md:12
 msgid "Power generation technology shares"
 msgstr "Participaciones de tecnología de generación de energía"
 

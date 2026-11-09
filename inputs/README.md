@@ -8,7 +8,7 @@ there. See `AGENTS.md` for the actions that require approval before writing here
 |---|---|---|---|
 | `config/` | `Config_MOMF_T1_A.yaml`, `Config_MOMF_T1_AB.yaml` (pipeline parameters), `Config_country_codes.yaml`, `Config_region_consolidation.yaml`, `Config_tech_equivalences.yaml`, `data_sources.csv`, and `A3_process/` (`lid_rule.yaml`, `TECH_TYPES.csv`) | — | Yes |
 | `data/` | Country/region source workbooks read by A1/B1: capacity and distance matrices (`CapacityAndDistances.xlsx`), OLADE generation/capacity series, `LAC_maxcap_tool*.xlsx`, `Secondary_Techs_Editor.xlsx`, tech-country and fuel-split matrices, firm-capacity fallbacks | — | Yes |
-| `A1_Outputs/` | One folder per scenario (`A1_Outputs_BAU`, `_INV`, `_OPT`, `_VGB`, …) with the A-O workbooks (`A-O_Parametrization.xlsx`, `A-O_Demand.xlsx`, `A-O_AR_*.xlsx`) and the `*_Review_*.md` reports | `A3_process.py` regenerates them; D2–D5 and `tools/data_patches/` patch them | Only through the documented tools |
+| `A1_Outputs/` | One folder per scenario (`A1_Outputs_BAU`, `_INV`, `_OPT`, `_VGB`, …) with the A-O workbooks (`A-O_Parametrization.xlsx`, `A-O_Demand.xlsx`, `A-O_AR_*.xlsx`) and the `*_Review_*.md` reports | A1 creates them; A2, `A3_process.py`, D2–D5 and `tools/data_patches/` edit them in place | Only through the documented tools |
 | `A2_Extra_Inputs/` | `A-Xtra_Storage.xlsx` and other extra parameter workbooks read by B1 | — | Yes |
 | `OG_csvs_inputs/` | Original OSeMOSYS-Global style CSV inputs consumed by A1 | — | Rarely |
 | `Miscellaneous/` | Workbook templates (`A-O_Parametrization.xlsx`, `A-O_Demand.xlsx`, `A-Xtra_Storage.xlsx`) used by `Z_generate_country_template.py` and read by B2 | — | Yes |

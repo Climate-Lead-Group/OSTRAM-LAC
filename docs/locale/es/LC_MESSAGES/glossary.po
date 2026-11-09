@@ -1,0 +1,744 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025-2026, Climate Lead Group
+# This file is distributed under the same license as the OSTRAM LAC package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: OSTRAM LAC 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 08:35-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../glossary.md:1
+msgid "Glossary"
+msgstr "Glosario"
+
+#: ../../glossary.md:3
+msgid ""
+"Each term below has one meaning in this documentation. The second table "
+"maps the terms to the names used in the code and the configuration."
+msgstr ""
+"Cada término de esta página tiene un único significado en la "
+"documentación. La segunda tabla relaciona los términos con los nombres "
+"que se usan en el código y en la configuración."
+
+#: ../../glossary.md:5
+msgid "Terms"
+msgstr "Términos"
+
+#: ../../glossary.md
+msgid "Term"
+msgstr "Término"
+
+#: ../../glossary.md
+msgid "Meaning"
+msgstr "Significado"
+
+#: ../../glossary.md
+msgid "A-O workbooks"
+msgstr "Libros A-O"
+
+#: ../../glossary.md
+msgid ""
+"The four Excel workbooks that hold the model inputs of one input workbook"
+" folder, `inputs/A1_Outputs/A1_Outputs_<scenario>/`: "
+"`A-O_Parametrization.xlsx`, `A-O_Demand.xlsx`, "
+"`A-O_AR_Model_Base_Year.xlsx` and `A-O_AR_Projections.xlsx`. A1 creates "
+"them, A2, A3 and D2 edit them, and B1 compiles them."
+msgstr ""
+"Los cuatro libros de Excel que contienen los datos de entrada del modelo "
+"en la carpeta de un libro de entrada, "
+"`inputs/A1_Outputs/A1_Outputs_<scenario>/`: `A-O_Parametrization.xlsx`, "
+"`A-O_Demand.xlsx`, `A-O_AR_Model_Base_Year.xlsx` y "
+"`A-O_AR_Projections.xlsx`. A1 los crea, A2, A3 y D2 los editan y B1 los "
+"compila."
+
+#: ../../glossary.md
+msgid "Activity floor"
+msgstr "Piso de actividad"
+
+#: ../../glossary.md
+msgid ""
+"A lower limit on the annual generation of a technology, model parameter "
+"`TotalTechnologyAnnualActivityLowerLimit`. The model has two kinds: the "
+"calibration floor and the dispatch floor."
+msgstr ""
+"Límite inferior de la generación anual de una tecnología, parámetro del "
+"modelo `TotalTechnologyAnnualActivityLowerLimit`. El modelo tiene dos "
+"tipos: el piso de calibración y el piso de despacho."
+
+#: ../../glossary.md
+msgid "Backstop"
+msgstr "Backstop"
+
+#: ../../glossary.md
+msgid ""
+"The technology `PWRBCK` followed by the country code, a very expensive "
+"generator that supplies the demand that the rest of the system cannot "
+"meet. It injects into the country's `ELC*02` node. Its output is reported"
+" as energy not served."
+msgstr ""
+"La tecnología `PWRBCK` seguida del código de país, un generador muy caro "
+"que abastece la demanda que el resto del sistema no puede cubrir. Inyecta"
+" en el nodo `ELC*02` del país. Su producción se reporta como energía no "
+"suministrada."
+
+#: ../../glossary.md
+msgid "Backstop duration storage"
+msgstr "Almacenamiento de respaldo (BDS)"
+
+#: ../../glossary.md
+msgid ""
+"A storage technology, code BDS, cloned from short-duration storage and "
+"connected to `ELC*02`, where the backstop also injects. It exists only "
+"for Chile and Peru."
+msgstr ""
+"Tecnología de almacenamiento, código BDS, clonada del almacenamiento de "
+"corta duración y conectada a `ELC*02`, donde también inyecta el backstop."
+" Solo existe para Chile y Perú."
+
+#: ../../glossary.md
+msgid "Base scenario"
+msgstr "Escenario base"
+
+#: ../../glossary.md
+msgid ""
+"One of the four input workbooks, `BAU`, `INV`, `OPT` and `VGB`, seen from"
+" Stage B2. Every derived scenario reuses the A2 sets of its base "
+"scenario."
+msgstr ""
+"Cada uno de los cuatro libros de entrada, `BAU`, `INV`, `OPT` y `VGB`, "
+"vistos desde la etapa B2. Todo escenario derivado reutiliza los conjuntos"
+" de A2 de su escenario base."
+
+#: ../../glossary.md
+msgid "Calibration floor"
+msgstr "Piso de calibración"
+
+#: ../../glossary.md
+msgid ""
+"The activity floor that A3 extends: the 2024 value held flat to 2050 for "
+"the scenarios and technology types listed under `lowerlimit_scenarios` in"
+" `lid_rule.yaml`. As shipped, it applies to renewable plants in the four "
+"input workbooks."
+msgstr ""
+"El piso de actividad que extiende A3: el valor de 2024 mantenido "
+"constante hasta 2050 para los escenarios y tipos de tecnología listados "
+"en `lowerlimit_scenarios` de `lid_rule.yaml`. En la configuración de "
+"fábrica se aplica a las plantas renovables de los cuatro libros de "
+"entrada."
+
+#: ../../glossary.md
+msgid "Capacity credit"
+msgstr "Crédito de capacidad"
+
+#: ../../glossary.md
+msgid ""
+"The share of a technology's capacity that counts towards the reserve "
+"margin, model parameter `ReserveMarginTagTechnology`."
+msgstr ""
+"La fracción de la capacidad de una tecnología que cuenta para el margen "
+"de reserva, parámetro del modelo `ReserveMarginTagTechnology`."
+
+#: ../../glossary.md
+msgid "Combined CSV"
+msgstr "CSV combinado"
+
+#: ../../glossary.md
+msgid ""
+"`RELAC_TX_Combined_Inputs_Outputs.csv` in `outputs/`: the inputs and "
+"results of every solved scenario in one file. B2 writes it together with "
+"`RELAC_TX_Inputs.csv` and `RELAC_TX_Outputs.csv`."
+msgstr ""
+"`RELAC_TX_Combined_Inputs_Outputs.csv` en `outputs/`: las entradas y los "
+"resultados de todos los escenarios resueltos en un solo archivo. B2 lo "
+"escribe junto con `RELAC_TX_Inputs.csv` y `RELAC_TX_Outputs.csv`."
+
+#: ../../glossary.md
+msgid "Committed project"
+msgstr "Proyecto comprometido"
+
+#: ../../glossary.md
+msgid ""
+"A generation or transmission project already awarded or under "
+"construction. It enters every scenario as a forced build, model parameter"
+" `TotalAnnualMinCapacityInvestment`."
+msgstr ""
+"Proyecto de generación o transmisión ya adjudicado o en construcción. "
+"Entra en todos los escenarios como inversión obligatoria, parámetro del "
+"modelo `TotalAnnualMinCapacityInvestment`."
+
+#: ../../glossary.md
+msgid "Country code"
+msgstr "Código de país"
+
+#: ../../glossary.md
+msgid ""
+"The three-letter ISO code of a country followed by the region code `XX`, "
+"for example `ARGXX`. Mining technologies and fossil fuels carry the "
+"country code without the region."
+msgstr ""
+"El código ISO de tres letras de un país seguido del código de región "
+"`XX`, por ejemplo `ARGXX`. Las tecnologías de extracción y los "
+"combustibles fósiles llevan el código de país sin la región."
+
+#: ../../glossary.md
+msgid "Datafile"
+msgstr "Archivo de datos"
+
+#: ../../glossary.md
+msgid ""
+"The GNU MathProg text file that B2 writes for one scenario and passes to "
+"the solver. Steps 2 to 5, 7 and 8 of the solver modifier chain each add a"
+" suffix to its name."
+msgstr ""
+"El archivo de texto GNU MathProg que B2 escribe para un escenario y "
+"entrega al solver. Los pasos 2 a 5, 7 y 8 de la cadena de modificadores "
+"del solver agregan cada uno un sufijo a su nombre."
+
+#: ../../glossary.md
+msgid "Derived scenario"
+msgstr "Escenario derivado"
+
+#: ../../glossary.md
+msgid ""
+"A scenario that B2 creates from the datafile of a base scenario, by the "
+"Inertial Transmission Constraints or by a scenario transform. Thirteen of"
+" the 14 solved scenarios are derived scenarios."
+msgstr ""
+"Escenario que B2 crea a partir del archivo de datos de un escenario base,"
+" mediante las restricciones inerciales de transmisión o una "
+"transformación de escenario. Trece de los 14 escenarios resueltos son "
+"escenarios derivados."
+
+#: ../../glossary.md
+msgid "Dispatch floor"
+msgstr "Piso de despacho"
+
+#: ../../glossary.md
+msgid ""
+"The activity floor of fossil plants that the Lower Constraints Modifiers "
+"write, so that thermal generation stays at its calibrated or committed "
+"level."
+msgstr ""
+"El piso de actividad de las plantas fósiles que escriben los "
+"modificadores de restricciones inferiores, para que la generación térmica"
+" se mantenga en su nivel calibrado o comprometido."
+
+#: ../../glossary.md
+msgid "Dispatch technology"
+msgstr "Tecnología de despacho"
+
+#: ../../glossary.md
+msgid ""
+"`DSPTRN` followed by the country code. It delivers electricity to the "
+"demand node `ELC*03`: mode 1 from the country's own grid (`ELC*02`), mode"
+" 2 from imports (`ELC*04`)."
+msgstr ""
+"`DSPTRN` seguido del código de país. Entrega electricidad al nodo de "
+"demanda `ELC*03`: el modo 1 desde la red propia del país (`ELC*02`) y el "
+"modo 2 desde las importaciones (`ELC*04`)."
+
+#: ../../glossary.md
+msgid "Electricity node"
+msgstr "Nodo eléctrico"
+
+#: ../../glossary.md
+msgid ""
+"One of the five electricity fuels of a country, `ELC<country>00` to "
+"`ELC<country>04`: renewable plant output (00), other plant output (01), "
+"output of the internal grid (02), demand and export point (03), and "
+"imports (04)."
+msgstr ""
+"Cada uno de los cinco energéticos eléctricos de un país, de "
+"`ELC<country>00` a `ELC<country>04`: producción de plantas renovables "
+"(00), producción de las demás plantas (01), salida de la red interna "
+"(02), punto de demanda y de exportación (03) e importaciones (04)."
+
+#: ../../glossary.md
+msgid "Energy not served"
+msgstr "Energía no suministrada"
+
+#: ../../glossary.md
+msgid ""
+"The demand that only the backstop can supply. The model values it at the "
+"backstop's variable cost."
+msgstr ""
+"La demanda que solo el backstop puede abastecer. El modelo la valora al "
+"costo variable del backstop."
+
+#: ../../glossary.md
+msgid "Existing line"
+msgstr "Línea existente"
+
+#: ../../glossary.md
+msgid ""
+"Internal transmission capacity in place in the base year, technologies "
+"`PWRTRN` and `RNWTRN`."
+msgstr ""
+"Capacidad de transmisión interna en servicio en el año base, tecnologías "
+"`PWRTRN` y `RNWTRN`."
+
+#: ../../glossary.md
+msgid "Family"
+msgstr "Familia"
+
+#: ../../glossary.md
+msgid ""
+"A group of scenarios that share a reporting base: OPT, ETT, PLAN and ETT-"
+"GP. The OPT and ETT families also contain sensitivity variants."
+msgstr ""
+"Grupo de escenarios que comparten una base de reporte: OPT, ETT, PLAN y "
+"ETT-GP. Las familias OPT y ETT incluyen además variantes de sensibilidad."
+
+#: ../../glossary.md
+msgid "Fuentes sheet"
+msgstr "Hoja Fuentes"
+
+#: ../../glossary.md
+msgid ""
+"The last sheet of `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` and "
+"`A-Xtra_Storage.xlsx`. It records the source of each data block. It is "
+"generated from `inputs/config/data_sources.csv`, and B1 ignores it."
+msgstr ""
+"La última hoja de `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` y "
+"`A-Xtra_Storage.xlsx`. Registra la fuente de cada bloque de datos. Se "
+"genera a partir de `inputs/config/data_sources.csv` y B1 la ignora."
+
+#: ../../glossary.md
+msgid "Historical sync"
+msgstr "Sincronización histórica"
+
+#: ../../glossary.md
+msgid ""
+"The last step of A3. It copies the year cells from 2023 to a set year "
+"from the `BAU` workbook into another input workbook, so that the "
+"scenarios share their history. The years are set by "
+"`historical_sync_through` in `lid_rule.yaml`."
+msgstr ""
+"El último paso de A3. Copia las celdas de los años desde 2023 hasta un "
+"año fijado, del libro `BAU` a otro libro de entrada, para que los "
+"escenarios compartan su historia. Los años se fijan con "
+"`historical_sync_through` en `lid_rule.yaml`."
+
+#: ../../glossary.md
+msgid "Inertial Transmission Constraints"
+msgstr "Restricciones inerciales de transmisión"
+
+#: ../../glossary.md
+msgid ""
+"Step 8 of the solver modifier chain. It limits transmission expansion to "
+"its historical trend in the trend scenarios and creates OPT (`BAC`) and "
+"PLAN (`OPC`). Datafile suffix `VEGCON`."
+msgstr ""
+"Paso 8 de la cadena de modificadores del solver. Limita la expansión de "
+"la transmisión a su tendencia histórica en los escenarios tendenciales y "
+"crea OPT (`BAC`) y PLAN (`OPC`). Sufijo del archivo de datos: `VEGCON`."
+
+#: ../../glossary.md
+msgid "Input workbook"
+msgstr "Libro de entrada"
+
+#: ../../glossary.md
+msgid ""
+"One folder `inputs/A1_Outputs/A1_Outputs_<scenario>/` with its four A-O "
+"workbooks. There are four: `BAU`, `INV`, `OPT` and `VGB`. In Stage B2 "
+"they are the base scenarios."
+msgstr ""
+"Una carpeta `inputs/A1_Outputs/A1_Outputs_<scenario>/` con sus cuatro "
+"libros A-O. Hay cuatro: `BAU`, `INV`, `OPT` y `VGB`. En la etapa B2 son "
+"los escenarios base."
+
+#: ../../glossary.md
+msgid "Interconnector"
+msgstr "Interconexión"
+
+#: ../../glossary.md
+msgid ""
+"A cross-border transmission technology, `TRN` followed by the two country"
+" codes in alphabetical order, for example `TRNARGXXBOLXX`. It takes "
+"electricity from one country's `ELC*03` node and delivers it to the other"
+" country's `ELC*04` node, in either direction."
+msgstr ""
+"Tecnología de transmisión transfronteriza, `TRN` seguido de los dos "
+"códigos de país en orden alfabético, por ejemplo `TRNARGXXBOLXX`. Toma "
+"electricidad del nodo `ELC*03` de un país y la entrega en el nodo "
+"`ELC*04` del otro, en cualquiera de los dos sentidos."
+
+#: ../../glossary.md
+msgid "Internal grid"
+msgstr "Red interna"
+
+#: ../../glossary.md
+msgid ""
+"The six transmission technologies inside each country: existing lines, "
+"repowering and new unplanned lines, each in a renewable and a non-"
+"renewable version. They deliver to `ELC*02`."
+msgstr ""
+"Las seis tecnologías de transmisión dentro de cada país: líneas "
+"existentes, repotenciación y líneas nuevas no planificadas, cada una en "
+"versión renovable y no renovable. Entregan en `ELC*02`."
+
+#: ../../glossary.md
+msgid "Lid rule"
+msgstr "Regla de tope"
+
+#: ../../glossary.md
+msgid ""
+"The first step of A3. It fills the placeholder "
+"`TotalAnnualMaxCapacityInvestment` rows of power technologies with "
+"calibrated upper limits on annual investment, configured in "
+"`lid_rule.yaml`."
+msgstr ""
+"El primer paso de A3. Rellena las filas de marcador de "
+"`TotalAnnualMaxCapacityInvestment` de las tecnologías de generación con "
+"límites superiores calibrados de inversión anual, configurados en "
+"`lid_rule.yaml`."
+
+#: ../../glossary.md
+msgid "Lower Constraints Modifiers"
+msgstr "Modificadores de restricciones inferiores"
+
+#: ../../glossary.md
+msgid ""
+"Step 7 of the solver modifier chain. It writes the dispatch floors of "
+"each base scenario. Datafile suffix `FLOORED`."
+msgstr ""
+"Paso 7 de la cadena de modificadores del solver. Escribe los pisos de "
+"despacho de cada escenario base. Sufijo del archivo de datos: `FLOORED`."
+
+#: ../../glossary.md
+msgid "Model horizon"
+msgstr "Horizonte del modelo"
+
+#: ../../glossary.md
+msgid "The years 2023 to 2050."
+msgstr "Los años 2023 a 2050."
+
+#: ../../glossary.md
+msgid "New unplanned line"
+msgstr "Línea nueva no planificada"
+
+#: ../../glossary.md
+msgid ""
+"Internal transmission capacity that no national plan includes, "
+"technologies `TRNNLI` and `RNWNLI`. The model can build it from 2030."
+msgstr ""
+"Capacidad de transmisión interna que ningún plan nacional incluye, "
+"tecnologías `TRNNLI` y `RNWNLI`. El modelo puede construirla a partir de "
+"2030."
+
+#: ../../glossary.md
+msgid "Planned project"
+msgstr "Proyecto planificado"
+
+#: ../../glossary.md
+msgid ""
+"A generation or transmission project in a national expansion plan that is"
+" not yet committed. The public planned generation portfolio (PEG) and "
+"transmission portfolio (PET) enter only the scenarios that execute them."
+msgstr ""
+"Proyecto de generación o transmisión de un plan nacional de expansión que"
+" aún no está comprometido. El portafolio público planificado de "
+"generación (PEG) y el de transmisión (PET) entran solo en los escenarios "
+"que los ejecutan."
+
+#: ../../glossary.md
+msgid "Projection mode"
+msgstr "Modo de proyección"
+
+#: ../../glossary.md
+msgid ""
+"Column G (`Projection.Mode`) of the `Secondary Techs` sheet. B1 uses only"
+" the rows whose mode is set. A row edited by hand carries `User defined`."
+msgstr ""
+"La columna G (`Projection.Mode`) de la hoja `Secondary Techs`. B1 usa "
+"solo las filas que tienen un modo asignado. Una fila editada a mano lleva"
+" `User defined`."
+
+#: ../../glossary.md
+msgid "Reporting base"
+msgstr "Base de reporte"
+
+#: ../../glossary.md
+msgid ""
+"The scenario of a family that results are reported for: OPT (`BAC`), ETT "
+"(`ISR`), PLAN (`OPC`) and ETT-GP (`VSR`)."
+msgstr ""
+"El escenario de una familia sobre el que se reportan los resultados: OPT "
+"(`BAC`), ETT (`ISR`), PLAN (`OPC`) y ETT-GP (`VSR`)."
+
+#: ../../glossary.md
+msgid "Repowering"
+msgstr "Repotenciación"
+
+#: ../../glossary.md
+#, python-format
+msgid ""
+"Reconductoring of existing lines to raise their capacity, technologies "
+"`TRNRPO` and `RNWRPO`. It costs 45% of a new unplanned line of the same "
+"country and type. Beyond the committed repowering, the model can build it"
+" from 2028."
+msgstr ""
+"Recambio de conductores de líneas existentes para aumentar su capacidad, "
+"tecnologías `TRNRPO` y `RNWRPO`. Cuesta el 45 % de una línea nueva no "
+"planificada del mismo país y tipo. Más allá de la repotenciación "
+"comprometida, el modelo puede construirla a partir de 2028."
+
+#: ../../glossary.md
+msgid "Reserve margin"
+msgstr "Margen de reserva"
+
+#: ../../glossary.md
+#, python-format
+msgid ""
+"The firm capacity that the system must keep above peak demand, 15% in "
+"every year. Each technology counts towards it with its capacity credit."
+msgstr ""
+"La capacidad firme que el sistema debe mantener por encima de la demanda "
+"máxima, 15 % en todos los años. Cada tecnología contribuye a él con su "
+"crédito de capacidad."
+
+#: ../../glossary.md
+msgid "Results name"
+msgstr "Nombre de resultados"
+
+#: ../../glossary.md
+msgid ""
+"The name a scenario has in the results, the figures and this "
+"documentation, for example OPT or ETT higher fuel cost. Each results name"
+" maps to one scenario code."
+msgstr ""
+"El nombre que tiene un escenario en los resultados, las figuras y esta "
+"documentación, por ejemplo OPT u ETT mayor costo combustible. Cada nombre"
+" de resultados corresponde a un código de escenario."
+
+#: ../../glossary.md
+msgid "Scenario code"
+msgstr "Código de escenario"
+
+#: ../../glossary.md
+msgid ""
+"The identifier of a scenario in the configuration, the `outputs/` folders"
+" and the result CSVs, for example `BAC` or `IFA`."
+msgstr ""
+"El identificador de un escenario en la configuración, en las carpetas de "
+"`outputs/` y en los CSV de resultados, por ejemplo `BAC` o `IFA`."
+
+#: ../../glossary.md
+msgid "Scenario transform"
+msgstr "Transformación de escenario"
+
+#: ../../glossary.md
+msgid ""
+"Step 9 of the solver modifier chain. Each entry of `scenario_transforms` "
+"in `Config_MOMF_T1_AB.yaml` reads the datafile of one or more scenarios "
+"and writes a new scenario or edits one in place. Transforms change "
+"parameter values only."
+msgstr ""
+"Paso 9 de la cadena de modificadores del solver. Cada entrada de "
+"`scenario_transforms` en `Config_MOMF_T1_AB.yaml` lee el archivo de datos"
+" de uno o más escenarios y escribe un escenario nuevo o edita uno "
+"existente. Las transformaciones solo cambian valores de parámetros."
+
+#: ../../glossary.md
+msgid "Sensitivity variant"
+msgstr "Variante de sensibilidad"
+
+#: ../../glossary.md
+msgid ""
+"A scenario of the OPT or ETT family that changes one group of assumptions"
+" of its reporting base: repowering, fuel cost or renewables cost."
+msgstr ""
+"Escenario de la familia OPT o ETT que cambia un grupo de supuestos de su "
+"base de reporte: repotenciación, costo de combustible o costo de "
+"renovables."
+
+#: ../../glossary.md
+msgid "Solver modifier chain"
+msgstr "Cadena de modificadores del solver"
+
+#: ../../glossary.md
+#, python-brace-format
+msgid ""
+"The ordered steps of Stage B2 that edit the datafile after the OSeMOSYS "
+"preprocessor and before the solver. {doc}`solver-patchers` lists them."
+msgstr ""
+"Los pasos ordenados de la etapa B2 que editan el archivo de datos después"
+" del preprocesador de OSeMOSYS y antes del solver. {doc}`solver-patchers`"
+" los enumera."
+
+#: ../../glossary.md
+msgid "Storage delay"
+msgstr "Retraso de almacenamiento"
+
+#: ../../glossary.md
+msgid ""
+"Step 2 of the solver modifier chain. It blocks new storage in the first "
+"five model years, 2023 to 2027."
+msgstr ""
+"Paso 2 de la cadena de modificadores del solver. Bloquea el "
+"almacenamiento nuevo en los primeros cinco años del modelo, 2023 a 2027."
+
+#: ../../glossary.md
+msgid "Technology-country matrix"
+msgstr "Matriz tecnología-país"
+
+#: ../../glossary.md
+msgid ""
+"`Tech_Country_Matrix.xlsx`, generated by A0. It sets which technologies "
+"each country may have."
+msgstr ""
+"`Tech_Country_Matrix.xlsx`, generado por A0. Define qué tecnologías puede"
+" tener cada país."
+
+#: ../../glossary.md
+msgid "Time slice"
+msgstr "Timeslice"
+
+#: ../../glossary.md
+msgid ""
+"One of the 12 periods into which the model divides each year: four "
+"seasons with three daily blocks each."
+msgstr ""
+"Cada uno de los 12 períodos en que el modelo divide cada año: cuatro "
+"estaciones con tres franjas diarias cada una."
+
+#: ../../glossary.md:51
+msgid "Docs terms and code names"
+msgstr "Términos de la documentación y nombres en el código"
+
+#: ../../glossary.md
+msgid "Term in the documentation"
+msgstr "Término en la documentación"
+
+#: ../../glossary.md
+msgid "Name in the code or the configuration"
+msgstr "Nombre en el código o la configuración"
+
+#: ../../glossary.md
+msgid "`A-O_*.xlsx`"
+msgstr "`A-O_*.xlsx`"
+
+#: ../../glossary.md
+msgid "`PWRBCK*`"
+msgstr "`PWRBCK*`"
+
+#: ../../glossary.md
+msgid "`PWRBDS*`, `BDS*01`"
+msgstr "`PWRBDS*`, `BDS*01`"
+
+#: ../../glossary.md
+msgid "Base scenario, input workbook"
+msgstr "Escenario base, libro de entrada"
+
+#: ../../glossary.md
+msgid "`BAU`, `INV`, `OPT`, `VGB`; folders `A1_Outputs_<S>/`"
+msgstr "`BAU`, `INV`, `OPT`, `VGB`; carpetas `A1_Outputs_<S>/`"
+
+#: ../../glossary.md
+msgid "`lowerlimit_scenarios`, `extend_lowerlimits_pwr.py`"
+msgstr "`lowerlimit_scenarios`, `extend_lowerlimits_pwr.py`"
+
+#: ../../glossary.md
+msgid "`dispatch_floors_active`, `write_floors.py`"
+msgstr "`dispatch_floors_active`, `write_floors.py`"
+
+#: ../../glossary.md
+msgid "`DSPTRN*`"
+msgstr "`DSPTRN*`"
+
+#: ../../glossary.md
+msgid "`ELC*00` to `ELC*04`"
+msgstr "`ELC*00` a `ELC*04`"
+
+#: ../../glossary.md
+msgid "`PWRTRN*`, `RNWTRN*`"
+msgstr "`PWRTRN*`, `RNWTRN*`"
+
+#: ../../glossary.md
+msgid "`sync_historical_from_bau.py`, `historical_sync_through`"
+msgstr "`sync_historical_from_bau.py`, `historical_sync_through`"
+
+#: ../../glossary.md
+msgid "`veg_tx_constraints.py`, `veg_tx_active`, suffix `VEGCON`"
+msgstr "`veg_tx_constraints.py`, `veg_tx_active`, sufijo `VEGCON`"
+
+#: ../../glossary.md
+msgid "`TRN<country><country>`"
+msgstr "`TRN<country><country>`"
+
+#: ../../glossary.md
+msgid "`add_max_cap_investment_lid_rule.py`, `lid_rule.yaml`"
+msgstr "`add_max_cap_investment_lid_rule.py`, `lid_rule.yaml`"
+
+#: ../../glossary.md
+msgid "`write_floors.py`, suffix `FLOORED`"
+msgstr "`write_floors.py`, sufijo `FLOORED`"
+
+#: ../../glossary.md
+msgid "`TRNNLI*`, `RNWNLI*`"
+msgstr "`TRNNLI*`, `RNWNLI*`"
+
+#: ../../glossary.md
+msgid "`Projection.Mode`"
+msgstr "`Projection.Mode`"
+
+#: ../../glossary.md
+msgid "`TRNRPO*`, `RNWRPO*`"
+msgstr "`TRNRPO*`, `RNWRPO*`"
+
+#: ../../glossary.md
+msgid "`ReserveMargin`, `reserve_margin_xlsx_global_value`"
+msgstr "`ReserveMargin`, `reserve_margin_xlsx_global_value`"
+
+#: ../../glossary.md
+msgid "`scenario_transforms`"
+msgstr "`scenario_transforms`"
+
+#: ../../glossary.md
+msgid "`storage_delay_active`, suffix `StorageDelayN5`"
+msgstr "`storage_delay_active`, sufijo `StorageDelayN5`"
+
+#: ../../glossary.md
+msgid "OPT, ETT, PLAN, ETT-GP"
+msgstr "OPT, ETT, PLAN, ETT-GP"
+
+#: ../../glossary.md
+msgid "`BAC`, `ISR`, `OPC`, `VSR`"
+msgstr "`BAC`, `ISR`, `OPC`, `VSR`"
+
+#: ../../glossary.md
+msgid "OPT without repowering, ETT with repowering"
+msgstr "OPT sin repotenciación, ETT con repotenciación"
+
+#: ../../glossary.md
+msgid "`BSR`, `INV`"
+msgstr "`BSR`, `INV`"
+
+#: ../../glossary.md
+msgid "Higher and lower fuel cost"
+msgstr "Mayor y menor costo de combustible"
+
+#: ../../glossary.md
+msgid "suffixes `FA` and `FB`: `BFA`, `BFB`, `IFA`, `IFB`"
+msgstr "sufijos `FA` y `FB`: `BFA`, `BFB`, `IFA`, `IFB`"
+
+#: ../../glossary.md
+msgid "Higher and lower renewables cost"
+msgstr "Mayor y menor costo de renovables"
+
+#: ../../glossary.md
+msgid "suffixes `RA` and `RB`: `BRA`, `BRB`, `IRA`, `IRB`"
+msgstr "sufijos `RA` y `RB`: `BRA`, `BRB`, `IRA`, `IRB`"
+

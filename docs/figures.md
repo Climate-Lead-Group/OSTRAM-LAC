@@ -1,4 +1,4 @@
-# Figures and Dashboard
+# Figures and dashboard
 
 All result graphics are produced from the final combined CSV (`outputs/RELAC_TX_Combined_Inputs_Outputs.csv`) by the scripts under `scripts/figures/`. Nothing here is part of the DVC pipeline: run it after B2 has finished.
 
@@ -9,7 +9,7 @@ All result graphics are produced from the final combined CSV (`outputs/RELAC_TX_
 | `scripts/figures/report/` | `fig_*.py` static report figures (Deliverable 2) + `run_figures.py` + `run_figures.yaml` | `Report/fig_*.png` |
 | `scripts/figures/presentation/` | Same figures in presentation style + `run_figures.py` + `run_figures.yaml` | `Presentation/fig_*_presentation.png` |
 | `scripts/figures/dashboard/` | `build_dashboard.py` (interactive Plotly dashboard), `Z_AUX_generate_transmission_maps.py`, `Z_AUX_generate_RES_diagram.py` | `Dashboard/dashboard.html` |
-| `scripts/figures/common/` | `dashboard_config.py` (scenario aliases, colours, families), `fig_runner.py`, `report_style.py` | — |
+| `scripts/figures/common/` | `dashboard_config.py` (scenario aliases, colours, families), `fig_runner.py`, `report_style.py` | None |
 | `scripts/figures/Z_AUX_make_tablas_xlsx.py` | Regional result tables for the 14 solved scenarios | `Full_Results_Tables.xlsx` |
 | `scripts/figures/run_all.py` + `run_all.yaml` | Master runner: report → presentation → dashboard → result tables (`tablas`) | all of the above |
 
@@ -45,7 +45,7 @@ Figures ending in `_tmp` are exploratory (energy-not-served variants) and ship d
 
 ## Report figures
 
-Every figure in the table below has one entry in [`scripts/figures/report/run_figures.yaml`](../scripts/figures/report/run_figures.yaml), and all of them ship enabled (`true`), so a plain `python scripts/figures/report/run_figures.py` (or the `report` branch of `run_all.py`) produces all of them. To control which figures run:
+Every figure in the table below has one entry in [`scripts/figures/report/run_figures.yaml`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/figures/report/run_figures.yaml), and all of them ship enabled (`true`), so a plain `python scripts/figures/report/run_figures.py` (or the `report` branch of `run_all.py`) produces all of them. To control which figures run:
 
 - **Enable or disable a figure:** set its entry to `true` or `false`, e.g. `fig_costo_unitario: false`. The key order in the YAML is the execution order.
 - **Pass arguments:** use the long form `fig_almacenamiento_2050: {enabled: true, args: ["--years", "2030", "2050"]}` (`enabled` defaults to `true` when omitted).

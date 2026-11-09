@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 13:51-0600\n"
+"POT-Creation-Date: 2026-11-09 08:29-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../sources.md:1
-msgid "Data Sources"
+msgid "Data sources"
 msgstr "Fuentes de datos"
 
 #: ../../sources.md:3
@@ -45,9 +45,10 @@ msgid ""
 "`A-Xtra_Storage.xlsx` for every scenario (see {doc}`data-reference`). "
 "That sheet is generated from the master table "
 "`inputs/config/data_sources.csv` by "
-"[`add_fuentes_sheet.py`](../scripts/tools/data_patches/add_fuentes_sheet.py)."
-" To change a source, edit the CSV and re-run that script, which "
-"regenerates the sheet."
+"[`add_fuentes_sheet.py`](https://github.com/Climate-Lead-Group/OSTRAM-"
+"LAC/blob/main/scripts/tools/data_patches/add_fuentes_sheet.py). To change"
+" a source, edit the CSV and re-run that script, which regenerates the "
+"sheet."
 msgstr ""
 "Este registro es un resumen. La cita autorizada, parámetro por parámetro "
 "(qué hoja, qué tecnología, qué años, qué fuente exacta y cómo se "
@@ -55,8 +56,9 @@ msgstr ""
 "`A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` y `A-Xtra_Storage.xlsx` de "
 "cada escenario (ver {doc}`data-reference`). Esa hoja se genera desde la "
 "tabla maestra `inputs/config/data_sources.csv` con "
-"[`add_fuentes_sheet.py`](../scripts/tools/data_patches/add_fuentes_sheet.py)."
-" Para cambiar una fuente, edite el CSV y vuelva a correr ese script, que "
+"[`add_fuentes_sheet.py`](https://github.com/Climate-Lead-Group/OSTRAM-"
+"LAC/blob/main/scripts/tools/data_patches/add_fuentes_sheet.py). Para "
+"cambiar una fuente, edite el CSV y vuelva a correr ese script, que "
 "regenera la hoja."
 
 #: ../../sources.md:15
@@ -518,7 +520,7 @@ msgstr ""
 "Climate Lead Group los definió directamente, generalmente para mantener "
 "bien comportada la optimización:"
 
-#: ../../sources.md:67
+#: ../../sources.md:66
 msgid ""
 "**Annual capacity-growth caps** for new generation investment (a "
 "declining percentage of each country's existing capacity, by technology)."
@@ -531,7 +533,7 @@ msgstr ""
 "minimización de costos del modelo producía un crecimiento de capacidad "
 "desproporcionado e irreal."
 
-#: ../../sources.md:70
+#: ../../sources.md:69
 msgid ""
 "**Solar and wind annual capacity ceilings** in the `BAU` input workbook "
 "(base of the OPT family), for the same reason; the team's supporting "
@@ -543,7 +545,7 @@ msgstr ""
 "respaldo del equipo para estos techos específicos no está archivado en el"
 " repositorio."
 
-#: ../../sources.md:73
+#: ../../sources.md:72
 msgid ""
 "**Internal transmission network cost estimates**, per country, carried "
 "over from an earlier version of the model (August 2025); the original "
@@ -553,7 +555,7 @@ msgstr ""
 "heredadas de una versión anterior del modelo (agosto de 2025); la "
 "metodología original de estimación no está documentada."
 
-#: ../../sources.md:75
+#: ../../sources.md:74
 msgid ""
 "**Internal transmission network technical lifetime** (50 years, all "
 "countries)."
@@ -561,7 +563,7 @@ msgstr ""
 "**Vida útil técnica interna de la red de transmisión** (50 años, en todos"
 " los países)."
 
-#: ../../sources.md:76
+#: ../../sources.md:75
 msgid ""
 "**The transmission investment cap of the `INV` input workbook** (base of "
 "the ETT family), derived from the `BAU` workbook's own model results."
@@ -570,11 +572,11 @@ msgstr ""
 "de la familia ETT), derivado de los propios resultados del modelo con el "
 "libro `BAU`."
 
-#: ../../sources.md:79
+#: ../../sources.md:78
 msgid "OSeMOSYS Global internal defaults"
 msgstr "Valores por defecto internos de OSeMOSYS Global"
 
-#: ../../sources.md:81
+#: ../../sources.md:80
 msgid ""
 "A number of parameters are default values or structural conventions built"
 " into the OSeMOSYS Global tool itself, applied uniformly by the software "
@@ -584,11 +586,11 @@ msgstr ""
 "propias de la herramienta OSeMOSYS Global, aplicados de manera uniforme "
 "por el software sin calibración para esta región:"
 
-#: ../../sources.md:85
+#: ../../sources.md:83
 msgid "Technology availability factors and reserve-margin tags."
 msgstr "Factores de disponibilidad por tecnología y marcas de margen de reserva."
 
-#: ../../sources.md:86
+#: ../../sources.md:84
 msgid ""
 "The temporal structure (12 timeslices: 4 seasons × 3 daily blocks) and "
 "the physical capacity-to-energy conversion constant."
@@ -596,7 +598,7 @@ msgstr ""
 "La estructura temporal (12 bloques horarios: 4 estaciones × 3 tramos del "
 "día) y la constante física de conversión de capacidad a energía."
 
-#: ../../sources.md:88
+#: ../../sources.md:86
 msgid ""
 "Default unit costs for transmission lines (converter and per-km costs) "
 "and their fixed operation and maintenance rate."
@@ -605,11 +607,11 @@ msgstr ""
 "convertidores y costo por km) y su tasa de costo fijo de operación y "
 "mantenimiento."
 
-#: ../../sources.md:90
+#: ../../sources.md:88
 msgid "Fixed default fuel costs for uranium, biomass and waste."
 msgstr "Costos de combustible fijos por defecto para uranio, biomasa y residuos."
 
-#: ../../sources.md:91
+#: ../../sources.md:89
 msgid ""
 "The storage-to-technology linkage structure (which technology charges and"
 " discharges each storage reservoir), which is a modelling-structure "

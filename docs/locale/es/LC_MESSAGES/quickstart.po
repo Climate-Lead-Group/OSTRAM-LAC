@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 12:17-0600\n"
+"POT-Creation-Date: 2026-11-09 08:55-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -20,46 +20,57 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../quickstart.md:1
-msgid "Quick Start"
+msgid "Quick start"
 msgstr "Inicio rápido"
 
 #: ../../quickstart.md:3
-msgid "This page walks you through running OSTRAM LAC for the first time."
-msgstr ""
-"Esta página lo guía a través de la ejecución de OSTRAM LAC por primera "
-"vez."
+msgid "These steps run OSTRAM LAC for the first time."
+msgstr "Estos pasos ejecutan OSTRAM LAC por primera vez."
 
 #: ../../quickstart.md:5
-msgid "1. Run the Full Pipeline"
-msgstr "1\\. Ejecutar el pipeline completo"
+msgid "1. Install"
+msgstr "1\\. Instalar"
 
 #: ../../quickstart.md:7
+#, python-brace-format
+msgid ""
+"Follow {doc}`installation`. The commands below run from the root of the "
+"clone."
+msgstr ""
+"Siga {doc}`installation`. Los comandos de abajo se ejecutan desde la raíz"
+" del clon."
+
+#: ../../quickstart.md:9
+msgid "2. Run the full pipeline"
+msgstr "2\\. Ejecutar el pipeline completo"
+
+#: ../../quickstart.md:11
 msgid "From an Anaconda Prompt (or any terminal with conda available):"
 msgstr "Desde un Anaconda Prompt (o cualquier terminal con conda disponible):"
 
-#: ../../quickstart.md:14
+#: ../../quickstart.md:18
 msgid "The `run.py` launcher automatically:"
 msgstr "El lanzador `run.py` automáticamente:"
 
-#: ../../quickstart.md:16
+#: ../../quickstart.md:20
 msgid "Creates the Conda environment (`OSTRAM-env`) if it does not exist."
 msgstr "Crea el entorno Conda (`OSTRAM-env`) si no existe."
 
-#: ../../quickstart.md:17
+#: ../../quickstart.md:21
 msgid "Installs any missing dependencies."
 msgstr "Instala las dependencias faltantes."
 
-#: ../../quickstart.md:18
+#: ../../quickstart.md:22
 msgid "Injects today's date into the DVC pipeline for date-stamped output files."
 msgstr ""
 "Inserta la fecha actual en el pipeline de DVC para los archivos de salida"
 " con marca de fecha."
 
-#: ../../quickstart.md:19
+#: ../../quickstart.md:23
 msgid "Runs `dvc repro` to execute all pipeline stages."
 msgstr "Ejecuta `dvc repro` para correr todas las etapas del pipeline."
 
-#: ../../quickstart.md:25
+#: ../../quickstart.md:29
 msgid ""
 "What `python run.py` does: from the Conda environment to the output files"
 " in `outputs/`."
@@ -67,87 +78,87 @@ msgstr ""
 "Qué hace `python run.py`: desde el entorno Conda hasta los archivos de "
 "salida en `outputs/`."
 
-#: ../../quickstart.md:22
-msgid "Command-Line Options"
-msgstr "Opciones de línea de comandos"
+#: ../../quickstart.md:32
+msgid "Options of `run.py`"
+msgstr "Opciones de `run.py`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Flag"
 msgstr "Opción"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Default"
 msgstr "Valor por defecto"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Description"
 msgstr "Descripción"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`--env-name`"
 msgstr "`--env-name`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Read from YAML (`OSTRAM-env`)"
 msgstr "Se lee del YAML (`OSTRAM-env`)"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Conda environment name"
 msgstr "Nombre del entorno Conda"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`--env-file`"
 msgstr "`--env-file`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`environment.yaml`"
 msgstr "`environment.yaml`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Path to the Conda environment file"
 msgstr "Ruta al archivo del entorno Conda"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`--dvc-file`"
 msgstr "`--dvc-file`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`dvc.yaml`"
 msgstr "`dvc.yaml`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Path to the DVC pipeline file"
 msgstr "Ruta al archivo del pipeline de DVC"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`--date`"
 msgstr "`--date`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Today (`YYYY-MM-DD`)"
 msgstr "Hoy (`YYYY-MM-DD`)"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Date stamp for output files"
 msgstr "Marca de fecha para los archivos de salida"
 
-#: ../../quickstart.md:31
+#: ../../quickstart.md:41
 msgid "Example with a custom date:"
 msgstr "Ejemplo con una fecha personalizada:"
 
-#: ../../quickstart.md:37
-msgid "2. Pipeline Stages"
-msgstr "2\\. Etapas del pipeline"
+#: ../../quickstart.md:47
+msgid "3. Run one stage"
+msgstr "3\\. Ejecutar una sola etapa"
 
-#: ../../quickstart.md:39
+#: ../../quickstart.md:49
 msgid "The DVC pipeline has two stages that run in sequence:"
 msgstr "El pipeline de DVC tiene dos etapas que se ejecutan en secuencia:"
 
-#: ../../quickstart.md:41
-msgid "Stage 1: Preprocess (Compile)"
-msgstr "Etapa 1: Preprocesar (Compilar)"
+#: ../../quickstart.md:51
+msgid "B1 compiler"
+msgstr "Compilador B1"
 
-#: ../../quickstart.md:47
+#: ../../quickstart.md:57
 msgid ""
 "Reads the Excel model files in `A1_Outputs/` and compiles them into "
 "OSeMOSYS-compatible CSV parameter files in `A2_Output_Params/`."
@@ -156,79 +167,83 @@ msgstr ""
 "archivos CSV de parámetros compatibles con OSeMOSYS en "
 "`A2_Output_Params/`."
 
-#: ../../quickstart.md:49
-msgid "Stage 2: Execute"
-msgstr "Etapa 2: Ejecutar"
+#: ../../quickstart.md:59
+msgid "B2 solver run"
+msgstr "Corrida del solver en B2"
 
-#: ../../quickstart.md:55
+#: ../../quickstart.md:65
 msgid ""
-"Converts CSVs to the solver's data format, runs the optimization, and "
+"Converts CSVs to the solver's data format, runs the optimisation, and "
 "produces combined result files."
 msgstr ""
 "Convierte los CSV al formato de datos del solver, ejecuta la optimización"
 " y produce archivos de resultados combinados."
 
-#: ../../quickstart.md:57
-msgid "3. Output Files"
-msgstr "3\\. Archivos de salida"
+#: ../../quickstart.md:67
+msgid "B2 solves 14 scenarios and takes several hours."
+msgstr "B2 resuelve 14 escenarios y tarda varias horas."
 
-#: ../../quickstart.md:59
+#: ../../quickstart.md:69
+msgid "4. Output files"
+msgstr "4\\. Archivos de salida"
+
+#: ../../quickstart.md:71
 msgid "After a successful run, results are generated in `outputs/`:"
 msgstr "Después de una ejecución exitosa, los resultados se generan en `outputs/`:"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "File"
 msgstr "Archivo"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`RELAC_TX_Inputs.csv`"
 msgstr "`RELAC_TX_Inputs.csv`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Compiled model inputs (all scenarios)"
 msgstr "Entradas del modelo compiladas (todos los escenarios)"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`RELAC_TX_Outputs.csv`"
 msgstr "`RELAC_TX_Outputs.csv`"
 
-#: ../../quickstart.md
-msgid "Optimization results (all scenarios)"
+#: ../../quickstart.md:25
+msgid "Optimisation results (all scenarios)"
 msgstr "Resultados de la optimización (todos los escenarios)"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`RELAC_TX_Combined_Inputs_Outputs.csv`"
 msgstr "`RELAC_TX_Combined_Inputs_Outputs.csv`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Merged inputs and outputs"
 msgstr "Entradas y salidas combinadas"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`RELAC_TX_Inputs_YYYY-MM-DD.csv`"
 msgstr "`RELAC_TX_Inputs_YYYY-MM-DD.csv`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Date-stamped copy of inputs"
 msgstr "Copia con marca de fecha de las entradas"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`RELAC_TX_Outputs_YYYY-MM-DD.csv`"
 msgstr "`RELAC_TX_Outputs_YYYY-MM-DD.csv`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Date-stamped copy of outputs"
 msgstr "Copia con marca de fecha de las salidas"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "`RELAC_TX_Combined_Inputs_Outputs_YYYY-MM-DD.csv`"
 msgstr "`RELAC_TX_Combined_Inputs_Outputs_YYYY-MM-DD.csv`"
 
-#: ../../quickstart.md
+#: ../../quickstart.md:25
 msgid "Date-stamped combined file"
 msgstr "Archivo combinado con marca de fecha"
 
-#: ../../quickstart.md:70
+#: ../../quickstart.md:82
 msgid ""
 "Date-stamped files preserve a complete execution history so you can "
 "compare runs over time."
@@ -236,13 +251,99 @@ msgstr ""
 "Los archivos con marca de fecha preservan un historial de ejecución "
 "completo para poder comparar corridas a lo largo del tiempo."
 
-#: ../../quickstart.md:72
-msgid "4. Directory Structure Overview"
-msgstr "4\\. Resumen de la estructura de directorios"
+#: ../../quickstart.md:84
+msgid "5. Where files belong"
+msgstr "5\\. Dónde va cada archivo"
+
+#: ../../quickstart.md:86
+msgid ""
+"Input workbooks, one folder per scenario: "
+"`inputs/A1_Outputs/A1_Outputs_<scenario>/`"
+msgstr ""
+"Libros de entrada, una carpeta por escenario: "
+"`inputs/A1_Outputs/A1_Outputs_<scenario>/`"
+
+#: ../../quickstart.md:87
+msgid ""
+"Configuration: `inputs/config/` (`Config_*.yaml`, `data_sources.csv`, "
+"`A3_process/lid_rule.yaml`)"
+msgstr ""
+"Configuración: `inputs/config/` (`Config_*.yaml`, `data_sources.csv`, "
+"`A3_process/lid_rule.yaml`)"
+
+#: ../../quickstart.md:88
+msgid ""
+"Editor workbooks, the technology-country matrix and the source workbooks:"
+" `inputs/data/`"
+msgstr ""
+"Libros del editor, la matriz tecnología-país y los libros de origen: "
+"`inputs/data/`"
+
+#: ../../quickstart.md:89
+msgid "OSeMOSYS Global CSVs that A1 reads: `inputs/OG_csvs_inputs/`"
+msgstr "CSV de OSeMOSYS Global que lee A1: `inputs/OG_csvs_inputs/`"
+
+#: ../../quickstart.md:90
+msgid ""
+"Extra workbooks that B1 reads (storage, emissions): "
+"`inputs/A2_Extra_Inputs/`"
+msgstr ""
+"Libros adicionales que lee B1 (almacenamiento, emisiones): "
+"`inputs/A2_Extra_Inputs/`"
+
+#: ../../quickstart.md:91
+msgid "Workbook templates: `inputs/Miscellaneous/`"
+msgstr "Plantillas de libros: `inputs/Miscellaneous/`"
+
+#: ../../quickstart.md:92
+msgid "The OSeMOSYS model file: `inputs/model/`"
+msgstr "El archivo del modelo OSeMOSYS: `inputs/model/`"
+
+#: ../../quickstart.md:93
+msgid ""
+"Fixed inputs of the transmission chain and the dispatch floors: "
+"`inputs/tx_chain/`"
+msgstr ""
+"Entradas fijas de la cadena de transmisión y de los pisos de despacho: "
+"`inputs/tx_chain/`"
+
+#: ../../quickstart.md:94
+msgid "Background material that the pipeline does not read: `inputs/reference/`"
+msgstr "Material de referencia que el pipeline no lee: `inputs/reference/`"
+
+#: ../../quickstart.md:95
+msgid ""
+"Code: `scripts/` (`pipeline/`, `figures/`, `tools/`, `fix_dispatch/`, "
+"`tx_chain/`, `common/`, `tests/`, `experimental/`)"
+msgstr ""
+"Código: `scripts/` (`pipeline/`, `figures/`, `tools/`, `fix_dispatch/`, "
+"`tx_chain/`, `common/`, `tests/`, `experimental/`)"
+
+#: ../../quickstart.md:96
+msgid ""
+"Everything the pipeline regenerates: `outputs/` (`A2_Output_Params/`, "
+"`A2_Outputs_Params_otoole/`, `Executables/`, `Figures/`, `logs/`, "
+"`model/` and the `RELAC_TX_*.csv` files)"
+msgstr ""
+"Todo lo que el pipeline regenera: `outputs/` (`A2_Output_Params/`, "
+"`A2_Outputs_Params_otoole/`, `Executables/`, `Figures/`, `logs/`, "
+"`model/` y los archivos `RELAC_TX_*.csv`)"
+
+#: ../../quickstart.md:98
+msgid ""
+"The pipeline regenerates `outputs/`, so nothing there is edited by hand. "
+"Which `inputs/` folders can be edited by hand is listed in "
+"[`inputs/README.md`](https://github.com/Climate-Lead-Group/OSTRAM-"
+"LAC/blob/main/inputs/README.md)."
+msgstr ""
+"El pipeline regenera `outputs/`, así que nada de esa carpeta se edita a "
+"mano. Las carpetas de `inputs/` que se pueden editar a mano están "
+"listadas en [`inputs/README.md`](https://github.com/Climate-Lead-Group"
+"/OSTRAM-LAC/blob/main/inputs/README.md)."
 
 #: ../../quickstart.md:100
-msgid "5. Typical Workflow"
-msgstr "5\\. Flujo de trabajo típico"
+msgid "6. Typical workflow"
+msgstr "6\\. Flujo de trabajo típico"
 
 #: ../../quickstart.md:102
 msgid ""
@@ -266,7 +367,7 @@ msgstr ""
 #: ../../quickstart.md:105
 #, python-brace-format
 msgid ""
-"**Analyze results** using the output CSVs or the interactive dashboard "
+"**Analyse results** using the output CSVs or the interactive dashboard "
 "(see {doc}`figures`)."
 msgstr ""
 "**Analizar los resultados** usando los CSV de salida o el dashboard "
@@ -332,4 +433,19 @@ msgstr "Consulte {doc}`pipeline` para un recorrido detallado de cada etapa."
 #~ "--A2 y el editor de tecnologías "
 #~ "secundarias D1/D2 deben ejecutarse por "
 #~ "separado de antemano)."
+
+#~ msgid "Command-line options"
+#~ msgstr "Opciones de línea de comandos"
+
+#~ msgid "2. Pipeline stages"
+#~ msgstr "2\\. Etapas del pipeline"
+
+#~ msgid "Stage 1: Preprocess (compile)"
+#~ msgstr "Etapa 1: Preprocesar (compilar)"
+
+#~ msgid "Stage 2: Execute"
+#~ msgstr "Etapa 2: Ejecutar"
+
+#~ msgid "4. Directory structure overview"
+#~ msgstr "4\\. Resumen de la estructura de directorios"
 

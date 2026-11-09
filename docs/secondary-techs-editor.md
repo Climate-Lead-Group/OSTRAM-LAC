@@ -1,4 +1,4 @@
-# Secondary Technologies Editor
+# Secondary technologies editor
 
 The Secondary Technologies Editor provides a user-friendly Excel interface for modifying technology parameters across scenarios, with support for automatic integration of data from the Latin American and Caribbean Energy Organization (OLACDE; the editor sheets and files keep the older acronym OLADE).
 
@@ -16,9 +16,7 @@ The editor workflow has two steps:
 Secondary Technologies Editor workflow: D1 generates the template, the user edits it and D2 applies the changes to the scenario workbooks.
 ```
 
----
-
-## Step 1: Generate the Editor Template
+## Step 1: Generate the editor template
 
 **Script:** `scripts/pipeline/D1_generate_editor_template.py`
 
@@ -26,24 +24,24 @@ Secondary Technologies Editor workflow: D1 generates the template, the user edit
 python scripts/pipeline/D1_generate_editor_template.py
 ```
 
-### What It Creates
+### What it creates
 
 The script generates `Secondary_Techs_Editor.xlsx` with these sheets:
 
 | Sheet | Purpose |
 |-------|---------|
-| **Instructions** | User guide with editing instructions |
-| **Documentation** | Full technical documentation on calculations |
-| **OLADE_Config** | Toggle switches for automatic OLADE data integration |
-| **Demand_Growth** | Demand growth rate configuration per country |
-| **Scenarios_Demand_Growth** | Scenario-specific demand growth rates |
-| **Renewability_Targets** | Renewable percentage targets per year/country |
-| **Technology_Weights** | Custom distribution of renewable/non-renewable technologies |
-| **Editor** | Main editing area with dropdown lists |
-| **Interconnections** | Transmission interconnection technologies (only if TRN technologies exist) |
+| `Instructions` | User guide with editing instructions |
+| `Documentation` | Full technical documentation on calculations |
+| `OLADE_Config` | Toggle switches for automatic OLADE data integration |
+| `Demand_Growth` | Demand growth rate configuration per country |
+| `Scenarios_Demand_Growth` | Scenario-specific demand growth rates |
+| `Renewability_Targets` | Renewable percentage targets per year/country |
+| `Technology_Weights` | Custom distribution of renewable/non-renewable technologies |
+| `Editor` | Main editing area with dropdown lists |
+| `Interconnections` | Transmission interconnection technologies (only if TRN technologies exist) |
 | *(Hidden sheets)* | Validation data for dropdown lists |
 
-### How It Works
+### How it works
 
 The script:
 1. Reads all `A-O_Parametrization.xlsx` files across scenarios.
@@ -53,13 +51,11 @@ The script:
    - **Auto-fill formulas** (VLOOKUP) for the Tech column.
    - **Year columns** (2021--2050) for entering values.
 
----
+## Step 2: Edit the template
 
-## Step 2: Edit the Template
+### Manual editing (`Editor` sheet)
 
-### Manual Editing (Editor Sheet)
-
-In the **Editor** sheet (and similarly in the **Interconnections** sheet for transmission technologies):
+In the `Editor` sheet (and similarly in the `Interconnections` sheet for transmission technologies):
 
 1. **Select a Scenario**: Choose from the auto-discovered scenarios (based on existing `A1_Outputs_*` folders), or ALL (applies to every scenario).
 2. **Select a Country**: Pick a country from the dropdown.
@@ -67,9 +63,9 @@ In the **Editor** sheet (and similarly in the **Interconnections** sheet for tra
 4. **Select a Parameter**: Choose which parameter to modify (e.g., CapitalCost, ResidualCapacity).
 5. **Enter values**: Fill in the year columns (2021--2050) with your desired values.
 
-### OLADE Configuration (OLADE_Config Sheet)
+### OLADE configuration (`OLADE_Config` sheet)
 
-The **OLADE_Config** sheet provides toggle switches for automatic data population:
+The `OLADE_Config` sheet provides toggle switches for automatic data population:
 
 | Parameter | Values | Description |
 |-----------|--------|-------------|
@@ -81,31 +77,31 @@ The **OLADE_Config** sheet provides toggle switches for automatic data populatio
 | `TradeBalanceDemandAdjustment` | YES / NO | Adjust demand based on trade balance data |
 | `InterconnectionsControl` | ON / OFF | Enable/disable interconnection technologies |
 
-### Petroleum Split Modes
+### Petroleum split modes
 
-| Mode | Behavior |
+| Mode | Behaviour |
 |------|----------|
 | `OIL_only` | All petroleum capacity is assigned to OIL (Fuel oil) |
 | `Split_PET_OIL` | Capacity is split between PET (Diesel) and OIL (Fuel oil + Bunker) using proportions from `Shares_PET_OIL_Split.xlsx` |
 
-### Demand Configuration (Demand_Growth Sheet)
+### Demand configuration (`Demand_Growth` sheet)
 
 When `DemandFromOLADE` is YES, configure growth rates per country:
 
 - Uses OLADE generation data as the base.
 - Applies linear growth: `Demand(year) = Demand(2023) * (1 + rate * (year - 2023))`.
-- Growth rates are specified per country in the **Demand_Growth** sheet.
-- Scenario-specific overrides are available in **Scenarios_Demand_Growth**.
+- Growth rates are specified per country in the `Demand_Growth` sheet.
+- Scenario-specific overrides are available in `Scenarios_Demand_Growth`.
 
-### ActivityUpperLimit Modes
+### ActivityUpperLimit modes
 
-| Mode | Behavior |
+| Mode | Behaviour |
 |------|----------|
 | `NO` | No UpperLimit updates |
 | `YES_ALL` | Update UpperLimit for all technologies. Formula: `UpperLimit = LowerLimit × 1.05` |
 | `EXISTING_ONLY` | Only update technologies that already have UpperLimit values defined and `Projection.Mode = "User defined"` |
 
-### Renewability Targets (Renewability_Targets Sheet)
+### Renewability targets (`Renewability_Targets` sheet)
 
 When Activity Limits from OLADE are enabled:
 
@@ -113,16 +109,14 @@ When Activity Limits from OLADE are enabled:
 - The system interpolates between specified target years.
 - Targets affect the distribution of activity limits across technologies.
 
-### Technology Weights (Technology_Weights Sheet)
+### Technology weights (`Technology_Weights` sheet)
 
-Customize how activity limits are distributed among technologies:
+Customise how activity limits are distributed among technologies:
 
 - Define weights for individual renewable and non-renewable technologies.
 - Weights determine each technology's share of the total activity limit.
 
----
-
-## Step 3: Apply Changes
+## Step 3: Apply changes
 
 **Script:** `scripts/pipeline/D2_update_secondary_techs.py`
 
@@ -130,7 +124,7 @@ Customize how activity limits are distributed among technologies:
 python scripts/pipeline/D2_update_secondary_techs.py
 ```
 
-### What It Does
+### What it does
 
 1. Reads the filled `Secondary_Techs_Editor.xlsx`.
 2. Reads OLADE configuration toggles.
@@ -147,22 +141,20 @@ python scripts/pipeline/D2_update_secondary_techs.py
    - Updates `A-O_Demand.xlsx` (if demand integration is enabled).
 4. Sets `Projection.Mode` to "User defined" for modified parameters.
 
-### Unit Conversions
+### Unit conversions
 
 | Source | Target | Conversion |
 |--------|--------|------------|
 | MW (source capacity) | GW (model) | / 1000 |
 | GWh (source generation) | PJ (model) | * 0.0036 |
 
-### Safety Features
+### Safety features
 
 - **Automatic backups**: One backup per scenario before applying changes.
 - **Activity limit validation**: Verifies that limits do not exceed available capacity.
 - **Detailed logging**: Full log output with country identification for each operation.
 
----
-
-## Related Files
+## Related files
 
 | File | Description |
 |------|-------------|

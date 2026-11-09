@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 12:17-0600\n"
+"POT-Creation-Date: 2026-11-09 08:29-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -20,19 +20,19 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../auxiliary-tools.md:1
-msgid "Auxiliary Tools"
+msgid "Auxiliary tools"
 msgstr "Herramientas auxiliares"
 
 #: ../../auxiliary-tools.md:3
 msgid ""
 "OSTRAM LAC includes several utility scripts (prefixed with `Z_`) for data"
-" maintenance, visualization, and support tasks."
+" maintenance, visualisation, and support tasks."
 msgstr ""
 "OSTRAM LAC incluye varios scripts de utilidad (con el prefijo `Z_`) para "
 "tareas de mantenimiento de datos, visualización y soporte."
 
 #: ../../auxiliary-tools.md:5
-msgid "Configuration Loader"
+msgid "Configuration loader"
 msgstr "Cargador de configuración"
 
 #: ../../auxiliary-tools.md:7
@@ -41,7 +41,7 @@ msgstr "**Script:** `scripts/common/Z_AUX_config_loader.py`"
 
 #: ../../auxiliary-tools.md:9
 msgid ""
-"A centralized module (not run directly) that provides cached access to "
+"A centralised module (not run directly) that provides cached access to "
 "`Config_country_codes.yaml`. All other scripts import functions from this"
 " module to read the YAML."
 msgstr ""
@@ -57,171 +57,171 @@ msgstr ""
 "`Z_AUX_config_loader` entre `Config_country_codes.yaml` y los scripts que"
 " lo importan, con las funciones que llama cada uno."
 
-#: ../../auxiliary-tools.md:11
-msgid "Available Functions"
+#: ../../auxiliary-tools.md:18
+msgid "Available functions"
 msgstr "Funciones disponibles"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Function"
 msgstr "Función"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Returns"
 msgstr "Retorna"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Description"
 msgstr "Descripción"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_countries()`"
 msgstr "`get_countries()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`list[str]`"
 msgstr "`list[str]`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Sorted list of active country codes"
 msgstr "Lista ordenada de códigos de país activos"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_country_names()`"
 msgstr "`get_country_names()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`dict[str, str]`"
 msgstr "`dict[str, str]`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 #, python-brace-format
 msgid "`{iso3: english_name}`"
 msgstr "`{iso3: english_name}`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_iso_country_map()`"
 msgstr "`get_iso_country_map()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 #, python-brace-format
 msgid "`{iso3: english_name}` including special entries"
 msgstr "`{iso3: english_name}` incluyendo entradas especiales"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_olade_country_mapping()`"
 msgstr "`get_olade_country_mapping()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 #, python-brace-format
 msgid "`{olade_name: iso3}`"
 msgstr "`{olade_name: iso3}`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_olade_country_mapping_normalized()`"
 msgstr "`get_olade_country_mapping_normalized()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Accent-stripped version of the above"
 msgstr "Versión sin acentos de lo anterior"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_first_year()`"
 msgstr "`get_first_year()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`int`"
 msgstr "`int`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Model start year (default: 2023)"
 msgstr "Año de inicio del modelo (por defecto: 2023)"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_pwr_cleanup_mode()`"
 msgstr "`get_pwr_cleanup_mode()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`str | bool`"
 msgstr "`str | bool`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`\"drop\"`, `\"merge\"`, or `False`"
 msgstr "`\"drop\"`, `\"merge\"`, o `False`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_code_to_energy()`"
 msgstr "`get_code_to_energy()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 #, python-brace-format
 msgid "`{tech_code: description}`"
 msgstr "`{tech_code: description}`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_renewable_fuels()`"
 msgstr "`get_renewable_fuels()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`set[str]`"
 msgstr "`set[str]`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Set of renewable fuel codes"
 msgstr "Conjunto de códigos de energético renovable"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_add_missing_countries_from_olade()`"
 msgstr "`get_add_missing_countries_from_olade()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`bool`"
 msgstr "`bool`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Whether to fill from OLADE source data"
 msgstr "Si se debe completar desde los datos fuente de OLADE"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_olade_tech_mapping()`"
 msgstr "`get_olade_tech_mapping()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "OLADE tech name to model code mapping"
 msgstr "Mapeo de nombre de tecnología OLADE a código del modelo"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_shares_tech_mapping()`"
 msgstr "`get_shares_tech_mapping()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "Shares file name to model code mapping"
 msgstr "Mapeo de nombre de archivo de shares a código del modelo"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`get_raw_config()`"
 msgstr "`get_raw_config()`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "`dict`"
 msgstr "`dict`"
 
-#: ../../auxiliary-tools.md
+#: ../../auxiliary-tools.md:11
 msgid "The full raw YAML dictionary"
 msgstr "El diccionario YAML completo sin procesar"
 
-#: ../../auxiliary-tools.md:29
-msgid "Usage in Scripts"
+#: ../../auxiliary-tools.md:36
+msgid "Usage in scripts"
 msgstr "Uso en scripts"
 
-#: ../../auxiliary-tools.md:40
-msgid "Demand Profile Normalizer"
+#: ../../auxiliary-tools.md:45
+msgid "Demand profile normaliser"
 msgstr "Normalizador de perfiles de demanda"
 
-#: ../../auxiliary-tools.md:42
+#: ../../auxiliary-tools.md:47
 msgid "**Script:** `scripts/tools/Z_AUX_fix_excel_profiles.py`"
 msgstr "**Script:** `scripts/tools/Z_AUX_fix_excel_profiles.py`"
 
-#: ../../auxiliary-tools.md:44
+#: ../../auxiliary-tools.md:49
 msgid ""
 "Fixes rounding drift in SpecifiedDemandProfile sheets that can cause "
 "OSeMOSYS model errors. Profiles must sum to exactly 1.0 per "
@@ -231,15 +231,15 @@ msgstr ""
 "puede causar errores en el modelo OSeMOSYS. Los perfiles deben sumar "
 "exactamente 1.0 por energético/tecnología por año."
 
-#: ../../auxiliary-tools.md:46 ../../auxiliary-tools.md:75
+#: ../../auxiliary-tools.md:51 ../../auxiliary-tools.md:78
 msgid "Usage"
 msgstr "Uso"
 
-#: ../../auxiliary-tools.md:52 ../../auxiliary-tools.md:99
-msgid "What It Does"
+#: ../../auxiliary-tools.md:57 ../../auxiliary-tools.md:100
+msgid "What it does"
 msgstr "Qué hace"
 
-#: ../../auxiliary-tools.md:54
+#: ../../auxiliary-tools.md:59
 msgid ""
 "Iterates over all scenario directories (`A1_Outputs_BAU`, "
 "`A1_Outputs_INV`, `A1_Outputs_OPT`)."
@@ -247,27 +247,27 @@ msgstr ""
 "Itera sobre todos los directorios de escenario (`A1_Outputs_BAU`, "
 "`A1_Outputs_INV`, `A1_Outputs_OPT`)."
 
-#: ../../auxiliary-tools.md:55
+#: ../../auxiliary-tools.md:60
 msgid "Opens each `A-O_Demand.xlsx` file."
 msgstr "Abre cada archivo `A-O_Demand.xlsx`."
 
-#: ../../auxiliary-tools.md:56
+#: ../../auxiliary-tools.md:61
 msgid ""
-"For each profile sheet, normalizes values so that each fuel/technology "
+"For each profile sheet, normalises values so that each fuel/technology "
 "column sums to exactly 1.0 per year."
 msgstr ""
 "Para cada hoja de perfil, normaliza los valores para que cada columna de "
 "energético/tecnología sume exactamente 1.0 por año."
 
-#: ../../auxiliary-tools.md:57
+#: ../../auxiliary-tools.md:62
 msgid "Creates a timestamped backup before modifying any file."
 msgstr "Crea un respaldo con marca de tiempo antes de modificar cualquier archivo."
 
-#: ../../auxiliary-tools.md:59
+#: ../../auxiliary-tools.md:64
 msgid "Tolerance"
 msgstr "Tolerancia"
 
-#: ../../auxiliary-tools.md:61
+#: ../../auxiliary-tools.md:66
 msgid ""
 "Values within `0.0001` of 1.0 are considered acceptable. Values outside "
 "this range are corrected by proportional scaling."
@@ -275,15 +275,15 @@ msgstr ""
 "Los valores dentro de `0.0001` de 1.0 se consideran aceptables. Los "
 "valores fuera de este rango se corrigen mediante escalado proporcional."
 
-#: ../../auxiliary-tools.md:65
-msgid "Region Consolidation (Brazil as example)"
+#: ../../auxiliary-tools.md:68
+msgid "Region consolidation (Brazil as example)"
 msgstr "Consolidación regional (Brasil como ejemplo)"
 
-#: ../../auxiliary-tools.md:67
+#: ../../auxiliary-tools.md:70
 msgid "**Script:** `scripts/tools/Z_AUX_united_regions.py`"
 msgstr "**Script:** `scripts/tools/Z_AUX_united_regions.py`"
 
-#: ../../auxiliary-tools.md:69
+#: ../../auxiliary-tools.md:72
 msgid ""
 "A manually-configured script that consolidates the sub-regions of a "
 "country into a single `XX` region. Brazil, whose OSeMOSYS Global data is "
@@ -299,7 +299,7 @@ msgstr ""
 "otro país modelado con varias regiones (por ejemplo México, si se "
 "incorporara con sus subregiones)."
 
-#: ../../auxiliary-tools.md:72
+#: ../../auxiliary-tools.md:75
 #, python-brace-format
 msgid ""
 "The script is a legacy tool: the Brazil codes (`BRA`, the region list and"
@@ -317,7 +317,7 @@ msgstr ""
 "`Config_region_consolidation.yaml`, donde cada país es una entrada con su"
 " lista de regiones (ver {doc}`country-management`)."
 
-#: ../../auxiliary-tools.md:77
+#: ../../auxiliary-tools.md:80
 msgid ""
 "The script uses boolean flags at the top of the file to control which "
 "files to process:"
@@ -325,11 +325,11 @@ msgstr ""
 "El script usa flags booleanos al inicio del archivo para controlar qué "
 "archivos procesar:"
 
-#: ../../auxiliary-tools.md:85
-msgid "Processing Rules"
+#: ../../auxiliary-tools.md:88
+msgid "Processing rules"
 msgstr "Reglas de procesamiento"
 
-#: ../../auxiliary-tools.md:87
+#: ../../auxiliary-tools.md:90
 msgid ""
 "**Cost parameters** (CapitalCost, FixedCost, VariableCost): Averaged "
 "across regions."
@@ -337,7 +337,7 @@ msgstr ""
 "**Parámetros de costo** (CapitalCost, FixedCost, VariableCost): "
 "Promediados entre regiones."
 
-#: ../../auxiliary-tools.md:88
+#: ../../auxiliary-tools.md:91
 msgid ""
 "**Capacity parameters** (ResidualCapacity, TotalAnnualMaxCapacity): "
 "Summed across regions."
@@ -345,25 +345,25 @@ msgstr ""
 "**Parámetros de capacidad** (ResidualCapacity, TotalAnnualMaxCapacity): "
 "Sumados entre regiones."
 
-#: ../../auxiliary-tools.md:89
+#: ../../auxiliary-tools.md:92
 msgid ""
-"**Interconnections**: TRN codes are normalized to alphabetical country-"
+"**Interconnections**: TRN codes are normalised to alphabetical country-"
 "pair ordering."
 msgstr ""
 "**Interconexiones**: Los códigos TRN se normalizan al orden alfabético "
 "del par de países."
 
-#: ../../auxiliary-tools.md:93
-msgid "Capital Annualization"
+#: ../../auxiliary-tools.md:94
+msgid "Capital annualisation"
 msgstr "Anualización de capital"
 
-#: ../../auxiliary-tools.md:95
+#: ../../auxiliary-tools.md:96
 msgid "**Script:** `scripts/pipeline/Z_AUX_capital_annualization_script.py`"
 msgstr "**Script:** `scripts/pipeline/Z_AUX_capital_annualization_script.py`"
 
-#: ../../auxiliary-tools.md:97
+#: ../../auxiliary-tools.md:98
 msgid ""
-"Post-processing script that annualizes capital costs in the model "
+"Post-processing script that annualises capital costs in the model "
 "results. Runs automatically as part of the B2 execution stage when "
 "`annualize_capital: True` in `Config_MOMF_T1_AB.yaml`."
 msgstr ""
@@ -372,11 +372,11 @@ msgstr ""
 "de ejecución B2 cuando `annualize_capital: True` en "
 "`Config_MOMF_T1_AB.yaml`."
 
-#: ../../auxiliary-tools.md:101
+#: ../../auxiliary-tools.md:102
 msgid ""
 "Calculates `AccumulatedTotalAnnualMinCapacityInvestment` via cumulative "
 "sum of annual capacity investments, converting lump-sum capital costs "
-"into annualized values."
+"into annualised values."
 msgstr ""
 "Calcula `AccumulatedTotalAnnualMinCapacityInvestment` mediante la suma "
 "acumulada de las inversiones de capacidad anuales, convirtiendo los "

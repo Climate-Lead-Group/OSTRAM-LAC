@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 10:38-0600\n"
+"POT-Creation-Date: 2026-11-09 08:55-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../configuration.md:1
-msgid "Configuration Reference"
+msgid "Configuration reference"
 msgstr "Referencia de configuración"
 
 #: ../../configuration.md:3
@@ -31,13 +31,13 @@ msgstr ""
 "OSTRAM LAC usa cuatro archivos de configuración YAML y dos archivos de "
 "configuración basados en Excel. Esta página documenta cada opción."
 
-#: ../../configuration.md:5
+#: ../../configuration.md:9
 msgid "Which configuration file each pipeline stage and tool reads or writes."
 msgstr ""
 "Qué archivo de configuración lee o escribe cada etapa y herramienta del "
 "pipeline."
 
-#: ../../configuration.md:6
+#: ../../configuration.md:13
 msgid ""
 "All data entered in the configuration files (technologies, years, "
 "countries, codes) must match values that exist in the model. Using "
@@ -51,15 +51,15 @@ msgstr ""
 "cualquier otro identificador que no esté presente en los datos del modelo"
 " puede causar que el pipeline falle durante la ejecución."
 
-#: ../../configuration.md:9
+#: ../../configuration.md:16
 msgid "Config_country_codes.yaml"
 msgstr "Config_country_codes.yaml"
 
-#: ../../configuration.md:11
+#: ../../configuration.md:18
 msgid "**Location:** `inputs/config/Config_country_codes.yaml`"
 msgstr "**Ubicación:** `inputs/config/Config_country_codes.yaml`"
 
-#: ../../configuration.md:13
+#: ../../configuration.md:20
 msgid ""
 "The single source of truth for all country, region, and technology "
 "definitions. Used by most scripts in the project."
@@ -67,11 +67,11 @@ msgstr ""
 "La única fuente de verdad para todas las definiciones de país, región y "
 "tecnología. Usado por la mayoría de los scripts del proyecto."
 
-#: ../../configuration.md:15
+#: ../../configuration.md:22
 msgid "`country_data`"
 msgstr "`country_data`"
 
-#: ../../configuration.md:17
+#: ../../configuration.md:24
 msgid ""
 "Master registry of countries. Each entry is keyed by a 3-letter ISO code "
 "and contains:"
@@ -79,11 +79,11 @@ msgstr ""
 "Registro maestro de países. Cada entrada está indexada por un código ISO "
 "de 3 letras y contiene:"
 
-#: ../../configuration.md:29
+#: ../../configuration.md:36
 msgid "`english_name`: Display name used in reports and documentation."
 msgstr "`english_name`: Nombre para mostrar usado en reportes y documentación."
 
-#: ../../configuration.md:30
+#: ../../configuration.md:37
 msgid ""
 "`olade_name`: Name used for matching against source data files of the "
 "Latin American and Caribbean Energy Organization (OLACDE; the files and "
@@ -95,28 +95,28 @@ msgstr ""
 " los archivos y las claves conservan la sigla anterior OLADE) (note la "
 "ortografía en español, p. ej. `\"Brasil\"`)."
 
-#: ../../configuration.md:32
+#: ../../configuration.md:39
 msgid "`special_entries`"
 msgstr "`special_entries`"
 
-#: ../../configuration.md:34
+#: ../../configuration.md:41
 msgid "Non-country codes used in the model:"
 msgstr "Códigos que no son de país usados en el modelo:"
 
-#: ../../configuration.md:41
+#: ../../configuration.md:48
 msgid "`countries`"
 msgstr "`countries`"
 
-#: ../../configuration.md:43
+#: ../../configuration.md:50
 msgid "Ordered list of active country/region codes for the current model run:"
 msgstr ""
 "Lista ordenada de códigos de país/región activos para la corrida actual "
 "del modelo:"
 
-#: ../../configuration.md:68
+#: ../../configuration.md:75
 msgid ""
-"Countries modeled with sub-regions use extended codes (e.g., `BRACN` for "
-"Brazil-Center). In the current model, sub-regions are consolidated into "
+"Countries modelled with sub-regions use extended codes (e.g., `BRACN` for"
+" Brazil-Center). In the current model, sub-regions are consolidated into "
 "the default region `XX` (see `Config_region_consolidation.yaml`), so "
 "countries appear with their 3-letter code."
 msgstr ""
@@ -126,19 +126,19 @@ msgstr ""
 "`Config_region_consolidation.yaml`), por lo que los países aparecen con "
 "su código de 3 letras."
 
-#: ../../configuration.md:70
+#: ../../configuration.md:77
 msgid "`first_year`"
 msgstr "`first_year`"
 
-#: ../../configuration.md:72
+#: ../../configuration.md:79
 msgid "Reference/start year of the model time horizon:"
 msgstr "Año de referencia/inicio del horizonte temporal del modelo:"
 
-#: ../../configuration.md:78
+#: ../../configuration.md:85
 msgid "`pwr_cleanup_mode`"
 msgstr "`pwr_cleanup_mode`"
 
-#: ../../configuration.md:80
+#: ../../configuration.md:87
 msgid ""
 "Controls how duplicate PWR (power) technology entries are handled during "
 "preprocessing."
@@ -146,7 +146,7 @@ msgstr ""
 "Controla cómo se manejan las entradas duplicadas de tecnología PWR "
 "(generación) durante el preprocesamiento."
 
-#: ../../configuration.md:82
+#: ../../configuration.md:89
 msgid ""
 "The base data come from OSeMOSYS Global, which can carry each power "
 "technology twice: a code ending in `00` for the existing fleet and one "
@@ -166,45 +166,45 @@ msgstr ""
 " capacidad nueva decide el optimizador. La limpieza fusiona cada par "
 "`00`/`01` en un único código de tecnología sin el sufijo."
 
-#: ../../configuration.md:5 ../../configuration.md:177
+#: ../../configuration.md:12 ../../configuration.md:184
 msgid "Value"
 msgstr "Valor"
 
-#: ../../configuration.md:5
-msgid "Behavior"
+#: ../../configuration.md:12
+msgid "Behaviour"
 msgstr "Comportamiento"
 
-#: ../../configuration.md:5
+#: ../../configuration.md:12
 msgid "`\"drop\"`"
 msgstr "`\"drop\"`"
 
-#: ../../configuration.md:5
+#: ../../configuration.md:12
 msgid "Drop PWR00 when PWR01 exists, rename PWR01 to PWR"
 msgstr "Elimina PWR00 cuando existe PWR01, renombra PWR01 a PWR"
 
-#: ../../configuration.md:5
+#: ../../configuration.md:12
 msgid "`\"merge\"`"
 msgstr "`\"merge\"`"
 
-#: ../../configuration.md:5
+#: ../../configuration.md:12
 msgid "Sum PWR00 values into PWR01, drop PWR00, rename PWR01 to PWR"
 msgstr "Suma los valores de PWR00 en PWR01, elimina PWR00, renombra PWR01 a PWR"
 
-#: ../../configuration.md:5 ../../configuration.md:177
+#: ../../configuration.md:12 ../../configuration.md:184
 msgid "`false`"
 msgstr "`false`"
 
-#: ../../configuration.md:5
+#: ../../configuration.md:12
 msgid "Skip PWR cleanup entirely (keeps the OSeMOSYS Global `00`/`01` split)"
 msgstr ""
 "Omitir por completo la limpieza de PWR (conserva la dualidad `00`/`01` de"
 " OSeMOSYS Global)"
 
-#: ../../configuration.md:94
+#: ../../configuration.md:101
 msgid "`add_missing_countries_from_olade`"
 msgstr "`add_missing_countries_from_olade`"
 
-#: ../../configuration.md:96
+#: ../../configuration.md:103
 msgid ""
 "Whether the preprocessing step should fill missing country data from "
 "OLADE source files:"
@@ -212,11 +212,11 @@ msgstr ""
 "Si el paso de preprocesamiento debe completar los datos de país faltantes"
 " desde los archivos fuente de OLADE:"
 
-#: ../../configuration.md:102
+#: ../../configuration.md:109
 msgid "`olade_tech_mapping`"
 msgstr "`olade_tech_mapping`"
 
-#: ../../configuration.md:104
+#: ../../configuration.md:111
 msgid ""
 "Maps technology names from the OLADE source Excel files to 3-character "
 "model codes:"
@@ -224,7 +224,7 @@ msgstr ""
 "Mapea los nombres de tecnología de los archivos Excel fuente de OLADE a "
 "códigos del modelo de 3 caracteres:"
 
-#: ../../configuration.md:118
+#: ../../configuration.md:125
 msgid ""
 "The keys are lookup keys: `D2_update_secondary_techs.py` matches each row"
 " label of the source workbooks against them, character for character "
@@ -254,35 +254,35 @@ msgstr ""
 "líquidos de los datos fuente, que `D2_update_secondary_techs.py` "
 "identifica por sus etiquetas en español (`Biogás`, `Biomasa sólida`)."
 
-#: ../../configuration.md:121
+#: ../../configuration.md:128
 msgid "`code_to_energy`"
 msgstr "`code_to_energy`"
 
-#: ../../configuration.md:123
+#: ../../configuration.md:130
 msgid "Maps 3-character technology codes to human-readable descriptions:"
 msgstr ""
 "Mapea los códigos de tecnología de 3 caracteres a descripciones legibles "
 "para humanos:"
 
-#: ../../configuration.md:134
+#: ../../configuration.md:141
 msgid "`renewable_fuels`"
 msgstr "`renewable_fuels`"
 
-#: ../../configuration.md:136
+#: ../../configuration.md:143
 msgid "List of technology codes classified as renewable energy:"
 msgstr "Lista de códigos de tecnología clasificados como energía renovable:"
 
-#: ../../configuration.md:150
+#: ../../configuration.md:157
 msgid "`shares_tech_mapping`"
 msgstr "`shares_tech_mapping`"
 
-#: ../../configuration.md:152
+#: ../../configuration.md:159
 msgid "Maps technology names from the Shares Excel file to model codes:"
 msgstr ""
 "Mapea los nombres de tecnología del archivo Excel de Shares a códigos del"
 " modelo:"
 
-#: ../../configuration.md:164
+#: ../../configuration.md:171
 msgid ""
 "As with `olade_tech_mapping`, the keys are the row labels of "
 "`inputs/data/Shares_Power_Generation_Technologies.xlsx`, matched "
@@ -297,11 +297,11 @@ msgstr ""
 " modelo, está en español; deben seguir el idioma que usen los datos de "
 "entrada."
 
-#: ../../configuration.md:167
+#: ../../configuration.md:174
 msgid "`implausible_combinations`"
 msgstr "`implausible_combinations`"
 
-#: ../../configuration.md:169
+#: ../../configuration.md:176
 msgid ""
 "Technology-country pairs where a technology is physically infeasible. "
 "These are marked as NO (red) in the Tech-Country Matrix. Each entry maps "
@@ -319,7 +319,7 @@ msgstr ""
 "`TotalAnnualMaxCapacityInvestment`) son cero/están ausentes para todos "
 "los años."
 
-#: ../../configuration.md:178
+#: ../../configuration.md:185
 #, python-brace-format
 msgid ""
 "This section was regenerated for the active Latin-American country set. "
@@ -339,11 +339,11 @@ msgstr ""
 " (p. ej., undimotriz o eólica marina para países sin salida al mar) debe "
 "curarse manualmente."
 
-#: ../../configuration.md:181
+#: ../../configuration.md:188
 msgid "`template_generation`"
 msgstr "`template_generation`"
 
-#: ../../configuration.md:183
+#: ../../configuration.md:190
 msgid ""
 "Configuration for the country template generator "
 "(`Z_generate_country_template.py`):"
@@ -351,7 +351,7 @@ msgstr ""
 "Configuración para el generador de plantillas de país "
 "(`Z_generate_country_template.py`):"
 
-#: ../../configuration.md:185
+#: ../../configuration.md:192
 msgid ""
 "`template_generation` is a list of entries; each entry generates one new "
 "country. Leave the fields blank to disable generation:"
@@ -359,53 +359,53 @@ msgstr ""
 "`template_generation` es una lista de entradas; cada entrada genera un "
 "país nuevo. Deje los campos en blanco para deshabilitar la generación:"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Key"
 msgstr "Clave"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Description"
 msgstr "Descripción"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`new_country`"
 msgstr "`new_country`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "3-letter code for the country to create"
 msgstr "Código de 3 letras para el país a crear"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`reference_country`"
 msgstr "`reference_country`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Existing country to clone data from"
 msgstr "País existente del cual clonar los datos"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`region`"
 msgstr "`region`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Region suffix (default: `XX`)"
 msgstr "Sufijo de región (por defecto: `XX`)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`centerpoint_lat` / `centerpoint_lon`"
 msgstr "`centerpoint_lat` / `centerpoint_lon`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Latitude/longitude of the country centerpoint (used for map placement)"
 msgstr ""
 "Latitud/longitud del punto central del país (usado para la ubicación en "
 "mapas)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`interconnections`"
 msgstr "`interconnections`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "List of neighbor country codes for TRN links. Empty list = no "
 "interconnections; omit the key to copy the reference country's topology"
@@ -414,11 +414,11 @@ msgstr ""
 "sin interconexiones; omita la clave para copiar la topología del país de "
 "referencia"
 
-#: ../../configuration.md:205
+#: ../../configuration.md:212
 msgid "`enable_dsptrn`"
 msgstr "`enable_dsptrn`"
 
-#: ../../configuration.md:211
+#: ../../configuration.md:218
 #, python-brace-format
 msgid ""
 "When `True`, A2_AddTx adds the `DSPTRN` dispatch technology and uses "
@@ -434,11 +434,11 @@ msgstr ""
 " Cuando es `False`, mantiene el enrutamiento de 3 niveles (`ELC00/01/02`)"
 " sin DSPTRN."
 
-#: ../../configuration.md:213
+#: ../../configuration.md:220
 msgid "`force_empty_max_capacity_investment_pwr`"
 msgstr "`force_empty_max_capacity_investment_pwr`"
 
-#: ../../configuration.md:219
+#: ../../configuration.md:226
 msgid ""
 "When `true`, forces `Projection.Mode = \"EMPTY\"` for "
 "`TotalAnnualMaxCapacityInvestment` on every PWR technology (the lid rule "
@@ -450,11 +450,11 @@ msgstr ""
 "de A3_process llena esas celdas después). Cuando es `false`, se mantiene "
 "el `Projection.Mode` detectado automáticamente."
 
-#: ../../configuration.md:221
-msgid "Transmission Technology Parameters"
+#: ../../configuration.md:228
+msgid "Transmission technology parameters"
 msgstr "Parámetros de tecnología de transmisión"
 
-#: ../../configuration.md:223
+#: ../../configuration.md:230
 msgid ""
 "Seven sections define default parameters for transmission and dispatch "
 "technologies:"
@@ -462,75 +462,75 @@ msgstr ""
 "Siete secciones definen los parámetros por defecto para las tecnologías "
 "de transmisión y despacho:"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Section"
 msgstr "Sección"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`RNWTRN`"
 msgstr "`RNWTRN`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Renewable transmission (existing)"
 msgstr "Transmisión renovable (existente)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`RNWRPO`"
 msgstr "`RNWRPO`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Renewable transmission (repowering: reconductoring of existing lines)"
 msgstr ""
 "Transmisión renovable (repotenciación: recambio de conductores de líneas "
 "existentes)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`RNWNLI`"
 msgstr "`RNWNLI`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Renewable transmission (new unplanned lines)"
 msgstr "Transmisión renovable (líneas nuevas no planificadas)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`PWRTRN`"
 msgstr "`PWRTRN`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Non-renewable transmission (existing)"
 msgstr "Transmisión no renovable (existente)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`TRNRPO`"
 msgstr "`TRNRPO`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Non-renewable transmission (repowering: reconductoring of existing lines)"
 msgstr ""
 "Transmisión no renovable (repotenciación: recambio de conductores de "
 "líneas existentes)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`TRNNLI`"
 msgstr "`TRNNLI`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Non-renewable transmission (new unplanned lines)"
 msgstr "Transmisión no renovable (líneas nuevas no planificadas)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`DSPTRN`"
 msgstr "`DSPTRN`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Dispatch (interconnection routing)"
 msgstr "Despacho (enrutamiento de interconexión)"
 
-#: ../../configuration.md:235
+#: ../../configuration.md:242
 msgid "Each section contains:"
 msgstr "Cada sección contiene:"
 
-#: ../../configuration.md:247
+#: ../../configuration.md:254
 msgid ""
 "DSPTRN is a virtual dispatch node with zero costs and high capacity, used"
 " to route electricity to/from cross-border interconnections:"
@@ -539,15 +539,15 @@ msgstr ""
 "usado para enrutar electricidad hacia/desde las interconexiones "
 "transfronterizas:"
 
-#: ../../configuration.md:261
+#: ../../configuration.md:266
 msgid "Config_MOMF_T1_A.yaml"
 msgstr "Config_MOMF_T1_A.yaml"
 
-#: ../../configuration.md:263
+#: ../../configuration.md:268
 msgid "**Location:** `inputs/config/Config_MOMF_T1_A.yaml`"
 msgstr "**Ubicación:** `inputs/config/Config_MOMF_T1_A.yaml`"
 
-#: ../../configuration.md:265
+#: ../../configuration.md:270
 msgid ""
 "The primary compiler configuration. Defines the data model for the Excel-"
 "to-OSeMOSYS compilation step."
@@ -555,71 +555,71 @@ msgstr ""
 "La configuración principal del compilador. Define el modelo de datos para"
 " el paso de compilación de Excel a OSeMOSYS."
 
-#: ../../configuration.md:267
-msgid "Key Settings"
+#: ../../configuration.md:272
+msgid "Key settings"
 msgstr "Configuraciones clave"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`base_year`"
 msgstr "`base_year`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`\"2023\"`"
 msgstr "`\"2023\"`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Base year of the energy model"
 msgstr "Año base del modelo energético"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`initial_year`"
 msgstr "`initial_year`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "First year of the time horizon"
 msgstr "Primer año del horizonte temporal"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`final_year`"
 msgstr "`final_year`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`\"2050\"`"
 msgstr "`\"2050\"`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Last year of the time horizon"
 msgstr "Último año del horizonte temporal"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`Use_Transport`"
 msgstr "`Use_Transport`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Enable/disable the transport sub-module"
 msgstr "Habilita/deshabilita el submódulo de transporte"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`Use_OG_module`"
 msgstr "`Use_OG_module`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`true`"
 msgstr "`true`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Enable/disable the OSeMOSYS-Global module pathway"
 msgstr "Habilita/deshabilita la ruta del módulo OSeMOSYS-Global"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`pre_solver_validation`"
 msgstr "`pre_solver_validation`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`true` (default; key absent)"
 msgstr "`true` (por defecto; clave ausente)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 #, python-brace-format
 msgid ""
 "Run the B1b pre-solver validation at the start of B1 on the active "
@@ -628,11 +628,11 @@ msgstr ""
 "Ejecuta la validación previa al solver B1b al inicio de B1 sobre el "
 "`A-O_Parametrization.xlsx` del escenario activo (ver {doc}`pipeline`)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`pre_solver_validation_interactive`"
 msgstr "`pre_solver_validation_interactive`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "Ask before applying each B1b fix; `false` applies every fix without "
 "prompting"
@@ -640,11 +640,11 @@ msgstr ""
 "Pregunta antes de aplicar cada corrección de B1b; `false` aplica todas "
 "las correcciones sin preguntar"
 
-#: ../../configuration.md:279
-msgid "Temporal Structure (`xtra_scen`)"
+#: ../../configuration.md:284
+msgid "Temporal structure (`xtra_scen`)"
 msgstr "Estructura temporal (`xtra_scen`)"
 
-#: ../../configuration.md:295
+#: ../../configuration.md:300
 msgid ""
 "The model uses 12 timeslices (4 seasons x 3 daily brackets), a single "
 "region (`GLOBAL`), and 2 modes of operation."
@@ -652,11 +652,11 @@ msgstr ""
 "El modelo usa 12 timeslices (4 estaciones x 3 franjas diarias), una sola "
 "región (`GLOBAL`), y 2 modos de operación."
 
-#: ../../configuration.md:297
-msgid "Directory and File Paths"
+#: ../../configuration.md:302
+msgid "Directory and file paths"
 msgstr "Rutas de directorios y archivos"
 
-#: ../../configuration.md:299
+#: ../../configuration.md:304
 msgid ""
 "The configuration defines all input/output paths and Excel file names "
 "used by the compiler. These are relative to the repo root (e.g. "
@@ -667,15 +667,15 @@ msgstr ""
 "del repositorio (p. ej. `inputs/A1_Outputs`, "
 "`outputs/A2_Output_Params/`):"
 
-#: ../../configuration.md:301
+#: ../../configuration.md:306
 msgid "`A1_inputs` / `A1_outputs`: Stage A1 directories"
 msgstr "`A1_inputs` / `A1_outputs`: Directorios de la Etapa A1"
 
-#: ../../configuration.md:302
+#: ../../configuration.md:307
 msgid "`A2_extra_inputs` / `A2_output`: Stage A2 directories"
 msgstr "`A2_extra_inputs` / `A2_output`: Directorios de la Etapa A2"
 
-#: ../../configuration.md:303
+#: ../../configuration.md:308
 msgid ""
 "`Print_*`: Output Excel file name templates (e.g., `Print_Paramet: "
 "\"/A-O_Parametrization.xlsx\"`)"
@@ -683,251 +683,251 @@ msgstr ""
 "`Print_*`: Plantillas de nombre de archivo Excel de salida (p. ej., "
 "`Print_Paramet: \"/A-O_Parametrization.xlsx\"`)"
 
-#: ../../configuration.md:305
-msgid "OSeMOSYS Parameters"
+#: ../../configuration.md:310
+msgid "OSeMOSYS parameters"
 msgstr "Parámetros de OSeMOSYS"
 
-#: ../../configuration.md:307
-msgid "The file lists all OSeMOSYS parameters organized by technology category:"
+#: ../../configuration.md:312
+msgid "The file lists all OSeMOSYS parameters organised by technology category:"
 msgstr ""
 "El archivo lista todos los parámetros de OSeMOSYS organizados por "
 "categoría de tecnología:"
 
-#: ../../configuration.md:309
+#: ../../configuration.md:314
 msgid "`tech_param_list_primary`: Parameters for primary supply technologies"
 msgstr ""
 "`tech_param_list_primary`: Parámetros para tecnologías de suministro "
 "primario"
 
-#: ../../configuration.md:310
+#: ../../configuration.md:315
 msgid "`tech_param_list_secondary`: Parameters for secondary (power) technologies"
 msgstr ""
 "`tech_param_list_secondary`: Parámetros para tecnologías secundarias "
 "(generación)"
 
-#: ../../configuration.md:311
+#: ../../configuration.md:316
 msgid "`tech_param_list_demands`: Parameters for demand technologies"
 msgstr "`tech_param_list_demands`: Parámetros para tecnologías de demanda"
 
-#: ../../configuration.md:312
+#: ../../configuration.md:317
 msgid "`tech_param_list_disttrn` / `_trn` / `_trngroups`: Transport parameters"
 msgstr ""
 "`tech_param_list_disttrn` / `_trn` / `_trngroups`: Parámetros de "
 "transporte"
 
-#: ../../configuration.md:316
+#: ../../configuration.md:319
 msgid "Config_MOMF_T1_AB.yaml"
 msgstr "Config_MOMF_T1_AB.yaml"
 
-#: ../../configuration.md:318
+#: ../../configuration.md:321
 msgid "**Location:** `inputs/config/Config_MOMF_T1_AB.yaml`"
 msgstr "**Ubicación:** `inputs/config/Config_MOMF_T1_AB.yaml`"
 
-#: ../../configuration.md:320
+#: ../../configuration.md:323
 msgid "The execution/runtime configuration for the model solver."
 msgstr "La configuración de ejecución/runtime para el solver del modelo."
 
-#: ../../configuration.md:322
-msgid "Solver Configuration"
+#: ../../configuration.md:325
+msgid "Solver configuration"
 msgstr "Configuración del solver"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`solver`"
 msgstr "`solver`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Active solver: `glpk`, `cbc`, `cplex`, or `gurobi`"
 msgstr "Solver activo: `glpk`, `cbc`, `cplex`, o `gurobi`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`cplex_threads`"
 msgstr "`cplex_threads`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Number of threads for CPLEX"
 msgstr "Número de hilos para CPLEX"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`cplex_random_seed`"
 msgstr "`cplex_random_seed`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Random seed for CPLEX reproducibility"
 msgstr "Semilla aleatoria para la reproducibilidad de CPLEX"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`cbc_random_seed`"
 msgstr "`cbc_random_seed`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Random seed for CBC"
 msgstr "Semilla aleatoria para CBC"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`iteration_time`"
 msgstr "`iteration_time`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Time limit for CBC in seconds"
 msgstr "Límite de tiempo para CBC en segundos"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`gurobi_threads`"
 msgstr "`gurobi_threads`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Number of threads for Gurobi"
 msgstr "Número de hilos para Gurobi"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`gurobi_seed`"
 msgstr "`gurobi_seed`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Random seed for Gurobi"
 msgstr "Semilla aleatoria para Gurobi"
 
-#: ../../configuration.md:344
-msgid "Pipeline Control Flags"
+#: ../../configuration.md:347
+msgid "Pipeline control flags"
 msgstr "Flags de control del pipeline"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Flag"
 msgstr "Opción"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`del_files`"
 msgstr "`del_files`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Delete intermediate files after execution"
 msgstr "Elimina los archivos intermedios después de la ejecución"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`only_main_scenario`"
 msgstr "`only_main_scenario`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Run only the main scenario (skip others)"
 msgstr "Ejecuta solo el escenario principal (omite los demás)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`parallel`"
 msgstr "`parallel`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Run scenarios in parallel"
 msgstr "Ejecuta los escenarios en paralelo"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`max_x_per_iter`"
 msgstr "`max_x_per_iter`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Maximum scenarios per parallel batch"
 msgstr "Número máximo de escenarios por lote paralelo"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`A2_otoole_outputs`"
 msgstr "`A2_otoole_outputs`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Write otoole-format output CSVs"
 msgstr "Escribe los CSV de salida en formato otoole"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`write_txt_model`"
 msgstr "`write_txt_model`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Generate the `.txt` model file for the solver"
 msgstr "Genera el archivo de modelo `.txt` para el solver"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`create_matrix`"
 msgstr "`create_matrix`"
 
-#: ../../configuration.md:177
-msgid "Create the optimization matrix"
+#: ../../configuration.md:184
+msgid "Create the optimisation matrix"
 msgstr "Crea la matriz de optimización"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`execute_model`"
 msgstr "`execute_model`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Run the solver"
 msgstr "Ejecuta el solver"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`concat_otoole_csv`"
 msgstr "`concat_otoole_csv`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Concatenate otoole CSVs across scenarios"
 msgstr "Concatena los CSV de otoole entre escenarios"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`concat_scenarios_csv`"
 msgstr "`concat_scenarios_csv`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Concatenate scenario result CSVs"
 msgstr "Concatena los CSV de resultados de escenario"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`annualize_capital`"
 msgstr "`annualize_capital`"
 
-#: ../../configuration.md:177
-msgid "Run capital cost annualization post-processing"
+#: ../../configuration.md:184
+msgid "Run capital cost annualisation post-processing"
 msgstr "Ejecuta el postprocesamiento de anualización de costos de capital"
 
-#: ../../configuration.md:374
-msgid "Other Settings"
+#: ../../configuration.md:377
+msgid "Other settings"
 msgstr "Otras configuraciones"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`base_scenario`"
 msgstr "`base_scenario`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`\"BAU\"`"
 msgstr "`\"BAU\"`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Name of the base/reference scenario"
 msgstr "Nombre del escenario base/de referencia"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`prefix_final_files`"
 msgstr "`prefix_final_files`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`\"RELAC_TX_\"`"
 msgstr "`\"RELAC_TX_\"`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Prefix for final output file names"
 msgstr "Prefijo para los nombres de archivo de salida final"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`osemosys_model`"
 msgstr "`osemosys_model`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`\"osemosys_fast_preprocessed.txt\"`"
 msgstr "`\"osemosys_fast_preprocessed.txt\"`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "OSeMOSYS model file (GNU MathProg)"
 msgstr "Archivo de modelo de OSeMOSYS (GNU MathProg)"
 
-#: ../../configuration.md:382
-msgid "Paths and File-Name Plumbing"
+#: ../../configuration.md:385
+msgid "Paths and file-name plumbing"
 msgstr "Rutas y fontanería de nombres de archivo"
 
-#: ../../configuration.md:384
+#: ../../configuration.md:387
 msgid ""
 "All paths are relative to the repository root. Values shown are the "
 "shipped ones (`inputs/config/Config_MOMF_T1_AB.yaml` lines 4–24)."
@@ -936,27 +936,27 @@ msgstr ""
 "mostrados son los de fábrica (`inputs/config/Config_MOMF_T1_AB.yaml`, "
 "líneas 4–24)."
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`A2_output`"
 msgstr "`A2_output`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`outputs/A2_Output_Params`"
 msgstr "`outputs/A2_Output_Params`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "A2 parameter CSVs per scenario"
 msgstr "CSV de parámetros de A2 por escenario"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`A2_output_otoole`"
 msgstr "`A2_output_otoole`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`outputs/A2_Outputs_Params_otoole`"
 msgstr "`outputs/A2_Outputs_Params_otoole`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "otoole-format twin of `A2_output`; the folder the modified CSVs are "
 "synced back into"
@@ -964,131 +964,131 @@ msgstr ""
 "Gemelo en formato otoole de `A2_output`; la carpeta a la que se "
 "sincronizan de vuelta los CSV modificados"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`Miscellaneous`"
 msgstr "`Miscellaneous`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`inputs/Miscellaneous`"
 msgstr "`inputs/Miscellaneous`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Folder holding `conversion_format.yaml` and the otoole templates"
 msgstr "Carpeta que contiene `conversion_format.yaml` y las plantillas de otoole"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`templates`"
 msgstr "`templates`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "otoole template folder name (under `Miscellaneous`)"
 msgstr "Nombre de la carpeta de plantillas de otoole (bajo `Miscellaneous`)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`executables`"
 msgstr "`executables`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`outputs/Executables`"
 msgstr "`outputs/Executables`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Where per-scenario `<S>_0/` datafiles are written"
 msgstr "Dónde se escriben los archivos de datos `<S>_0/` por escenario"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`outputs`"
 msgstr "`outputs`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`Outputs`"
 msgstr "`Outputs`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Solver output sub-folder name inside each `<S>_0/`"
 msgstr "Nombre de la subcarpeta de salida del solver dentro de cada `<S>_0/`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`concatenate_folder`"
 msgstr "`concatenate_folder`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`scripts/tools`"
 msgstr "`scripts/tools`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Folder of the CSV concatenation helper"
 msgstr "Carpeta del script auxiliar de concatenación de CSV"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`concat_csvs`"
 msgstr "`concat_csvs`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`concatenate_relac.py`"
 msgstr "`concatenate_relac.py`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Concatenation helper script"
 msgstr "Script auxiliar de concatenación"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`otoole_config` / `conv_format`"
 msgstr "`otoole_config` / `conv_format`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`conversion_format.yaml`"
 msgstr "`conversion_format.yaml`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "otoole conversion format (both keys point to the same file)"
 msgstr "Formato de conversión de otoole (ambas claves apuntan al mismo archivo)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`preprocess_data`"
 msgstr "`preprocess_data`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`preprocess_data.py`"
 msgstr "`preprocess_data.py`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "OSeMOSYS preprocessor script"
 msgstr "Script preprocesador de OSeMOSYS"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`preprocess_data_name`"
 msgstr "`preprocess_data_name`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`Pre_processed_`"
 msgstr "`Pre_processed_`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Prefix of the preprocessed datafile"
 msgstr "Prefijo del archivo de datos preprocesado"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`output_files`"
 msgstr "`output_files`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`_output`"
 msgstr "`_output`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Suffix of solver output files"
 msgstr "Sufijo de los archivos de salida del solver"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`inputs_file` / `outputs_file`"
 msgstr "`inputs_file` / `outputs_file`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`Inputs.csv` / `Outputs.csv`"
 msgstr "`Inputs.csv` / `Outputs.csv`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "Base names of the combined CSVs (prefixed by `prefix_final_files`); the "
 "merged file is `<prefix>Combined_Inputs_Outputs.csv`"
@@ -1096,11 +1096,11 @@ msgstr ""
 "Nombres base de los CSV combinados (con el prefijo `prefix_final_files`);"
 " el archivo fusionado es `<prefix>Combined_Inputs_Outputs.csv`"
 
-#: ../../configuration.md:402
-msgid "Solver Modifier Chain"
+#: ../../configuration.md:405
+msgid "Solver modifier chain"
 msgstr "Cadena de modificadores del solver"
 
-#: ../../configuration.md:404
+#: ../../configuration.md:407
 msgid ""
 "`Config_MOMF_T1_AB.yaml` also contains the settings for the Stage B2 "
 "modifier chain: the reserve-margin and storage features applied to the "
@@ -1114,27 +1114,27 @@ msgstr ""
 "ejecute el solver. Cada modificador tiene un interruptor maestro "
 "`*_active`; la configuración de fábrica habilita varios de ellos."
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Master switch"
 msgstr "Interruptor maestro"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Shipped default"
 msgstr "Valor de fábrica"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Modifier"
 msgstr "Modificador"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`storage_delay_active`"
 msgstr "`storage_delay_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`True`"
 msgstr "`True`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "Block storage builds for the first N years (redirects the solver model "
 "file; final CSVs keep the `RELAC_TX_` prefix)"
@@ -1143,11 +1143,11 @@ msgstr ""
 "(redirige el archivo de modelo del solver; los CSV finales mantienen el "
 "prefijo `RELAC_TX_`)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`strip_storage_active`"
 msgstr "`strip_storage_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "Disable storage + feeding PWR techs (diagnostic; forced off when storage-"
 "delay is on)"
@@ -1156,43 +1156,43 @@ msgstr ""
 "(diagnóstico; se fuerza a apagado cuando el retraso de almacenamiento "
 "está activo)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`open_pwrbck_active`"
 msgstr "`open_pwrbck_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Reopen PWRBCK* backstop capacity caps"
 msgstr "Reabre los topes de capacidad backstop de PWRBCK*"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`reserve_margin_xlsx_active`"
 msgstr "`reserve_margin_xlsx_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Reserve-Margin repair from `firm_capacity_fallbacks_by_cr.xlsx`"
 msgstr ""
 "Reparación del margen de reserva desde "
 "`firm_capacity_fallbacks_by_cr.xlsx`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`activity_upper_limit_active`"
 msgstr "`activity_upper_limit_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`False`"
 msgstr "`False`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Cap `TotalTechnologyAnnualActivityUpperLimit` from demand fractions"
 msgstr ""
 "Topa `TotalTechnologyAnnualActivityUpperLimit` a partir de fracciones de "
 "demanda"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`dispatch_floors_active`"
 msgstr "`dispatch_floors_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "Lower Constraints Modifiers: write fossil dispatch floors (`FLOORED`) per"
 " base scenario, gated by `preflight_separation_active`"
@@ -1201,11 +1201,11 @@ msgstr ""
 "fósil (`FLOORED`) por escenario base, controlado por "
 "`preflight_separation_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`veg_tx_active`"
 msgstr "`veg_tx_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "Inertial Transmission Constraints, cross-scenario (`VEGCON`); creates OPT"
 " (`BAC`) and PLAN (`OPC`)"
@@ -1213,11 +1213,11 @@ msgstr ""
 "Restricciones inerciales de transmisión, transversales a escenarios "
 "(`VEGCON`); crea OPT (`BAC`) y PLAN (`OPC`)"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`sync_patched_csvs_active`"
 msgstr "`sync_patched_csvs_active`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "Sync modified values back into the otoole CSVs "
 "(`sync_patched_csvs_params` lists the parameter blocks copied)"
@@ -1225,7 +1225,7 @@ msgstr ""
 "Sincroniza los valores modificados de vuelta a los CSV de otoole "
 "(`sync_patched_csvs_params` lista los bloques de parámetros copiados)"
 
-#: ../../configuration.md:417
+#: ../../configuration.md:420
 #, python-brace-format
 msgid ""
 "See {doc}`solver-patchers` for the full chain, execution order, and every"
@@ -1234,11 +1234,11 @@ msgstr ""
 "Ver {doc}`solver-patchers` para la cadena completa, el orden de ejecución"
 " y todos los parámetros de cada patcher."
 
-#: ../../configuration.md:419
-msgid "Transmission Chain: Derived Scenarios"
+#: ../../configuration.md:422
+msgid "Transmission chain: derived scenarios"
 msgstr "Cadena de transmisión: escenarios derivados"
 
-#: ../../configuration.md:421
+#: ../../configuration.md:424
 #, python-brace-format
 msgid ""
 "Three blocks at the end of `Config_MOMF_T1_AB.yaml` drive steps 8 and 9 "
@@ -1254,11 +1254,11 @@ msgstr ""
 "escenario derivado solo requiere editar estos bloques; B2 no necesita "
 "ningún cambio de código."
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`scenario_transforms`"
 msgstr "`scenario_transforms`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 #, python-brace-format
 msgid ""
 "Ordered list. Each entry runs its `script` once with `--executables-dir "
@@ -1270,11 +1270,11 @@ msgstr ""
 "`Executables/NEW_0/` a partir del archivo de datos final de `SOURCE`; "
 "`in_place: [S, …]` edita archivos de datos existentes."
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`derived_scenarios`"
 msgstr "`derived_scenarios`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "Map `derived → base` telling B2 which base scenario's A2 sets/templates "
 "to reuse for otoole results (transforms change values only). Every code "
@@ -1285,11 +1285,11 @@ msgstr ""
 "transformaciones solo cambian valores). Cada código en `produces` debe "
 "aparecer aquí."
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "`solve_scenarios`"
 msgstr "`solve_scenarios`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid ""
 "The universe actually sent to the solver (the solver stage). Order = "
 "execution order when `parallel: False`. Comment out codes to skip them. "
@@ -1299,7 +1299,7 @@ msgstr ""
 " = orden de ejecución cuando `parallel: False`. Comente los códigos para "
 "omitirlos. Por defecto cuando está ausente: los cuatro escenarios base."
 
-#: ../../configuration.md:448
+#: ../../configuration.md:471
 #, python-brace-format
 msgid ""
 "Shipped transforms (2026-09-17): `cost_sensitivity` (OPT without "
@@ -1318,33 +1318,33 @@ msgstr ""
 "eólica ×1.17, baterías ×1.49). Ver {doc}`solver-patchers` (sección 9) "
 "para lo que hace cada transformación."
 
-#: ../../configuration.md:452
+#: ../../configuration.md:473
 msgid "Config_region_consolidation.yaml"
 msgstr "Config_region_consolidation.yaml"
 
-#: ../../configuration.md:454
+#: ../../configuration.md:475
 msgid "**Location:** `inputs/config/Config_region_consolidation.yaml`"
 msgstr "**Ubicación:** `inputs/config/Config_region_consolidation.yaml`"
 
-#: ../../configuration.md:456
+#: ../../configuration.md:477
 msgid ""
 "Controls optional consolidation of sub-regional data into unified "
-"country-level data. This is relevant when a country is modeled with "
-"multiple sub-regions (e.g., India with 5 regions)."
+"country-level data. This is relevant when a country is modelled with "
+"multiple sub-regions, as Brazil is with seven."
 msgstr ""
 "Controla la consolidación opcional de datos subregionales en datos "
 "unificados a nivel de país. Esto es relevante cuando un país se modela "
-"con múltiples subregiones (p. ej., India con 5 regiones)."
+"con varias subregiones, como Brasil, que tiene siete."
 
-#: ../../configuration.md:458
+#: ../../configuration.md:479
 msgid "Enable/Disable"
 msgstr "Habilitar/Deshabilitar"
 
-#: ../../configuration.md:464
+#: ../../configuration.md:485
 msgid "`pwrbck_output_to_elc02`"
 msgstr "`pwrbck_output_to_elc02`"
 
-#: ../../configuration.md:470
+#: ../../configuration.md:491
 #, python-brace-format
 msgid ""
 "When `true`, remaps the `OutputActivityRatio` fuel of every `PWRBCK*` "
@@ -1359,35 +1359,35 @@ msgstr ""
 "hojas posteriores (Secondary Techs, Model Base Year Secondary, Projection"
 " Secondary). Es independiente de `enabled`."
 
-#: ../../configuration.md:472
-msgid "Country Definitions"
+#: ../../configuration.md:493
+msgid "Country definitions"
 msgstr "Definiciones de país"
 
-#: ../../configuration.md:481
+#: ../../configuration.md:502
 msgid "Each entry specifies:"
 msgstr "Cada entrada especifica:"
 
-#: ../../configuration.md:482
+#: ../../configuration.md:503
 msgid "`regions`: List of sub-region codes to merge."
 msgstr "`regions`: Lista de códigos de subregión a fusionar."
 
-#: ../../configuration.md:483
+#: ../../configuration.md:504
 msgid "`unified_region`: Target code for the merged region."
 msgstr "`unified_region`: Código destino para la región fusionada."
 
-#: ../../configuration.md:485
-msgid "Aggregation Rules"
+#: ../../configuration.md:506
+msgid "Aggregation rules"
 msgstr "Reglas de agregación"
 
-#: ../../configuration.md:487
+#: ../../configuration.md:508
 msgid "Defines how parameters are combined when merging sub-regions:"
 msgstr "Define cómo se combinan los parámetros al fusionar subregiones:"
 
-#: ../../configuration.md:489
+#: ../../configuration.md:510
 msgid "**Averaged parameters** (`aggregation_rules.avg`):"
 msgstr "**Parámetros promediados** (`aggregation_rules.avg`):"
 
-#: ../../configuration.md:491
+#: ../../configuration.md:512
 msgid ""
 "Parameters where values are averaged across regions: "
 "`AvailabilityFactor`, `CapacityFactor`, `CapacityToActivityUnit`, "
@@ -1399,11 +1399,11 @@ msgstr ""
 "`CapitalCost`, `CapitalCostStorage`, `FixedCost`, `InputActivityRatio`, "
 "`OutputActivityRatio`, `VariableCost`, y otros."
 
-#: ../../configuration.md:493
+#: ../../configuration.md:514
 msgid "**Summed parameters** (`aggregation_rules.sum`):"
 msgstr "**Parámetros sumados** (`aggregation_rules.sum`):"
 
-#: ../../configuration.md:495
+#: ../../configuration.md:516
 msgid ""
 "Parameters where values are summed: `ResidualCapacity`, "
 "`ResidualStorageCapacity`, `SpecifiedAnnualDemand`, "
@@ -1413,11 +1413,11 @@ msgstr ""
 "`ResidualStorageCapacity`, `SpecifiedAnnualDemand`, "
 "`TotalAnnualMaxCapacity`, `TotalAnnualMaxCapacityInvestment`, y otros."
 
-#: ../../configuration.md:497
+#: ../../configuration.md:518
 msgid "**Disabled parameters** (`aggregation_rules.disabled`):"
 msgstr "**Parámetros deshabilitados** (`aggregation_rules.disabled`):"
 
-#: ../../configuration.md:499
+#: ../../configuration.md:520
 msgid ""
 "Parameters skipped during consolidation: `CapacityOfOneTechnologyUnit`, "
 "`RETagTechnology`, `TotalAnnualMinCapacity`, and model-period activity "
@@ -1428,71 +1428,71 @@ msgstr ""
 "`TotalAnnualMinCapacity`, y los límites de actividad del periodo del "
 "modelo."
 
-#: ../../configuration.md:503
-msgid "Excel-Based Configuration"
+#: ../../configuration.md:522
+msgid "Excel-based configuration"
 msgstr "Configuración basada en Excel"
 
-#: ../../configuration.md:505
+#: ../../configuration.md:524
 msgid "Tech_Country_Matrix.xlsx"
 msgstr "Tech_Country_Matrix.xlsx"
 
-#: ../../configuration.md:507
+#: ../../configuration.md:526
 msgid "Generated by `A0_generate_tech_country_matrix.py`. Contains 5 sheets:"
 msgstr "Generado por `A0_generate_tech_country_matrix.py`. Contiene 5 hojas:"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Sheet"
 msgstr "Hoja"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Purpose"
 msgstr "Propósito"
 
-#: ../../configuration.md:177
-msgid "**Matrix**"
-msgstr "**Matrix**"
+#: ../../configuration.md:184
+msgid "`Matrix`"
+msgstr "`Matrix`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "YES/NO grid for each technology-country combination"
 msgstr "Cuadrícula YES/NO para cada combinación tecnología-país"
 
-#: ../../configuration.md:177
-msgid "**NGS_Unification**"
-msgstr "**NGS_Unification**"
+#: ../../configuration.md:184
+msgid "`NGS_Unification`"
+msgstr "`NGS_Unification`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "ON/OFF toggle per country for merging CCG+OCG into NGS"
 msgstr "Interruptor ON/OFF por país para fusionar CCG+OCG en NGS"
 
-#: ../../configuration.md:177
-msgid "**Aggregation_Rules**"
-msgstr "**Aggregation_Rules**"
+#: ../../configuration.md:184
+msgid "`Aggregation_Rules`"
+msgstr "`Aggregation_Rules`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Rules for averaging, summing, or disabling parameters"
 msgstr "Reglas para promediar, sumar o deshabilitar parámetros"
 
-#: ../../configuration.md:177
-msgid "**Tech_Reference**"
-msgstr "**Tech_Reference**"
+#: ../../configuration.md:184
+msgid "`Tech_Reference`"
+msgstr "`Tech_Reference`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Technology code to description mapping"
 msgstr "Mapeo de código de tecnología a descripción"
 
-#: ../../configuration.md:177
-msgid "**Country_Reference**"
-msgstr "**Country_Reference**"
+#: ../../configuration.md:184
+msgid "`Country_Reference`"
+msgstr "`Country_Reference`"
 
-#: ../../configuration.md:177
+#: ../../configuration.md:184
 msgid "Country code to name mapping"
 msgstr "Mapeo de código de país a nombre"
 
-#: ../../configuration.md:517
+#: ../../configuration.md:536
 msgid "Secondary_Techs_Editor.xlsx"
 msgstr "Secondary_Techs_Editor.xlsx"
 
-#: ../../configuration.md:519
+#: ../../configuration.md:538
 #, python-brace-format
 msgid ""
 "Generated by `D1_generate_editor_template.py`. See {doc}`secondary-techs-"
@@ -1518,4 +1518,10 @@ msgstr ""
 #~ "especial: es la suma de Biogás +"
 #~ " Biomasa sólida + Biocombustibles líquidos"
 #~ " de los datos fuente."
+
+#~ msgid "**Matrix**"
+#~ msgstr "**Matrix**"
+
+#~ msgid "**Aggregation_Rules**"
+#~ msgstr "**Aggregation_Rules**"
 

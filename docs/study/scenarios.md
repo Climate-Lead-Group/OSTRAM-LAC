@@ -1,8 +1,8 @@
 # Scenarios
 
-The analysis is organised in four **scenario families**. Each family has a base scenario and, for the two main families, a set of sensitivity variants on repowering and on cost assumptions. Scenarios are named as in the results; their model codes (the identifiers used in configuration files and result CSVs) are shown in monospace.
+The analysis is organised in four **scenario families**. Each family has a reporting base and, for the two main families, a set of sensitivity variants on repowering and on cost assumptions. Scenarios are named as in the results; their model codes (the identifiers used in configuration files and result CSVs) are shown in monospace.
 
-| Family | Meaning | Base scenario |
+| Family | Meaning | Reporting base |
 |---|---|---|
 | **OPT** | Optimal expansion | OPT (`BAC`) |
 | **ETT** | Trend expansion | ETT (`ISR`) |
@@ -13,22 +13,22 @@ The 14 scenarios that are solved:
 
 | Scenario | Code | Family | Description |
 |---|---|---|---|
-| OPT | `BAC` | OPT | Base scenario of the OPT family |
+| OPT | `BAC` | OPT | Reporting base of the OPT family |
 | OPT without repowering | `BSR` | OPT | Only the committed (planned) repowering can be built; built from the `BAU` workbook |
 | OPT higher fuel cost | `BFA` | OPT | OPT with fossil fuel `VariableCost` ×1.70 |
 | OPT lower fuel cost | `BFB` | OPT | OPT with fossil fuel `VariableCost` ×0.52 |
 | OPT higher renewables cost | `BRA` | OPT | OPT with `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49 |
 | OPT lower renewables cost | `BRB` | OPT | OPT with `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50 |
-| ETT | `ISR` | ETT | Base scenario of the ETT family: only the committed repowering can be built |
+| ETT | `ISR` | ETT | Reporting base of the ETT family: only the committed repowering can be built |
 | ETT with repowering | `INV` | ETT | The `INV` workbook solved as is: repowering beyond the committed one is allowed |
 | ETT higher fuel cost | `IFA` | ETT | ETT with repowering with fossil fuel `VariableCost` ×1.70 |
 | ETT lower fuel cost | `IFB` | ETT | ETT with repowering with fossil fuel `VariableCost` ×0.52 |
 | ETT higher renewables cost | `IRA` | ETT | ETT with repowering with `CapitalCost` solar ×1.33, wind ×1.17, batteries ×1.49 |
 | ETT lower renewables cost | `IRB` | ETT | ETT with repowering with `CapitalCost` solar ×0.60, wind ×0.75, batteries ×0.50 |
-| PLAN | `OPC` | PLAN | Base scenario of the PLAN family |
-| ETT-GP | `VSR` | ETT-GP | Base scenario of the ETT-GP family |
+| PLAN | `OPC` | PLAN | Reporting base of the PLAN family |
+| ETT-GP | `VSR` | ETT-GP | Reporting base of the ETT-GP family |
 
-The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present results; outside this page the documentation refers to scenarios by them. They describe what each base scenario represents, for ease of reading: `BAC` is an optimal expansion, so it is shown as OPT; `ISR` is a trend expansion, so it is shown as ETT. The `OPT` input workbook described below is a different object: it is the base from which `OPC` (PLAN) is built.
+The family names (OPT, ETT, PLAN, ETT-GP) are the names used to present results; outside this page the documentation refers to scenarios by them. They describe what each reporting base represents, for ease of reading: `BAC` is an optimal expansion, so it is shown as OPT; `ISR` is a trend expansion, so it is shown as ETT. The `OPT` input workbook described below is a different object: it is the base from which `OPC` (PLAN) is built.
 
 ## Reading a scenario code
 
