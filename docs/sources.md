@@ -6,10 +6,10 @@ tool defaults are distinguished from them.
 
 The record here is a summary. The authoritative, parameter-by-parameter citation (which
 sheet, which technology, which years, which exact source and how it was transformed) lives
-in a `Fuentes` sheet added to the end of `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` and
+in a `Sources` sheet added to the end of `A-O_Parametrization.xlsx`, `A-O_Demand.xlsx` and
 `A-Xtra_Storage.xlsx` for every scenario (see {doc}`data-reference`). That sheet is generated
 from the master table `inputs/config/data_sources.csv` by
-[`add_fuentes_sheet.py`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/tools/data_patches/add_fuentes_sheet.py). To change a
+[`add_sources_sheet.py`](https://github.com/Climate-Lead-Group/OSTRAM-LAC/blob/main/scripts/tools/data_patches/add_sources_sheet.py). To change a
 source, edit the CSV and re-run that script, which regenerates the sheet.
 
 ## Primary external sources

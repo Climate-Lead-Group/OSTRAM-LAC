@@ -301,7 +301,7 @@ closest old string, which is sometimes a different entry.
   `.txt` datafiles, not B1.
 - `*log*` matches `.gitignore`: do not name tracked files with "log" in them.
 - `README.md`, `environment.yaml` and `run.py` are CRLF; there is no `.gitattributes`.
-- The `Fuentes` sheet in the A-O workbooks is documentation only; `B1_Compiler.py` excludes it.
+- The `Sources` sheet in the A-O workbooks is documentation only; `B1_Compiler.py` excludes it.
 - `docs/superpowers/` and `.superpowers/` (specs and plans) are gitignored on purpose; they live on
   disk only.
 - Scenarios INV/OPT/VGB equal BAU through 2026 and diverge from 2027 (`TX_DIVERGE_YEAR`,

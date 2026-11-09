@@ -198,7 +198,7 @@ The main parameter file per scenario. Contains multiple sheets:
 | Other_Techs | Auxiliary technologies outside the PWR/Demand families |
 | Demand Techs | Parameters for demand and transmission technologies (`DSP*`, `TRN*`) |
 | Vehicle Techs, Vehicle Groups, Transport Fuel Distribution | Transport-sector blocks kept from the OSeMOSYS-CLG template (not used by the electricity model) |
-| Fuentes | Documentation sheet: data source, origin file/sheet and transformation per data block (added 2026-09-14 by `scripts/tools/data_patches/add_fuentes_sheet.py`). No year columns; `B1_Compiler.py` and `sync_historical_from_bau.py` skip it |
+| Sources | Documentation sheet: data source, origin file/sheet and transformation per data block (written by `scripts/tools/data_patches/add_sources_sheet.py`). No year columns; `B1_Compiler.py` and `sync_historical_from_bau.py` skip it |
 
 ### A-O_Demand.xlsx
 
@@ -208,9 +208,9 @@ Demand data per scenario:
 |-------|---------|
 | Demand_Projection | `SpecifiedAnnualDemand` values |
 | Profiles | `SpecifiedDemandProfile` timeslice distribution |
-| Fuentes | Documentation sheet (data provenance), same convention as in `A-O_Parametrization.xlsx` |
+| Sources | Documentation sheet (data provenance), same convention as in `A-O_Parametrization.xlsx` |
 
-See {doc}`sources` for a summary of the external datasets and national planning documents these `Fuentes` sheets cite.
+See {doc}`sources` for a summary of the external datasets and national planning documents these `Sources` sheets cite.
 
 ### A-O_AR_Model_Base_Year.xlsx
 

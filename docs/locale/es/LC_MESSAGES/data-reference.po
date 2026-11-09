@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OSTRAM LAC \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 08:29-0600\n"
+"POT-Creation-Date: 2026-11-09 13:32-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -799,19 +799,19 @@ msgstr ""
 "(no usados por el modelo eléctrico)"
 
 #: ../../data-reference.md:156
-msgid "Fuentes"
-msgstr "Fuentes"
+msgid "Sources"
+msgstr "Sources"
 
 #: ../../data-reference.md:156
 msgid ""
 "Documentation sheet: data source, origin file/sheet and transformation "
-"per data block (added 2026-09-14 by "
-"`scripts/tools/data_patches/add_fuentes_sheet.py`). No year columns; "
+"per data block (written by "
+"`scripts/tools/data_patches/add_sources_sheet.py`). No year columns; "
 "`B1_Compiler.py` and `sync_historical_from_bau.py` skip it"
 msgstr ""
 "Hoja de documentación: fuente de datos, archivo/hoja de origen y "
-"transformación por bloque de datos (agregada el 2026-09-14 por "
-"`scripts/tools/data_patches/add_fuentes_sheet.py`). Sin columnas de año; "
+"transformación por bloque de datos (escrita por "
+"`scripts/tools/data_patches/add_sources_sheet.py`). Sin columnas de año; "
 "`B1_Compiler.py` y `sync_historical_from_bau.py` la omiten"
 
 #: ../../data-reference.md:203
@@ -850,10 +850,10 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "See {doc}`sources` for a summary of the external datasets and national "
-"planning documents these `Fuentes` sheets cite."
+"planning documents these `Sources` sheets cite."
 msgstr ""
 "Ver {doc}`sources` para un resumen de los conjuntos de datos externos y "
-"los documentos de planificación nacional que citan estas hojas `Fuentes`."
+"los documentos de planificación nacional que citan estas hojas `Sources`."
 
 #: ../../data-reference.md:215
 msgid "A-O_AR_Model_Base_Year.xlsx"
@@ -1383,4 +1383,7 @@ msgstr ""
 
 #~ msgid "BDS: battery storage on the demand node, Chile"
 #~ msgstr "BDS: almacenamiento en baterías en el nodo de demanda, Chile"
+
+#~ msgid "Fuentes"
+#~ msgstr "Fuentes"
 

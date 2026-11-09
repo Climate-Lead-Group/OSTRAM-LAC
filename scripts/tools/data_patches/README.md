@@ -24,8 +24,8 @@ original; only the path constants and the "Usage" lines changed.
 | `patch_open_maxcaps_pisos_OPT.py` | In OPT, where the new floor exceeds the `TotalAnnualMaxCapacityInvestment` cap, opens the cap to `floor × 1.01` (VGB precedent). `EMPTY` cells/rows = no cap, left untouched. | `A1_Outputs_OPT/A-O_Parametrization.xlsx` / Secondary Techs | 2026-08-13 14:25 — log `open_maxcaps_pisos_OPT_20260813_142555.json` (82 cells) | `--dry-run` (today reports 0 conflicts) |
 | `patch_rpo_operationallife.py` | `OperationalLife` 20 → 50 in every row whose Tech contains `RPO` (`RNWRPO*`, `TRNRPO*`: 38 techs). Precondition: all at 20; otherwise the scenario is left untouched. | `A-O_Parametrization.xlsx` / Fixed Horizon Parameters, col. H (4 scenarios) | 2026-09-01 (backups `.bak_20260901_*` in the stash) | dry-run by default; `--apply` writes. Currently reports `NO SE SUSTITUYE: Value = 50` (already applied) |
 | `patch_rnwtrnbraxx_residualcapacity.py` | `ResidualCapacity` of `RNWTRNBRAXX` 52.990319556 → 85.40 in I..AJ (2023-2050). Precondition: all 28 cells at 52.99. | `A-O_Parametrization.xlsx` / Demand Techs, row 676 (4 scenarios) | 2026-09-02 | dry-run by default; `--apply` writes. Currently reports `NO SE SUSTITUYE: = 85.4` (already applied) |
-| `add_fuentes_sheet.py` | Adds/replaces the documentation sheet **`Fuentes`** (source, origin file/sheet and transformation per data block) at the end of each workbook, reading the master table `inputs/config/data_sources.csv` (`Archivo` column accepts `A|B`). Idempotent. No year columns → `sync_historical_from_bau.py` skips it; `B1_Compiler.py` excludes it the same way as `growth_formula`. | `A-O_Parametrization.xlsx` and `A-O_Demand.xlsx` for the 4 scenarios; `A2_Extra_Inputs/A-Xtra_Storage.xlsx`; templates `inputs/Miscellaneous/{A-O_Parametrization,A-O_Demand,A-Xtra_Storage}.xlsx` (title + header only, no rows: the templates have no data) | 2026-09-14 (78 / 23 / 5 rows per workbook type); re-applied 2026-11-09 with `--no-templates` (80 / 23 / 5) after the backstop note changed | dry-run by default; `--apply` writes; `--no-templates` skips `Miscellaneous/`. Test: `python scripts/tools/data_patches/test_add_fuentes_sheet.py` |
-| `test_add_fuentes_sheet.py` | Test suite for `add_fuentes_sheet.py`, run against temporary copies; never touches `inputs/` (sheet content, idempotency, `Archivo` filter, B1-style reads, template header-only rows). | same files as `add_fuentes_sheet.py` (copied to a temp dir) | none in the real tree; temp copies only | `python scripts/tools/data_patches/test_add_fuentes_sheet.py` |
+| `add_sources_sheet.py` | Adds/replaces the documentation sheet **`Sources`** (named `Fuentes` until 2026-11-09; source, origin file/sheet and transformation per data block) at the end of each workbook, reading the master table `inputs/config/data_sources.csv` (`Archivo` column accepts `A|B`). Idempotent. No year columns → `sync_historical_from_bau.py` skips it; `B1_Compiler.py` excludes it the same way as `growth_formula`. | `A-O_Parametrization.xlsx` and `A-O_Demand.xlsx` for the 4 scenarios; `A2_Extra_Inputs/A-Xtra_Storage.xlsx`; templates `inputs/Miscellaneous/{A-O_Parametrization,A-O_Demand,A-Xtra_Storage}.xlsx` (title + header only, no rows: the templates have no data) | 2026-09-14 (78 / 23 / 5 rows per workbook type); re-applied 2026-11-09 with `--no-templates` (80 / 23 / 5) after the backstop note changed, then on all 12 workbooks to rename the sheet from `Fuentes` to `Sources` (a leftover `Fuentes` sheet is deleted) | dry-run by default; `--apply` writes; `--no-templates` skips `Miscellaneous/`. Test: `python scripts/tools/data_patches/test_add_sources_sheet.py` |
+| `test_add_sources_sheet.py` | Test suite for `add_sources_sheet.py`, run against temporary copies; never touches `inputs/` (sheet content, idempotency, `Archivo` filter, B1-style reads, template header-only rows). | same files as `add_sources_sheet.py` (copied to a temp dir) | none in the real tree; temp copies only | `python scripts/tools/data_patches/test_add_sources_sheet.py` |
 
 ## How to run
 
@@ -37,12 +37,12 @@ Safe (non-writing) invocations, from the repo root unless noted otherwise:
 - `python scripts/tools/data_patches/patch_open_maxcaps_pisos_OPT.py --dry-run`
 - `python scripts/tools/data_patches/patch_rpo_operationallife.py` (dry-run by default)
 - `python scripts/tools/data_patches/patch_rnwtrnbraxx_residualcapacity.py` (dry-run by default)
-- `python scripts/tools/data_patches/add_fuentes_sheet.py` (dry-run by default)
+- `python scripts/tools/data_patches/add_sources_sheet.py` (dry-run by default)
 
 Tests:
 
 - `python scripts/tools/data_patches/test_add_bds_storage.py`
-- `python scripts/tools/data_patches/test_add_fuentes_sheet.py`
+- `python scripts/tools/data_patches/test_add_sources_sheet.py`
 
 ## Order / dependencies
 
@@ -55,7 +55,7 @@ A3 (regenerates A-O_* and DELETES BDS)
  -> patch_open_maxcaps_pisos_OPT.py          (Max = floor x 1.01 where Min > Max)
  -> patch_rpo_operationallife.py --apply     (OL RPO 20 -> 50)
  -> patch_rnwtrnbraxx_residualcapacity.py --apply (RC 52.99 -> 85.4)
- -> add_fuentes_sheet.py --apply             (Fuentes documentation sheet; A3 deletes it on regen)
+ -> add_sources_sheet.py --apply             (Sources documentation sheet; A3 deletes it on regen)
  -> B1 -> B2
 ```
 
@@ -71,8 +71,8 @@ at any point (they edit by Tech match).
   `DemandFromOLADE=YES`, `TradeBalanceDemandAdjustment=NO`; e.g. `ELCARGXX03` 2023 = 564.3) — has no
   script here: it is produced by `scripts/pipeline/D2_update_secondary_techs.py` from
   `Secondary_Techs_Editor.xlsx`.
-- The `Fuentes` sheet is documentation only. To change a source, edit
-  `inputs/config/data_sources.csv` and re-run `add_fuentes_sheet.py --apply` (do not edit the sheet
+- The `Sources` sheet is documentation only. To change a source, edit
+  `inputs/config/data_sources.csv` and re-run `add_sources_sheet.py --apply` (do not edit the sheet
   by hand: it gets rewritten wholesale).
 - **A3 regenerates the A-O workbooks and deletes BDS** (and overwrites any manual edit to Secondary
   Techs / Fixed Horizon Parameters). After A3, the full chain above must be re-run before B1.

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Add (or replace) the `Fuentes` documentation sheet in the model's input workbooks.
+"""Add (or replace) the `Sources` documentation sheet in the model's input workbooks.
 
 Already applied to inputs/ on 2026-09-14 (78/23/5 rows per workbook type) and re-applied
-on 2026-11-09 with --no-templates (80/23/5; see
-`scripts/tools/data_patches/README.md`). The sheet documents where each data block comes from
-(source, origin file/sheet, and transformation). Its content lives in a single master table,
-`inputs/config/data_sources.csv`, so that the 8 A-O_* workbooks of the 4 scenarios and
-`A-Xtra_Storage.xlsx` always stay identical to each other. Idempotent: if the sheet already
+on 2026-11-09 with --no-templates (80/23/5), then on all 12 workbooks to rename the sheet
+from `Fuentes` to `Sources` (see `scripts/tools/data_patches/README.md`). The sheet documents
+where each data block comes from (source, origin file/sheet, and transformation). Its content
+lives in a single master table, `inputs/config/data_sources.csv`, so that the 8 A-O_* workbooks
+of the 4 scenarios and `A-Xtra_Storage.xlsx` always stay identical to each other. Idempotent: if the sheet already
 exists it is deleted and recreated from the CSV.
 
 Workbooks touched (filtering the CSV rows by the `Archivo` column, which accepts several
@@ -15,24 +15,25 @@ A-O_Demand.xlsx (BAU, INV, OPT, VGB); inputs/A2_Extra_Inputs/A-Xtra_Storage.xlsx
 inputs/Miscellaneous/{A-O_Parametrization,A-O_Demand,A-Xtra_Storage}.xlsx (templates: title
 and header only, no rows, since the templates carry no data; --no-templates skips them).
 
-The sheet is named `Fuentes`, placed at the end of the workbook, and has no year columns, so
+The sheet is named `Sources`, placed at the end of the workbook, and has no year columns, so
 `sync_historical_from_bau.py` skips it ("no year columns") and `B1_Compiler.py` excludes it
-explicitly (the same way it excludes `growth_formula`). No other sheet is modified.
+explicitly (the same way it excludes `growth_formula`). A sheet left with the former name
+`Fuentes` is deleted when the new one is written. No other sheet is modified.
 
 Inputs:
     inputs/config/data_sources.csv (master table, column `Archivo` filters by workbook)
 Outputs:
     A-O_Parametrization.xlsx and A-O_Demand.xlsx for the 4 scenarios, A2_Extra_Inputs/
         A-Xtra_Storage.xlsx, and (unless --no-templates) the 3 Miscellaneous/ templates —
-        sheet "Fuentes", in place — only with --apply
+        sheet "Sources", in place — only with --apply
 Usage:
-    python scripts/tools/data_patches/add_fuentes_sheet.py
+    python scripts/tools/data_patches/add_sources_sheet.py
         # dry-run: shows what it would do
-    python scripts/tools/data_patches/add_fuentes_sheet.py --apply
+    python scripts/tools/data_patches/add_sources_sheet.py --apply
         # writes
-    python scripts/tools/data_patches/add_fuentes_sheet.py --apply --no-templates
+    python scripts/tools/data_patches/add_sources_sheet.py --apply --no-templates
 Notes:
-    - Test: python scripts/tools/data_patches/test_add_fuentes_sheet.py
+    - Test: python scripts/tools/data_patches/test_add_sources_sheet.py
 """
 from __future__ import annotations
 
@@ -48,7 +49,8 @@ from openpyxl.utils import get_column_letter
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from common import relac_paths as P  # noqa: E402
 
-SHEET_NAME = "Fuentes"
+SHEET_NAME = "Sources"
+LEGACY_SHEET_NAMES = ("Fuentes",)  # nombre anterior de la hoja, se borra al escribir
 CSV_PATH = P.CONFIG / "data_sources.csv"
 SCENARIOS = ["BAU", "INV", "OPT", "VGB"]
 COLUMNS = ["Hoja", "Tecnologias", "Parametro", "Años", "Fuente", "Detalle"]
@@ -94,9 +96,10 @@ def targets(include_templates: bool = True) -> list[tuple[str, Path, bool]]:
 
 
 def write_sheet(wb: openpyxl.Workbook, rows: list[dict[str, str]]) -> None:
-    """Delete the `Fuentes` sheet if it exists and recreate it at the end of the workbook."""
-    if SHEET_NAME in wb.sheetnames:
-        del wb[SHEET_NAME]
+    """Delete the `Sources` sheet (and any legacy `Fuentes` sheet) and recreate it at the end."""
+    for name in (SHEET_NAME, *LEGACY_SHEET_NAMES):
+        if name in wb.sheetnames:
+            del wb[name]
     ws = wb.create_sheet(SHEET_NAME)  # al final
 
     ws.cell(row=1, column=1, value=TITLE_ROW).font = Font(italic=True, color="555555")

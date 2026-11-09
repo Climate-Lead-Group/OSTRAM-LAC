@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
-"""Test suite for add_fuentes_sheet.py, run against temporary copies (never touches inputs/).
+"""Test suite for add_sources_sheet.py, run against temporary copies (never touches inputs/).
 
-Verifies: (1) the `Fuentes` sheet is created at the end, with the CSV rows that match that
+Verifies: (1) the `Sources` sheet is created at the end, and a legacy `Fuentes` sheet is
+removed, with the CSV rows that match that
 workbook; (2) no other sheet changes (checked cell by cell); (3) idempotency: applying twice
 gives the same result and does not duplicate sheets; (4) the `Archivo` filter (with `|`)
 correctly splits rows across the 3 workbook types; (5) B1-style reading (pandas ExcelFile)
-still works when `Fuentes` is excluded, and sync_historical_from_bau.year_columns() sees no
+still works when `Sources` is excluded, and sync_historical_from_bau.year_columns() sees no
 year columns on the new sheet; (6) the Miscellaneous templates get the sheet with a header but
 no data rows.
 
 Inputs:
-    same files as add_fuentes_sheet.py (copied to a temporary directory, not modified in place)
+    same files as add_sources_sheet.py (copied to a temporary directory, not modified in place)
 Outputs:
     none in the real tree; writes only to temporary copies
 Usage:
-    python scripts/tools/data_patches/test_add_fuentes_sheet.py
+    python scripts/tools/data_patches/test_add_sources_sheet.py
 """
 from __future__ import annotations
 
@@ -32,7 +33,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parents[1]))          # scripts/
 sys.path.insert(0, str(HERE.parents[1] / "pipeline"))
-import add_fuentes_sheet as afs  # noqa: E402
+import add_sources_sheet as afs  # noqa: E402
 from common import relac_paths as P  # noqa: E402
 
 FAILS: list[str] = []
@@ -44,18 +45,19 @@ def check(cond: bool, msg: str) -> None:
         FAILS.append(msg)
 
 
-def snapshot(path: Path, skip: str) -> dict[str, list[tuple]]:
+def snapshot(path: Path, skip: tuple[str, ...]) -> dict[str, list[tuple]]:
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
-    snap = {ws.title: list(ws.iter_rows(values_only=True)) for ws in wb.worksheets if ws.title != skip}
+    snap = {ws.title: list(ws.iter_rows(values_only=True)) for ws in wb.worksheets if ws.title not in skip}
     wb.close()
     return snap
 
 
 def main() -> int:
-    """Run all add_fuentes_sheet.py checks against temporary copies of the real workbooks.
+    """Run all add_sources_sheet.py checks against temporary copies of the real workbooks.
 
     Copies A-O_Parametrization.xlsx, A-O_Demand.xlsx, A-Xtra_Storage.xlsx and one Miscellaneous
-    template to a temp sandbox, applies the sheet (twice, to check idempotency) and asserts the
+    template to a temp sandbox, adds a legacy `Fuentes` sheet, applies the sheet (twice, to
+    check idempotency) and asserts the
     six behaviors listed in the module docstring. Prints one line per check and a final
     pass/fail count.
 
@@ -70,7 +72,7 @@ def main() -> int:
     check(shared and all(r in by_key["A-O_Parametrization"] and r in by_key["A-O_Demand"] for r in shared),
           f"{len(shared)} filas compartidas (Archivo con '|') llegan a ambos libros A-O")
 
-    tmp = Path(tempfile.mkdtemp(prefix="fuentes_sandbox_"))
+    tmp = Path(tempfile.mkdtemp(prefix="sources_sandbox_"))
     try:
         sources = {
             "A-O_Parametrization": P.scenario_dir("BAU") / "A-O_Parametrization.xlsx",
@@ -80,7 +82,15 @@ def main() -> int:
         for key, src in sources.items():
             dst = tmp / src.name
             shutil.copy2(src, dst)
-            before = snapshot(dst, skip=afs.SHEET_NAME)
+            # Hoja con el nombre anterior: debe desaparecer al escribir la nueva
+            wbl = openpyxl.load_workbook(dst)
+            for legacy in afs.LEGACY_SHEET_NAMES:
+                if legacy not in wbl.sheetnames:
+                    wbl.create_sheet(legacy)
+            wbl.save(dst)
+            wbl.close()
+            skip = (afs.SHEET_NAME, *afs.LEGACY_SHEET_NAMES)
+            before = snapshot(dst, skip=skip)
             sheets_before = openpyxl.load_workbook(dst, read_only=True).sheetnames
 
             afs.apply_to_workbook(dst, by_key[key], dry_run=False)
@@ -90,7 +100,9 @@ def main() -> int:
             names = wb.sheetnames
             check(names.count(afs.SHEET_NAME) == 1 and names[-1] == afs.SHEET_NAME,
                   f"{src.name}: una sola hoja '{afs.SHEET_NAME}' y va al final")
-            check([n for n in names if n != afs.SHEET_NAME] == [n for n in sheets_before if n != afs.SHEET_NAME],
+            check(not any(n in names for n in afs.LEGACY_SHEET_NAMES),
+                  f"{src.name}: la hoja con el nombre anterior {afs.LEGACY_SHEET_NAMES} ya no existe")
+            check([n for n in names if n not in skip] == [n for n in sheets_before if n not in skip],
                   f"{src.name}: las demás hojas conservan nombre y orden")
             ws = wb[afs.SHEET_NAME]
             header = [ws.cell(row=2, column=c).value for c in range(1, len(afs.COLUMNS) + 1)]
@@ -114,10 +126,10 @@ def main() -> int:
                   f"{src.name}: ninguna fuente tiene relleno")
             wb.close()
 
-            after = snapshot(dst, skip=afs.SHEET_NAME)
+            after = snapshot(dst, skip=skip)
             check(after == before, f"{src.name}: ninguna otra hoja cambió (valores celda a celda)")
 
-            # Lectura estilo B1: pandas ExcelFile, excluyendo 'Fuentes' como hace B1 con growth_formula
+            # Lectura estilo B1: pandas ExcelFile, excluyendo 'Sources' como hace B1 con growth_formula
             xls = pd.ExcelFile(dst)
             param_sheets = [s for s in xls.sheet_names if s != afs.SHEET_NAME]
             if key == "A-O_Parametrization":
@@ -146,7 +158,7 @@ def main() -> int:
         data_rows = [r for r in wst.iter_rows(min_row=3, values_only=True) if any(v is not None for v in r)]
         hdr_t = [c.value for c in next(wst.iter_rows(min_row=2, max_row=2))][: len(afs.COLUMNS)]
         wbt.close()
-        check(hdr_t == afs.COLUMNS and not data_rows, "plantilla: hoja Fuentes con encabezado y 0 filas de datos")
+        check(hdr_t == afs.COLUMNS and not data_rows, f"plantilla: hoja {afs.SHEET_NAME} con encabezado y 0 filas de datos")
         tmpl_targets = [(k, p, tp) for k, p, tp in afs.targets(True) if tp]
         check(len(tmpl_targets) == 3 and all("Miscellaneous" in str(p) for _, p, _ in tmpl_targets),
               "targets(): las 3 plantillas de Miscellaneous van marcadas como plantilla")

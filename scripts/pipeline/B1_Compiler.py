@@ -375,8 +375,8 @@ print('4 - Process the model demand.')
 
 Demand = pd.ExcelFile(os.path.join(params['A1_outputs'],A1_PREFIX + '_' + params['xtra_scen']['Main_Scenario'] + params['Print_Demand']))
 param_sheets = Demand.sheet_names # see all sheet names
-if 'Fuentes' in param_sheets:  # hoja documental de fuentes de datos (add_fuentes_sheet.py)
-    param_sheets.remove('Fuentes')
+if 'Sources' in param_sheets:  # hoja documental de fuentes de datos (add_sources_sheet.py)
+    param_sheets.remove('Sources')
 
 
 
@@ -581,8 +581,8 @@ Parametrization = pd.ExcelFile(os.path.join(params['A1_outputs'],A1_PREFIX + '_'
 param_sheets = Parametrization.sheet_names # see all sheet names]
 if 'growth_formula' in param_sheets:
     param_sheets.remove('growth_formula')
-if 'Fuentes' in param_sheets:  # hoja documental de fuentes de datos (add_fuentes_sheet.py)
-    param_sheets.remove('Fuentes')
+if 'Sources' in param_sheets:  # hoja documental de fuentes de datos (add_sources_sheet.py)
+    param_sheets.remove('Sources')
 #
 params_dict = {}
 params_dict_new = {}
