@@ -40,8 +40,8 @@ msgid "[Jairo Quiros-Tortós](https://github.com/jairoclg)"
 msgstr "[Jairo Quiros-Tortós](https://github.com/jairoclg)"
 
 #: ../../study/authors.md
-msgid "[Javier Monje-Matamoros](https://github.com/javierclg)"
-msgstr "[Javier Monje-Matamoros](https://github.com/javierclg)"
+msgid "[Javier Monge-Matamoros](https://github.com/javierclg)"
+msgstr "[Javier Monge-Matamoros](https://github.com/javierclg)"
 
 #: ../../study/authors.md
 msgid "[Natalia Víctor-Gallardo](https://github.com/natyvicg)"
@@ -82,8 +82,8 @@ msgstr ""
 #~ msgid "Jairo Quiros-Tortós"
 #~ msgstr "Jairo Quiros-Tortós"
 
-#~ msgid "Javier Monje-Matamoros"
-#~ msgstr "Javier Monje-Matamoros"
+#~ msgid "Javier Monge-Matamoros"
+#~ msgstr "Javier Monge-Matamoros"
 
 #~ msgid "Natalia Víctor-Gallardo"
 #~ msgstr "Natalia Víctor-Gallardo"
